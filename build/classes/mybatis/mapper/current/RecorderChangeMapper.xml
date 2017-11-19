@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.RecorderChangeDao">
+	
+	<insert id="add">
+		INSERT recorder_change_ 
+		(student_id,change_time,recorder_now,change_reason) 
+		VALUES 
+		(#{recorderChange.studentId},#{recorderChange.changeTime},
+		#{recorderChange.recorderNow},#{recorderChange.changeReason})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM recorder_change_ 
+		WHERE student_id=#{studentId}
+	</delete>
+	
+	<select id="list" resultType="com.uestc.newhelp.entity.RecorderChange">
+		SELECT change_time,recorder_now,change_reason 
+		FROM recorder_change_
+		WHERE student_id=#{studentId} 
+		ORDER BY change_time DESC 
+		LIMIT 3
+	</select>
+	
+</mapper>

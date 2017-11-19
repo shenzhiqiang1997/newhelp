@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.BaseStudentDao">
+	
+	<select id="getAll" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT student_id,name,grade,student_class,sex,photo_url,duty,dormitory,contact_way,id_card_number,qq_number,email,birthday,height,major,political_status,ethnic_group,birth_origin,college_entrance_exam_score,college_entrance_exam_english_score,entrance_exam_english_score,hometown_railway_station,province,city,family_address,family_tel_number,postcode,specialty,duty_in_high_school,award_in_high_school,is_had_technology_competition_award,father_name,father_work_unit,father_work_unit_address,father_duty,father_postcode,father_tel_number,mother_name,mother_work_unit,mother_work_unit_address,mother_duty,mother_postcode,mother_tel_number FROM base_student_ WHERE student_id=#{studentId}
+	</select>
+		
+	<select id="getPersonalInfo" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT student_id,name,grade,student_class,sex,photo_url,duty,dormitory,contact_way,id_card_number,qq_number,email,birthday,height,major,political_status,ethnic_group,birth_origin,college_entrance_exam_score,college_entrance_exam_english_score,entrance_exam_english_score,hometown_railway_station,province,city,postcode,specialty,duty_in_high_school,award_in_high_school,is_had_technology_competition_award FROM base_student_ WHERE student_id=#{studentId}
+	</select>
+	
+	<select id="getFamilyInfo" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT family_address,family_tel_number,father_name,father_work_unit,father_work_unit_address,father_duty,father_postcode,father_tel_number,mother_name,mother_work_unit,mother_work_unit_address,mother_duty,mother_postcode,mother_tel_number FROM base_student_ WHERE student_id=#{studentId}
+	</select>
+	
+	<select id="getArchiveInfo" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT sex,major,grade,student_class,political_status,ethnic_group,duty,dormitory,birth_origin,family_address,contact_way,father_tel_number,mother_tel_number FROM base_student_ WHERE student_id=#{studentId}
+	</select>
+	
+	<select id="list" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT student_id,name,grade,student_class,sex,duty,dormitory,contact_way,id_card_number,
+		qq_number,email,birthday,height,major,political_status,ethnic_group,birth_origin,college_entrance_exam_score,
+		college_entrance_exam_english_score,entrance_exam_english_score,hometown_railway_station,province,
+		city,family_address,family_tel_number,postcode,specialty,duty_in_high_school,award_in_high_school,
+		is_had_technology_competition_award,father_name,father_work_unit,father_Work_unit_address,father_duty,
+		father_postcode,father_tel_number,mother_name,mother_work_unit,mother_work_unit_address,mother_duty,
+		mother_postcode,mother_tel_number
+		FROM base_student_ 
+		ORDER BY student_id
+	</select>
+	
+	<select id="search" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT student_id,name,grade,student_class,sex,duty,dormitory,contact_way,id_card_number,qq_number,email,birthday,height,major,political_status,ethnic_group,birth_origin,college_entrance_exam_score,college_entrance_exam_english_score,entrance_exam_english_score,hometown_railway_station,province,city,family_address,family_tel_number,postcode,specialty,duty_in_high_school,award_in_high_school,is_had_technology_competition_award,father_name,father_work_unit,father_Work_unit_address,father_duty,father_postcode,father_tel_number,mother_name,mother_work_unit,mother_work_unit_address,mother_duty,mother_postcode,mother_tel_number
+		FROM base_student_
+		<where>
+			<if test="baseStudent.studentId!=null and baseStudent.studentId!=''">
+				AND CAST(student_id AS CHAR) LIKE CONCAT('%',#{baseStudent.studentId},'%')
+			</if>
+			<if test="baseStudent.name!=null and baseStudent.name!=''">
+				AND name LIKE CONCAT('%',#{baseStudent.name},'%')
+			</if>
+			<if test="baseStudent.grade!=null and baseStudent.grade!=''">
+				AND CAST(grade AS CHAR) LIKE CONCAT('%',#{baseStudent.grade},'%')
+			</if>
+			<if test="baseStudent.studentClass!=null and baseStudent.studentClass!=''">
+				AND CAST(student_class AS CHAR) LIKE CONCAT('%',#{baseStudent.studentClass},'%')
+			</if>
+			<if test="baseStudent.sex!=null and baseStudent.sex!=''">
+				AND sex LIKE CONCAT('%',#{baseStudent.sex},'%')
+			</if>
+			<if test="baseStudent.duty!=null and baseStudent.duty!=''">
+				AND duty LIKE CONCAT('%',#{baseStudent.duty},'%')
+			</if>
+			<if test="baseStudent.dormitory!=null and baseStudent.dormitory!=''">
+				AND dormitory LIKE CONCAT('%',#{baseStudent.dormitory},'%')
+			</if>
+			<if test="baseStudent.contactWay!=null and baseStudent.contactWay!=''">
+				AND contact_way LIKE CONCAT('%',#{baseStudent.contactWay},'%')
+			</if>
+			<if test="baseStudent.idCardNumber!=null and baseStudent.idCardNumber!=''">
+				AND id_card_number LIKE CONCAT('%',#{baseStudent.idCardNumber},'%')
+			</if>
+			<if test="baseStudent.qqNumber!=null and baseStudent.qqNumber!=''">
+				AND qq_number LIKE CONCAT('%',#{baseStudent.qqNumber},'%')
+			</if>
+			<if test="baseStudent.email!=null and baseStudent.email!=''">
+				AND email LIKE CONCAT('%',#{baseStudent.email},'%')
+			</if>
+			<if test="baseStudent.birthday!=null">
+				AND birthday=#{baseStudent.birthday}
+			</if>
+			<if test="baseStudent.height!=null and baseStudent.height!=''">
+				AND CAST(height AS CHAR) LIKE CONCAT('%',ROUND(#{baseStudent.height},0),'%')
+			</if>
+			<if test="baseStudent.major!=null and baseStudent.major!=''">
+				AND major LIKE CONCAT('%',#{baseStudent.major},'%')
+			</if>
+			<if test="baseStudent.politicalStatus!=null and baseStudent.politicalStatus!=''">
+				AND political_status LIKE CONCAT('%',#{baseStudent.politicalStatus},'%')
+			</if>
+			<if test="baseStudent.ethnicGroup!=null and baseStudent.ethnicGroup!=''">
+				AND ethnic_group LIKE CONCAT('%',#{baseStudent.ethnicGroup},'%')
+			</if>
+			<if test="baseStudent.birthOrigin!=null and baseStudent.birthOrigin!=''">
+				AND birth_origin LIKE CONCAT('%',#{baseStudent.birthOrigin},'%')
+			</if>
+			<if test="baseStudent.collegeEntranceExamScore!=null and baseStudent.collegeEntranceExamScore!=''">
+				AND college_entrance_exam_score LIKE CONCAT('%',#{baseStudent.collegeEntranceExamScore},'%')
+			</if>
+			<if test="baseStudent.collegeEntranceExamEnglishScore!=null and baseStudent.collegeEntranceExamEnglishScore!=''">
+				AND college_entrance_exam_english_score LIKE CONCAT('%',#{baseStudent.collegeEntranceExamEnglishScore},'%')
+			</if>
+			<if test="baseStudent.entranceExamEnglishScore!=null and baseStudent.entranceExamEnglishScore!=''">
+				AND CAST(entrance_exam_english_score AS CHAR) LIKE CONCAT('%',#{baseStudent.entranceExamEnglishScore},'%')
+			</if>
+			<if test="baseStudent.hometownRailwayStation!=null and baseStudent.hometownRailwayStation!=''">
+				AND hometown_railway_station LIKE CONCAT('%',#{baseStudent.hometownRailwayStation},'%')
+			</if>
+			<if test="baseStudent.province!=null and baseStudent.province!=''">
+				AND province LIKE CONCAT('%',#{baseStudent.province},'%')
+			</if>
+			<if test="baseStudent.city!=null and baseStudent.city!=''">
+				AND city LIKE CONCAT('%',#{baseStudent.city},'%')
+			</if>
+			<if test="baseStudent.familyAddress!=null and baseStudent.familyAddress!=''">
+				AND family_address LIKE CONCAT('%',#{baseStudent.familyAddress},'%')
+			</if>
+			<if test="baseStudent.familyTelNumber!=null and baseStudent.familyTelNumber!=''">
+				AND family_tel_number LIKE CONCAT('%',#{baseStudent.familyTelNumber},'%')
+			</if>
+			<if test="baseStudent.postcode!=null and baseStudent.postcode!=''">
+				AND postcode LIKE CONCAT('%',#{baseStudent.postcode},'%')
+			</if>
+			<if test="baseStudent.specialty!=null and baseStudent.specialty!=''">
+				AND specialty LIKE CONCAT('%',#{baseStudent.specialty},'%')
+			</if>
+			<if test="baseStudent.dutyInHighSchool!=null and baseStudent.dutyInHighSchool!=''">
+				AND duty_in_high_school LIKE CONCAT('%',#{baseStudent.dutyInHighSchool},'%')
+			</if>
+			<if test="baseStudent.awardInHighSchool!=null and baseStudent.awardInHighSchool!=''">
+				AND award_in_high_school LIKE CONCAT('%',#{baseStudent.awardInHighSchool},'%')
+			</if>
+			<if test="baseStudent.isHadTechnologyCompetitionAward!=null and baseStudent.isHadTechnologyCompetitionAward!=''">
+				AND is_had_technology_competition_award LIKE CONCAT('%',#{baseStudent.isHadTechnologyCompetitionAward},'%')
+			</if>
+			<if test="baseStudent.fatherName!=null and baseStudent.fatherName!=''">
+				AND father_name LIKE CONCAT('%',#{baseStudent.fatherName},'%')
+			</if>
+			<if test="baseStudent.fatherWorkUnit!=null and baseStudent.fatherWorkUnit!=''">
+				AND father_work_unit LIKE CONCAT('%',#{baseStudent.fatherWorkUnit},'%')
+			</if>
+			<if test="baseStudent.fatherWorkUnitAddress!=null and baseStudent.fatherWorkUnitAddress!=''">
+				AND father_work_unit_address LIKE CONCAT('%',#{baseStudent.fatherWorkUnitAddress},'%')
+			</if>
+			<if test="baseStudent.fatherDuty!=null and baseStudent.fatherDuty!=''">
+				AND father_duty LIKE CONCAT('%',#{baseStudent.fatherDuty},'%')
+			</if>
+			<if test="baseStudent.fatherPostcode!=null and baseStudent.fatherPostcode!=''">
+				AND father_postcode LIKE CONCAT('%',#{baseStudent.fatherPostcode},'%')
+			</if>
+			<if test="baseStudent.fatherTelNumber!=null and baseStudent.fatherTelNumber!=''">
+				AND father_tel_number LIKE CONCAT('%',#{baseStudent.fatherTelNumber},'%')
+			</if>
+			<if test="baseStudent.motherName!=null and baseStudent.motherName!=''">
+				AND mother_name LIKE CONCAT('%',#{baseStudent.motherName},'%')
+			</if>
+			<if test="baseStudent.motherWorkUnit!=null and baseStudent.motherWorkUnit!=''">
+				AND mother_work_unit LIKE CONCAT('%',#{baseStudent.motherWorkUnit},'%')
+			</if>
+			<if test="baseStudent.motherWorkUnitAddress!=null and baseStudent.motherWorkUnitAddress!=''">
+				AND mother_work_unit_address LIKE CONCAT('%',#{baseStudent.motherWorkUnitAddress},'%')
+			</if>
+			<if test="baseStudent.motherDuty!=null and baseStudent.motherDuty!=''">
+				AND mother_duty LIKE CONCAT('%',#{baseStudent.motherDuty},'%')
+			</if>
+			<if test="baseStudent.motherPostcode!=null and baseStudent.motherPostcode!=''">
+				AND mother_postcode LIKE CONCAT('%',#{baseStudent.motherPostcode},'%')
+			</if>
+			<if test="baseStudent.motherTelNumber!=null and baseStudent.motherTelNumber!=''">
+				AND mother_tel_number LIKE CONCAT('%',#{baseStudent.motherTelNumber},'%')
+			</if>
+		</where>
+		ORDER BY student_id
+	</select>
+	
+	<select id="listStudentIdByName" resultType="Long">
+		SELECT student_id FROM base_student_ WHERE name=#{name} ORDER BY student_id
+	</select>
+	
+	<insert id="addBatch">
+		INSERT base_student_ (student_id,name,grade,
+		student_class,sex,duty,dormitory,contact_way,id_card_number,
+		qq_number,email,birthday,height,major,political_status,
+		ethnic_group,birth_origin,college_entrance_exam_score,
+		college_entrance_exam_english_score,entrance_exam_english_score,
+		hometown_railway_station,province,city,family_address,
+		family_tel_number,postcode,specialty,duty_in_high_school,award_in_high_school,
+		is_had_technology_competition_award,father_name,father_work_unit,
+		father_work_unit_address,father_duty,father_postcode,
+		father_tel_number,mother_name,mother_work_unit,
+		mother_work_unit_address,mother_duty,mother_postcode,
+		mother_tel_number) VALUES
+		<foreach collection="baseStudents" item="baseStudent" separator=",">
+			(#{baseStudent.studentId},#{baseStudent.name},#{baseStudent.grade},
+			#{baseStudent.studentClass},#{baseStudent.sex},
+			#{baseStudent.duty},#{baseStudent.dormitory},
+			#{baseStudent.contactWay},#{baseStudent.idCardNumber},
+			#{baseStudent.qqNumber},#{baseStudent.email},
+			#{baseStudent.birthday},#{baseStudent.height},
+			#{baseStudent.major},#{baseStudent.politicalStatus},
+			#{baseStudent.ethnicGroup},#{baseStudent.birthOrigin},
+			#{baseStudent.collegeEntranceExamScore},
+			#{baseStudent.collegeEntranceExamEnglishScore},
+			#{baseStudent.entranceExamEnglishScore},
+			#{baseStudent.hometownRailwayStation},
+			#{baseStudent.province},#{baseStudent.city},
+			#{baseStudent.familyAddress},#{baseStudent.familyTelNumber},
+			#{baseStudent.postcode},#{baseStudent.specialty},
+			#{baseStudent.dutyInHighSchool},#{baseStudent.awardInHighSchool},
+			#{baseStudent.isHadTechnologyCompetitionAward},
+			#{baseStudent.fatherName},#{baseStudent.fatherWorkUnit},
+			#{baseStudent.fatherWorkUnitAddress},#{baseStudent.fatherDuty},
+			#{baseStudent.fatherPostcode},#{baseStudent.fatherTelNumber},
+			#{baseStudent.motherName},#{baseStudent.motherWorkUnit},
+			#{baseStudent.motherWorkUnitAddress},#{baseStudent.motherDuty},
+			#{baseStudent.motherPostcode},#{baseStudent.motherTelNumber})
+		</foreach>
+			ON DUPLICATE KEY UPDATE 
+			name=VALUES(name),
+			grade=VALUES(grade),
+			student_class=VALUES(student_class),
+			sex=VALUES(sex),
+			duty=VALUES(duty),
+			dormitory=VALUES(dormitory),
+			contact_way=VALUES(contact_way),
+			id_card_number=VALUES(id_card_number),
+			qq_number=VALUES(qq_number),
+			email=VALUES(email),
+			birthday=VALUES(birthday),
+			height=VALUES(height),
+			major=VALUES(major),
+			political_status=VALUES(political_status),
+			ethnic_group=VALUES(ethnic_group),
+			birth_origin=VALUES(birth_origin),
+			college_entrance_exam_score=VALUES(college_entrance_exam_score),
+			college_entrance_exam_english_score=VALUES(college_entrance_exam_english_score),
+			entrance_exam_english_score=VALUES(entrance_exam_english_score),
+			hometown_railway_station=VALUES(hometown_railway_station),
+			province=VALUES(province),
+			city=VALUES(city),
+			family_address=VALUES(family_address),
+			family_tel_number=VALUES(family_tel_number),
+			postcode=VALUES(postcode),
+			specialty=VALUES(specialty),
+			duty_in_high_school=VALUES(duty_in_high_school),
+			award_in_high_school=VALUES(award_in_high_school),
+			is_had_technology_competition_award=VALUES(is_had_technology_competition_award),
+			father_name=VALUES(father_name),
+			father_work_unit=VALUES(father_work_unit),
+			father_work_unit_address=VALUES(father_work_unit_address),
+			father_duty=VALUES(father_duty),
+			father_postcode=VALUES(father_postcode),
+			father_tel_number=VALUES(father_tel_number),
+			mother_name=VALUES(mother_name),
+			mother_work_unit=VALUES(mother_work_unit),
+			mother_work_unit_address=VALUES(mother_work_unit_address),
+			mother_duty=VALUES(mother_duty),
+			mother_postcode=VALUES(mother_postcode),
+			mother_tel_number=VALUES(mother_tel_number) 
+	</insert>
+	
+	<update id="update">
+		UPDATE base_student_
+		<set>
+			<if test="baseStudent.name!=null">
+				name=#{baseStudent.name},
+			</if>
+			<if test="baseStudent.grade!=null">
+				grade=#{baseStudent.grade},
+			</if>
+			<if test="baseStudent.studentClass!=null">
+				student_class=#{baseStudent.studentClass},
+			</if>
+			<if test="baseStudent.sex!=null">
+				sex=#{baseStudent.sex},
+			</if>
+			<if test="baseStudent.photoUrl!=null">
+				photo_url=#{baseStudent.photoUrl},
+			</if>
+			<if test="baseStudent.duty!=null">
+				duty=#{baseStudent.duty},
+			</if>
+			<if test="baseStudent.dormitory!=null">
+				dormitory=#{baseStudent.dormitory},
+			</if>
+			<if test="baseStudent.contactWay!=null">
+				contact_way=#{baseStudent.contactWay},
+			</if>
+			<if test="baseStudent.idCardNumber!=null">
+				id_card_number=#{baseStudent.idCardNumber},
+			</if>
+			<if test="baseStudent.qqNumber!=null">
+				qq_number=#{baseStudent.qqNumber},
+			</if>
+			<if test="baseStudent.email!=null">
+				email=#{baseStudent.email},
+			</if>
+			<if test="baseStudent.birthday!=null">
+				birthday=#{baseStudent.birthday},
+			</if>
+			<if test="baseStudent.height!=null">
+				height=#{baseStudent.height},
+			</if>
+			<if test="baseStudent.major!=null">
+				major=#{baseStudent.major},
+			</if>
+			<if test="baseStudent.politicalStatus!=null">
+				political_status=#{baseStudent.politicalStatus},
+			</if>
+			<if test="baseStudent.ethnicGroup!=null">
+				ethnic_group=#{baseStudent.ethnicGroup},
+			</if>
+			<if test="baseStudent.birthOrigin!=null">
+				birth_origin=#{baseStudent.birthOrigin},
+			</if>
+			<if test="baseStudent.collegeEntranceExamScore!=null">
+				college_entrance_exam_score=#{baseStudent.collegeEntranceExamScore},
+			</if>
+			<if test="baseStudent.collegeEntranceExamEnglishScore!=null">
+				college_entrance_exam_english_score=#{baseStudent.collegeEntranceExamEnglishScore},
+			</if>
+			<if test="baseStudent.entranceExamEnglishScore!=null">
+				entrance_exam_english_score=#{baseStudent.entranceExamEnglishScore},
+			</if>
+			<if test="baseStudent.hometownRailwayStation!=null">
+				hometown_railway_station=#{baseStudent.hometownRailwayStation},
+			</if>
+			<if test="baseStudent.province!=null">
+				province=#{baseStudent.province},
+			</if>
+			<if test="baseStudent.city!=null">
+				city=#{baseStudent.city},
+			</if>
+			<if test="baseStudent.familyAddress!=null">
+				family_address=#{baseStudent.familyAddress},
+			</if>
+			<if test="baseStudent.familyTelNumber!=null">
+				family_tel_number=#{baseStudent.familyTelNumber},
+			</if>
+			<if test="baseStudent.postcode!=null">
+				postcode=#{baseStudent.postcode},
+			</if>
+			<if test="baseStudent.specialty!=null">
+				specialty=#{baseStudent.specialty},
+			</if>
+			<if test="baseStudent.dutyInHighSchool!=null">
+				duty_in_high_school=#{baseStudent.dutyInHighSchool},
+			</if>
+			<if test="baseStudent.awardInHighSchool!=null">
+				award_in_high_school=#{baseStudent.awardInHighSchool},
+			</if>
+			<if test="baseStudent.isHadTechnologyCompetitionAward!=null">
+				is_had_technology_competition_award=#{baseStudent.isHadTechnologyCompetitionAward},
+			</if>
+			<if test="baseStudent.fatherName!=null">
+				father_name=#{baseStudent.fatherName},
+			</if>
+			<if test="baseStudent.fatherWorkUnit!=null">
+				father_work_unit=#{baseStudent.fatherWorkUnit},
+			</if>
+			<if test="baseStudent.fatherWorkUnitAddress!=null">
+				father_work_unit_address=#{baseStudent.fatherWorkUnitAddress},
+			</if>
+			<if test="baseStudent.fatherDuty!=null">
+				father_duty=#{baseStudent.fatherDuty},
+			</if>
+			<if test="baseStudent.fatherPostcode!=null">
+				father_postcode=#{baseStudent.fatherPostcode},
+			</if>
+			<if test="baseStudent.fatherTelNumber!=null">
+				father_tel_number=#{baseStudent.fatherTelNumber},
+			</if>
+			<if test="baseStudent.motherName!=null">
+				mother_name=#{baseStudent.motherName},
+			</if>
+			<if test="baseStudent.motherWorkUnit!=null">
+				mother_work_unit=#{baseStudent.motherWorkUnit},
+			</if>
+			<if test="baseStudent.motherWorkUnitAddress!=null">
+				mother_work_unit_address=#{baseStudent.motherWorkUnitAddress},
+			</if>
+			<if test="baseStudent.motherDuty!=null">
+				mother_duty=#{baseStudent.motherDuty},
+			</if>
+			<if test="baseStudent.motherPostcode!=null">
+				mother_postcode=#{baseStudent.motherPostcode},
+			</if>
+			<if test="baseStudent.motherTelNumber!=null">
+				mother_tel_number=#{baseStudent.motherTelNumber},
+			</if>		
+		</set>
+		WHERE student_id=#{baseStudent.studentId}
+	</update>
+	
+	<select id="listByIds" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT student_id,name,grade,student_class,sex,photo_url,duty,dormitory,contact_way,id_card_number,qq_number,email,birthday,height,major,political_status,ethnic_group,birth_origin,college_entrance_exam_score,college_entrance_exam_english_score,entrance_exam_english_score,hometown_railway_station,province,city,family_address,family_tel_number,postcode,specialty,duty_in_high_school,award_in_high_school,is_had_technology_competition_award,father_name,father_work_unit,father_work_unit_address,father_duty,father_postcode,father_tel_number,mother_name,mother_work_unit,mother_work_unit_address,mother_duty,mother_postcode,mother_tel_number FROM base_student_ 
+		WHERE student_id IN 
+		<foreach collection="studentIds" item="studentId" open="(" close=")" separator=",">
+			#{studentId}
+		</foreach>
+	</select>
+</mapper>

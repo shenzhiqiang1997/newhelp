@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.ArchiveStudentDao">
+	
+	<insert id="add">
+		INSERT archive_student_ (student_id,teacher_id,sex,name,
+		major,grade,student_class,political_status,ethnic_group,duty,dormitory,
+		birth_origin,family_address,contact_way,family_tel_number,
+		father_tel_number,mother_tel_number,family_condition,
+		study_condition,health_condition,life_condition,
+		other_condition,buliding_basis,buliding_recorder,
+		buliding_time,destorying_basis,destorying_recorder,
+		destorying_time,buliding_person,buliding_person_duty,
+		help_type,attention_type,last_record_time)
+		VALUES 
+		(#{archiveStudent.studentId},#{archiveStudent.teacherId},
+		#{archiveStudent.sex},#{archiveStudent.name},
+		#{archiveStudent.major},#{archiveStudent.grade},
+		#{archiveStudent.studentClass},#{archiveStudent.politicalStatus},#{archiveStudent.ethnicGroup},
+		#{archiveStudent.duty},#{archiveStudent.dormitory},
+		#{archiveStudent.birthOrigin},#{archiveStudent.familyAddress},
+		#{archiveStudent.contactWay},#{archiveStudent.familyTelNumber},
+		#{archiveStudent.fatherTelNumber},#{archiveStudent.motherTelNumber},
+		#{archiveStudent.familyCondition},#{archiveStudent.studyCondition},
+		#{archiveStudent.healthCondition},#{archiveStudent.lifeCondition},
+		#{archiveStudent.otherCondition},#{archiveStudent.bulidingBasis},
+		#{archiveStudent.bulidingRecorder},	#{archiveStudent.bulidingTime},
+		#{archiveStudent.destoryingBasis},#{archiveStudent.destoryingRecorder},
+		#{archiveStudent.destoryingTime},#{archiveStudent.bulidingPerson},
+		#{archiveStudent.bulidingPersonDuty},#{archiveStudent.helpType},
+		#{archiveStudent.attentionType},#{archiveStudent.lastRecordTime})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM archive_student_ WHERE student_id=#{studentId}
+	</delete>
+	
+	<update id="update">
+		UPDATE archive_student_
+		<set>
+			<if test="archiveStudent.teacherId!=null">
+				teacher_id=#{archiveStudent.teacherId},
+			</if>
+			<if test="archiveStudent.sex!=null">
+				sex=#{archiveStudent.sex},
+			</if>
+			<if test="archiveStudent.name!=null">
+				name=#{archiveStudent.name},
+			</if>
+			<if test="archiveStudent.major!=null">
+				major=#{archiveStudent.major},
+			</if>
+			<if test="archiveStudent.grade!=null">
+				grade=#{archiveStudent.grade},
+			</if>
+			<if test="archiveStudent.studentClass!=null">
+				student_class=#{archiveStudent.studentClass},
+			</if>
+			<if test="archiveStudent.politicalStatus!=null">
+				political_status=#{archiveStudent.politicalStatus},
+			</if>
+			<if test="archiveStudent.ethnicGroup!=null">
+				ethnic_group=#{archiveStudent.ethnicGroup},
+			</if>
+			<if test="archiveStudent.duty!=null">
+				duty=#{archiveStudent.duty},
+			</if>
+			<if test="archiveStudent.dormitory!=null">
+				dormitory=#{archiveStudent.dormitory},
+			</if>
+			<if test="archiveStudent.birthOrigin!=null">
+				birth_origin=#{archiveStudent.birthOrigin},
+			</if>
+			<if test="archiveStudent.familyAddress!=null">
+				family_address=#{archiveStudent.familyAddress},
+			</if>
+			<if test="archiveStudent.contactWay!=null">
+				contact_way=#{archiveStudent.contactWay},
+			</if>
+			<if test="archiveStudent.familyTelNumber!=null">
+				family_tel_number=#{archiveStudent.familyTelNumber},
+			</if>
+			<if test="archiveStudent.fatherTelNumber!=null">
+				father_tel_number=#{archiveStudent.fatherTelNumber},
+			</if>
+			<if test="archiveStudent.motherTelNumber!=null">
+				mother_tel_number=#{archiveStudent.motherTelNumber},
+			</if>
+			<if test="archiveStudent.familyCondition!=null">
+				family_condition=#{archiveStudent.familyCondition},
+			</if>
+			<if test="archiveStudent.studyCondition!=null">
+				study_condition=#{archiveStudent.studyCondition},
+			</if>
+			<if test="archiveStudent.healthCondition!=null">
+				health_condition=#{archiveStudent.healthCondition},
+			</if>
+			<if test="archiveStudent.lifeCondition!=null">
+				life_condition=#{archiveStudent.lifeCondition},
+			</if>
+			<if test="archiveStudent.otherCondition!=null">
+				other_condition=#{archiveStudent.otherCondition},
+			</if>
+			<if test="archiveStudent.bulidingBasis!=null">
+				buliding_basis=#{archiveStudent.bulidingBasis},
+			</if>
+			<if test="archiveStudent.bulidingRecorder!=null">
+				buliding_recorder=#{archiveStudent.bulidingRecorder},
+			</if>
+			<if test="archiveStudent.bulidingTime!=null">
+				buliding_time=#{archiveStudent.bulidingTime},
+			</if>
+			<if test="archiveStudent.destoryingBasis!=null">
+				destorying_basis=#{archiveStudent.destoryingBasis},
+			</if>
+			<if test="archiveStudent.destoryingRecorder!=null">
+				destorying_recorder=#{archiveStudent.destoryingRecorder},
+			</if>
+			<if test="archiveStudent.destoryingTime!=null">
+				destorying_time=#{archiveStudent.destoryingTime},
+			</if>
+			<if test="archiveStudent.bulidingPerson!=null">
+				buliding_person=#{archiveStudent.bulidingPerson},
+			</if>
+			<if test="archiveStudent.bulidingPersonDuty!=null">
+				buliding_person_duty=#{archiveStudent.bulidingPersonDuty},
+			</if>
+			<if test="archiveStudent.helpType!=null">
+				help_type=#{archiveStudent.helpType},
+			</if>
+			<if test="archiveStudent.attentionType!=null">
+				attention_type=#{archiveStudent.attentionType},
+			</if>
+			<if test="archiveStudent.lastRecordTime!=null">
+				last_record_time=#{archiveStudent.lastRecordTime},
+			</if>
+		</set>
+		WHERE student_id=#{archiveStudent.studentId}
+	</update>
+	
+	<update id="updateLastRecordTimeToNull">
+		UPDATE archive_student_ SET last_record_time=#{archiveStudent.lastRecordTime}
+		WHERE student_id=#{archiveStudent.studentId}
+	</update>
+	
+	<select id="get" resultType="com.uestc.newhelp.entity.ArchiveStudent">
+		SELECT archive_id,student_id,teacher_id,sex,name,
+		major,grade,student_class,political_status,ethnic_group,duty,dormitory,
+		birth_origin,family_address,contact_way,family_tel_number,
+		father_tel_number,mother_tel_number,family_condition,
+		study_condition,health_condition,life_condition,
+		other_condition,buliding_basis,buliding_recorder,
+		buliding_time,destorying_basis,destorying_recorder,
+		destorying_time,buliding_person,buliding_person_duty,
+		help_type,attention_type,last_record_time 
+		FROM archive_student_ 
+		WHERE student_id=#{studentId}
+	</select>
+	
+	<select id="list" resultType="com.uestc.newhelp.entity.ArchiveStudent">
+		SELECT student_id,sex,name,
+		major,grade,student_class,political_status,ethnic_group,
+		contact_way,family_tel_number,buliding_time,
+		help_type,attention_type,last_record_time 
+		FROM archive_student_ 
+		WHERE teacher_id=#{teacherId} 
+		ORDER BY student_id
+	</select>
+	
+	<select id="search" resultType="com.uestc.newhelp.entity.ArchiveStudent">
+		SELECT student_id,sex,name,
+		major,grade,student_class,political_status,ethnic_group,
+		contact_way,family_tel_number,buliding_time,
+		help_type,attention_type,last_record_time 
+		FROM archive_student_ 
+		<where>
+			<if test="archiveStudent.studentId!=null and archiveStudent.studentId!=''">
+				AND CAST(student_id AS CHAR) LIKE CONCAT('%',#{archiveStudent.studentId},'%')
+			</if>
+			<if test="archiveStudent.sex!=null and archiveStudent.sex!=''">
+				AND sex LIKE CONCAT('%',#{archiveStudent.sex},'%')
+			</if>
+			<if test="archiveStudent.name!=null and archiveStudent.name!=''">
+				AND name LIKE CONCAT('%',#{archiveStudent.name},'%')
+			</if>
+			<if test="archiveStudent.major!=null and archiveStudent.major!=''">
+				AND major LIKE CONCAT('%',#{archiveStudent.major},'%')
+			</if>
+			<if test="archiveStudent.grade!=null and archiveStudent.grade!=''">
+				AND CAST(grade AS CHAR) LIKE CONCAT('%',#{archiveStudent.grade},'%')
+			</if>
+			<if test="archiveStudent.studentClass!=null and archiveStudent.studentClass!=''">
+				AND CAST(student_class) LIKE CONCAT('%',#{archiveStudent.studentClass},'%')
+			</if>
+			<if test="archiveStudent.politicalStatus!=null and archiveStudent.politicalStatus!=''">
+				AND political_status LIKE CONCAT('%',#{archiveStudent.politicalStatus},'%')
+			</if>
+			<if test="archiveStudent.ethnicGroup!=null and archiveStudent.ethnicGroup!=''">
+				AND ethnic_group LIKE CONCAT('%',#{archiveStudent.ethnicGroup},'%')
+			</if>
+			<if test="archiveStudent.contactWay!=null and archiveStudent.contactWay!=''">
+				AND contact_way LIKE CONCAT('%',#{archiveStudent.contactWay},'%')
+			</if>
+			<if test="archiveStudent.familytelNumber!=null and archiveStudent.familytelNumber!=''">
+				AND family_tel_number LIKE CONCAT('%',#{archiveStudent.familytelNumber},'%')
+			</if>
+			<if test="archiveStudent.bulidingTime!=null and archiveStudent.bulidingTime!=''">
+				AND buliding_time=#{archiveStudent.bulidingTime}
+			</if>
+			<if test="archiveStudent.helpType!=null and archiveStudent.helpType!=''">
+				AND help_type LIKE CONCAT('%',#{archiveStudent.helpType},'%')
+			</if>
+			<if test="archiveStudent.attentionType!=null and archiveStudent.attentionType!=''">
+				AND attention_type LIKE CONCAT('%',#{archiveStudent.attentionType},'%')
+			</if>
+			<if test="archiveStudent.lastRecordTime!=null and archiveStudent.lastRecordTime!=''">
+				AND last_record_time=#{archiveStudent.lastRecordTime}
+			</if>
+			AND teacher_id=#{archiveStudent.teacherId}
+		</where>
+		ORDER BY student_id
+	</select>
+	
+	<select id="check" resultType="string">
+		SELECT teacher_id FROM archive_student_ WHERE student_id=#{studentId}
+	</select>
+</mapper>

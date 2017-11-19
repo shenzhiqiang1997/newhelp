@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.RecordDao">
+	<insert id="add">
+		INSERT record_ (student_id,record_name,record_time,
+		location,witness,recorder,participant,way,content,comment) 
+		VALUES (#{record.studentId},#{record.recordName},
+		<choose>
+			<when test="record.recordTime!=null">
+				#{record.recordTime},
+			</when>
+			<otherwise>
+				CURRENT_DATE(),
+			</otherwise>
+		</choose>
+		#{record.location},#{record.witness},
+		#{record.recorder},#{record.participant},#{record.way},
+		#{record.content},#{record.comment})
+	</insert>
+	
+	<insert id="addBatch">
+		INSERT record_ (student_id,record_name,record_time,
+		location,witness,recorder,participant,way,content,comment) 
+		VALUES 
+		<foreach collection="records" item="record" separator=",">
+		(#{record.studentId},#{record.recordName},
+		#{record.recordTime},#{record.location},#{record.witness},
+		#{record.recorder},#{record.participant},#{record.way},
+		#{record.content},#{record.comment})
+		</foreach>
+	</insert>
+	
+	<delete id="deleteByStudentId">
+		DELETE FROM record_ WHERE student_id=#{studentId}
+	</delete>
+	
+	<delete id="deleteBatch">
+		DELETE FROM record_ WHERE record_id IN 
+		<foreach collection="recordIds" item="recordId" open="(" close=")" separator=",">
+			#{recordId}
+		</foreach>
+	</delete>
+	
+	<update id="update">
+		UPDATE record_ 
+		<set>
+			<if test="record.studentId!=null">
+				student_id=#{record.studentId},
+			</if>
+			<if test="record.recordName!=null">
+				record_name=#{record.recordName},
+			</if>
+			<if test="record.recordTime!=null">
+				record_time=#{record.recordTime},
+			</if>
+			<if test="record.location!=null">
+				location=#{record.location},
+			</if>
+			<if test="record.witness!=null">
+				witness=#{record.witness},
+			</if>
+			<if test="record.recorder!=null">
+				recorder=#{record.recorder},
+			</if>
+			<if test="record.participant!=null">
+				participant=#{record.participant},
+			</if>
+			<if test="record.way!=null">
+				way=#{record.way},
+			</if>
+			<if test="record.content!=null">
+				content=#{record.content},
+			</if><if test="record.comment!=null">
+				comment=#{record.comment},
+			</if>
+		</set>
+		WHERE record_id=#{record.recordId}
+	</update>
+	
+	<select id="get" resultType="com.uestc.newhelp.entity.Record">
+		SELECT record_id,student_id,record_name,record_time,
+		location,witness,recorder,participant,way,content,comment 
+		FROM record_ WHERE record_id=#{recordId}
+	</select>
+	
+	<select id="listOnType" resultType="com.uestc.newhelp.entity.Record">
+		SELECT record_id,student_id,record_name,record_time,
+		location,witness,recorder,participant,way,content,comment 
+		FROM record_ 
+		<where>
+			<if test="record.recordName!=null">
+				AND record_name=#{record.recordName}
+			</if>
+		AND student_id=#{record.studentId}
+		</where>
+		ORDER BY record_time DESC
+	</select>
+	
+	<select id="getLastRecordTime" resultType="java.util.Date">
+		SELECT record_time FROM record_ WHERE student_id=#{studentId} 
+		ORDER BY record_time DESC LIMIT 1
+	</select>
+	
+	<select id="listByIds" resultType="com.uestc.newhelp.entity.Record">
+		SELECT record_time,location,witness,recorder,
+				participant,way,content,comment 
+		FROM record_ 
+		WHERE record_id IN 
+		<foreach collection="recordIds" item="recordId" open="(" close=")" separator=",">
+			#{recordId}
+		</foreach>
+	</select>
+</mapper>

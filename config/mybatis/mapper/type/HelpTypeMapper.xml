@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.HelpTypeDao">
+	<insert id="add">
+		INSERT help_type_ (help_type_name) VALUES(#{helpType.helpTypeName})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM help_type_ WHERE help_type_id=#{helpTypeId}
+	</delete>
+	
+	<select id="list" resultType="com.uestc.newhelp.entity.HelpType">
+		SELECT help_type_id,help_type_name 
+		FROM help_type_ 
+		ORDER BY help_type_id
+	</select>
+</mapper>

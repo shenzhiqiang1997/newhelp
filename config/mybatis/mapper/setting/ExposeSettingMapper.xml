@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.ExposeSettingDao">
+	
+	<insert id="add">
+		INSERT expose_setting_ (teacher_id) VALUES(#{exposeSetting.teacherId})
+	</insert>
+	
+	<update id="update">
+		UPDATE expose_setting_
+		<set>
+			<if test="exposeSetting.exposeStudentId!=null">
+				expose_student_id=#{exposeSetting.exposeStudentId},
+			</if>
+			<if test="exposeSetting.exposeName!=null">
+				expose_name=#{exposeSetting.exposeName},
+			</if>
+			<if test="exposeSetting.exposeGrade!=null">
+				expose_grade=#{exposeSetting.exposeGrade},
+			</if>
+			<if test="exposeSetting.exposeStudentClass!=null">
+				expose_student_class=#{exposeSetting.exposeStudentClass},
+			</if>
+			<if test="exposeSetting.exposeSex!=null">
+				expose_sex=#{exposeSetting.exposeSex},
+			</if>
+			<if test="exposeSetting.exposeDuty!=null">
+				expose_duty=#{exposeSetting.exposeDuty},
+			</if>
+			<if test="exposeSetting.exposeDormitory!=null">
+				expose_dormitory=#{exposeSetting.exposeDormitory},
+			</if>
+			<if test="exposeSetting.exposeContactWay!=null">
+				expose_contact_way=#{exposeSetting.exposeContactWay},
+			</if>
+			<if test="exposeSetting.exposeIdCardNumber!=null">
+				expose_id_card_number=#{exposeSetting.exposeIdCardNumber},
+			</if>
+			<if test="exposeSetting.exposeQqNumber!=null">
+				expose_qq_number=#{exposeSetting.exposeQqNumber},
+			</if>
+			<if test="exposeSetting.exposeEmail!=null">
+				expose_email=#{exposeSetting.exposeEmail},
+			</if>
+			<if test="exposeSetting.exposeBirthday!=null">
+				expose_birthday=#{exposeSetting.exposeBirthday},
+			</if>
+			<if test="exposeSetting.exposeHeight!=null">
+				expose_height=#{exposeSetting.exposeHeight},
+			</if>
+			<if test="exposeSetting.exposeMajor!=null">
+				expose_major=#{exposeSetting.exposeMajor},
+			</if>
+			<if test="exposeSetting.exposePoliticalStatus!=null">
+				expose_political_status=#{exposeSetting.exposePoliticalStatus},
+			</if>
+			<if test="exposeSetting.exposeEthnicGroup!=null">
+				expose_ethnic_group=#{exposeSetting.exposeEthnicGroup},
+			</if>
+			<if test="exposeSetting.exposeBirthOrigin!=null">
+				expose_birth_origin=#{exposeSetting.exposeBirthOrigin},
+			</if>
+			<if test="exposeSetting.exposeCollegeEntranceExamScore!=null">
+				expose_college_entrance_exam_score=#{exposeSetting.exposeCollegeEntranceExamScore},
+			</if>
+			<if test="exposeSetting.exposeCollegeEntranceExamEnglishScore!=null">
+				expose_college_entrance_exam_english_score=#{exposeSetting.exposeCollegeEntranceExamEnglishScore},
+			</if>
+			<if test="exposeSetting.exposeEntranceExamEnglishScore!=null">
+				expose_entrance_exam_english_score=#{exposeSetting.exposeEntranceExamEnglishScore},
+			</if>
+			<if test="exposeSetting.exposeHometownRailwayStation!=null">
+				expose_hometown_railway_station=#{exposeSetting.exposeHometownRailwayStation},
+			</if>
+			<if test="exposeSetting.exposeProvince!=null">
+				expose_province=#{exposeSetting.exposeProvince},
+			</if>
+			<if test="exposeSetting.exposeCity!=null">
+				expose_city=#{exposeSetting.exposeCity},
+			</if>
+			<if test="exposeSetting.exposeFamilyAddress!=null">
+				expose_family_address=#{exposeSetting.exposeFamilyAddress},
+			</if>
+			<if test="exposeSetting.exposeFamilyTelNumber!=null">
+				expose_family_tel_number=#{exposeSetting.exposeFamilyTelNumber},
+			</if>
+			<if test="exposeSetting.exposePostcode!=null">
+				expose_postcode=#{exposeSetting.exposePostcode},
+			</if>
+			<if test="exposeSetting.exposeSpecialty!=null">
+				expose_specialty=#{exposeSetting.exposeSpecialty},
+			</if>
+			<if test="exposeSetting.exposeDutyInHighSchool!=null">
+				expose_duty_in_high_school=#{exposeSetting.exposeDutyInHighSchool},
+			</if>
+			<if test="exposeSetting.exposeAwardInHighSchool!=null">
+				expose_award_in_high_school=#{exposeSetting.exposeAwardInHighSchool},
+			</if>
+			<if test="exposeSetting.exposeIsHadTechnologyCompetitionAward!=null">
+				expose_is_had_technology_competition_award=#{exposeSetting.exposeIsHadTechnologyCompetitionAward},
+			</if>
+			<if test="exposeSetting.exposeFatherName!=null">
+				expose_father_name=#{exposeSetting.exposeFatherName},
+			</if>
+			<if test="exposeSetting.exposeFatherWorkUnit!=null">
+				expose_father_work_unit=#{exposeSetting.exposeFatherWorkUnit},
+			</if>
+			<if test="exposeSetting.exposeFatherWorkUnitAddress!=null">
+				expose_father_work_unit_address=#{exposeSetting.exposeFatherWorkUnitAddress},
+			</if>
+			<if test="exposeSetting.exposeFatherDuty!=null">
+				expose_father_duty=#{exposeSetting.exposeFatherDuty},
+			</if>
+			<if test="exposeSetting.exposeFatherPostcode!=null">
+				expose_father_postcode=#{exposeSetting.exposeFatherPostcode},
+			</if>
+			<if test="exposeSetting.exposeFatherTelNumber!=null">
+				expose_father_tel_number=#{exposeSetting.exposeFatherTelNumber},
+			</if>
+			<if test="exposeSetting.exposeMotherName!=null">
+				expose_mother_name=#{exposeSetting.exposeMotherName},
+			</if>
+			<if test="exposeSetting.exposeMotherWorkUnit!=null">
+				expose_mother_work_unit=#{exposeSetting.exposeMotherWorkUnit},
+			</if>
+			<if test="exposeSetting.exposeMotherWorkUnitAddress!=null">
+				expose_mother_work_unit_address=#{exposeSetting.exposeMotherWorkUnitAddress},
+			</if>
+			<if test="exposeSetting.exposeMotherDuty!=null">
+				expose_mother_duty=#{exposeSetting.exposeMotherDuty},
+			</if>
+			<if test="exposeSetting.exposeMotherPostcode!=null">
+				expose_mother_postcode=#{exposeSetting.exposeMotherPostcode},
+			</if>
+			<if test="exposeSetting.exposeMotherTelNumber!=null">
+				expose_mother_tel_number=#{exposeSetting.exposeMotherTelNumber},
+			</if>
+		</set>
+		WHERE expose_setting_id=#{exposeSetting.exposeSettingId}
+	</update>
+	
+	<select id="get" resultType="com.uestc.newhelp.entity.ExposeSetting">
+		SELECT expose_setting_id,expose_student_id,
+		expose_name,expose_grade,expose_student_class,
+		expose_sex,expose_duty,expose_dormitory,expose_contact_way,
+		expose_id_card_number,expose_qq_number,expose_email,
+		expose_birthday,expose_height,expose_major,
+		expose_political_status,expose_ethnic_group,
+		expose_birth_origin,expose_college_entrance_exam_score,
+		expose_college_entrance_exam_english_score,
+		expose_entrance_exam_english_score,
+		expose_hometown_railway_station,expose_province,
+		expose_city,expose_family_address,expose_family_tel_number,
+		expose_postcode,expose_specialty,expose_duty_in_high_school,
+		expose_award_in_high_school,
+		expose_is_had_technology_competition_award,
+		expose_father_name,expose_father_work_unit,
+		expose_father_work_unit_address,expose_father_duty,
+		expose_father_postcode,expose_father_tel_number,
+		expose_mother_name,expose_mother_work_unit,
+		expose_mother_work_unit_address,expose_mother_duty,
+		expose_mother_postcode,expose_mother_tel_number 
+		FROM expose_setting_ 
+		WHERE teacher_id=#{teacherId}
+	</select>
+</mapper>

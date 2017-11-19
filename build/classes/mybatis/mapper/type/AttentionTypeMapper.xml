@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.AttentionTypeDao">
+	<insert id="add">
+		INSERT attention_type_ (attention_type_name,remind_record_interval) 
+		VALUES (#{attentionType.attentionTypeName},#{attentionType.remindRecordInterval})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM attention_type_ WHERE attention_type_id=#{attentionTypeId}
+	</delete>
+	
+	<update id="update">
+		UPDATE attention_type_ 
+		<set>
+			<if test="attentionType.remindRecordInterval!=null">
+				remind_record_interval=#{attentionType.remindRecordInterval},
+			</if>
+		</set>
+		WHERE attention_type_id=#{attentionType.attentionTypeId}
+	</update>
+	
+	<select id="list" resultType="com.uestc.newhelp.entity.AttentionType">
+		SELECT attention_type_id,attention_type_name,remind_record_interval 
+		FROM attention_type_ 
+		ORDER BY attention_type_id
+	</select>
+</mapper>
