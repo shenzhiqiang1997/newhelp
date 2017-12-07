@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.uestc.newhelp.entity.ArchiveStudent;
+import com.uestc.newhelp.entity.Teacher;
 
 public interface ArchiveStudentDao {
 	//增加档案学生信息
@@ -18,9 +19,9 @@ public interface ArchiveStudentDao {
 	//查询指定档案学生信息
 	public ArchiveStudent get(Long studentId);
 	//查询指定教师的档案学生信息
-	public List<ArchiveStudent> list(String teacherId);
+	public List<ArchiveStudent> list(@Param("teacher")Teacher teacher);
 	//搜索指定教师的档案学生信息
-	public List<ArchiveStudent> search(@Param("archiveStudent")ArchiveStudent archiveStudent);
+	public List<ArchiveStudent> search(@Param("teacher")Teacher teacher,@Param("archiveStudent")ArchiveStudent archiveStudent);
 	//查看该学生是否已经被建档
 	public String check(Long studentId);
 }

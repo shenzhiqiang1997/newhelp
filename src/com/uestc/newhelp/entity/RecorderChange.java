@@ -15,7 +15,7 @@ public class RecorderChange {
 	private Long studentId;
 	//变更时间
 	@DateTimeFormat(iso=ISO.DATE)
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date changeTime;
 	//现记录人
 	private String recorderNow;

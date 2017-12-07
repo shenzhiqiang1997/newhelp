@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class NoDataToImportException extends RuntimeException {
+public class NoDataToImportException extends Exception {
 
 	/**
 	 * 

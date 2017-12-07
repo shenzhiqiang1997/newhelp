@@ -16,14 +16,14 @@ import com.uestc.newhelp.service.UserService;
 public class TestUserService {
 	@Autowired
 	private UserService userService;
-	@Test
+/*	@Test
 	public void testLogin() {
 		Teacher teacher=new Teacher();
 		teacher.setTeacherId("20162201");
 		teacher.setPassword("123456");
 		Teacher teacher2=userService.login(teacher);
 		System.out.println(teacher2);
-	}
+	}*/
 	@Test
 	public void testList() {
 		List<Teacher> teachers=userService.list("20162201");

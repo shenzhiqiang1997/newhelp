@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class NotPointOutRecordNameException extends RuntimeException {
+public class NotPointOutRecordNameException extends Exception {
 
 	/**
 	 * 

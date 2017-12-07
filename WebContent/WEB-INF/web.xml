@@ -9,12 +9,10 @@
   		<param-value>UTF8</param-value>
   	</init-param>
   </filter>
-  
   <filter-mapping>
   	<filter-name>CharSetFilter</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
- 
   <!-- 配置跨域访过滤器 -->
   <filter>
   	<filter-name>CorsFilter</filter-name>
@@ -51,5 +49,32 @@
     <servlet-name>springDispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
+  <!-- 配置支持Rest请求方式的过滤器 -->
+  <filter>
+  	<filter-name>HiddenHttpMethodFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>HiddenHttpMethodFilter</filter-name>
+  	<url-pattern>/backend/*</url-pattern>
+  </filter-mapping>
+  <!-- 配置后端过滤器 拦截非登录用户和非权限用户 -->
+  <filter>
+  	<filter-name>BackendFilter</filter-name>
+  	<filter-class>com.uestc.newhelp.filter.BackendFilter</filter-class>
+  	<init-param>
+  		<description>登录界面对应url</description>
+  		<param-name>loginUrl</param-name>
+  		<param-value>/newhelp/index.jsp</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>登录的请求映射路径</description>
+  		<param-name>loginRequestMapping</param-name>
+  		<param-value>/newhelp/backend/login</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>BackendFilter</filter-name>
+  	<url-pattern>/backend/*</url-pattern>
+  </filter-mapping>
 </web-app>

@@ -53,6 +53,9 @@
 			<if test="exposeSetting.exposeMajor!=null">
 				expose_major=#{exposeSetting.exposeMajor},
 			</if>
+			<if test="exposeSetting.exposeStudyCondition!=null">
+				expose_study_condition=#{exposeSetting.exposeStudyCondition},
+			</if>
 			<if test="exposeSetting.exposePoliticalStatus!=null">
 				expose_political_status=#{exposeSetting.exposePoliticalStatus},
 			</if>
@@ -146,7 +149,7 @@
 		expose_name,expose_grade,expose_student_class,
 		expose_sex,expose_duty,expose_dormitory,expose_contact_way,
 		expose_id_card_number,expose_qq_number,expose_email,
-		expose_birthday,expose_height,expose_major,
+		expose_birthday,expose_height,expose_major,expose_study_condition,
 		expose_political_status,expose_ethnic_group,
 		expose_birth_origin,expose_college_entrance_exam_score,
 		expose_college_entrance_exam_english_score,

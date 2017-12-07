@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class NoSuchStudentException extends RuntimeException {
+public class NoSuchStudentException extends Exception {
 
 	/**
 	 * 

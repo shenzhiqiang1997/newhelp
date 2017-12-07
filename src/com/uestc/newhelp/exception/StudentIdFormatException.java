@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class StudentIdFormatException extends NumberFormatException {
+public class StudentIdFormatException extends Exception {
 
 	/**
 	 * 

@@ -12,7 +12,7 @@ public class HistoryRecord {
 		//记录表名称
 		private String recordName;
 		//记录时间
-		@JsonFormat(pattern="yyyy-MM-dd")
+		@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 		private Date recordTime;
 		//地点
 		private String location;

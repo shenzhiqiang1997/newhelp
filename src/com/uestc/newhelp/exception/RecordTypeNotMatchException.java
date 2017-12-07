@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class RecordTypeNotMatchException extends RuntimeException {
+public class RecordTypeNotMatchException extends Exception {
 	/**
 	 * 
 	 */

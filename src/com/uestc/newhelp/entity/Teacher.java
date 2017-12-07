@@ -1,5 +1,7 @@
 package com.uestc.newhelp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //教师对应实体类
 public class Teacher {
 	//教师用户名
@@ -10,11 +12,22 @@ public class Teacher {
 	private String name;
 	//教师职务
 	private String duty;
-	//教师权限
-	private Byte authority;
+	//教师年级
+	@JsonIgnore
+	private Short grade;
 	//教师令牌
 	private String token;
 	
+	public Teacher() {
+		super();
+	}
+	
+	public Teacher(String teacherId, String password) {
+		super();
+		this.teacherId = teacherId;
+		this.password = password;
+	}
+
 	public String getTeacherId() {
 		return teacherId;
 	}
@@ -38,14 +51,13 @@ public class Teacher {
 	}
 	public void setDuty(String duty) {
 		this.duty = duty;
+	}	
+	public Short getGrade() {
+		return grade;
 	}
-	public Byte getAuthority() {
-		return authority;
+	public void setGrade(Short grade) {
+		this.grade = grade;
 	}
-	public void setAuthority(Byte authority) {
-		this.authority = authority;
-	}
-	
 	public String getToken() {
 		return token;
 	}
@@ -55,7 +67,7 @@ public class Teacher {
 	@Override
 	public String toString() {
 		return "Teacher [teacherId=" + teacherId + ", password=" + password + ", name=" + name + ", duty=" + duty
-				+ ", authority=" + authority + "]";
+				+ ", grade=" + grade + ", token=" + token + "]";
 	}
 	
 	

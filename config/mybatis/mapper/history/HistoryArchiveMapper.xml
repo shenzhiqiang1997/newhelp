@@ -5,7 +5,7 @@
 <mapper namespace="com.uestc.newhelp.dao.HistoryArchiveDao">
 	<insert id="add" keyProperty="historyArchive.historyArchiveId" useGeneratedKeys="true">
 		INSERT history_archive_ (student_id,teacher_id,sex,name,
-		major,grade,student_class,ethnic_group,duty,dormitory,
+		major,grade,student_class,political_status,ethnic_group,duty,dormitory,
 		birth_origin,family_address,contact_way,family_tel_number,
 		father_tel_number,mother_tel_number,family_condition,
 		study_condition,health_condition,life_condition,
@@ -16,7 +16,7 @@
 		VALUES (#{historyArchive.studentId},
 		#{historyArchive.teacherId},#{historyArchive.sex},
 		#{historyArchive.name},#{historyArchive.major},
-		#{historyArchive.grade},#{historyArchive.studentClass},
+		#{historyArchive.grade},#{historyArchive.studentClass},#{historyArchive.politicalStatus},
 		#{historyArchive.ethnicGroup},#{historyArchive.duty},
 		#{historyArchive.dormitory},#{historyArchive.birthOrigin},
 		#{historyArchive.familyAddress},#{historyArchive.contactWay},
@@ -34,63 +34,70 @@
 	
 	<select id="get" resultType="com.uestc.newhelp.entity.HistoryArchive">
 		SELECT student_id,sex,name,
-		major,grade,student_class,ethnic_group,duty,dormitory,
+		major,grade,student_class,political_status,ethnic_group,duty,dormitory,
 		birth_origin,family_address,contact_way,family_tel_number,
 		father_tel_number,mother_tel_number,family_condition,
 		study_condition,health_condition,life_condition,
 		other_condition,buliding_basis,buliding_recorder,
 		buliding_time,destorying_basis,destorying_recorder,
 		destorying_time,buliding_person,buliding_person_duty,
-		help_type,attention_type,last_record_time 
+		help_type,attention_type,last_record_time
 		FROM history_archive_ 
 		WHERE history_archive_id=#{historyArchiveId}
 	</select>
 	
 	<select id="list" resultType="com.uestc.newhelp.entity.HistoryArchive">
 		SELECT history_archive_id,student_id,sex,name,
-		major,grade,student_class,ethnic_group,
+		major,grade,student_class,political_status,ethnic_group,
 		contact_way,family_tel_number,buliding_time,
-		help_type,attention_type,last_record_time 
+		help_type,attention_type,destorying_time
 		FROM history_archive_ 
-		WHERE teacher_id=#{teacherId} 
+		<if test="teacher.grade!=1 and teacher.grade!=0">
+			WHERE teacher_id=#{teacher.teacherId} 
+		</if>
 		ORDER BY destorying_time DESC
 	</select>
 	
 	<select id="search" resultType="com.uestc.newhelp.entity.HistoryArchive">
 		SELECT history_archive_id,student_id,sex,name,
-		major,grade,student_class,ethnic_group,
+		major,grade,student_class,political_status,ethnic_group,
 		contact_way,family_tel_number,buliding_time,
-		help_type,attention_type,last_record_time 
+		help_type,attention_type,destorying_time
 		FROM history_archive_ 
 		<where>
 			<if test="historyArchive.studentId!=null and historyArchive.studentId!=''">
-				AND student_id=#{historyArchive.studentId}
+				AND CAST(student_id AS CHAR) LIKE CONCAT('%',#{historyArchive.studentId},'%')
 			</if>
 			<if test="historyArchive.sex!=null and historyArchive.sex!=''">
-				AND sex=#{historyArchive.sex}
+				AND sex LIKE CONCAT('%',#{historyArchive.sex},'%')
 			</if>
 			<if test="historyArchive.name!=null and historyArchive.name!=''">
-				AND name=#{historyArchive.name}
+				AND name LIKE CONCAT('%',#{historyArchive.name},'%')
 			</if>
 			<if test="historyArchive.major!=null and historyArchive.major!=''">
-				AND major=#{historyArchive.major}
+				AND major LIKE CONCAT('%',#{historyArchive.major},'%')
 			</if>
 			<if test="historyArchive.grade!=null and historyArchive.grade!=''">
-				AND grade=#{historyArchive.grade}
+				AND CAST(grade AS CHAR) LIKE CONCAT('%',#{historyArchive.grade},'%')
 			</if>
 			<if test="historyArchive.studentClass!=null and historyArchive.studentClass!=''">
-				AND student_class=#{historyArchive.studentClass}
+				AND CAST(student_class AS CHAR) LIKE CONCAT('%',#{historyArchive.studentClass},'%')
+			</if>
+			<if test="historyArchive.politicalStatus!=null and historyArchive.politicalStatus!=''">
+				AND political_status LIKE CONCAT('%',#{historyArchive.politicalStatus},'%')
 			</if>
 			<if test="historyArchive.ethnicGroup!=null and historyArchive.ethnicGroup!=''">
-				AND ethnic_group=#{historyArchive.ethnicGroup}
+				AND ethnic_group LIKE CONCAT('%',#{historyArchive.ethnicGroup},'%')
 			</if>
 			<if test="historyArchive.helpType!=null and historyArchive.helpType!=''">
-				AND help_type=#{historyArchive.helpType}
+				AND help_type LIKE CONCAT('%',#{historyArchive.helpType},'%')
 			</if>
 			<if test="historyArchive.attentionType!=null and historyArchive.attentionType!=''">
-				AND attention_type=#{historyArchive.attentionType}
+				AND attention_type LIKE CONCAT('%',#{historyArchive.attentionType},'%')
 			</if>
-			AND teacher_id=#{historyArchive.teacherId}
+			<if test="teacher.grade!=1 and teacher.grade!=0">
+				AND teacher_id=#{teacher.teacherId} 
+			</if>
 		</where>
 		ORDER BY destorying_time DESC
 	</select>

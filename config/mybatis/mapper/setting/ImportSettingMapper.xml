@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.ImportSettingDao">
+	
+	<insert id="add">
+		INSERT import_setting_ (teacher_id) VALUES(#{importSetting.teacherId})
+	</insert>
+	
+	<update id="update">
+		UPDATE import_setting_
+		<set>
+			<if test="importSetting.importStudentId!=null">
+				import_student_id=#{importSetting.importStudentId},
+			</if>
+			<if test="importSetting.importName!=null">
+				import_name=#{importSetting.importName},
+			</if>
+			<if test="importSetting.importGrade!=null">
+				import_grade=#{importSetting.importGrade},
+			</if>
+			<if test="importSetting.importStudentClass!=null">
+				import_student_class=#{importSetting.importStudentClass},
+			</if>
+			<if test="importSetting.importSex!=null">
+				import_sex=#{importSetting.importSex},
+			</if>
+			<if test="importSetting.importDuty!=null">
+				import_duty=#{importSetting.importDuty},
+			</if>
+			<if test="importSetting.importDormitory!=null">
+				import_dormitory=#{importSetting.importDormitory},
+			</if>
+			<if test="importSetting.importContactWay!=null">
+				import_contact_way=#{importSetting.importContactWay},
+			</if>
+			<if test="importSetting.importIdCardNumber!=null">
+				import_id_card_number=#{importSetting.importIdCardNumber},
+			</if>
+			<if test="importSetting.importQqNumber!=null">
+				import_qq_number=#{importSetting.importQqNumber},
+			</if>
+			<if test="importSetting.importEmail!=null">
+				import_email=#{importSetting.importEmail},
+			</if>
+			<if test="importSetting.importBirthday!=null">
+				import_birthday=#{importSetting.importBirthday},
+			</if>
+			<if test="importSetting.importHeight!=null">
+				import_height=#{importSetting.importHeight},
+			</if>
+			<if test="importSetting.importMajor!=null">
+				import_major=#{importSetting.importMajor},
+			</if>
+			<if test="importSetting.importStudyCondition!=null">
+				import_study_condition=#{importSetting.importStudyCondition},
+			</if>
+			<if test="importSetting.importPoliticalStatus!=null">
+				import_political_status=#{importSetting.importPoliticalStatus},
+			</if>
+			<if test="importSetting.importEthnicGroup!=null">
+				import_ethnic_group=#{importSetting.importEthnicGroup},
+			</if>
+			<if test="importSetting.importBirthOrigin!=null">
+				import_birth_origin=#{importSetting.importBirthOrigin},
+			</if>
+			<if test="importSetting.importCollegeEntranceExamScore!=null">
+				import_college_entrance_exam_score=#{importSetting.importCollegeEntranceExamScore},
+			</if>
+			<if test="importSetting.importCollegeEntranceExamEnglishScore!=null">
+				import_college_entrance_exam_english_score=#{importSetting.importCollegeEntranceExamEnglishScore},
+			</if>
+			<if test="importSetting.importEntranceExamEnglishScore!=null">
+				import_entrance_exam_english_score=#{importSetting.importEntranceExamEnglishScore},
+			</if>
+			<if test="importSetting.importHometownRailwayStation!=null">
+				import_hometown_railway_station=#{importSetting.importHometownRailwayStation},
+			</if>
+			<if test="importSetting.importProvince!=null">
+				import_province=#{importSetting.importProvince},
+			</if>
+			<if test="importSetting.importCity!=null">
+				import_city=#{importSetting.importCity},
+			</if>
+			<if test="importSetting.importFamilyAddress!=null">
+				import_family_address=#{importSetting.importFamilyAddress},
+			</if>
+			<if test="importSetting.importFamilyTelNumber!=null">
+				import_family_tel_number=#{importSetting.importFamilyTelNumber},
+			</if>
+			<if test="importSetting.importPostcode!=null">
+				import_postcode=#{importSetting.importPostcode},
+			</if>
+			<if test="importSetting.importSpecialty!=null">
+				import_specialty=#{importSetting.importSpecialty},
+			</if>
+			<if test="importSetting.importDutyInHighSchool!=null">
+				import_duty_in_high_school=#{importSetting.importDutyInHighSchool},
+			</if>
+			<if test="importSetting.importAwardInHighSchool!=null">
+				import_award_in_high_school=#{importSetting.importAwardInHighSchool},
+			</if>
+			<if test="importSetting.importIsHadTechnologyCompetitionAward!=null">
+				import_is_had_technology_competition_award=#{importSetting.importIsHadTechnologyCompetitionAward},
+			</if>
+			<if test="importSetting.importFatherName!=null">
+				import_father_name=#{importSetting.importFatherName},
+			</if>
+			<if test="importSetting.importFatherWorkUnit!=null">
+				import_father_work_unit=#{importSetting.importFatherWorkUnit},
+			</if>
+			<if test="importSetting.importFatherWorkUnitAddress!=null">
+				import_father_work_unit_address=#{importSetting.importFatherWorkUnitAddress},
+			</if>
+			<if test="importSetting.importFatherDuty!=null">
+				import_father_duty=#{importSetting.importFatherDuty},
+			</if>
+			<if test="importSetting.importFatherPostcode!=null">
+				import_father_postcode=#{importSetting.importFatherPostcode},
+			</if>
+			<if test="importSetting.importFatherTelNumber!=null">
+				import_father_tel_number=#{importSetting.importFatherTelNumber},
+			</if>
+			<if test="importSetting.importMotherName!=null">
+				import_mother_name=#{importSetting.importMotherName},
+			</if>
+			<if test="importSetting.importMotherWorkUnit!=null">
+				import_mother_work_unit=#{importSetting.importMotherWorkUnit},
+			</if>
+			<if test="importSetting.importMotherWorkUnitAddress!=null">
+				import_mother_work_unit_address=#{importSetting.importMotherWorkUnitAddress},
+			</if>
+			<if test="importSetting.importMotherDuty!=null">
+				import_mother_duty=#{importSetting.importMotherDuty},
+			</if>
+			<if test="importSetting.importMotherPostcode!=null">
+				import_mother_postcode=#{importSetting.importMotherPostcode},
+			</if>
+			<if test="importSetting.importMotherTelNumber!=null">
+				import_mother_tel_number=#{importSetting.importMotherTelNumber},
+			</if>
+		</set>
+		WHERE import_setting_id=#{importSetting.importSettingId}
+	</update>
+	
+	<select id="get" resultType="com.uestc.newhelp.entity.ImportSetting">
+		SELECT import_setting_id,import_student_id,
+		import_name,import_grade,import_student_class,
+		import_sex,import_duty,import_dormitory,import_contact_way,
+		import_id_card_number,import_qq_number,import_email,
+		import_birthday,import_height,import_major,import_study_condition,
+		import_political_status,import_ethnic_group,
+		import_birth_origin,import_college_entrance_exam_score,
+		import_college_entrance_exam_english_score,
+		import_entrance_exam_english_score,
+		import_hometown_railway_station,import_province,
+		import_city,import_family_address,import_family_tel_number,
+		import_postcode,import_specialty,import_duty_in_high_school,
+		import_award_in_high_school,
+		import_is_had_technology_competition_award,
+		import_father_name,import_father_work_unit,
+		import_father_work_unit_address,import_father_duty,
+		import_father_postcode,import_father_tel_number,
+		import_mother_name,import_mother_work_unit,
+		import_mother_work_unit_address,import_mother_duty,
+		import_mother_postcode,import_mother_tel_number 
+		FROM import_setting_ 
+		WHERE teacher_id=#{teacherId}
+	</select>
+</mapper>

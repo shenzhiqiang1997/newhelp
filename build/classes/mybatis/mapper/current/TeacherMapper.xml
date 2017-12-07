@@ -3,17 +3,14 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.uestc.newhelp.dao.TeacherDao">
-	<select id="getPassword" resultType="string">
-		SELECT password FROM teacher_ WHERE teacher_id=#{teacherId}
+	<select id="getPassword" resultType="com.uestc.newhelp.entity.Teacher">
+		SELECT password,grade FROM teacher_ WHERE teacher_id=#{teacherId}
 	</select>
 	
 	<select id="getInfo" resultType="com.uestc.newhelp.entity.Teacher">
-		SELECT name,duty FROM teacher_ WHERE teacher_id=#{teacherId}
+		SELECT name,duty,grade FROM teacher_ WHERE teacher_id=#{teacherId}
 	</select>
 	
-	<select id="getAuthority" resultType="Byte">
-		SELECT authority FROM teacher_ WHERE teacher_id=#{teacherId}
-	</select>
 	
 	<select id="listTeacherIdAndName" resultType="com.uestc.newhelp.entity.Teacher">
 		SELECT teacher_id,name FROM teacher_ 
@@ -23,4 +20,39 @@
 	<update id="updatePassword">
 		UPDATE teacher_ SET password=#{teacher.password} WHERE teacher_id=#{teacher.teacherId}
 	</update>
+	
+	<select id="list" resultType="com.uestc.newhelp.entity.Teacher">
+		SELECT teacher_id,password,name,duty,grade
+		FROM teacher_
+		ORDER BY grade
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM teacher_
+		WHERE teacher_id=#{teacherId}
+	</delete>
+
+	<update id="update">
+		UPDATE teacher_
+		<set>
+			<if test="teacher.password!=null">
+				password=#{teacher.password},
+			</if>
+			<if test="teacher.name!=null">
+				name=#{teacher.name},
+			</if>
+			<if test="teacher.duty!=null">
+				duty=#{teacher.duty},
+			</if>
+			<if test="teacher.grade!=null">
+				grade=#{teacher.grade},
+			</if>
+		</set>
+		WHERE teacher_id=#{teacher.teacherId}
+	</update>
+	
+	<insert id="add">
+		INSERT teacher_ (teacher_id,password,name,duty,grade)
+		VALUES (#{teacher.teacherId},#{teacher.password},#{teacher.name},#{teacher.duty},#{teacher.grade})
+	</insert>
 </mapper>

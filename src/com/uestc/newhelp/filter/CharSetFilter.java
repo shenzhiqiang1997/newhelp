@@ -12,16 +12,6 @@ import javax.servlet.ServletResponse;
 public class CharSetFilter implements Filter {
 	private String charSet;
    
-    public CharSetFilter() {
-
-    }
-
-	
-	public void destroy() {
-
-	}
-
-	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		request.setCharacterEncoding(charSet);
 		response.setCharacterEncoding(charSet);

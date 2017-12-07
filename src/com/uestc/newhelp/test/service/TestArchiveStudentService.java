@@ -1,5 +1,7 @@
 package com.uestc.newhelp.test.service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.uestc.newhelp.entity.ArchiveStudent;
+import com.uestc.newhelp.exception.NoSuchStudentException;
+import com.uestc.newhelp.exception.NotChoseExportObjectException;
 import com.uestc.newhelp.service.ArchiveStudentService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,13 +23,13 @@ import com.uestc.newhelp.service.ArchiveStudentService;
 public class TestArchiveStudentService {
 	@Autowired
 	private ArchiveStudentService archiveStudentService;
-	@Test
+	/*@Test
 	public void testAdd() {
 		ArchiveStudent archiveStudent=new ArchiveStudent(); 
 		archiveStudent.setStudentId(2016220305014l);
 		archiveStudent.setTeacherId("20162201");
 		archiveStudentService.add(archiveStudent);
-	}
+	}*/
 	@Test
 	public void testList() {
 		List<ArchiveStudent> archiveStudents=archiveStudentService.list("20162202");
@@ -63,5 +67,36 @@ public class TestArchiveStudentService {
 	@Test
 	public void testDelete() {
 		/*archiveStudentService.delete(2016220305024L);*/
+	}
+	@Test
+	public void testExport() {
+		FileOutputStream outputStream = null;
+		try {
+			byte[] bytes=archiveStudentService.exportArchiveToWordFile(2016220305023L);
+			outputStream=new FileOutputStream("result.docx");
+			outputStream.write(bytes);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotChoseExportObjectException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchStudentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(outputStream!=null) {
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
 	}
 }

@@ -33,6 +33,8 @@ public class ExposeSetting {
 	private Byte exposeHeight;
 	//是否暴露学生专业
 	private Byte exposeMajor;
+	//是否暴露学生学业状况
+	private Byte exposeStudyCondition;
 	//是否暴露学生政治面貌
 	private Byte exposePoliticalStatus;
 	//是否暴露学生民族
@@ -94,20 +96,18 @@ public class ExposeSetting {
 	public ExposeSetting() {
 		super();
 	}
-
-
-
+	
 	public ExposeSetting(Long exposeSettingId, String teacherId, Byte exposeStudentId, Byte exposeName,
 			Byte exposeGrade, Byte exposeStudentClass, Byte exposeSex, Byte exposeDuty, Byte exposeDormitory,
 			Byte exposeContactWay, Byte exposeIdCardNumber, Byte exposeQqNumber, Byte exposeEmail, Byte exposeBirthday,
-			Byte exposeHeight, Byte exposeMajor, Byte exposePoliticalStatus, Byte exposeEthnicGroup,
-			Byte exposeBirthOrigin, Byte exposeCollegeEntranceExamScore, Byte exposeCollegeEntranceExamEnglishScore,
-			Byte exposeEntranceExamEnglishScore, Byte exposeHometownRailwayStation, Byte exposeProvince,
-			Byte exposeCity, Byte exposeFamilyAddress, Byte exposeFamilyTelNumber, Byte exposePostcode,
-			Byte exposeSpecialty, Byte exposeDutyInHighSchool, Byte exposeAwardInHighSchool,
-			Byte exposeIsHadTechnologyCompetitionAward, Byte exposeFatherName, Byte exposeFatherWorkUnit,
-			Byte exposeFatherWorkUnitAddress, Byte exposeFatherDuty, Byte exposeFatherPostcode,
-			Byte exposeFatherTelNumber, Byte exposeMotherName, Byte exposeMotherWorkUnit,
+			Byte exposeHeight, Byte exposeMajor, Byte exposeStudyCondition, Byte exposePoliticalStatus,
+			Byte exposeEthnicGroup, Byte exposeBirthOrigin, Byte exposeCollegeEntranceExamScore,
+			Byte exposeCollegeEntranceExamEnglishScore, Byte exposeEntranceExamEnglishScore,
+			Byte exposeHometownRailwayStation, Byte exposeProvince, Byte exposeCity, Byte exposeFamilyAddress,
+			Byte exposeFamilyTelNumber, Byte exposePostcode, Byte exposeSpecialty, Byte exposeDutyInHighSchool,
+			Byte exposeAwardInHighSchool, Byte exposeIsHadTechnologyCompetitionAward, Byte exposeFatherName,
+			Byte exposeFatherWorkUnit, Byte exposeFatherWorkUnitAddress, Byte exposeFatherDuty,
+			Byte exposeFatherPostcode, Byte exposeFatherTelNumber, Byte exposeMotherName, Byte exposeMotherWorkUnit,
 			Byte exposeMotherWorkUnitAddress, Byte exposeMotherDuty, Byte exposeMotherPostcode,
 			Byte exposeMotherTelNumber) {
 		super();
@@ -127,6 +127,7 @@ public class ExposeSetting {
 		this.exposeBirthday = exposeBirthday;
 		this.exposeHeight = exposeHeight;
 		this.exposeMajor = exposeMajor;
+		this.exposeStudyCondition = exposeStudyCondition;
 		this.exposePoliticalStatus = exposePoliticalStatus;
 		this.exposeEthnicGroup = exposeEthnicGroup;
 		this.exposeBirthOrigin = exposeBirthOrigin;
@@ -156,8 +157,6 @@ public class ExposeSetting {
 		this.exposeMotherPostcode = exposeMotherPostcode;
 		this.exposeMotherTelNumber = exposeMotherTelNumber;
 	}
-
-
 
 	public Long getExposeSettingId() {
 		return exposeSettingId;
@@ -254,6 +253,12 @@ public class ExposeSetting {
 	}
 	public void setExposeMajor(Byte exposeMajor) {
 		this.exposeMajor = exposeMajor;
+	}
+	public Byte getExposeStudyCondition() {
+		return exposeStudyCondition;
+	}
+	public void setExposeStudyCondition(Byte exposeStudyCondition) {
+		this.exposeStudyCondition = exposeStudyCondition;
 	}
 	public Byte getExposePoliticalStatus() {
 		return exposePoliticalStatus;

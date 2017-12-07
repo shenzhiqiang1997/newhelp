@@ -15,6 +15,9 @@
 	<update id="update">
 		UPDATE attention_type_ 
 		<set>
+			<if test="attentionType.attentionTypeName!=null">
+				attention_type_name=#{attentionType.attentionTypeName},
+			</if>
 			<if test="attentionType.remindRecordInterval!=null">
 				remind_record_interval=#{attentionType.remindRecordInterval},
 			</if>

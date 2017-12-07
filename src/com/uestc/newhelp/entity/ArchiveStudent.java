@@ -62,7 +62,7 @@ public class ArchiveStudent {
 	private String bulidingRecorder;
 	//建档时间
 	@DateTimeFormat(iso=ISO.DATE)
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date bulidingTime;
 	//除档依据
 	private String destoryingBasis;
@@ -70,7 +70,7 @@ public class ArchiveStudent {
 	private String destoryingRecorder;
 	//除档时间
 	@DateTimeFormat(iso=ISO.DATE)
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date destoryingTime;
 	//建档人
 	private String bulidingPerson;
@@ -81,7 +81,7 @@ public class ArchiveStudent {
 	//关注状态
 	private String attentionType;
 	//该学生末次记录时间
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date lastRecordTime;
 	//该学生是否高亮
 	private Boolean highlight;

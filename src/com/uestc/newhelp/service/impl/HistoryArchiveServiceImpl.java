@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.uestc.newhelp.dao.HistoryArchiveDao;
 import com.uestc.newhelp.dao.HistoryRecorderChangeDao;
+import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.entity.HistoryArchive;
 import com.uestc.newhelp.entity.HistoryRecorderChange;
+import com.uestc.newhelp.entity.Teacher;
 import com.uestc.newhelp.service.HistoryArchiveService;
 @Service
 public class HistoryArchiveServiceImpl implements HistoryArchiveService {
@@ -16,9 +18,14 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	private HistoryArchiveDao historyArchiveDao;
 	@Autowired
 	private HistoryRecorderChangeDao historyRecorderChangeDao;
+	@Autowired
+	private TeacherDao teacherDao;
 	@Override
 	public List<HistoryArchive> list(String teacherId) {
-		List<HistoryArchive> historyArchives=historyArchiveDao.list(teacherId);
+		//获取老师信息
+		Teacher teacher=teacherDao.getInfo(teacherId);
+		teacher.setTeacherId(teacherId);
+		List<HistoryArchive> historyArchives=historyArchiveDao.list(teacher);
 		return historyArchives;
 	}
 
@@ -32,7 +39,10 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 
 	@Override
 	public List<HistoryArchive> search(HistoryArchive historyArchive) {
-		List<HistoryArchive> historyArchives=historyArchiveDao.search(historyArchive);
+		//获取老师信息
+		Teacher teacher=teacherDao.getInfo(historyArchive.getTeacherId());
+		teacher.setTeacherId(historyArchive.getTeacherId());
+		List<HistoryArchive> historyArchives=historyArchiveDao.search(teacher,historyArchive);
 		return historyArchives;
 	}
 

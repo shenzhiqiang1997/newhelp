@@ -22,6 +22,8 @@ public class HistoryArchive {
 		private Short grade;
 		//档案学生班级
 		private Integer studentClass;
+		//档案学生政治面貌
+		private String politicalStatus;
 		//档案学生民族
 		private String ethnicGroup;
 		//档案学生职务
@@ -55,14 +57,14 @@ public class HistoryArchive {
 		//建档记录人
 		private String bulidingRecorder;
 		//建档时间
-		@JsonFormat(pattern="yyyy-MM-dd")
+		@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 		private Date bulidingTime;
 		//除档依据
 		private String destoryingBasis;
 		//除档记录人
 		private String destoryingRecorder;
 		//除档时间
-		@JsonFormat(pattern="yyyy-MM-dd")
+		@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 		private Date destoryingTime;
 		//建档人
 		private String bulidingPerson;
@@ -73,7 +75,7 @@ public class HistoryArchive {
 		//关注状态
 		private String attentionType;
 		//该学生末次记录时间
-		@JsonFormat(pattern="yyyy-MM-dd")
+		@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 		private Date lastRecordTime;
 		//该档案的变更记录
 		private List<HistoryRecorderChange> historyRecorderChanges;
@@ -91,6 +93,7 @@ public class HistoryArchive {
 			this.major = archiveStudent.getMajor();
 			this.grade = archiveStudent.getGrade();
 			this.studentClass = archiveStudent.getStudentClass();
+			this.politicalStatus=archiveStudent.getPoliticalStatus();
 			this.ethnicGroup = archiveStudent.getEthnicGroup();
 			this.duty = archiveStudent.getDuty();
 			this.dormitory = archiveStudent.getDormitory();
@@ -118,14 +121,16 @@ public class HistoryArchive {
 			this.lastRecordTime = archiveStudent.getLastRecordTime();
 		}
 
+		
 		public HistoryArchive(Long historyArchiveId, Long studentId, String teacherId, String sex, String name,
-				String major, Short grade, Integer studentClass, String ethnicGroup, String duty, String dormitory,
-				String birthOrigin, String familyAddress, String contactWay, String familyTelNumber,
-				String fatherTelNumber, String motherTelNumber, String familyCondition, String studyCondition,
-				String healthCondition, String lifeCondition, String otherCondition, String bulidingBasis,
-				String bulidingRecorder, Date bulidingTime, String destoryingBasis, String destoryingRecorder,
-				Date destoryingTime, String bulidingPerson, String bulidingPersonDuty, String helpType,
-				String attentionType, Date lastRecordTime) {
+				String major, Short grade, Integer studentClass, String politicalStatus, String ethnicGroup,
+				String duty, String dormitory, String birthOrigin, String familyAddress, String contactWay,
+				String familyTelNumber, String fatherTelNumber, String motherTelNumber, String familyCondition,
+				String studyCondition, String healthCondition, String lifeCondition, String otherCondition,
+				String bulidingBasis, String bulidingRecorder, Date bulidingTime, String destoryingBasis,
+				String destoryingRecorder, Date destoryingTime, String bulidingPerson, String bulidingPersonDuty,
+				String helpType, String attentionType, Date lastRecordTime,
+				List<HistoryRecorderChange> historyRecorderChanges) {
 			super();
 			this.historyArchiveId = historyArchiveId;
 			this.studentId = studentId;
@@ -135,6 +140,7 @@ public class HistoryArchive {
 			this.major = major;
 			this.grade = grade;
 			this.studentClass = studentClass;
+			this.politicalStatus = politicalStatus;
 			this.ethnicGroup = ethnicGroup;
 			this.duty = duty;
 			this.dormitory = dormitory;
@@ -160,7 +166,9 @@ public class HistoryArchive {
 			this.helpType = helpType;
 			this.attentionType = attentionType;
 			this.lastRecordTime = lastRecordTime;
+			this.historyRecorderChanges = historyRecorderChanges;
 		}
+
 		public Long getHistoryArchiveId() {
 			return historyArchiveId;
 		}
@@ -209,6 +217,15 @@ public class HistoryArchive {
 		public void setStudentClass(Integer studentClass) {
 			this.studentClass = studentClass;
 		}
+		
+		public String getPoliticalStatus() {
+			return politicalStatus;
+		}
+
+		public void setPoliticalStatus(String politicalStatus) {
+			this.politicalStatus = politicalStatus;
+		}
+
 		public String getEthnicGroup() {
 			return ethnicGroup;
 		}

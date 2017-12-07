@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class FileTypeNotMatchException extends RuntimeException {
+public class FileTypeNotMatchException extends Exception {
 	/**
 	 * 
 	 */

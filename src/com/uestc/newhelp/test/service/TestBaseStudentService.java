@@ -132,22 +132,31 @@ public class TestBaseStudentService {
 			System.out.println(baseStudent);
 		}
 	}
-	@Test
-	public void testSearch() {
+	/*@Test
+	public void testSearch() throws ParseException {
 		BaseStudent baseStudent=new BaseStudent();
-		baseStudent.setName("…Í");
+		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd");
+		baseStudent.setHeight(180F);
+		BaseStudentWithPageParam baseStudentWithPageParam=new BaseStudentWithPageParam();
+		Page page=new Page(1, -1, 0);
+		baseStudentWithPageParam.setPage(page);
+		baseStudentWithPageParam.setBaseStudent(baseStudent);
+		BaseStudentsWithPage baseStudentsWithPage=baseStudentService.search(baseStudentWithPageParam);
+		System.out.println(baseStudentsWithPage);
+		System.out.println(page);
+		
 		List<BaseStudent> baseStudents=baseStudentService.search( baseStudent);
 		for (BaseStudent b : baseStudents) {
 			System.out.println(b);
 		}
-	}
-	@Test
+	}*/
+	/*@Test
 	public void testListIdByName() {
 		List<Long> longs=baseStudentService.listIdByName("…Í÷æ«ø1");
 		for (Long long1 : longs) {
 			System.out.println(long1);
 		}
-	}
+	}*/
 	@Test
 	public void testGetAllInfo() {
 		BaseStudent baseStudent=baseStudentService.getAllInfo(2016220305023L);
@@ -163,12 +172,12 @@ public class TestBaseStudentService {
 		BaseStudent baseStudent=baseStudentService.getPersonalInfo(2016220305023L);
 		System.out.println(baseStudent);
 	}
-	@Test
+/*	@Test
 	public void testGetArchiveInfo() {
 		BaseStudent baseStudent=baseStudentService.getArchiveInfo(2016220305023L);
 		System.out.println(baseStudent);
 		
-	}
+	}*/
 	@SuppressWarnings("unused")
 	@Test
 	public void testUpdate() throws FileNotFoundException, IOException {

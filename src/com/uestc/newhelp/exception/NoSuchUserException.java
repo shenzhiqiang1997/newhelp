@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class NoSuchUserException extends RuntimeException {
+public class NoSuchUserException extends Exception {
 
 	/**
 	 * 

@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class ArchiveStudentHadExistException extends RuntimeException {
+public class ArchiveStudentHadExistException extends Exception {
 
 	/**
 	 * 

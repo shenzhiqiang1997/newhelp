@@ -35,12 +35,14 @@ public class BaseStudent {
 	private String email;
 	//学生生日
 	@DateTimeFormat(iso=ISO.DATE)
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date birthday;
 	//学生身高
 	private Float height;
 	//学生专业
 	private String major;
+	//学生学业情况
+	private String studyCondition;
 	//学生政治面貌
 	private String politicalStatus;
 	//学生民族
@@ -102,12 +104,63 @@ public class BaseStudent {
 		super();
 	}
 	
+	public BaseStudent(Long studentId, String name, Short grade, Integer studentClass, String sex, String photoUrl,
+			String duty, String dormitory, String contactWay, String idCardNumber, Long qqNumber, String email,
+			Date birthday, Float height, String major, String studyCondition, String politicalStatus,
+			String ethnicGroup, String birthOrigin, String collegeEntranceExamScore,
+			String collegeEntranceExamEnglishScore, Byte entranceExamEnglishScore, String hometownRailwayStation,
+			String province, String city, String familyAddress, String familyTelNumber, String postcode,
+			String specialty, String dutyInHighSchool, String awardInHighSchool, String isHadTechnologyCompetitionAward,
+			String fatherName, String fatherWorkUnit, String fatherWorkUnitAddress, String fatherDuty,
+			String fatherPostcode, String fatherTelNumber, String motherName, String motherWorkUnit,
+			String motherWorkUnitAddress, String motherDuty, String motherPostcode, String motherTelNumber) {
+		super();
+		this.studentId = studentId;
+		this.name = name;
+		this.grade = grade;
+		this.studentClass = studentClass;
+		this.sex = sex;
+		this.photoUrl = photoUrl;
+		this.duty = duty;
+		this.dormitory = dormitory;
+		this.contactWay = contactWay;
+		this.idCardNumber = idCardNumber;
+		this.qqNumber = qqNumber;
+		this.email = email;
+		this.birthday = birthday;
+		this.height = height;
+		this.major = major;
+		this.studyCondition = studyCondition;
+		this.politicalStatus = politicalStatus;
+		this.ethnicGroup = ethnicGroup;
+		this.birthOrigin = birthOrigin;
+		this.collegeEntranceExamScore = collegeEntranceExamScore;
+		this.collegeEntranceExamEnglishScore = collegeEntranceExamEnglishScore;
+		this.entranceExamEnglishScore = entranceExamEnglishScore;
+		this.hometownRailwayStation = hometownRailwayStation;
+		this.province = province;
+		this.city = city;
+		this.familyAddress = familyAddress;
+		this.familyTelNumber = familyTelNumber;
+		this.postcode = postcode;
+		this.specialty = specialty;
+		this.dutyInHighSchool = dutyInHighSchool;
+		this.awardInHighSchool = awardInHighSchool;
+		this.isHadTechnologyCompetitionAward = isHadTechnologyCompetitionAward;
+		this.fatherName = fatherName;
+		this.fatherWorkUnit = fatherWorkUnit;
+		this.fatherWorkUnitAddress = fatherWorkUnitAddress;
+		this.fatherDuty = fatherDuty;
+		this.fatherPostcode = fatherPostcode;
+		this.fatherTelNumber = fatherTelNumber;
+		this.motherName = motherName;
+		this.motherWorkUnit = motherWorkUnit;
+		this.motherWorkUnitAddress = motherWorkUnitAddress;
+		this.motherDuty = motherDuty;
+		this.motherPostcode = motherPostcode;
+		this.motherTelNumber = motherTelNumber;
+	}
 	
-
-	
-
-
-
 	public BaseStudent(Long studentId, String name, Short grade, Integer studentClass, String sex, String duty,
 			String dormitory, String contactWay, String idCardNumber, Long qqNumber, String email, Date birthday,
 			Float height, String major, String politicalStatus, String ethnicGroup, String birthOrigin,
@@ -162,12 +215,6 @@ public class BaseStudent {
 		this.motherPostcode = motherPostcode;
 		this.motherTelNumber = motherTelNumber;
 	}
-
-
-
-
-
-
 
 	public Long getStudentId() {
 		return studentId;
@@ -260,6 +307,15 @@ public class BaseStudent {
 	public void setMajor(String major) {
 		this.major = major;
 	}
+	
+	public String getStudyCondition() {
+		return studyCondition;
+	}
+
+	public void setStudyCondition(String studyCondition) {
+		this.studyCondition = studyCondition;
+	}
+
 	public String getPoliticalStatus() {
 		return politicalStatus;
 	}

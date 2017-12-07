@@ -2,9 +2,7 @@ package com.uestc.newhelp.test.dao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +18,7 @@ import com.uestc.newhelp.entity.BaseStudent;
 public class TestBaseStudentDao {
 	@Autowired
 	private BaseStudentDao baseStudentDao;
-	@Test
+	/*@Test
 	public void testAdd() throws ParseException {
 		List<BaseStudent> baseStudents=new ArrayList<>();
 		
@@ -70,7 +68,7 @@ public class TestBaseStudentDao {
 		baseStudent.setMotherTelNumber("15058859819");
 		
 		BaseStudent baseStudent1=new BaseStudent();
-		baseStudent1.setStudentId(2016220305022L);
+		baseStudent1.setStudentId(2016220305023L);
 		baseStudent1.setName("申志强1");
 		baseStudent1.setGrade((short) 2016);
 		baseStudent1.setStudentClass(2016220305);
@@ -118,7 +116,7 @@ public class TestBaseStudentDao {
 		baseStudents.add(baseStudent1);
 		baseStudentDao.addBatch(baseStudents);
 	
-	}
+	}*/
 	@Test
 	public void testUpdate() throws ParseException {
 		BaseStudent baseStudent1=new BaseStudent();
@@ -165,6 +163,8 @@ public class TestBaseStudentDao {
 		baseStudent1.setMotherDuty("员工");
 		baseStudent1.setMotherPostcode("641200");
 		baseStudent1.setMotherTelNumber("15058859819");
+		baseStudent1.setStudyCondition("123");
+		baseStudent1.setStudyCondition("213123");
 		baseStudentDao.update(baseStudent1);
 	}
 	@Test
@@ -187,19 +187,22 @@ public class TestBaseStudentDao {
 		for (Long id : ids) {
 			System.out.println(id);
 		}
-	}
-	@Test
+	}*/
+	/*@Test
 	public void testSearch() throws ParseException {
-		ExposeSetting exposeSetting=new ExposeSetting(null, null, (byte)1, (byte)1,(byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1);
 		BaseStudent baseStudent=new BaseStudent();
-		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd");
-		Date date1=sdf1.parse("1997-03-21");
-		System.out.println(date1);
+		//SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd");
+		//Date date1=sdf1.parse("1997-03-21");
 		baseStudent.setHeight(180F);
-		List<BaseStudent> baseStudents=baseStudentDao.searchWithExposeSetting(exposeSetting, baseStudent);
+		int num=baseStudentDao.searchRecordNum(baseStudent);
+		System.out.println(num);
+		Page page=new Page(5, -1, num);
+		System.out.println(page);
+		List<BaseStudent> baseStudents=baseStudentDao.search(baseStudent,page,1);
 		for (BaseStudent baseStudent1 : baseStudents) {
 			System.out.println(baseStudent1);
 		}
+		
 	}*/
 	
 }

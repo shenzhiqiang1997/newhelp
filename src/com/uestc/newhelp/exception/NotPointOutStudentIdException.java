@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class NotPointOutStudentIdException extends RuntimeException {
+public class NotPointOutStudentIdException extends Exception {
 
 	/**
 	 * 

@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class NotChoseExportObjectException extends RuntimeException {
+public class NotChoseExportObjectException extends Exception {
 
 	/**
 	 * 

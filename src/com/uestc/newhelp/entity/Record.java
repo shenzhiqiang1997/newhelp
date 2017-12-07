@@ -17,7 +17,7 @@ public class Record{
 	private String recordName;
 	//记录时间
 	@DateTimeFormat(iso=ISO.DATE)
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date recordTime;
 	//地点
 	private String location;

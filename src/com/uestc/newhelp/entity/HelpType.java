@@ -5,6 +5,14 @@ public class HelpType {
 	private Long helpTypeId;
 	//∞Ô∑ˆ¿‡–Õ√˚≥∆
 	private String helpTypeName;
+	
+	public HelpType() {
+		super();
+	}
+	public HelpType(String helpTypeName) {
+		super();
+		this.helpTypeName = helpTypeName;
+	}
 	public Long getHelpTypeId() {
 		return helpTypeId;
 	}

@@ -29,6 +29,7 @@
 		<property name="defaultEncoding" value="UTF8"></property>
 		<property name="maxUploadSizePerFile" value="5242880"></property>
 	</bean>
+	
 	<mvc:cors>
 		<mvc:mapping path="/*" 
 			allowed-origins="*"

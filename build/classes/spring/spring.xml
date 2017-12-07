@@ -24,9 +24,15 @@
 		<property name="password" value="${jdbc.password}"></property>
 		<property name="driverClass" value="${jdbc.driver}"></property>
 		<property name="jdbcUrl" value="${jdbc.url}"></property>
-		<property name="maxPoolSize" value="25"></property>
-		<property name="minPoolSize" value="10"></property>
-		<property name="acquireRetryAttempts" value="2"></property>
+		<!-- 设置连接池最小最大连接数 -->
+		<property name="minPoolSize" value="${jdbc.minPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+		<!-- 设置连接失败时重复尝试连接的次数 -->
+		<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"></property>
+		<!-- 设置每次所有连接登入时进行测试 测试的时间间隔-->
+		<property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"></property>
+		<property name="testConnectionOnCheckin" value="${jdbc.testConnectionOnCheckin}"></property>
+		<property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"></property>
 	</bean> 
 	
 	<!-- 配置事务管理器 -->
@@ -43,30 +49,14 @@
 			<tx:method name="list" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="java.lang.Exception" />
 			<tx:method name="import*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="java.lang.Exception" />
 			<tx:method name="log*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="java.lang.Exception" />
-			<tx:method name="*" isolation="READ_COMMITTED" read-only="true"/>
+			<tx:method name="*" isolation="READ_COMMITTED"/>
 		</tx:attributes>
 	</tx:advice>
 	
 	<!-- 先配置切点 再为需要事务的方法配置切面 -->
 	<aop:config>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.ArchiveStudentServiceImpl.*(..))" id="archiveStudentService"/>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.AttentionTypeServiceImpl.*(..))" id="attentionTypeService"/>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.BaseStudentServiceImpl.*(..))" id="baseStudentService"/>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.HelpTypeServiceImpl.*(..))" id="helpTypeService"/>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.HistoryArchiveServiceImpl.*(..))" id="historyArchiveService"/>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.HistoryRecordServiceImpl.*(..))" id="historyRecordService"/>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.RecordChangeServiceImpl.*(..))" id="recordChangeService"/>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.ReocrdServiceImpl.*(..))" id="reocrdService"/>
-		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.UserServiceImpl.*(..))" id="userService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="archiveStudentService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="attentionTypeService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="baseStudentService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="helpTypeService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="historyArchiveService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="historyRecordService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="recordChangeService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="reocrdService"/>
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="userService"/>
+		<aop:pointcut expression="execution(* com.uestc.newhelp.service.impl.*.*(..))" id="service"/>
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="service"/>
 	</aop:config>
 	<!-- 配置sqlSessionFactoryBean 引入MyBatis的sqlSession工厂Bean -->
 	<bean  class="org.mybatis.spring.SqlSessionFactoryBean">

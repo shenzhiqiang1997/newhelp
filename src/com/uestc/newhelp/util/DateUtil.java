@@ -16,7 +16,7 @@ public class DateUtil {
 	}
 	//查看时间差是否大于目标周时间差(毫秒)
 	public static boolean remindInterval(long interval,byte weekCount) {
-		if(interval>weekCount*oneDayTime) {
+		if(interval>weekCount*oneDayTime*7) {
 			return true;
 		}else {
 			return false;

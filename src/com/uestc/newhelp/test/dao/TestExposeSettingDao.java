@@ -24,12 +24,13 @@ public class TestExposeSettingDao {
 	public void testGet() {
 		ExposeSetting exposeSetting=exposeSettingDao.get("20162201");
 		System.out.println(exposeSetting);
+		System.out.println(exposeSetting.getExposeStudyCondition());
 	}
 	@Test
 	public void testUpdate() {
 		ExposeSetting exposeSetting=new ExposeSetting();
 		exposeSetting.setExposeSettingId(1L);
-		exposeSetting.setExposeName((byte)0);
+		exposeSetting.setExposeStudyCondition((byte)1);
 		exposeSettingDao.update(exposeSetting);
 	}
 }

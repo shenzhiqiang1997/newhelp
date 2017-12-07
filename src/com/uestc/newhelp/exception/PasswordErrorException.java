@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class PasswordErrorException extends RuntimeException {
+public class PasswordErrorException extends Exception {
 
 	/**
 	 * 

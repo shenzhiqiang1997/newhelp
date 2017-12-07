@@ -1,8 +1,6 @@
 package com.uestc.newhelp.test.dao;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,14 +41,14 @@ public class TestArchiveStudentDao {
 	
 	@Test
 	public void testList() {
-		List<ArchiveStudent> archiveStudents=new ArrayList<>();
-		archiveStudents=archiveStudentDao.list("20162201");
+		/*List<ArchiveStudent> archiveStudents=new ArrayList<>();*/
+		/*archiveStudents=archiveStudentDao.list("20162201");
 		for (ArchiveStudent archiveStudent : archiveStudents) {
 			System.out.println(archiveStudent);
-		}
+		}*/
 	}
 	
-	@Test
+	/*@Test
 	public void testSearch() {
 		ArchiveStudent archiveStudent=new ArchiveStudent();
 		archiveStudent.setTeacherId("20162201");
@@ -59,7 +57,7 @@ public class TestArchiveStudentDao {
 		for (ArchiveStudent archiveStudent1 : archiveStudents) {
 			System.out.println(archiveStudent1);
 		}
-	}
+	}*/
 	
 	@Test
 	public void testCheck() {

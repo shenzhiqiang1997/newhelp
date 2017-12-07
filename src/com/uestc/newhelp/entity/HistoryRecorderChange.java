@@ -10,7 +10,7 @@ public class HistoryRecorderChange {
 	//属于的历史档案的id
 	private Long historyArchiveId;
 	//变更时间
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date changeTime;
 	//现记录人
 	private String recorderNow;

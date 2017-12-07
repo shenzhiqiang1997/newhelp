@@ -1,6 +1,6 @@
 package com.uestc.newhelp.exception;
 
-public class PasswordNotMatchException extends RuntimeException {
+public class PasswordNotMatchException extends Exception {
 	
 	/**
 	 * 
