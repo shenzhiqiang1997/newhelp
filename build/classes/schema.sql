@@ -341,3 +341,26 @@ CREATE TABLE token_(
 	token_value VARCHAR(100) COMMENT 'token值',
 	PRIMARY KEY pk_teacher_id(teacher_id)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT 'token存储表';
+
+CREATE TABLE authorization_(
+	authorization_id BIGINT UNSIGNED AUTO_INCREMENT COMMENT '权限id',
+	teacher_id VARCHAR(13) COMMENT '所属教师用户名',
+	back_end_handle TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '后台管理',
+	base_student_see TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '基本学生信息查看',
+	base_student_edit TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '基本学生信息修改',
+	base_student_import TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '基本学生信息导入Excel列表',
+	base_student_export TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '基本学生信息导出Excel列表',
+	archive_student_see TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生档案查看',
+	archive_student_edit TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生档案修改',
+	archive_student_change TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生档案变更',
+	archive_student_build TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生档案建档',
+	archive_student_destory TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生档案除档',
+	archive_student_export TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生档案导出整本',
+	archive_record_see TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生记录查看',
+	archive_record_edit TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生记录修改',
+	archive_record_add TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生记录新增',
+	archive_record_export TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生记录导出',
+	history_archive_see TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生历史档案查看',
+	history_record_see TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生历史记录查看',
+	PRIMARY KEY(authorization_id)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '权限表';

@@ -10,6 +10,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>帮扶类型列表</title>
 <link rel="stylesheet" href="<%=path%>/css/bootstrap.min.css"/>
+<style type="text/css">
+td  
+{  
+    text-align:center;  
+}  
+th  
+{  
+    text-align:center;  
+}  
+</style>
 <script type="text/javascript" src="<%=path%>/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
 <script type="text/javascript">

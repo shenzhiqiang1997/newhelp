@@ -10,6 +10,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>教师帐号列表</title>
 <link rel="stylesheet" href="<%=path%>/css/bootstrap.min.css"/>
+<style type="text/css">
+td  
+{  
+    text-align:center;  
+}  
+th  
+{  
+    text-align:center;  
+}  
+</style>
 <script type="text/javascript" src="<%=path%>/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -69,6 +79,7 @@
           <th>教师姓名</th>
           <th>教师职务</th>
       	  <th>教师年级</th>
+      	  <th>查看权限</th>
           <th>更改</th>
           <th>删除</th>
 	    </tr>
@@ -81,6 +92,7 @@
 		      <td>${teacher.name}</td>
 		      <td>${teacher.duty}</td>
 		      <td>${teacher.grade}</td>
+		      <td><a href="<%=path%>/backend/authorization/${teacher.teacherId}"><button class="btn btn-default" type="button" >查看</button></a></td>
 		      <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#updateModal" onclick="updateTeacher('${teacher.teacherId}','${teacher.password}','${teacher.name}','${teacher.duty}',${teacher.grade})">更改</button></td>
 		      <td><button class="btn btn-default" type="button" onclick="deleteTeacher('${teacher.teacherId}')">删除</button></td>
 	    	</tr>

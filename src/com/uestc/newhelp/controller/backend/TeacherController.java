@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uestc.newhelp.constant.Message;
+import com.uestc.newhelp.dao.AuthorizationDao;
 import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.entity.Teacher;
 
@@ -19,6 +20,8 @@ import com.uestc.newhelp.entity.Teacher;
 public class TeacherController {
 	@Autowired
 	private TeacherDao teacherDao;
+	@Autowired
+	private AuthorizationDao authorizationDao;
 	
 	@RequestMapping(path="/teachers",method=RequestMethod.GET)
 	public String list(Model model) {
@@ -37,6 +40,7 @@ public class TeacherController {
 	public String delete(@PathVariable String teacherId,Model model) {
 		try {
 			teacherDao.delete(teacherId);
+			authorizationDao.delete(teacherId);
 			return "redirect:/backend/teachers";
 		} catch (Exception e) {
 			model.addAttribute("message",Message.DELETE_FAILURE);
@@ -48,6 +52,7 @@ public class TeacherController {
 	public String add(Teacher teacher,Model model) {
 		try {
 			teacherDao.add(teacher);
+			authorizationDao.add(teacher.getTeacherId());
 			return "redirect:/backend/teachers";
 		} catch (DuplicateKeyException e) {
 			model.addAttribute("message",Message.ADD_REPEAT_FAILURE);
