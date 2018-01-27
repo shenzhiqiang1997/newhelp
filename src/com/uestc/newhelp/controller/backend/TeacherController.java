@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uestc.newhelp.constant.Message;
-import com.uestc.newhelp.dao.AuthorizationDao;
 import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.entity.Teacher;
+import com.uestc.newhelp.service.TeacherService;
 
 @Controller
 @RequestMapping("/backend")
@@ -21,52 +21,50 @@ public class TeacherController {
 	@Autowired
 	private TeacherDao teacherDao;
 	@Autowired
-	private AuthorizationDao authorizationDao;
-	
-	@RequestMapping(path="/teachers",method=RequestMethod.GET)
+	private TeacherService teacherService;
+
+	@RequestMapping(path = "/teachers", method = RequestMethod.GET)
 	public String list(Model model) {
 		try {
-			List<Teacher> teachers=teacherDao.list();
-			model.addAttribute("teachers",teachers);
+			List<Teacher> teachers = teacherDao.list();
+			model.addAttribute("teachers", teachers);
 			return "teacherlist";
 		} catch (Exception e) {
 			model.addAttribute("message", Message.GET_FAILURE);
 			return "error";
 		}
-		
+
 	}
-	
-	@RequestMapping(path="/teacher/{teacherId}",method=RequestMethod.DELETE)
-	public String delete(@PathVariable String teacherId,Model model) {
+
+	@RequestMapping(path = "/teacher/{teacherId}", method = RequestMethod.DELETE)
+	public String delete(@PathVariable String teacherId, Model model) {
 		try {
-			teacherDao.delete(teacherId);
-			authorizationDao.delete(teacherId);
+			teacherService.delete(teacherId);
 			return "redirect:/backend/teachers";
 		} catch (Exception e) {
-			model.addAttribute("message",Message.DELETE_FAILURE);
+			model.addAttribute("message", Message.DELETE_FAILURE);
 			return "error";
 		}
 	}
-	
-	@RequestMapping(path="/teacher",method=RequestMethod.POST)
-	public String add(Teacher teacher,Model model) {
+
+	@RequestMapping(path = "/teacher", method = RequestMethod.POST)
+	public String add(Teacher teacher, Model model) {
 		try {
-			teacherDao.add(teacher);
-			authorizationDao.add(teacher.getTeacherId());
+			teacherService.add(teacher);
 			return "redirect:/backend/teachers";
 		} catch (DuplicateKeyException e) {
-			model.addAttribute("message",Message.ADD_REPEAT_FAILURE);
+			model.addAttribute("message", Message.ADD_REPEAT_FAILURE);
 			return "error";
 		}
 	}
-	
-	@RequestMapping(path="/teacher",method=RequestMethod.PUT)
-	public String update(Teacher teacher,Model model) {
+
+	@RequestMapping(path = "/teacher", method = RequestMethod.PUT)
+	public String update(Teacher teacher, Model model) {
 		try {
 			teacherDao.update(teacher);
 			return "redirect:/backend/teachers";
 		} catch (Exception e) {
-			model.addAttribute("message",Message.UPDATE_FAILURE);
+			model.addAttribute("message", Message.UPDATE_FAILURE);
 			return "error";
 		}
 	}
