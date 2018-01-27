@@ -66,7 +66,7 @@ th
 <br/>
 <h1 class="text-center">教师帐号列表</h1>
 <br>
-<span style="color:red">教师年级：0为领导 1为管理员 其他为所在年级</span>
+<span style="color:red">教师年级：0为所有年级 其他为所在年级</span>
 <button class="btn btn-default" data-toggle="modal" data-target="#addModal" style="float:right;">增加</button>
 <br>
 <form action="<%=path%>/backend/teacher/" method="POST" id="deleteForm">

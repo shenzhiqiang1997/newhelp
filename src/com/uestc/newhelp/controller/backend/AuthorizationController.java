@@ -33,7 +33,7 @@ public class AuthorizationController {
 	public String update(Authorization authorization,Model model) {
 		try {
 			authorizationDao.update(authorization);
-			return "authorizationlist";
+			return "redirect:/backend/authorization/"+authorization.getTeacherId();
 		} catch (Exception e) {
 			model.addAttribute("message", Message.UPDATE_FAILURE);
 			return "error";

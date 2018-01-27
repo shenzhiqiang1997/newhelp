@@ -92,7 +92,7 @@
 
   .infoHolder{
     width: 380px;
-    height:350px;
+    height:300px;
     border-top: solid 85px rgba(0,0,0,.6);
     margin:auto;
     background: rgba(192,192,192,0.6);
@@ -178,7 +178,7 @@
     width: 310px;
     height:60px;
     margin-left: 32px;
-    margin-top: 10px;
+    margin-top: 20px;
     border-radius: 4px;
   }
 
