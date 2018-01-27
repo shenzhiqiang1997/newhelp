@@ -8,7 +8,7 @@ public interface AuthorizationDao {
 	//给指定教师建立权限
 	public void add(@Param("teacherId")String teacherId);
 	//查询指定教师的权限
-	public Authorization get(@Param("teacherId")String teahcerId);
+	public Authorization get(@Param("teacherId")String teacherId);
 	//更新指定教师的权限
 	public void update(@Param("authorization")Authorization authorization);
 	//删除指定教师的权限
