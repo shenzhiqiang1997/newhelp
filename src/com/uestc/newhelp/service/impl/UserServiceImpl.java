@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uestc.newhelp.dao.AuthorizationDao;
 import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.dao.TokenDao;
 import com.uestc.newhelp.dto.TeacherUpdatePasswordParam;
+import com.uestc.newhelp.entity.Authorization;
 import com.uestc.newhelp.entity.Teacher;
 import com.uestc.newhelp.entity.Token;
 import com.uestc.newhelp.exception.NoAuthorityException;
@@ -21,6 +23,8 @@ public class UserServiceImpl implements UserService {
 	private TeacherDao teacherDao;
 	@Autowired
 	private TokenDao tokenDao;
+	@Autowired
+	private AuthorizationDao authorizationDao;
 	
 	@Override
 	public Teacher backendLogin(Teacher teacher)throws NoSuchUserException,PasswordErrorException, NoAuthorityException {
@@ -41,7 +45,10 @@ public class UserServiceImpl implements UserService {
 			//验证密码,如果成功返回教师信息,否则抛出密码错误异常
 			if(password.equals(teacher.getPassword())) {
 				Teacher t=teacherDao.getInfo(teacher.getTeacherId());
-				if(t.getGrade()!=1) {
+				//获取教师权限
+				Authorization authorization=authorizationDao.get(teacher.getTeacherId());
+				
+				if(authorization.getBackEndHandle()!=1) {
 					throw new NoAuthorityException("您尚无管理员权限,无法登录后台,或联系维护人员给予管理员权限");
 				}
 				return t;

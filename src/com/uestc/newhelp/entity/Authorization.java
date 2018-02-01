@@ -33,6 +33,8 @@ public class Authorization {
 	private Byte archiveRecordEdit;
 	// 困难学生记录新增
 	private Byte archiveRecordAdd;
+	// 困难学生记录删除
+	private Byte archiveRecordDelete;
 	// 困难学生记录导出
 	private Byte archiveRecordExport;
 	// 困难学生历史档案查看
@@ -44,6 +46,13 @@ public class Authorization {
 		return authorizationId;
 	}
 
+	public Byte getArchiveRecordDelete() {
+		return archiveRecordDelete;
+	}
+
+	public void setArchiveRecordDelete(Byte archiveRecordDelete) {
+		this.archiveRecordDelete = archiveRecordDelete;
+	}
 	public void setAuthorizationId(Long authorizationId) {
 		this.authorizationId = authorizationId;
 	}

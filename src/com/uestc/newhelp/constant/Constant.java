@@ -6,4 +6,9 @@ public interface Constant {
 	String COVER_FONT_FAMILY="Î¢ÈíÑÅºÚ";
 	String DEFAULT_STUDY_CONDITION="ÔÚ¶Á";
 	Short ADMIN_GRADE=1;
+	
+	String GET="GET";
+	String PUT="PUT";
+	String DELETE="DELETE";
+	String POST="POST";
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.entity.Teacher;
+import com.uestc.newhelp.exception.StillHasArchiveStudentException;
 import com.uestc.newhelp.service.TeacherService;
 
 @Controller
@@ -36,11 +37,14 @@ public class TeacherController {
 
 	}
 
-	@RequestMapping(path = "/teacher/{teacherId}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/teacher/{teacherId}", method = RequestMethod.POST)
 	public String delete(@PathVariable String teacherId, Model model) {
 		try {
 			teacherService.delete(teacherId);
 			return "redirect:/backend/teachers";
+		} catch (StillHasArchiveStudentException e) {
+			model.addAttribute("message", e.getMessage());
+			return "error";
 		} catch (Exception e) {
 			model.addAttribute("message", Message.DELETE_FAILURE);
 			return "error";

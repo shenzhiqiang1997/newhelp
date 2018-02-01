@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.uestc.newhelp.constant.Constant;
 import com.uestc.newhelp.entity.Teacher;
 
 public class BackendFilter implements Filter {
@@ -33,8 +32,9 @@ public class BackendFilter implements Filter {
 		HttpSession session=httpServletRequest.getSession();
 		//从session中获取到存放的用户信息
 		Teacher teacher=(Teacher) session.getAttribute("user");
+		Boolean backendHandleAuthorization=(Boolean) session.getAttribute("backendHandleAuthorization");
 		//判断是否有权限
-		if(teacher!=null&&Constant.ADMIN_GRADE.equals(teacher.getGrade())) {
+		if(teacher!=null&&backendHandleAuthorization!=null&&backendHandleAuthorization) {
 			//如果有权限则放行
 			filterChain.doFilter(req, resp);
 			return;

@@ -22,6 +22,11 @@ public class TestTeacherService {
 	
 	@Test
 	public void testDelete() {
-		teacherService.delete("test1");
+		try {
+			teacherService.delete("test1");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

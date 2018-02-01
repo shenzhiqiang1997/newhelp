@@ -24,4 +24,6 @@ public interface ArchiveStudentDao {
 	public List<ArchiveStudent> search(@Param("teacher")Teacher teacher,@Param("archiveStudent")ArchiveStudent archiveStudent);
 	//查看该学生是否已经被建档
 	public String check(Long studentId);
+	//查看指定教师是否有帮扶的学生
+	public Integer count(@Param("teacherId")String teacherId);
 }

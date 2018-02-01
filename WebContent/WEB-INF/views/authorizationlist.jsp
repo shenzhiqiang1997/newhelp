@@ -29,14 +29,33 @@ th
 			var checkbox=checkboxs[i];
 			
 			if($(checkbox).is(':checked'))
-				$(checkbox).val(1)
+				$(checkbox).val(1);
 			else
-				$(checkbox).val(0)
+				$(checkbox).val(0);
 			
 			$(checkbox).attr('type','hidden');
 		}
 		
 		$("#updateForm").submit();
+	}
+	function pick(){
+		var checkButton=$("#checkButton");
+		var buttonText=$(checkButton).text();
+		var checkboxs=$(":checkbox");
+		if(buttonText=='全选'){
+			for(var i=0;i<checkboxs.length;i++){
+				var checkbox=checkboxs[i];
+				$(checkbox).attr('checked',true);
+			}
+			$(checkButton).text('取消');
+		}else{
+			for(var i=0;i<checkboxs.length;i++){
+				var checkbox=checkboxs[i];
+				$(checkbox).attr('checked',false);
+			}
+			$(checkButton).text('全选');
+		}
+		
 	}
 </script>
 </head>
@@ -67,7 +86,10 @@ th
 <div align="center">
 	<span style="font-size:20px">${authorization.teacherId}的权限</span>
 </div>
-
+<br>
+<div align="right">
+		<button class="btn btn-default" type="button" onclick="pick()" id="checkButton">全选</button>
+	</div>
 <br>
 <form action="<%=path%>/backend/authorization" method="POST" id="updateForm">
 	<input type="hidden" name="_method" value="PUT"/>
@@ -135,6 +157,10 @@ th
 		<tr>
 			<td>困难学生记录新增</td>
 			<td><input type="checkbox" ${authorization.archiveRecordAdd eq 1?"checked=\"checked\"":""} name="archiveRecordAdd"/></td>
+		</tr>
+		<tr>
+			<td>困难学生记录删除</td>
+			<td><input type="checkbox" ${authorization.archiveRecordDelete eq 1?"checked=\"checked\"":""} name="archiveRecordDelete"/></td>
 		</tr>
 		<tr>
 			<td>困难学生记录导出</td>

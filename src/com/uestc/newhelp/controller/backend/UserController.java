@@ -29,6 +29,7 @@ public class UserController {
 		try {
 			Teacher t = userService.backendLogin(teacher);
 			session.setAttribute("user", t);
+			session.setAttribute("backendHandleAuthorization", true);
 			return "redirect:/backend/teachers";
 		} catch (NoSuchUserException | PasswordErrorException | NoAuthorityException e) {
 			model.addAttribute("message",e.getMessage());
@@ -39,6 +40,7 @@ public class UserController {
 	@RequestMapping(path="/logout",method=RequestMethod.DELETE)
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
+		session.removeAttribute("backendHandleAuthorization");
 		return "redirect:/index.jsp";
 	}
 }

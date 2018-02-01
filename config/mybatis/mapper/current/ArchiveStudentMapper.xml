@@ -230,4 +230,8 @@
 	<select id="check" resultType="string">
 		SELECT teacher_id FROM archive_student_ WHERE student_id=#{studentId}
 	</select>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(student_id) FROM archive_student_ WHERE teacher_id=#{teacherId}
+	</select>
 </mapper>

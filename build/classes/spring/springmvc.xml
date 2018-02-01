@@ -38,11 +38,11 @@
 		/>
 	</mvc:cors>
 	
-<!-- 	<mvc:interceptors>
+ 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/api/*"/>
+			<mvc:mapping path="/api/**"/>
 			<mvc:exclude-mapping path="/api/login"/>
 			<bean class="com.uestc.newhelp.interceptor.AuthorizationInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors> 
 </beans>

@@ -19,5 +19,6 @@ public interface Message {
 	public static final String DOWNLOAD_FAILURE="下载失败";
 	public static final String PASSWORD_UPDATE_SUCCESS="密码更新成功";
 	public static final String PASSWORD_UPDATE_FAILURE="密码更新失败";
+	public static final String STILL_HAS_ARCHIVE_STUDENT="该教师仍有尚未除档的帮扶学生 请联系其处理完毕后再删除账号";
 	
 }
