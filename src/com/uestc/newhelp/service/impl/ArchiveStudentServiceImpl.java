@@ -240,7 +240,6 @@ public class ArchiveStudentServiceImpl implements ArchiveStudentService {
 	@Override
 	public void update(ArchiveStudent archiveStudent) {
 		archiveStudentDao.update(archiveStudent);
-		
 	}
 
 	@Override
