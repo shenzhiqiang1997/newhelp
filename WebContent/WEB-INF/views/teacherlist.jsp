@@ -70,7 +70,6 @@ th
 <button class="btn btn-default" data-toggle="modal" data-target="#addModal" style="float:right;">增加</button>
 <br>
 <form action="<%=path%>/backend/teacher/" method="POST" id="deleteForm">
-	<input type="hidden" name="_method" value="DELETE"/>
 	<table class="table table-bordered">
 	  <thead>
 	    <tr>
