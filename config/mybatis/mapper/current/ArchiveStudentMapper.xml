@@ -165,7 +165,7 @@
 		contact_way,family_tel_number,buliding_time,
 		help_type,attention_type,last_record_time 
 		FROM archive_student_ 
-		<if test="teacher.grade!=1 and teacher.grade!=0">
+		<if test="teacher.grade!=0">
 			WHERE teacher_id=#{teacher.teacherId}
 		</if>
 		ORDER BY student_id
@@ -220,7 +220,7 @@
 			<if test="archiveStudent.lastRecordTime!=null and archiveStudent.lastRecordTime!=''">
 				AND last_record_time=#{archiveStudent.lastRecordTime}
 			</if>
-			<if test="teacher.grade!=1 and teacher.grade!=0">
+			<if test="teacher.grade!=0">
 				AND teacher_id=#{teacher.teacherId}
 			</if>
 		</where>

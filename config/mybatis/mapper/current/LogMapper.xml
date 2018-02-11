@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.LogDao">
+	<select id="get" resultType="com.uestc.newhelp.entity.Log">
+		SELECT	log_id,operate_time,content,result,message 
+		FROM log_
+		ORDER BY operate_time DESC
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM log_
+		WHERE log_id=#{logId}
+	</delete>
+	
+	<insert id="add">
+		INSERT log_
+		VALUES(operate_time,content,result,message)
+	</insert>
+</mapper>

@@ -45,8 +45,8 @@
 			<if test="baseStudent.name!=null and baseStudent.name!=''">
 				AND name LIKE CONCAT('%',#{baseStudent.name},'%')
 			</if>
-			<!-- 如果不是管理权限则限制返回年级 -->
-			<if test="teacherGrade!=0 and teacherGrade!=1">
+			<!-- 如果不是所有年纪权限则限制返回年级 -->
+			<if test="teacherGrade!=0">
 				AND grade=#{teacherGrade}
 			</if>
 			<if test="baseStudent.grade!=null and baseStudent.grade!=''">
@@ -193,8 +193,8 @@
 			<if test="baseStudent.name!=null and baseStudent.name!=''">
 				AND name LIKE CONCAT('%',#{baseStudent.name},'%')
 			</if>
-			<!-- 如果不是管理权限则限制返回年级 -->
-			<if test="teacherGrade!=0 and teacherGrade!=1">
+			<!-- 如果不是所有年纪权限则限制返回年级 -->
+			<if test="teacherGrade!=0">
 				AND grade=#{teacherGrade}
 			</if>
 			<if test="baseStudent.grade!=null and baseStudent.grade!=''">
@@ -766,7 +766,7 @@
 					#{studentId}
 				</foreach>
 			</if>
-			<if test="grade!=0 and grade!=1">
+			<if test="grade!=0">
 				AND grade=#{grade}
 			</if>
 		</where>

@@ -52,7 +52,7 @@
 		contact_way,family_tel_number,buliding_time,
 		help_type,attention_type,destorying_time
 		FROM history_archive_ 
-		<if test="teacher.grade!=1 and teacher.grade!=0">
+		<if test="teacher.grade!=0">
 			WHERE teacher_id=#{teacher.teacherId} 
 		</if>
 		ORDER BY destorying_time DESC
@@ -95,7 +95,7 @@
 			<if test="historyArchive.attentionType!=null and historyArchive.attentionType!=''">
 				AND attention_type LIKE CONCAT('%',#{historyArchive.attentionType},'%')
 			</if>
-			<if test="teacher.grade!=1 and teacher.grade!=0">
+			<if test="teacher.grade!=0">
 				AND teacher_id=#{teacher.teacherId} 
 			</if>
 		</where>

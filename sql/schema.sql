@@ -240,7 +240,7 @@ CREATE TABLE record_(
 		recorder VARCHAR(20) COMMENT '记录人',
 		participant VARCHAR(20) COMMENT '参与人',
 		way VARCHAR(16) COMMENT '方式',
-		content VARCHAR(1000) COMMENT '主要内容',
+		content TEXT COMMENT '主要内容',
 		comment VARCHAR(36) COMMENT '备注',
 		PRIMARY KEY(record_id),
 		INDEX idx_record_time(record_time),
@@ -329,7 +329,7 @@ CREATE TABLE history_record_(
 		recorder VARCHAR(20) COMMENT '记录人',
 		participant VARCHAR(20) COMMENT '参与人',
 		way VARCHAR(16) COMMENT '方式',
-		content VARCHAR(1000) COMMENT '主要内容',
+		content TEXT COMMENT '主要内容',
 		comment VARCHAR(36) COMMENT '备注',
 		PRIMARY KEY(history_record_id),
 		INDEX idx_record_time(record_time),
@@ -365,3 +365,13 @@ CREATE TABLE authorization_(
 	history_record_see TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生历史记录查看',
 	PRIMARY KEY(authorization_id)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '权限表';
+
+CREATE TABLE log_(
+	log_id BIGINT UNSIGNED AUTO_INCREMENT COMMENT '日志id',
+	operate_time DATETIME COMMENT '操作时间',
+	content VARCHAR(40) COMMENT '操作内容',
+	result TINYINT(1) UNSIGNED DEFAULT 1 COMMENT '操作结果',
+	message VARCHAR(30) COMMENT '操作消息',
+	PRIMARY KEY(log_id),
+	INDEX operate_time_idx(operate_time)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '日志表';
