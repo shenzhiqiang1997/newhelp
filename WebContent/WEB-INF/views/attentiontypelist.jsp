@@ -52,6 +52,7 @@ th
 			<li><a href="<%=path%>/backend/teachers">教师账号</a></li>
 			<li><a href="<%=path%>/backend/helpTypes">帮扶类型</a></li>
 			<li class="active"><a href="<%=path%>/backend/attentionTypes">关注类型</a></li>
+			<li><a href="<%=path%>/backend/logs">操作日志</a></li>
 		</ul>
 		<form class="navbar-form navbar-right"  action="<%=path%>/backend/logout" method="post">
 			<input type="hidden" name="_method" value="delete"/>

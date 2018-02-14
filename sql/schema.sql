@@ -371,7 +371,7 @@ CREATE TABLE log_(
 	operate_time DATETIME COMMENT '操作时间',
 	content VARCHAR(40) COMMENT '操作内容',
 	result TINYINT(1) UNSIGNED DEFAULT 1 COMMENT '操作结果',
-	message VARCHAR(30) COMMENT '操作消息',
+	message VARCHAR(30) DEFAULT '无' COMMENT '操作消息',
 	PRIMARY KEY(log_id),
 	INDEX operate_time_idx(operate_time)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '日志表';

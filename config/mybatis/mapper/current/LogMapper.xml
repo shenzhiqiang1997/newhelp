@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.uestc.newhelp.dao.LogDao">
-	<select id="get" resultType="com.uestc.newhelp.entity.Log">
+	<select id="list" resultType="com.uestc.newhelp.entity.Log">
 		SELECT	log_id,operate_time,content,result,message 
 		FROM log_
 		ORDER BY operate_time DESC
@@ -15,7 +15,9 @@
 	</delete>
 	
 	<insert id="add">
-		INSERT log_
-		VALUES(operate_time,content,result,message)
+		INSERT log_ 
+		(operate_time,content,result,message)
+		VALUES
+		(#{log.operateTime},#{log.content},#{log.result},#{log.message})
 	</insert>
 </mapper>
