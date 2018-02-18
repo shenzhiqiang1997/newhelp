@@ -82,6 +82,11 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 		
 		//开始用户验证权限
 		Authorization authorization=authorizationDao.get(teacherId);
+		//如果账号存在 数据库中没有权限 则授予默认权限
+		if(authorization==null) {
+			authorizationDao.add(teacherId);
+			authorization=authorizationDao.get(teacherId);
+		}
 		
 		String url=request.getRequestURI();
 		String method=request.getMethod();
@@ -209,6 +214,9 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 				return false;
 			}
 		}
+		
+		//将teacherId放入request中 以便在记录日志时可以获取到
+		request.setAttribute("teacherId", teacherId);
 		
 		//通过以上,放行
 		return true;

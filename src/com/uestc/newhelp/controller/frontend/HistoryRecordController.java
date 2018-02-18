@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.HistoryRecord;
@@ -20,6 +21,7 @@ public class HistoryRecordController {
 	@Autowired
 	private HistoryRecordService historyRecordService;
 	
+	@Log("查看历史帮扶记录列表")
 	@GetMapping("/historyRecords/{recordName}/{historyArchiveId}")
 	@ResponseBody
 	public Result<List<HistoryRecord>> list(@PathVariable("recordName") String recordName,
@@ -34,6 +36,7 @@ public class HistoryRecordController {
 		}
 	}
 	
+	@Log("查看历史帮扶记录列表")
 	@GetMapping("/historyRecord/{historyRecordId}")
 	public Result<HistoryRecord> get(@PathVariable Long historyRecordId){
 		try {

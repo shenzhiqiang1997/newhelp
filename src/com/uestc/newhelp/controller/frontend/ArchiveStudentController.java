@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.ArchiveStudent;
@@ -42,6 +43,7 @@ public class ArchiveStudentController {
 	@Autowired
 	private ArchiveStudentService archiveStudentService;
 	
+	@Log("查看帮扶学生列表")
 	@GetMapping("/archiveStudents/{teacherId}")
 	@ResponseBody
 	public Result<List<ArchiveStudent>> list(@PathVariable String teacherId){
@@ -54,6 +56,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
+	@Log("搜索帮扶学生列表")
 	@PostMapping("/archiveStudents")
 	@ResponseBody
 	public Result<List<ArchiveStudent>> search(@RequestBody ArchiveStudent archiveStudent){
@@ -66,6 +69,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
+	@Log("新增帮扶学生及帮扶档案")
 	@PostMapping("/archiveStudent")
 	@ResponseBody
 	public Result<ArchiveStudent> add(@RequestBody ArchiveStudent archiveStudent){
@@ -87,6 +91,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
+	@Log("删除帮扶学生及帮扶档案")
 	@DeleteMapping("/archiveStudent")
 	@ResponseBody
 	public Result<ArchiveStudent> delete(@RequestBody ArchiveStudent archiveStudent){
@@ -100,6 +105,7 @@ public class ArchiveStudentController {
 		
 	}
 	
+	@Log("更新帮扶学生档案")
 	@PutMapping("/archiveStudent")
 	@ResponseBody
 	public Result<ArchiveStudent> update(@RequestBody ArchiveStudent archiveStudent){
@@ -112,6 +118,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
+	@Log("查看帮扶学生档案")
 	@GetMapping("/archiveStudent/{studentId}")
 	@ResponseBody
 	public Result<ArchiveStudent> get(@PathVariable Long studentId){
@@ -124,6 +131,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
+	@Log("导出帮扶学生档案word文件")
 	@GetMapping("/export/archive/{studentId}")
 	@ResponseBody
 	public ResponseEntity<?> exportArchive(@PathVariable Long studentId){

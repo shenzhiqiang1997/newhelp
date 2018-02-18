@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.ImportSetting;
@@ -20,6 +21,7 @@ public class ImportSettingController {
 	@Autowired
 	private ImportSettingService importSettingService;
 	
+	@Log("查看导入设置")
 	@GetMapping("/importSetting/{teacherId}")
 	@ResponseBody
 	public Result<ImportSetting> get(@PathVariable String teacherId) {
@@ -32,6 +34,7 @@ public class ImportSettingController {
 		}
 	}
 	
+	@Log("更新导入设置")
 	@PutMapping("/importSetting")
 	@ResponseBody
 	public Result<ImportSetting> update(@RequestBody ImportSetting importSetting){

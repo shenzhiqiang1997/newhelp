@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.AttentionType;
@@ -24,6 +25,7 @@ public class AttentionTypeController {
 	@Autowired
 	private AttentionTypeService attentionTypeService;
 	
+	@Log("查看关注类型列表")
 	@GetMapping("/attentionTypes")
 	@ResponseBody
 	public Result<List<AttentionType>> list(){
@@ -36,6 +38,7 @@ public class AttentionTypeController {
 		}
 	}
 	
+/*	@Log("新增关注类型")
 	@PostMapping("/attentionType")
 	@ResponseBody
 	public Result<AttentionType> add(@RequestBody AttentionType attentionType){
@@ -48,6 +51,7 @@ public class AttentionTypeController {
 		}
 	}
 	
+	@Log("删除关注类型")
 	@DeleteMapping("/attentionType/{attentionTypeId}")
 	@ResponseBody
 	public Result<AttentionType> delete(@PathVariable Long attentionTypeId){
@@ -60,6 +64,7 @@ public class AttentionTypeController {
 		}
 	}
 	
+	@Log("更新关注类型")
 	@PutMapping("/attentionType")
 	@ResponseBody
 	public Result<AttentionType> update(@RequestBody AttentionType attentionType){
@@ -70,5 +75,5 @@ public class AttentionTypeController {
 			e.printStackTrace();
 			return new Result<>(false,Message.UPDATE_FAILURE);
 		}
-	}
+	}*/
 }

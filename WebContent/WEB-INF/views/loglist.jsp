@@ -67,6 +67,7 @@ th
 	  <thead>
 	    <tr>
 	      <th>操作日志id</th>
+	      <th>操作人</th>
 	      <th>操作内容</th>
 	      <th>操作时间</th>
 	      <th>操作结果</th>
@@ -78,6 +79,7 @@ th
 		<c:forEach items="${logs}" var="log">
     		<tr>
     		  <td>${log.logId}</td>
+    		  <td>${log.teacherId}</td>
 		      <td>${log.content}</td>
 		      <td><fmt:formatDate value="${log.operateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		      <td>${log.result eq 1?"成功":"失败"}</td>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.HelpType;
@@ -23,6 +24,7 @@ public class HelpTypeController {
 	@Autowired
 	private HelpTypeService helpTypeService;
 	
+	@Log("查看帮扶类型列表")
 	@GetMapping("/helpTypes")
 	@ResponseBody
 	public Result<List<HelpType>> list(){
@@ -35,6 +37,7 @@ public class HelpTypeController {
 		}
 	}
 	
+	/*@Log("新增帮扶类型")
 	@PostMapping("/helpType")
 	@ResponseBody
 	public Result<HelpType> add(@RequestBody HelpType helpType){
@@ -47,6 +50,7 @@ public class HelpTypeController {
 		}
 	}
 	
+	@Log("删除帮扶类型")
 	@DeleteMapping("/helpType/{helpTypeId}")
 	@ResponseBody
 	public Result<HelpType> delete(@PathVariable Long helpTypeId){
@@ -57,6 +61,6 @@ public class HelpTypeController {
 			e.printStackTrace();
 			return new Result<>(false, Message.DELETE_FAILURE);
 		}
-	}
+	}*/
 	
 }

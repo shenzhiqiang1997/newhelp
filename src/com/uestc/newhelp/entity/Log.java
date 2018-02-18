@@ -5,6 +5,8 @@ import java.util.Date;
 public class Log {
 	//日志id
 	private Long logId;
+	//操作人
+	private String teacherId;
 	//操作时间
 	private Date operateTime;
 	//操作内容
@@ -18,6 +20,13 @@ public class Log {
 	}
 	public void setLogId(Long logId) {
 		this.logId = logId;
+	}
+	
+	public String getTeacherId() {
+		return teacherId;
+	}
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
 	}
 	public Date getOperateTime() {
 		return operateTime;

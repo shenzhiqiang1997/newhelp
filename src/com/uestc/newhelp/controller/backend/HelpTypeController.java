@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.entity.HelpType;
 import com.uestc.newhelp.service.HelpTypeService;
@@ -24,6 +25,7 @@ public class HelpTypeController {
 	@Autowired
 	private HelpTypeService helpTypeService;
 	
+	@Log("查看帮扶类型列表")
 	@RequestMapping(path="/helpTypes",method=RequestMethod.GET)
 	public String list(Model model) {
 		try {
@@ -36,6 +38,7 @@ public class HelpTypeController {
 		}
 	}
 	
+	@Log("删除帮扶类型")
 	@RequestMapping(path="/helpType/{helpTypeId}",method=RequestMethod.DELETE)
 	public String delete(@PathVariable Long helpTypeId,Model model) {
 		try {
@@ -48,6 +51,7 @@ public class HelpTypeController {
 		
 	}
 	
+	@Log("新增帮扶类型")
 	@RequestMapping(path="/helpType",method=RequestMethod.POST)
 	public String add(HelpType helpType,Model model) {
 		try {

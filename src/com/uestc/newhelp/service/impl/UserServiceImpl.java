@@ -47,10 +47,18 @@ public class UserServiceImpl implements UserService {
 				Teacher t=teacherDao.getInfo(teacher.getTeacherId());
 				//获取教师权限
 				Authorization authorization=authorizationDao.get(teacher.getTeacherId());
-				
+				//如果账号存在 数据库中没有权限 则授予默认权限
+				if(authorization==null) {
+					authorizationDao.add(teacher.getTeacherId());
+					authorization=authorizationDao.get(teacher.getTeacherId());
+				}
+				//检查是否有后台权限
 				if(authorization.getBackEndHandle()!=1) {
 					throw new NoAuthorityException("您尚无管理员权限,无法登录后台,或联系维护人员给予管理员权限");
 				}
+				
+				//设置teacherId 便于在session中获取到用来记录日志
+				t.setTeacherId(teacher.getTeacherId());
 				return t;
 			}else {
 				throw new PasswordErrorException("密码错误");

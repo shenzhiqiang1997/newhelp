@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.entity.Teacher;
 import com.uestc.newhelp.exception.NoAuthorityException;
 import com.uestc.newhelp.exception.NoSuchUserException;
@@ -24,6 +25,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Log("登录后台")
 	@RequestMapping(path="/login",method=RequestMethod.POST)
 	public String login(Teacher teacher,Model model,HttpSession session) {
 		try {
@@ -37,6 +39,7 @@ public class UserController {
 		}
 	}
 	
+	@Log("退出后台")
 	@RequestMapping(path="/logout",method=RequestMethod.DELETE)
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");

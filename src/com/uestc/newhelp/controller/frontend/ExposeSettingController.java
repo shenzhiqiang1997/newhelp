@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.ExposeSetting;
@@ -20,6 +21,7 @@ public class ExposeSettingController {
 	@Autowired
 	private ExposeSettingService exposeSettingService;
 	
+	@Log("查看学生基本信息选项设置列表")
 	@GetMapping("/exposeSetting/{teacherId}")
 	@ResponseBody
 	public Result<ExposeSetting> get(@PathVariable String teacherId) {
@@ -32,6 +34,7 @@ public class ExposeSettingController {
 		}
 	}
 	
+	@Log("更新学生基本信息选项设置列表")
 	@PutMapping("/exposeSetting")
 	@ResponseBody
 	public Result<ExposeSetting> update(@RequestBody ExposeSetting exposeSetting){

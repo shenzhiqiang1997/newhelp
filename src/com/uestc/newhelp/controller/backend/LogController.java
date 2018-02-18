@@ -19,6 +19,7 @@ public class LogController {
 	@Autowired
 	private LogDao logDao;
 	
+	@com.uestc.newhelp.annotation.Log("查看操作日志列表")
 	@RequestMapping(path="/logs",method=RequestMethod.GET)
 	public String list(Model model) {
 		try {
@@ -31,7 +32,7 @@ public class LogController {
 		}
 	}
 	
-	
+	@com.uestc.newhelp.annotation.Log("删除操作日志")
 	@RequestMapping(path="/log/{logId}",method=RequestMethod.DELETE)
 	public String delete(@PathVariable Long logId,Model model) {
 		try {

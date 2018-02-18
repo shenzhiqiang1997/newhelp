@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.entity.Teacher;
@@ -24,6 +25,7 @@ public class TeacherController {
 	@Autowired
 	private TeacherService teacherService;
 
+	@Log("查看教师账号列表")
 	@RequestMapping(path = "/teachers", method = RequestMethod.GET)
 	public String list(Model model) {
 		try {
@@ -36,7 +38,8 @@ public class TeacherController {
 		}
 
 	}
-
+	
+	@Log("删除教师账号")
 	@RequestMapping(path = "/teacher/{teacherId}", method = RequestMethod.POST)
 	public String delete(@PathVariable String teacherId, Model model) {
 		try {
@@ -50,7 +53,8 @@ public class TeacherController {
 			return "error";
 		}
 	}
-
+	
+	@Log("新增教师账号")
 	@RequestMapping(path = "/teacher", method = RequestMethod.POST)
 	public String add(Teacher teacher, Model model) {
 		try {
@@ -61,7 +65,8 @@ public class TeacherController {
 			return "error";
 		}
 	}
-
+	
+	@Log("更新教师账号")
 	@RequestMapping(path = "/teacher", method = RequestMethod.PUT)
 	public String update(Teacher teacher, Model model) {
 		try {

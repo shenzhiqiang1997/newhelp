@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.RecorderChange;
@@ -19,6 +20,7 @@ public class ReocrderChangeController {
 	@Autowired
 	private RecorderChangeService recorderChangeService;
 	
+	@Log("变更帮扶学生至其他帮扶教师")
 	@PostMapping("/change/{newTeacherId}")
 	@ResponseBody
 	public Result<RecorderChange> add(@PathVariable("newTeacherId") String newTeacherId,

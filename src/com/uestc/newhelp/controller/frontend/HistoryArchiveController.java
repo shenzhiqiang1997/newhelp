@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.HistoryArchive;
@@ -22,6 +23,7 @@ public class HistoryArchiveController {
 	@Autowired
 	private HistoryArchiveService historyArchiveService;
 	
+	@Log("查看历史帮扶学生列表")
 	@GetMapping("/historyArchives/{teacherId}")
 	@ResponseBody
 	public Result<List<HistoryArchive>> list(@PathVariable String teacherId){
@@ -33,6 +35,8 @@ public class HistoryArchiveController {
 			return new Result<>(false,Message.GET_FAILURE);
 		}
 	}
+	
+	@Log("搜索历史帮扶学生列表")
 	@PostMapping("/historyArchives")
 	@ResponseBody
 	public Result<List<HistoryArchive>> search(@RequestBody HistoryArchive historyArchive){
@@ -45,6 +49,7 @@ public class HistoryArchiveController {
 		}
 	}
 	
+	@Log("查看历史帮扶学生档案")
 	@GetMapping("/historyArchive/{historyArchiveId}")
 	@ResponseBody
 	public Result<HistoryArchive> get(@PathVariable Long historyArchiveId){

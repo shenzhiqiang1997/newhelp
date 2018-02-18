@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.RecordIdsParam;
 import com.uestc.newhelp.dto.Result;
@@ -44,6 +45,7 @@ public class RecordController {
 	@Autowired
 	private RecordService recordService;
 	
+	@Log("查看帮扶记录列表")
 	@GetMapping("/records/{recordName}/{studentId}")
 	@ResponseBody
 	public Result<List<Record>> list(@PathVariable("recordName")String recordName,
@@ -58,6 +60,7 @@ public class RecordController {
 		}
 	}
 	
+	@Log("新增帮扶记录")
 	@PostMapping("/record")
 	@ResponseBody
 	public Result<Record> add(@RequestBody Record record){
@@ -70,6 +73,7 @@ public class RecordController {
 		}
 	}
 	
+	@Log("删除帮扶记录")
 	@DeleteMapping("/records")
 	@ResponseBody
 	public Result<Record> deleteBatch(@RequestBody RecordIdsParam recordIdsParam){
@@ -82,6 +86,7 @@ public class RecordController {
 		}
 	}
 	
+	@Log("更新帮扶记录")
 	@PutMapping("/record")
 	@ResponseBody
 	public Result<Record> update(@RequestBody Record record){
@@ -94,6 +99,7 @@ public class RecordController {
 		}
 	}
 	
+	@Log("查看帮扶记录")
 	@GetMapping("/record/{recordId}")
 	@ResponseBody
 	public Result<Record> get(@PathVariable Long recordId){
@@ -106,6 +112,7 @@ public class RecordController {
 		}
 	}
 	
+	/*@Log("下载帮扶记录模板excel文件")
 	@GetMapping("/download/recordTemplate/{recordName}")
 	@ResponseBody
 	public ResponseEntity<?> downloadTemplate(@PathVariable String recordName){
@@ -123,6 +130,7 @@ public class RecordController {
 		}
 	}
 	
+	@Log("导入帮扶记录excel文件")
 	@PostMapping("/import/record")
 	@ResponseBody
 	public Result<Record> importRecord(Record record,
@@ -149,8 +157,10 @@ public class RecordController {
 			e.printStackTrace();
 			return new Result<>(false,Message.IMPORT_FAILURE);
 		} 
-	}
+	}*/
 	
+	//导出帮扶记录文件
+	@Log("导出帮扶记录excel文件")
 	@PostMapping("/export/record/{recordName}")
 	@ResponseBody
 	public ResponseEntity<?> exportRecord(@PathVariable String recordName,String json){

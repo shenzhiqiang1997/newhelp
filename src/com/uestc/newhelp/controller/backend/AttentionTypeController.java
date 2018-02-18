@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.entity.AttentionType;
 import com.uestc.newhelp.service.AttentionTypeService;
@@ -20,6 +21,7 @@ public class AttentionTypeController {
 	@Autowired
 	private AttentionTypeService attentionTypeService;
 	
+	@Log("查看关注类型列表")
 	@RequestMapping(path="/attentionTypes",method=RequestMethod.GET)
 	public String list(Model model) {
 		try {
@@ -32,6 +34,7 @@ public class AttentionTypeController {
 		}
 	}
 	
+	@Log("删除关注类型")
 	@RequestMapping(path="/attentionType/{attentionTypeId}",method=RequestMethod.DELETE)
 	public String delete(@PathVariable Long attentionTypeId,Model model) {
 		try {
@@ -43,6 +46,7 @@ public class AttentionTypeController {
 		}
 	}
 	
+	@Log("新增关注类型")
 	@RequestMapping(path="/attentionType",method=RequestMethod.POST)
 	public String add(AttentionType attentionType,Model model) {
 		try {
@@ -54,6 +58,7 @@ public class AttentionTypeController {
 		}
 	}
 	
+	@Log("更新关注类型")
 	@RequestMapping(path="/attentionType",method=RequestMethod.PUT)
 	public String update(AttentionType attentionType,Model model) {
 		try {
