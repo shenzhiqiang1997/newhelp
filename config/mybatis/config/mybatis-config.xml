@@ -7,4 +7,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 开启下划线命名法自动转换为驼峰命名法 -->
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
+	<plugins>
+		<!-- 配置分页拦截器 -->
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!-- 通过传入参数的方式使用分页 -->
+			<property name="supportMethodsArguments" value="true"/>
+			<!-- 合理化分页参数 超过页数则自动跳转到第一页或最后一页-->
+			<property name="reasonable" value="true"/>
+		</plugin>
+	</plugins>
 </configuration>

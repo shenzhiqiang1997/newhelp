@@ -9,6 +9,29 @@
 		ORDER BY operate_time DESC
 	</select>
 	
+	<select id="search" resultType="com.uestc.newhelp.entity.Log">
+		SELECT	log_id,teacher_id,ip,operate_time,content,result,message 
+		FROM log_
+		<where>
+			<if test="log.logId!=null">
+				AND log_id=#{log.logId}
+			</if>
+			<if test="log.teacherId!=null">
+				AND teacher_id LIKE CONCAT('%',#{log.teacherId},'%')
+			</if>
+			<if test="log.ip!=null">
+				AND ip LIKE CONCAT('%',#{log.ip},'%')
+			</if>
+			<if test="log.content!=null">
+				AND content LIKE CONCAT('%',{log.content},'%')
+			</if>
+			<if test="log.result!=null">
+				AND result LIKE CONCAT('%',#{log.result},'%')
+			</if>
+		</where>
+		ORDER BY operate_time DESC
+	</select>
+	
 	<delete id="delete">
 		DELETE FROM log_
 		WHERE log_id=#{logId}

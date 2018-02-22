@@ -36,4 +36,11 @@ public class TestLogDao {
 	public void testDelete() {
 		logDao.delete((long)1);
 	}
+	
+	@Test
+	public void testSearch() {
+		Log log=new Log();
+		log.setIp("0");
+		logDao.search(log, 1, 3);
+	}
 }
