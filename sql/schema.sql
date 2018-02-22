@@ -368,6 +368,8 @@ CREATE TABLE authorization_(
 
 CREATE TABLE log_(
 	log_id BIGINT UNSIGNED AUTO_INCREMENT COMMENT '日志id',
+	teacher_id VARCHAR(13) COMMENT '操作人',
+	ip VARCHAR(15) COMMNET '操作ip',
 	operate_time DATETIME COMMENT '操作时间',
 	content VARCHAR(40) COMMENT '操作内容',
 	result TINYINT(1) UNSIGNED DEFAULT 1 COMMENT '操作结果',

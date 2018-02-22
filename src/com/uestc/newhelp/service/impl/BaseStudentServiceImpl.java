@@ -168,8 +168,8 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 			throw new NoAuthorityException("你无权限导入数据,请联系具有管理员权限的用户导入");
 		}
 		Teacher teacher1=teacherDao.getPassword(teacher.getTeacherId());
-		if(!(teacher1.getPassword().equals(teacher.getPassword())&&teacher1.getGrade().equals((short)1))) {
-			throw new NoAuthorityException("你无权限导入数据,请联系具有管理员权限的用户导入");
+		if(!(teacher1.getPassword().equals(teacher.getPassword()))) {
+			throw new NoAuthorityException("验证失败 密码有误 无法导入 ");
 		}
 		
 		//获取文件的类型

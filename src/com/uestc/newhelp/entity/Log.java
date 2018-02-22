@@ -7,6 +7,8 @@ public class Log {
 	private Long logId;
 	//操作人
 	private String teacherId;
+	//操作IP
+	private String ip;
 	//操作时间
 	private Date operateTime;
 	//操作内容
@@ -27,6 +29,13 @@ public class Log {
 	}
 	public void setTeacherId(String teacherId) {
 		this.teacherId = teacherId;
+	}
+	
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 	public Date getOperateTime() {
 		return operateTime;

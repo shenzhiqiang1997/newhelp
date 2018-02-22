@@ -1,5 +1,6 @@
 package com.uestc.newhelp.controller.backend;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,14 @@ public class UserController {
 	
 	@Log("退出后台")
 	@RequestMapping(path="/logout",method=RequestMethod.DELETE)
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session,HttpServletRequest request) {
+		//便于在记录日志时获取到操作人
+		request.setAttribute("teacherId", ((Teacher)session.getAttribute("user")).getTeacherId());
+				
 		session.removeAttribute("user");
 		session.removeAttribute("backendHandleAuthorization");
+		
+		
 		return "redirect:/index.jsp";
 	}
 }

@@ -32,12 +32,20 @@ public class LogAspect {
 	
 	@AfterReturning(value="logPointcut()",returning="result")
 	public void after(JoinPoint joinPoint,Object result) throws Exception {
+		//获取request
+		RequestAttributes ra=RequestContextHolder.getRequestAttributes();
+		ServletRequestAttributes sra=(ServletRequestAttributes)ra;
+		HttpServletRequest request=sra.getRequest();
+		
 		com.uestc.newhelp.entity.Log log=new com.uestc.newhelp.entity.Log();
-		log.setTeacherId(getTeacherId());
+		log.setTeacherId(getTeacherId(request));
+		log.setIp(getRequestIp(request));
 		log.setContent(getLog(joinPoint));
 		log.setResult(operateSuccess(result));
 		log.setMessage(getMessage(joinPoint, result));
 		log.setOperateTime(new Date());
+		
+		//将日志写入数据库
 		logDao.add(log);
 	}
 	
@@ -54,12 +62,7 @@ public class LogAspect {
 	}
 	
 	//获取操作的账号id
-	private String getTeacherId() {
-		//获取request
-		RequestAttributes ra=RequestContextHolder.getRequestAttributes();
-		ServletRequestAttributes sra=(ServletRequestAttributes)ra;
-		HttpServletRequest request=sra.getRequest();
-		
+	private String getTeacherId(HttpServletRequest request) {
 		//从request或者session中获取teacherId
 		String teacherId=(String)request.getAttribute("teacherId");
 		if(teacherId==null)
@@ -130,5 +133,26 @@ public class LogAspect {
 		//如果最终消息没找到返回null
 		return null;
 		
+	}
+	
+	private String getRequestIp(HttpServletRequest request) {
+		//防止代理  通过多重寻找来找到真正的IP
+		String ip=request.getHeader("x-forwarded-for");
+		if (ip==null||ip.length()==0||"unknown".equalsIgnoreCase(ip)) {
+			ip=request.getHeader("Proxy-Client-IP");
+		}
+		if (ip==null||ip.length()==0||"unknown".equalsIgnoreCase(ip)) {
+			ip=request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip==null||ip.length()==0||"unknown".equalsIgnoreCase(ip)) {
+			ip=request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (ip==null||ip.length()==0||"unknown".equalsIgnoreCase(ip)) {
+			ip=request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (ip==null||ip.length()==0||"unknown".equalsIgnoreCase(ip)) {
+			ip=request.getRemoteAddr();
+		}
+		return ip;
 	}
 }
