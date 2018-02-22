@@ -20,7 +20,7 @@ public class ReocrderChangeController {
 	@Autowired
 	private RecorderChangeService recorderChangeService;
 	
-	@Log("变更帮扶学生至其他帮扶教师")
+	@Log("前台变更帮扶学生至其他帮扶教师")
 	@PostMapping("/change/{newTeacherId}")
 	@ResponseBody
 	public Result<RecorderChange> add(@PathVariable("newTeacherId") String newTeacherId,

@@ -25,7 +25,7 @@ public class AttentionTypeController {
 	@Autowired
 	private AttentionTypeService attentionTypeService;
 	
-	@Log("查看关注类型列表")
+	@Log("前台查看关注类型列表")
 	@GetMapping("/attentionTypes")
 	@ResponseBody
 	public Result<List<AttentionType>> list(){

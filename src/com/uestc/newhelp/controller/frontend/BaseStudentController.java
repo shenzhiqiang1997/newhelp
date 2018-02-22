@@ -54,7 +54,7 @@ public class BaseStudentController {
 	@Autowired
 	private BaseStudentService baseStudentService;
 	
-	@Log("查看学生列表")
+	@Log("前台查看学生列表")
 	@GetMapping("/baseStudents")
 	@ResponseBody
 	public Result<List<BaseStudent>> list(){
@@ -67,7 +67,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("搜索学生列表")
+	@Log("前台搜索学生列表")
 	@PostMapping("/baseStudents/{teacherId}/{pageSize}/{currentPage}/{classSort}")
 	@ResponseBody
 	public Result<BaseStudentsWithPage> search(
@@ -85,7 +85,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("查看学生全部基本信息")
+	@Log("前台查看学生全部基本信息")
 	@GetMapping("/baseStudent/all/{studentId}")
 	@ResponseBody
 	public Result<BaseStudent> getAllInfo(@PathVariable Long studentId){
@@ -98,7 +98,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("查看学生个人基本信息")
+	@Log("前台查看学生个人基本信息")
 	@GetMapping("/baseStudent/personal/{studentId}")
 	@ResponseBody
 	public Result<BaseStudent> getPersonalInfo(@PathVariable Long studentId){
@@ -111,7 +111,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("查看学生家庭基本信息")
+	@Log("前台查看学生家庭基本信息")
 	@GetMapping("/baseStudent/family/{studentId}")
 	@ResponseBody
 	public Result<BaseStudent> getFamilyInfo(@PathVariable Long studentId){
@@ -124,7 +124,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("查看学生情况基本信息")
+	@Log("前台查看学生情况基本信息")
 	@GetMapping("/baseStudent/archive/{studentId}")
 	@ResponseBody
 	public Result<BaseStudent> getArchiveInfo(@PathVariable Long studentId){
@@ -140,7 +140,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("查看指定姓名的学生学号列表")
+	@Log("前台查看指定姓名的学生学号列表")
 	@GetMapping("/baseStudent/studentIds/{name}")
 	@ResponseBody
 	public Result<List<Long>> listIdByName(@PathVariable String name){
@@ -156,7 +156,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("上传学生照片")
+	@Log("前台上传学生照片")
 	@PostMapping(value="/baseStudent")
 	@ResponseBody
 	public Result<BaseStudent> update(String json,
@@ -179,7 +179,7 @@ public class BaseStudentController {
 		
 	}
 	
-	@Log("下载学生基本信息模板excel文件")
+	@Log("前台下载学生基本信息模板excel文件")
 	@GetMapping("/download/baseStudentTemplate")
 	@ResponseBody
 	public ResponseEntity<?> downloadTemplate(){
@@ -197,7 +197,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("导入学生基本信息excel文件")
+	@Log("前台导入学生基本信息excel文件")
 	@PostMapping("/import/baseStudent")
 	@ResponseBody
 	public Result<BaseStudent> importBaseStudents(Teacher teacher,String settings,@RequestParam("file")MultipartFile multipartFile){
@@ -227,7 +227,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("导出学生基本信息excel文件")
+	@Log("前台导出学生基本信息excel文件")
 	@PostMapping("/export/baseStudent")
 	@ResponseBody
 	public ResponseEntity<?> exportBaseStudents(@RequestParam("json")String json,@RequestParam("settings")String settings){

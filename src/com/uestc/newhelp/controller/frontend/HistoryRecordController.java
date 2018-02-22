@@ -21,7 +21,7 @@ public class HistoryRecordController {
 	@Autowired
 	private HistoryRecordService historyRecordService;
 	
-	@Log("查看历史帮扶记录列表")
+	@Log("前台查看历史帮扶记录列表")
 	@GetMapping("/historyRecords/{recordName}/{historyArchiveId}")
 	@ResponseBody
 	public Result<List<HistoryRecord>> list(@PathVariable("recordName") String recordName,
@@ -36,7 +36,7 @@ public class HistoryRecordController {
 		}
 	}
 	
-	@Log("查看历史帮扶记录列表")
+	@Log("前台查看历史帮扶记录列表")
 	@GetMapping("/historyRecord/{historyRecordId}")
 	public Result<HistoryRecord> get(@PathVariable Long historyRecordId){
 		try {

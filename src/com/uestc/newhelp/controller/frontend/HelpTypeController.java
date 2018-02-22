@@ -24,7 +24,7 @@ public class HelpTypeController {
 	@Autowired
 	private HelpTypeService helpTypeService;
 	
-	@Log("查看帮扶类型列表")
+	@Log("前台查看帮扶类型列表")
 	@GetMapping("/helpTypes")
 	@ResponseBody
 	public Result<List<HelpType>> list(){

@@ -23,7 +23,7 @@ public class HistoryArchiveController {
 	@Autowired
 	private HistoryArchiveService historyArchiveService;
 	
-	@Log("查看历史帮扶学生列表")
+	@Log("前台查看历史帮扶学生列表")
 	@GetMapping("/historyArchives/{teacherId}")
 	@ResponseBody
 	public Result<List<HistoryArchive>> list(@PathVariable String teacherId){
@@ -36,7 +36,7 @@ public class HistoryArchiveController {
 		}
 	}
 	
-	@Log("搜索历史帮扶学生列表")
+	@Log("前台搜索历史帮扶学生列表")
 	@PostMapping("/historyArchives")
 	@ResponseBody
 	public Result<List<HistoryArchive>> search(@RequestBody HistoryArchive historyArchive){
@@ -49,7 +49,7 @@ public class HistoryArchiveController {
 		}
 	}
 	
-	@Log("查看历史帮扶学生档案")
+	@Log("前台查看历史帮扶学生档案")
 	@GetMapping("/historyArchive/{historyArchiveId}")
 	@ResponseBody
 	public Result<HistoryArchive> get(@PathVariable Long historyArchiveId){

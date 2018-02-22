@@ -59,7 +59,7 @@ public class UserController {
 		}
 	}
 	
-	@Log("修改密码")
+	@Log("前台修改密码")
 	@PutMapping("/teacher")
 	public Result<?> updatePassword(@RequestBody TeacherUpdatePasswordParam teacherUpdatePasswordParam){
 		try {
@@ -77,7 +77,7 @@ public class UserController {
 		}
 	}
 	
-	@Log("查看教师列表")
+	@Log("前台查看教师列表")
 	@GetMapping("/teachers/{teacherId}")
 	@ResponseBody
 	public Result<List<Teacher>> list(@PathVariable String teacherId){

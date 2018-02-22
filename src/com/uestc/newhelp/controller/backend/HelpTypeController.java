@@ -25,7 +25,7 @@ public class HelpTypeController {
 	@Autowired
 	private HelpTypeService helpTypeService;
 	
-	@Log("查看帮扶类型列表")
+	@Log("后台查看帮扶类型列表")
 	@RequestMapping(path="/helpTypes",method=RequestMethod.GET)
 	public String list(Model model) {
 		try {
@@ -38,7 +38,7 @@ public class HelpTypeController {
 		}
 	}
 	
-	@Log("删除帮扶类型")
+	@Log("后台删除帮扶类型")
 	@RequestMapping(path="/helpType/{helpTypeId}",method=RequestMethod.DELETE)
 	public String delete(@PathVariable Long helpTypeId,Model model) {
 		try {
@@ -51,7 +51,7 @@ public class HelpTypeController {
 		
 	}
 	
-	@Log("新增帮扶类型")
+	@Log("后台新增帮扶类型")
 	@RequestMapping(path="/helpType",method=RequestMethod.POST)
 	public String add(HelpType helpType,Model model) {
 		try {

@@ -45,7 +45,7 @@ public class RecordController {
 	@Autowired
 	private RecordService recordService;
 	
-	@Log("查看帮扶记录列表")
+	@Log("前台查看帮扶记录列表")
 	@GetMapping("/records/{recordName}/{studentId}")
 	@ResponseBody
 	public Result<List<Record>> list(@PathVariable("recordName")String recordName,
@@ -60,7 +60,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("新增帮扶记录")
+	@Log("前台新增帮扶记录")
 	@PostMapping("/record")
 	@ResponseBody
 	public Result<Record> add(@RequestBody Record record){
@@ -73,7 +73,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("删除帮扶记录")
+	@Log("前台删除帮扶记录")
 	@DeleteMapping("/records")
 	@ResponseBody
 	public Result<Record> deleteBatch(@RequestBody RecordIdsParam recordIdsParam){
@@ -86,7 +86,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("更新帮扶记录")
+	@Log("前台更新帮扶记录")
 	@PutMapping("/record")
 	@ResponseBody
 	public Result<Record> update(@RequestBody Record record){
@@ -99,7 +99,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("查看帮扶记录")
+	@Log("前台查看帮扶记录")
 	@GetMapping("/record/{recordId}")
 	@ResponseBody
 	public Result<Record> get(@PathVariable Long recordId){
@@ -160,7 +160,7 @@ public class RecordController {
 	}*/
 	
 	//导出帮扶记录文件
-	@Log("导出帮扶记录excel文件")
+	@Log("前台导出帮扶记录excel文件")
 	@PostMapping("/export/record/{recordName}")
 	@ResponseBody
 	public ResponseEntity<?> exportRecord(@PathVariable String recordName,String json){

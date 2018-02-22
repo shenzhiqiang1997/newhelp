@@ -21,7 +21,7 @@ public class ExposeSettingController {
 	@Autowired
 	private ExposeSettingService exposeSettingService;
 	
-	@Log("查看学生基本信息选项设置列表")
+	@Log("前台查看学生基本信息选项设置列表")
 	@GetMapping("/exposeSetting/{teacherId}")
 	@ResponseBody
 	public Result<ExposeSetting> get(@PathVariable String teacherId) {
@@ -34,7 +34,7 @@ public class ExposeSettingController {
 		}
 	}
 	
-	@Log("更新学生基本信息选项设置列表")
+	@Log("前台更新学生基本信息选项设置列表")
 	@PutMapping("/exposeSetting")
 	@ResponseBody
 	public Result<ExposeSetting> update(@RequestBody ExposeSetting exposeSetting){
