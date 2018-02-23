@@ -28,7 +28,7 @@ public class TestLogDao {
 	
 	@Test
 	public void testList() {
-		List<Log> logs=logDao.list();
+		List<Log> logs=logDao.list(1,10);
 		System.out.println(logs);
 	}
 	

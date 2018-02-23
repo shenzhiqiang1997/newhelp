@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>操作日志列表</title>
 <link rel="stylesheet" href="<%=path%>/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="<%=path%>/css/bootstrap-select.min.css"/>
 <style type="text/css">
 td  
 {  
@@ -23,6 +24,8 @@ th
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jqpaginator.min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-select.min.js"></script>
 <script type="text/javascript">
 	function deleteLog(logId){
 		var deleteFlag=confirm("确定删除");
@@ -48,7 +51,7 @@ th
 			<li><a href="<%=path%>/backend/teachers">教师账号</a></li>
 			<li><a href="<%=path%>/backend/helpTypes">帮扶类型</a></li>
 			<li><a href="<%=path%>/backend/attentionTypes">关注类型</a></li>
-			<li class="active"><a href="<%=path%>/backend/logs">操作日志</a></li>
+			<li class="active"><a href="<%=path%>/backend/logs/20/1">操作日志</a></li>
 		</ul>
 		<form class="navbar-form navbar-right"  action="<%=path%>/backend/logout" method="post">
 			<input type="hidden" name="_method" value="delete"/>
@@ -60,6 +63,37 @@ th
 </nav>
 <br/>
 <h1 class="text-center">操作日志列表</h1>
+<br>
+<div align="center">
+    <form class="bs-example bs-example-form" role="form" action="<%=path%>/backend/logs" method="POST" id="searchForm">
+       	<input type="hidden" name="pageNum" value="${currentPage}" id="searchPageNum">
+		<input type="hidden" name="pageSize" value="20">
+        <div class="form-inline">
+   			<input type="text" class="form-control" placeholder="操作日志id" value="${log.logId }" name="logId">
+            <input type="text" class="form-control" placeholder="操作人" value="${log.teacherId }" name="teacherId">
+            <input type="text" class="form-control" placeholder="操作ip" value="${log.ip }" name="ip">
+            <input type="text" class="form-control" placeholder="操作内容" value="${log.content }" name="content">
+        	<select class="selectpicker" name="result">
+        		<c:choose>
+        			<c:when test="${ log.result eq 1}">
+        				<option value="1" selected="selected">成功</option>
+						<option value="0">失败</option>   
+        			</c:when>
+        			<c:when test="${ log.result eq 0}">
+        				<option value="1">成功</option>
+						<option value="0" selected="selected">失败</option>   
+        			</c:when>
+        			<c:otherwise>
+        				<option value="1">成功</option>
+						<option value="0">失败</option>
+        			</c:otherwise>
+        		</c:choose>
+        	</select>
+        	<button class="btn btn-default" type="submit">搜索</button>
+        </div>
+        <br>
+    </form>
+</div>
 <br>
 <form action="<%=path%>/backend/log/" method="POST" id="deleteForm">
 	<input type="hidden" name="_method" value="DELETE"/>
@@ -91,6 +125,27 @@ th
     	</c:forEach>
 	  </tbody>
 	</table>
+	<div align="center">
+		<ul class="pagination" id="pagination"></ul>
+	</div>
 </form>
+<script type="text/javascript">
+$('#pagination').jqPaginator({
+    totalPages: ${totalPages},
+    visiblePages: 20,
+    currentPage: ${currentPage},
+    onPageChange: function (num, type) {
+        if (type=='change'){
+        	if (!${isSearch}) {
+        		window.location.href="<%=path%>/backend/logs/20/"+num;
+			}else{
+				$("#searchPageNum").val(num);
+				$("#searchForm").submit();
+			}
+        }
+        	
+    }
+});
+</script>
 </body>
 </html>

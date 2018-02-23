@@ -23,10 +23,10 @@
 				AND ip LIKE CONCAT('%',#{log.ip},'%')
 			</if>
 			<if test="log.content!=null">
-				AND content LIKE CONCAT('%',{log.content},'%')
+				AND content LIKE CONCAT('%',#{log.content},'%')
 			</if>
 			<if test="log.result!=null">
-				AND result LIKE CONCAT('%',#{log.result},'%')
+				AND result=#{log.result}
 			</if>
 		</where>
 		ORDER BY operate_time DESC

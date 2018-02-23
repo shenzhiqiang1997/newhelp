@@ -9,22 +9,52 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.github.pagehelper.PageInfo;
 import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dao.LogDao;
 import com.uestc.newhelp.entity.Log;
+import com.uestc.newhelp.service.LogService;
 
 @Controller
 @RequestMapping("/backend")
 public class LogController {
 	@Autowired
 	private LogDao logDao;
+	@Autowired
+	private LogService logService;
 	
 	@com.uestc.newhelp.annotation.Log("后台查看操作日志列表")
-	@RequestMapping(path="/logs",method=RequestMethod.GET)
-	public String list(Model model) {
+	@RequestMapping(path="/logs/{pageSize}/{pageNum}",method=RequestMethod.GET)
+	public String list(@PathVariable("pageSize")int pageSize,
+			@PathVariable("pageNum")int pageNum,Model model) {
 		try {
-			List<Log> logs=logDao.list();
+			PageInfo<Log> pageInfo=logService.list(pageNum, pageSize);
+			List<Log> logs=pageInfo.getList();
 			model.addAttribute("logs",logs);
+			//表示当前未在搜索
+			model.addAttribute("isSearch",false);
+			model.addAttribute("currentPage",pageInfo.getPageNum());
+			model.addAttribute("totalPages",pageInfo.getPages());
+			return "loglist";
+		} catch (Exception e) {
+			model.addAttribute("message",Message.GET_FAILURE);
+			return "error";
+		}
+	}
+	
+	@com.uestc.newhelp.annotation.Log("后台搜索操作日志列表")
+	@RequestMapping(path="/logs",method=RequestMethod.POST)
+	public String search(int pageSize,int pageNum,Log log,Model model) {
+		try {
+			PageInfo<Log> pageInfo=logService.search(log,pageNum, pageSize);
+			List<Log> logs=pageInfo.getList();
+			model.addAttribute("logs",logs);
+			//回显搜索参数
+			model.addAttribute("log",log);
+			//表示当前正在搜索
+			model.addAttribute("isSearch",true);
+			model.addAttribute("currentPage",pageInfo.getPageNum());
+			model.addAttribute("totalPages",pageInfo.getPages());
 			return "loglist";
 		} catch (Exception e) {
 			model.addAttribute("message",Message.GET_FAILURE);

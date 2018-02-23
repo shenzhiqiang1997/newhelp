@@ -9,7 +9,7 @@ import com.uestc.newhelp.entity.Log;
 
 public interface LogDao {
 	//获取日志
-	public List<Log> list();
+	public List<Log> list(@Param("pageNum")int pageNum,@Param("pageSize")int pageSize);
 	//搜索日志 用分页插件完成
 	public List<Log> search(@Param("log")Log log,@Param("pageNum")int pageNum,@Param("pageSize")int pageSize);
 	//删除日志
