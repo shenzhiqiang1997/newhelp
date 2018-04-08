@@ -45,8 +45,14 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			token=request.getParameter("token");
 		}
 		if(token==null) {
-			response.setStatus(401);
-			return false;
+			//基本学生信息导入模板下载直接进行放行
+			if(request.getRequestURI().startsWith(RequestURL.BASE_STUDENT_IMPORT_TEMPLATE_URL)
+					&&Constant.GET.equals(request.getMethod())) {
+				return true;
+			}else {
+				response.setStatus(401);
+				return false;
+			}
 		}
 		//解密
 		Claims claims=TokenUtil.parseToken(token);

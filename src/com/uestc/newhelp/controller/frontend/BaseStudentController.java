@@ -179,7 +179,7 @@ public class BaseStudentController {
 		
 	}
 	
-	@Log("前台下载学生基本信息模板excel文件")
+	/*@Log("前台下载学生基本信息模板excel文件")*/
 	@GetMapping("/download/baseStudentTemplate")
 	@ResponseBody
 	public ResponseEntity<?> downloadTemplate(){

@@ -7,6 +7,8 @@ public interface RequestURL {
 	public String BASE_STUDENT_SEE_ONE_URL="/newhelp/api/baseStudent";
 	// 基本学生信息修改
 	public String BASE_STUDENT_EDIT_URL="/newhelp/api/baseStudent";
+	// 基本学生信息导入EXCEL模板下载
+	public String BASE_STUDENT_IMPORT_TEMPLATE_URL="/newhelp/api/download/baseStudentTemplate";
 	// 基本学生信息导入EXCEL列表
 	public String BASE_STUDENT_IMPORT_URL="/newhelp/api/import/baseStudent";
 	// 基本学生信息导出EXCEL列表
@@ -39,4 +41,5 @@ public interface RequestURL {
 	public String HISTORY_RECORD_SEE_LIST_URL="/newhelp/api/historyRecords";
 	// 困难学生历史记录查看
 	public String HISTORY_RECORD_SEE_ONE_URL="/newhelp/api/historyRecord";
+	
 }
