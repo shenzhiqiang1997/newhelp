@@ -163,7 +163,7 @@ public class RecordController {
 	@Log("前台导出帮扶记录excel文件")
 	@PostMapping("/export/record/{recordName}")
 	@ResponseBody
-	public ResponseEntity<?> exportRecord(@PathVariable String recordName,String json){
+	public ResponseEntity<?> exportRecord(@PathVariable String recordName,String json,String token){
 		try {
 			ObjectMapper mapper=new ObjectMapper();
 			RecordIdsParam recordIdsParam=mapper.readValue(json,RecordIdsParam.class);

@@ -42,6 +42,9 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 		String token=request.getHeader("Authorization");
 		//如果获取不到token,拦截请求
 		if(token==null) {
+			token=request.getParameter("token");
+		}
+		if(token==null) {
 			response.setStatus(401);
 			return false;
 		}

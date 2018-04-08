@@ -230,7 +230,7 @@ public class BaseStudentController {
 	@Log("前台导出学生基本信息excel文件")
 	@PostMapping("/export/baseStudent")
 	@ResponseBody
-	public ResponseEntity<?> exportBaseStudents(@RequestParam("json")String json,@RequestParam("settings")String settings){
+	public ResponseEntity<?> exportBaseStudents(@RequestParam("json")String json,@RequestParam("settings")String settings,@RequestParam("token")String token){
 		try {
 			ObjectMapper mapper=new ObjectMapper();
 			//从绑定参数中得到导出的学生id和教师id

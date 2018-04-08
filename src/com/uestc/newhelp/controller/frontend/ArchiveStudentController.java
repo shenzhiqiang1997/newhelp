@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -132,9 +133,9 @@ public class ArchiveStudentController {
 	}
 	
 	@Log("前台导出帮扶学生档案word文件")
-	@GetMapping("/export/archive/{studentId}")
+	@PostMapping("/export/archive/{studentId}")
 	@ResponseBody
-	public ResponseEntity<?> exportArchive(@PathVariable Long studentId){
+	public ResponseEntity<?> exportArchive(@PathVariable Long studentId,@RequestParam("token")String token){
 		try {
 			byte[] body=archiveStudentService.exportArchiveToWordFile(studentId);
 			HttpHeaders headers=new HttpHeaders();
