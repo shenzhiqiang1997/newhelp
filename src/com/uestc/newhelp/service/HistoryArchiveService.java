@@ -11,5 +11,7 @@ public interface HistoryArchiveService {
 	public List<HistoryArchive> search(HistoryArchive historyArchive);
 	//查询指定历史帮扶学生详细信息
 	public HistoryArchive get(Long historyArchiveId);
+	//批量删除历史档案
+	public void deleteBatch(List<Long> historyArchiveIds);
 	
 }

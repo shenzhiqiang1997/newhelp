@@ -13,5 +13,6 @@ public interface HistoryRecordDao {
 	public HistoryRecord get(Long historyRecordId);
 	//查询指定历史档案id的指定类型的历史档案记录
 	public List<HistoryRecord> listOnType(@Param("historyRecord")HistoryRecord historyRecord);
-	
+	//批量删除指定历史档案id的历史记录
+	public void deleteBatch(@Param("historyArchiveIds")List<Long> historyArchiveIds);
 }

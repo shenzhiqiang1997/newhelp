@@ -35,4 +35,11 @@
 		</where>
 		ORDER BY record_time DESC
 	</select>
+	
+	<delete id="deleteBatch">
+		DELETE FROM history_record_ WHERE history_archive_id IN 
+		<foreach collection="historyArchiveIds" item="historyArchiveId" open="(" close=")" separator=",">
+			#{historyArchiveId}
+		</foreach>
+	</delete>
 </mapper>

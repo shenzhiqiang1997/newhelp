@@ -23,4 +23,11 @@
 		ORDER BY change_time DESC 
 		LIMIT 3
 	</select>
+	
+	<delete id="deleteBatch">
+		DELETE FROM history_recorder_change_ WHERE history_archive_id IN 
+		<foreach collection="historyArchiveIds" item="historyArchiveId" open="(" close=")" separator=",">
+			#{historyArchiveId}
+		</foreach>
+	</delete>
 </mapper>

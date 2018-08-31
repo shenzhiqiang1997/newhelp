@@ -3,6 +3,7 @@ package com.uestc.newhelp.controller.frontend;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
+import com.uestc.newhelp.dto.HistoryArchiveIdsParam;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.entity.HistoryArchive;
 import com.uestc.newhelp.service.HistoryArchiveService;
@@ -59,6 +61,19 @@ public class HistoryArchiveController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result<>(false,Message.GET_FAILURE);
+		}
+	}
+	
+	@Log("前台删除历史帮扶学生档案")
+	@DeleteMapping("/historyArchives")
+	@ResponseBody
+	public Result<HistoryArchive> deleteBatch(@RequestBody HistoryArchiveIdsParam historyArchiveIdsParam){
+		try {
+			historyArchiveService.deleteBatch(historyArchiveIdsParam.getHistoryArchiveIds());
+			return new Result<>(true,Message.DELETE_SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result<>(false,Message.DELETE_FAILURE);
 		}
 	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uestc.newhelp.dao.HistoryArchiveDao;
+import com.uestc.newhelp.dao.HistoryRecordDao;
 import com.uestc.newhelp.dao.HistoryRecorderChangeDao;
 import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.entity.HistoryArchive;
@@ -16,6 +17,8 @@ import com.uestc.newhelp.service.HistoryArchiveService;
 public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	@Autowired
 	private HistoryArchiveDao historyArchiveDao;
+	@Autowired
+	private HistoryRecordDao historyRecordDao;
 	@Autowired
 	private HistoryRecorderChangeDao historyRecorderChangeDao;
 	@Autowired
@@ -44,6 +47,16 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 		teacher.setTeacherId(historyArchive.getTeacherId());
 		List<HistoryArchive> historyArchives=historyArchiveDao.search(teacher,historyArchive);
 		return historyArchives;
+	}
+
+	@Override
+	public void deleteBatch(List<Long> historyArchiveIds) {
+		if(historyArchiveIds!=null&&historyArchiveIds.size()>0) {
+			historyArchiveDao.deleteBatch(historyArchiveIds);
+			historyRecordDao.deleteBatch(historyArchiveIds);
+			historyRecorderChangeDao.deleteBatch(historyArchiveIds);
+		}
+	
 	}
 
 }

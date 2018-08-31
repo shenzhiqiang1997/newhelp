@@ -16,4 +16,6 @@ public interface HistoryArchiveDao {
 	public List<HistoryArchive> list(@Param("teacher")Teacher teacher);
 	//搜索指定教师的指定条件的档案学生信息
 	public List<HistoryArchive> search(@Param("teacher")Teacher teacher,@Param("historyArchive")HistoryArchive historyArchive);
+	//批量删除指定历史档案id的历史档案
+	public void deleteBatch(@Param("historyArchiveIds")List<Long> historyArchiveIds);
 }
