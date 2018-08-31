@@ -37,6 +37,8 @@ public interface RequestURL {
 	public String HISTORY_ARCHIVE_SEE_LIST_URL="/newhelp/api/historyArchives";
 	// 困难学生历史档案查看
 	public String HISTORY_ARCHIVE_SEE_ONE_URL="/newhelp/api/historyArchive";
+	// 困难学生历史档案删除
+	public String HISTORY_ARCHIVE_DELETE_URL="/newhelp/api/historyArchives";
 	// 困难学生历史记录查看
 	public String HISTORY_RECORD_SEE_LIST_URL="/newhelp/api/historyRecords";
 	// 困难学生历史记录查看

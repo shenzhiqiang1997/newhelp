@@ -39,6 +39,8 @@ public class Authorization {
 	private Byte archiveRecordExport;
 	// 困难学生历史档案查看
 	private Byte historyArchiveSee;
+	// 困难学生历史档案删除
+	private Byte historyArchiveDelete;
 	// 困难学生历史记录查看
 	private Byte historyRecordSee;
 
@@ -191,6 +193,14 @@ public class Authorization {
 
 	public void setHistoryArchiveSee(Byte historyArchiveSee) {
 		this.historyArchiveSee = historyArchiveSee;
+	}
+	
+	public Byte getHistoryArchiveDelete() {
+		return historyArchiveDelete;
+	}
+
+	public void setHistoryArchiveDelete(Byte historyArchiveDelete) {
+		this.historyArchiveDelete = historyArchiveDelete;
 	}
 
 	public Byte getHistoryRecordSee() {

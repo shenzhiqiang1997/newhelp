@@ -215,6 +215,14 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
+		//检查是否有困难学生历史档案删除权限
+		if((url.equals((RequestURL.HISTORY_ARCHIVE_DELETE_URL))&&method.equals(Constant.DELETE))) {
+			if(authorization.getHistoryArchiveDelete()!=1) {
+				response.setStatus(401);
+				return false;
+			}
+		}
+		
 		//检查是否有困难学生历史记录查看权限
 		if((url.startsWith(RequestURL.HISTORY_RECORD_SEE_ONE_URL)||url.startsWith(RequestURL.HISTORY_RECORD_SEE_LIST_URL))
 				&&method.equals(Constant.GET)) {

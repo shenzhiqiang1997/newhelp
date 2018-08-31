@@ -14,8 +14,8 @@
 		base_student_export,archive_student_see,archive_student_edit,
 		archive_student_change,archive_student_build,archive_student_destory,
 		archive_student_export,archive_record_see,archive_record_edit,
-		archive_record_add,archive_record_delete,archive_record_export,history_archive_see,
-		history_record_see
+		archive_record_add,archive_record_delete,archive_record_export,
+		history_archive_see,history_archive_delete,history_record_see
 		FROM authorization_
 		WHERE teacher_id=#{teacherId}
 	</select>
@@ -73,6 +73,9 @@
 			</if>
 			<if test="authorization.historyArchiveSee!=null">
 				history_archive_see=#{authorization.historyArchiveSee},
+			</if>
+			<if test="authorization.historyArchiveDelete!=null">
+				history_archive_delete=#{authorization.historyArchiveDelete},
 			</if>
 			<if test="authorization.historyRecordSee!=null">
 				history_record_see=#{authorization.historyRecordSee},

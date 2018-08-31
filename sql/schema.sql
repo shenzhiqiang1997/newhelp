@@ -362,6 +362,7 @@ CREATE TABLE authorization_(
 	archive_record_delete TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生记录删除',
 	archive_record_export TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生记录导出',
 	history_archive_see TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生历史档案查看',
+	history_archive_delete TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生历史档案删除',
 	history_record_see TINYINT(1) UNSIGNED DEFAULT 0 COMMENT '困难学生历史记录查看',
 	PRIMARY KEY(authorization_id)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '权限表';

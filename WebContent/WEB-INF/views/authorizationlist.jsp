@@ -172,6 +172,10 @@ th
 			<td><input type="checkbox" ${authorization.historyArchiveSee eq 1?"checked=\"checked\"":""} name="historyArchiveSee"/></td>
 		</tr>
 		<tr>
+			<td>困难学生历史档案删除</td>
+			<td><input type="checkbox" ${authorization.historyArchiveDelete eq 1?"checked=\"checked\"":""} name="historyArchiveDelete"/></td>
+		</tr>
+		<tr>
 			<td>困难学生历史记录查看</td>
 			<td><input type="checkbox" ${authorization.historyRecordSee eq 1?"checked=\"checked\"":""} name="historyRecordSee"/></td>
 		</tr>
