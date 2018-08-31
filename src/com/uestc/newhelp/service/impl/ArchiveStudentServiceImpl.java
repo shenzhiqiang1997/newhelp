@@ -131,13 +131,18 @@ public class ArchiveStudentServiceImpl implements ArchiveStudentService {
 				for (ArchiveStudent archiveStudent1 : archiveStudents) {
 					boolean remind=false;
 					//如果该学生记录过
-					if(archiveStudent1.getLastRecordTime()!=null) {
-						//获得最后一次记录时间与现在的时间差
-						long interval=DateUtil.getIntervalBetweenToday(archiveStudent1.getLastRecordTime());
-						//获取对应学生的提醒间隔周长
-						byte weekCount=attentionTypeMap.get(archiveStudent1.getAttentionType());
-						//判断时间差是否超过提醒间隔时长
-						remind=DateUtil.remindInterval(interval,weekCount);
+					try {
+						if(archiveStudent1.getLastRecordTime()!=null) {
+							//获得最后一次记录时间与现在的时间差
+							long interval=DateUtil.getIntervalBetweenToday(archiveStudent1.getLastRecordTime());
+							//获取对应学生的提醒间隔周长
+							byte weekCount=attentionTypeMap.get(archiveStudent1.getAttentionType());
+						
+							//判断时间差是否超过提醒间隔时长
+							remind=DateUtil.remindInterval(interval,weekCount);
+						}
+					} catch (Exception e) {
+						continue;
 					}
 					//如果超过则将该帮扶学生的高亮属性设置为true,否则为false
 					if(remind) {

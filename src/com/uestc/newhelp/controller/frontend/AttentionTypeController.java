@@ -38,7 +38,7 @@ public class AttentionTypeController {
 		}
 	}
 	
-/*	@Log("新增关注类型")
+	@Log("新增关注类型")
 	@PostMapping("/attentionType")
 	@ResponseBody
 	public Result<AttentionType> add(@RequestBody AttentionType attentionType){
@@ -75,5 +75,5 @@ public class AttentionTypeController {
 			e.printStackTrace();
 			return new Result<>(false,Message.UPDATE_FAILURE);
 		}
-	}*/
+	}
 }

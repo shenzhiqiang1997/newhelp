@@ -37,7 +37,7 @@ public class HelpTypeController {
 		}
 	}
 	
-	/*@Log("新增帮扶类型")
+	@Log("新增帮扶类型")
 	@PostMapping("/helpType")
 	@ResponseBody
 	public Result<HelpType> add(@RequestBody HelpType helpType){
@@ -61,6 +61,6 @@ public class HelpTypeController {
 			e.printStackTrace();
 			return new Result<>(false, Message.DELETE_FAILURE);
 		}
-	}*/
+	}
 	
 }
