@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.ArchiveVisibilityDao">
+	<select id="add">
+		INSERT archive_visibility_ (teacher_id,archive_id)
+		VALUES (#{archiveVisibility.teacherId},#{archiveVisibility.archiveId})
+		ON DUPLICATE KEY UPDATE 
+		teacher_id=VALUES(teacher_id),archive_id=VALUES(archive_id)
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM archive_visibility_
+		WHERE teacher_id=#{archiveVisibility.teacherId} AND archive_id=#{archiveVisibility.archiveId}
+	</delete>
+	
+	<select id="list">
+		SELECT teacher_id,archive_id FROM archive_visibility_
+		WHERE teacher_id=#{teacherId}
+	</select>
+</mapper>

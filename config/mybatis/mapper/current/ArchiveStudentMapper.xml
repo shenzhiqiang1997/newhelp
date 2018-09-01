@@ -167,6 +167,9 @@
 		FROM archive_student_ 
 		<if test="teacher.grade!=0">
 			WHERE teacher_id=#{teacher.teacherId}
+			OR archive_id IN
+			(SELECT archive_id FROM archive_visibility_
+			WHERE teacher_id=#{teacher.teacherId})
 		</if>
 		ORDER BY student_id
 	</select>

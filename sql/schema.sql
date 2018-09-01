@@ -378,3 +378,12 @@ CREATE TABLE log_(
 	PRIMARY KEY(log_id),
 	INDEX operate_time_idx(operate_time)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '日志表';
+
+CREATE TABLE archive_visibility_(
+	archive_visibility_id BIGINT UNSIGNED AUTO_INCREMENT COMMENT '档案可见id',
+	teacher_id VARCHAR(13) COMMENT '教师用户名',
+	archive_id BIGINT UNSIGNED COMMENT '档案id',
+	PRIMARY KEY(archive_visibility_id),
+	INDEX teacher_id_index(teacher_id),
+	UNIQUE KEY(teacher_id,archive_id)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '教师档案可见表';

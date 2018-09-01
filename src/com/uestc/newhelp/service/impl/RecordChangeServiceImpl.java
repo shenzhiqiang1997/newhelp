@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uestc.newhelp.dao.ArchiveStudentDao;
+import com.uestc.newhelp.dao.ArchiveVisibilityDao;
 import com.uestc.newhelp.dao.HistoryArchiveDao;
 import com.uestc.newhelp.dao.HistoryRecordDao;
 import com.uestc.newhelp.dao.HistoryRecorderChangeDao;
@@ -15,6 +16,7 @@ import com.uestc.newhelp.dao.RecordDao;
 import com.uestc.newhelp.dao.RecorderChangeDao;
 import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.entity.ArchiveStudent;
+import com.uestc.newhelp.entity.ArchiveVisibility;
 import com.uestc.newhelp.entity.HistoryArchive;
 import com.uestc.newhelp.entity.HistoryRecord;
 import com.uestc.newhelp.entity.HistoryRecorderChange;
@@ -32,13 +34,15 @@ public class RecordChangeServiceImpl implements RecorderChangeService {
 	@Autowired
 	private RecorderChangeDao recorderChangeDao;
 	@Autowired
+	private ArchiveVisibilityDao archiveVisibilityDao;
+	/*@Autowired
 	private RecordDao recordDao;
 	@Autowired
 	private HistoryArchiveDao historyArchiveDao;
 	@Autowired
 	private HistoryRecorderChangeDao historyRecorderChangeDao;
 	@Autowired
-	private HistoryRecordDao historyRecordDao;
+	private HistoryRecordDao historyRecordDao;*/
 	
 	@Override
 	public void add(RecorderChange recorderChange,String newTeacherId) {
@@ -55,8 +59,12 @@ public class RecordChangeServiceImpl implements RecorderChangeService {
 		Long studentId=recorderChange.getStudentId();
 		//根据学号获取到其档案
 		ArchiveStudent archiveStudent=archiveStudentDao.get(studentId);
+		//使得该变更的档案对变更前的教师可见
+		ArchiveVisibility archiveVisibility = 
+				new ArchiveVisibility(archiveStudent.getTeacherId(), archiveStudent.getArchiveId());
+		archiveVisibilityDao.add(archiveVisibility);
 		
-		//查询该档案的记录人变更记录
+		/*//查询该档案的记录人变更记录
 		List<RecorderChange> recorderChanges=recorderChangeDao.list(studentId);
 		Record record=new Record();
 		record.setStudentId(studentId);
@@ -89,7 +97,7 @@ public class RecordChangeServiceImpl implements RecorderChangeService {
 			}
 			//把历史档案相关信息存放到数据库中
 			historyRecordDao.addBatch(historyRecords);
-		}
+		}*/
 		
 		//把当前档案的帮扶老师改成新的老师
 		archiveStudent.setTeacherId(newTeacherId);
