@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.newhelp.dao.HistoryArchiveVisibilityDao">
+	<select id="add">
+		INSERT history_archive_visibility_ (teacher_id,history_archive_id)
+		VALUES (#{historyArchiveVisibility.teacherId},#{historyArchiveVisibility.historyArchiveId})
+		ON DUPLICATE KEY UPDATE 
+		teacher_id=VALUES(teacher_id),history_archive_id=VALUES(history_archive_id)
+	</select>
+	
+	<delete id="deleteBatch">
+		DELETE FROM history_archive_visibility_
+		WHERE history_archive_id IN
+		<foreach collection="historyArchiveIds" item="historyArchiveId" open="(" close=")" separator=",">
+			#{historyArchiveId}
+		</foreach>
+	</delete>
+	
+	<select id="list"  resultType="java.lang.Long">
+		SELECT history_archive_id FROM history_archive_visibility_
+		WHERE teacher_id=#{teacherId}
+	</select>
+</mapper>

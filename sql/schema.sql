@@ -384,6 +384,15 @@ CREATE TABLE archive_visibility_(
 	teacher_id VARCHAR(13) COMMENT '教师用户名',
 	archive_id BIGINT UNSIGNED COMMENT '档案id',
 	PRIMARY KEY(archive_visibility_id),
-	INDEX teacher_id_index(teacher_id),
+	INDEX teacher_id_index(teacher_id), 
 	UNIQUE KEY(teacher_id,archive_id)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '教师档案可见表';
+
+CREATE TABLE history_archive_visibility_(
+	history_archive_visibility_id BIGINT UNSIGNED AUTO_INCREMENT COMMENT '历史档案可见id',
+	teacher_id VARCHAR(13) COMMENT '教师用户名',
+	history_archive_id BIGINT UNSIGNED COMMENT '历史档案id',
+	PRIMARY KEY(history_archive_visibility_id),
+	INDEX teacher_id_index(teacher_id),
+	UNIQUE KEY(teacher_id,history_archive_id)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '教师历史档案可见表';

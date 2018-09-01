@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uestc.newhelp.dao.HistoryArchiveDao;
+import com.uestc.newhelp.dao.HistoryArchiveVisibilityDao;
 import com.uestc.newhelp.dao.HistoryRecordDao;
 import com.uestc.newhelp.dao.HistoryRecorderChangeDao;
 import com.uestc.newhelp.dao.TeacherDao;
@@ -23,6 +24,8 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	private HistoryRecorderChangeDao historyRecorderChangeDao;
 	@Autowired
 	private TeacherDao teacherDao;
+	@Autowired
+	private HistoryArchiveVisibilityDao historyArchiveVisibilityDao;
 	@Override
 	public List<HistoryArchive> list(String teacherId) {
 		//获取老师信息
@@ -55,6 +58,7 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 			historyArchiveDao.deleteBatch(historyArchiveIds);
 			historyRecordDao.deleteBatch(historyArchiveIds);
 			historyRecorderChangeDao.deleteBatch(historyArchiveIds);
+			historyArchiveVisibilityDao.deleteBatch(historyArchiveIds);
 		}
 	
 	}

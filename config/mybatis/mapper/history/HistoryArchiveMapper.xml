@@ -53,7 +53,10 @@
 		help_type,attention_type,destorying_time
 		FROM history_archive_ 
 		<if test="teacher.grade!=0">
-			WHERE teacher_id=#{teacher.teacherId} 
+			WHERE teacher_id=#{teacher.teacherId}
+			OR history_archive_id IN
+			(SELECT  history_archive_id FROM  history_archive_visibility_
+			WHERE teacher_id=#{teacher.teacherId})
 		</if>
 		ORDER BY destorying_time DESC
 	</select>
@@ -96,7 +99,10 @@
 				AND attention_type LIKE CONCAT('%',#{historyArchive.attentionType},'%')
 			</if>
 			<if test="teacher.grade!=0">
-				AND teacher_id=#{teacher.teacherId} 
+				AND teacher_id=#{teacher.teacherId}
+				OR history_archive_id IN
+				(SELECT  history_archive_id FROM  history_archive_visibility_
+				WHERE teacher_id=#{teacher.teacherId})
 			</if>
 		</where>
 		ORDER BY destorying_time DESC

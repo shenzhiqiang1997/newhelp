@@ -23,9 +23,11 @@ import org.springframework.stereotype.Service;
 import com.uestc.newhelp.constant.Constant;
 import com.uestc.newhelp.constant.ReplaceMark;
 import com.uestc.newhelp.dao.ArchiveStudentDao;
+import com.uestc.newhelp.dao.ArchiveVisibilityDao;
 import com.uestc.newhelp.dao.AttentionTypeDao;
 import com.uestc.newhelp.dao.BaseStudentDao;
 import com.uestc.newhelp.dao.HistoryArchiveDao;
+import com.uestc.newhelp.dao.HistoryArchiveVisibilityDao;
 import com.uestc.newhelp.dao.HistoryRecordDao;
 import com.uestc.newhelp.dao.HistoryRecorderChangeDao;
 import com.uestc.newhelp.dao.RecordDao;
@@ -35,6 +37,7 @@ import com.uestc.newhelp.entity.ArchiveStudent;
 import com.uestc.newhelp.entity.AttentionType;
 import com.uestc.newhelp.entity.BaseStudent;
 import com.uestc.newhelp.entity.HistoryArchive;
+import com.uestc.newhelp.entity.HistoryArchiveVisibility;
 import com.uestc.newhelp.entity.HistoryRecord;
 import com.uestc.newhelp.entity.HistoryRecorderChange;
 import com.uestc.newhelp.entity.Record;
@@ -70,6 +73,10 @@ public class ArchiveStudentServiceImpl implements ArchiveStudentService {
 	private HistoryRecorderChangeDao historyRecorderChangeDao;
 	@Autowired
 	private HistoryRecordDao historyRecordDao;
+	@Autowired
+	private ArchiveVisibilityDao archiveVisibilityDao;
+	@Autowired
+	private HistoryArchiveVisibilityDao historyArchiveVisibilityDao;
 	
 	private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -238,8 +245,17 @@ public class ArchiveStudentServiceImpl implements ArchiveStudentService {
 		//将要删除的档案删除掉
 		archiveStudentDao.delete(a.getStudentId());
 		
+		//查出该帮扶档案的可见教师id列表
+		List<String> teacherIds = archiveVisibilityDao.listTeacherIds(archiveStudent.getArchiveId());
+		//如果有教师可见该帮扶档案则创建教师对历史帮扶可见对象并插入数据库
+		if (teacherIds!=null&&teacherIds.size()>0) {
+			for(String teacherId:teacherIds) {
+				historyArchiveVisibilityDao.add(new HistoryArchiveVisibility(teacherId, historyArchive.getHistoryArchiveId()));
+			}
+		}
 		
-
+		//将教师对已删除的帮扶档案可见性删除掉
+		archiveVisibilityDao.deleteByArchiveId(archiveStudent.getArchiveId());
 	}
 
 	@Override

@@ -15,8 +15,18 @@
 		WHERE teacher_id=#{archiveVisibility.teacherId} AND archive_id=#{archiveVisibility.archiveId}
 	</delete>
 	
-	<select id="list">
-		SELECT teacher_id,archive_id FROM archive_visibility_
+	<delete id="deleteByArchiveId">
+		DELETE FROM archive_visibility_
+		WHERE archive_id=#{archiveId}
+	</delete>
+	
+	<select id="list" resultType="java.lang.Long">
+		SELECT archive_id FROM archive_visibility_
 		WHERE teacher_id=#{teacherId}
+	</select>
+	
+	<select id="listTeacherIds" resultType="java.lang.String">
+		SELECT teacher_id FROM archive_visibility_
+		WHERE archive_id=#{archiveId}
 	</select>
 </mapper>
