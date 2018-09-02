@@ -109,6 +109,18 @@ public class Record{
 		this.content = content;
 		this.comment = comment;
 	}
+	
+	public Record(HistoryRecord historyRecord) {
+		this.recordName = historyRecord.getRecordName();
+		this.recordTime = historyRecord.getRecordTime();
+		this.location = historyRecord.getLocation();
+		this.witness = historyRecord.getWitness();
+		this.recorder = historyRecord.getRecorder();
+		this.participant = historyRecord.getParticipant();
+		this.way = historyRecord.getWay();
+		this.content = historyRecord.getContent();
+		this.comment = historyRecord.getComment();
+	}
 	public Long getRecordId() {
 		return recordId;
 	}

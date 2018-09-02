@@ -1,5 +1,6 @@
 package com.uestc.newhelp.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -179,6 +180,47 @@ public class ArchiveStudent {
 		this.attentionType = attentionType;
 		this.lastRecordTime = lastRecordTime;
 		this.highlight = highlight;
+	}
+	
+	public ArchiveStudent(HistoryArchive historyArchive) {
+		this.studentId = historyArchive.getStudentId();
+		this.teacherId = historyArchive.getTeacherId();
+		this.sex = historyArchive.getSex();
+		this.name = historyArchive.getName();
+		this.major = historyArchive.getMajor();
+		this.grade = historyArchive.getGrade();
+		this.studentClass = historyArchive.getStudentClass();
+		this.politicalStatus = historyArchive.getPoliticalStatus();
+		this.ethnicGroup = historyArchive.getEthnicGroup();
+		this.duty = historyArchive.getDuty();
+		this.dormitory = historyArchive.getDormitory();
+		this.birthOrigin = historyArchive.getBirthOrigin();
+		this.familyAddress = historyArchive.getFamilyAddress();
+		this.contactWay = historyArchive.getContactWay();
+		this.familyTelNumber = historyArchive.getFamilyTelNumber();
+		this.fatherTelNumber = historyArchive.getFatherTelNumber();
+		this.motherTelNumber = historyArchive.getMotherTelNumber();
+		this.familyCondition = historyArchive.getFamilyCondition();
+		this.studyCondition = historyArchive.getStudyCondition();
+		this.healthCondition = historyArchive.getHealthCondition();
+		this.lifeCondition = historyArchive.getLifeCondition();
+		this.otherCondition = historyArchive.getOtherCondition();
+		this.bulidingBasis = historyArchive.getBulidingBasis();
+		this.bulidingRecorder = historyArchive.getBulidingRecorder();
+		this.bulidingTime = historyArchive.getBulidingTime();
+		this.destoryingBasis = historyArchive.getDestoryingBasis();
+		this.destoryingRecorder = historyArchive.getDestoryingRecorder();
+		this.destoryingTime = historyArchive.getDestoryingTime();
+		this.bulidingPerson = historyArchive.getBulidingPerson();
+		this.bulidingPersonDuty = historyArchive.getBulidingPersonDuty();
+		this.helpType = historyArchive.getHelpType();
+		this.attentionType = historyArchive.getAttentionType();
+		this.lastRecordTime = historyArchive.getLastRecordTime();
+		this.recorderChanges = new ArrayList<>();
+		for (HistoryRecorderChange historyRecorderChange : historyArchive.getHistoryRecorderChanges()) {
+			this.recorderChanges.add(new RecorderChange(historyRecorderChange));
+		}
+
 	}
 	public Long getStudentId() {
 		return studentId;

@@ -22,6 +22,14 @@ public class RecorderChange {
 	//变更原因
 	private String changeReason;
 	
+	public RecorderChange() {}
+	
+	public RecorderChange(HistoryRecorderChange historyRecorderChange) {
+		this.changeTime = historyRecorderChange.getChangeTime();
+		this.recorderNow = historyRecorderChange.getRecorderNow();
+		this.changeReason = historyRecorderChange.getChangeReason();
+	}
+	
 	public Long getRecorderChangeId() {
 		return recorderChangeId;
 	}

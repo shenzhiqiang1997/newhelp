@@ -135,7 +135,7 @@ public class ArchiveStudentController {
 	@Log("前台导出帮扶学生档案word文件")
 	@PostMapping("/export/archive/{studentId}")
 	@ResponseBody
-	public ResponseEntity<?> exportArchive(@PathVariable Long studentId,@RequestParam("token")String token){
+	public ResponseEntity<?> exportArchive(@PathVariable Long studentId/*,@RequestParam("token")String token*/){
 		try {
 			byte[] body=archiveStudentService.exportArchiveToWordFile(studentId);
 			HttpHeaders headers=new HttpHeaders();
