@@ -184,6 +184,146 @@
 		LIMIT #{page.start},#{page.pageSize}
 	</select>
 	
+	<select id="searchWithoutPage" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT student_id,name,grade,student_class,sex,duty,dormitory,contact_way,id_card_number,qq_number,email,birthday,height,major,study_condition,political_status,ethnic_group,birth_origin,college_entrance_exam_score,college_entrance_exam_english_score,entrance_exam_english_score,hometown_railway_station,province,city,family_address,family_tel_number,postcode,specialty,duty_in_high_school,award_in_high_school,is_had_technology_competition_award,father_name,father_work_unit,father_Work_unit_address,father_duty,father_postcode,father_tel_number,mother_name,mother_work_unit,mother_work_unit_address,mother_duty,mother_postcode,mother_tel_number
+		FROM base_student_
+		<where>
+			<if test="baseStudent.studentId!=null and baseStudent.studentId!=''">
+				AND CAST(student_id AS CHAR) LIKE CONCAT('%',#{baseStudent.studentId},'%')
+			</if>
+			<if test="baseStudent.name!=null and baseStudent.name!=''">
+				AND name LIKE CONCAT('%',#{baseStudent.name},'%')
+			</if>
+			<!-- 如果不是所有年纪权限则限制返回年级 -->
+			<if test="teacherGrade!=0">
+				AND grade=#{teacherGrade}
+			</if>
+			<if test="baseStudent.grade!=null and baseStudent.grade!=''">
+				AND CAST(grade AS CHAR) LIKE CONCAT('%',#{baseStudent.grade},'%')
+			</if>
+			<if test="baseStudent.studentClass!=null and baseStudent.studentClass!=''">
+				AND CAST(student_class AS CHAR) LIKE CONCAT('%',#{baseStudent.studentClass},'%')
+			</if>
+			<if test="baseStudent.sex!=null and baseStudent.sex!=''">
+				AND sex LIKE CONCAT('%',#{baseStudent.sex},'%')
+			</if>
+			<if test="baseStudent.duty!=null and baseStudent.duty!=''">
+				AND duty LIKE CONCAT('%',#{baseStudent.duty},'%')
+			</if>
+			<if test="baseStudent.dormitory!=null and baseStudent.dormitory!=''">
+				AND dormitory LIKE CONCAT('%',#{baseStudent.dormitory},'%')
+			</if>
+			<if test="baseStudent.contactWay!=null and baseStudent.contactWay!=''">
+				AND contact_way LIKE CONCAT('%',#{baseStudent.contactWay},'%')
+			</if>
+			<if test="baseStudent.idCardNumber!=null and baseStudent.idCardNumber!=''">
+				AND id_card_number LIKE CONCAT('%',#{baseStudent.idCardNumber},'%')
+			</if>
+			<if test="baseStudent.qqNumber!=null and baseStudent.qqNumber!=''">
+				AND qq_number LIKE CONCAT(#{baseStudent.qqNumber},'%')
+			</if>
+			<if test="baseStudent.email!=null and baseStudent.email!=''">
+				AND email LIKE CONCAT('%',#{baseStudent.email},'%')
+			</if>
+			<if test="baseStudent.birthday!=null">
+				AND birthday=#{baseStudent.birthday}
+			</if>
+			<if test="baseStudent.height!=null and baseStudent.height!=''">
+				AND CAST(height AS CHAR) LIKE CONCAT('%',ROUND(#{baseStudent.height},0),'%')
+			</if>
+			<if test="baseStudent.major!=null and baseStudent.major!=''">
+				AND major LIKE CONCAT('%',#{baseStudent.major},'%')
+			</if>
+			<if test="baseStudent.studyCondition!=null and baseStudent.studyCondition!=''">
+				AND study_condition LIKE CONCAT('%',#{baseStudent.studyCondition},'%')
+			</if>
+			<if test="baseStudent.politicalStatus!=null and baseStudent.politicalStatus!=''">
+				AND political_status LIKE CONCAT('%',#{baseStudent.politicalStatus},'%')
+			</if>
+			<if test="baseStudent.ethnicGroup!=null and baseStudent.ethnicGroup!=''">
+				AND ethnic_group LIKE CONCAT('%',#{baseStudent.ethnicGroup},'%')
+			</if>
+			<if test="baseStudent.birthOrigin!=null and baseStudent.birthOrigin!=''">
+				AND birth_origin LIKE CONCAT('%',#{baseStudent.birthOrigin},'%')
+			</if>
+			<if test="baseStudent.collegeEntranceExamScore!=null and baseStudent.collegeEntranceExamScore!=''">
+				AND college_entrance_exam_score LIKE CONCAT('%',#{baseStudent.collegeEntranceExamScore},'%')
+			</if>
+			<if test="baseStudent.collegeEntranceExamEnglishScore!=null and baseStudent.collegeEntranceExamEnglishScore!=''">
+				AND college_entrance_exam_english_score LIKE CONCAT('%',#{baseStudent.collegeEntranceExamEnglishScore},'%')
+			</if>
+			<if test="baseStudent.entranceExamEnglishScore!=null and baseStudent.entranceExamEnglishScore!=''">
+				AND CAST(entrance_exam_english_score AS CHAR) LIKE CONCAT('%',#{baseStudent.entranceExamEnglishScore},'%')
+			</if>
+			<if test="baseStudent.hometownRailwayStation!=null and baseStudent.hometownRailwayStation!=''">
+				AND hometown_railway_station LIKE CONCAT('%',#{baseStudent.hometownRailwayStation},'%')
+			</if>
+			<if test="baseStudent.province!=null and baseStudent.province!=''">
+				AND province LIKE CONCAT('%',#{baseStudent.province},'%')
+			</if>
+			<if test="baseStudent.city!=null and baseStudent.city!=''">
+				AND city LIKE CONCAT('%',#{baseStudent.city},'%')
+			</if>
+			<if test="baseStudent.familyAddress!=null and baseStudent.familyAddress!=''">
+				AND family_address LIKE CONCAT('%',#{baseStudent.familyAddress},'%')
+			</if>
+			<if test="baseStudent.familyTelNumber!=null and baseStudent.familyTelNumber!=''">
+				AND family_tel_number LIKE CONCAT('%',#{baseStudent.familyTelNumber},'%')
+			</if>
+			<if test="baseStudent.postcode!=null and baseStudent.postcode!=''">
+				AND postcode LIKE CONCAT('%',#{baseStudent.postcode},'%')
+			</if>
+			<if test="baseStudent.specialty!=null and baseStudent.specialty!=''">
+				AND specialty LIKE CONCAT('%',#{baseStudent.specialty},'%')
+			</if>
+			<if test="baseStudent.dutyInHighSchool!=null and baseStudent.dutyInHighSchool!=''">
+				AND duty_in_high_school LIKE CONCAT('%',#{baseStudent.dutyInHighSchool},'%')
+			</if>
+			<if test="baseStudent.awardInHighSchool!=null and baseStudent.awardInHighSchool!=''">
+				AND award_in_high_school LIKE CONCAT('%',#{baseStudent.awardInHighSchool},'%')
+			</if>
+			<if test="baseStudent.isHadTechnologyCompetitionAward!=null and baseStudent.isHadTechnologyCompetitionAward!=''">
+				AND is_had_technology_competition_award LIKE CONCAT('%',#{baseStudent.isHadTechnologyCompetitionAward},'%')
+			</if>
+			<if test="baseStudent.fatherName!=null and baseStudent.fatherName!=''">
+				AND father_name LIKE CONCAT('%',#{baseStudent.fatherName},'%')
+			</if>
+			<if test="baseStudent.fatherWorkUnit!=null and baseStudent.fatherWorkUnit!=''">
+				AND father_work_unit LIKE CONCAT('%',#{baseStudent.fatherWorkUnit},'%')
+			</if>
+			<if test="baseStudent.fatherWorkUnitAddress!=null and baseStudent.fatherWorkUnitAddress!=''">
+				AND father_work_unit_address LIKE CONCAT('%',#{baseStudent.fatherWorkUnitAddress},'%')
+			</if>
+			<if test="baseStudent.fatherDuty!=null and baseStudent.fatherDuty!=''">
+				AND father_duty LIKE CONCAT('%',#{baseStudent.fatherDuty},'%')
+			</if>
+			<if test="baseStudent.fatherPostcode!=null and baseStudent.fatherPostcode!=''">
+				AND father_postcode LIKE CONCAT('%',#{baseStudent.fatherPostcode},'%')
+			</if>
+			<if test="baseStudent.fatherTelNumber!=null and baseStudent.fatherTelNumber!=''">
+				AND father_tel_number LIKE CONCAT('%',#{baseStudent.fatherTelNumber},'%')
+			</if>
+			<if test="baseStudent.motherName!=null and baseStudent.motherName!=''">
+				AND mother_name LIKE CONCAT('%',#{baseStudent.motherName},'%')
+			</if>
+			<if test="baseStudent.motherWorkUnit!=null and baseStudent.motherWorkUnit!=''">
+				AND mother_work_unit LIKE CONCAT('%',#{baseStudent.motherWorkUnit},'%')
+			</if>
+			<if test="baseStudent.motherWorkUnitAddress!=null and baseStudent.motherWorkUnitAddress!=''">
+				AND mother_work_unit_address LIKE CONCAT('%',#{baseStudent.motherWorkUnitAddress},'%')
+			</if>
+			<if test="baseStudent.motherDuty!=null and baseStudent.motherDuty!=''">
+				AND mother_duty LIKE CONCAT('%',#{baseStudent.motherDuty},'%')
+			</if>
+			<if test="baseStudent.motherPostcode!=null and baseStudent.motherPostcode!=''">
+				AND mother_postcode LIKE CONCAT('%',#{baseStudent.motherPostcode},'%')
+			</if>
+			<if test="baseStudent.motherTelNumber!=null and baseStudent.motherTelNumber!=''">
+				AND mother_tel_number LIKE CONCAT('%',#{baseStudent.motherTelNumber},'%')
+			</if>
+		</where>
+	</select>
+	
 	<select id="searchRecordNum" resultType="int">
 		SELECT COUNT(student_id) FROM base_student_
 		<where>

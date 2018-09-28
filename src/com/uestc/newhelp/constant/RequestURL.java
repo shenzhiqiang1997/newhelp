@@ -13,6 +13,8 @@ public interface RequestURL {
 	public String BASE_STUDENT_IMPORT_URL="/newhelp/api/import/baseStudent";
 	// 基本学生信息导出EXCEL列表
 	public String BASE_STUDENT_EXPORT_URL="/newhelp/api/export/baseStudent";
+	// 基本学生信息搜索并导出EXCEL列表
+	public String BASE_STUDENT_SEARCH_EXPORT_URL="/newhelp/api/export/search/baseStudent";
 	// 困难学生档案查看
 	public String ARCHIVE_STUDENT_SEE_LIST_URL="/newhelp/api/archiveStudents";
 	// 困难学生档案查看

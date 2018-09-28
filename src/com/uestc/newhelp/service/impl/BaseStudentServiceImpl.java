@@ -83,6 +83,24 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 		BaseStudentsWithPage baseStudentsWithPage=new BaseStudentsWithPage(baseStudents, page);
 		return baseStudentsWithPage;
 	}
+	
+	@Override
+	public List<BaseStudent> searchWithOutPage(BaseStudent baseStudent,String teacherId) {
+		//搜索基本学生列表
+		
+		//获取对应老师年级权限
+		Teacher teacher=teacherDao.getInfo(teacherId);
+		//如果教师不存在 则直接返回空
+		if(teacher==null) {
+			return null;
+		}
+		//如果没有指定学生的学业状态 则默认只查询在读的学生
+		if(baseStudent.getStudyCondition()==null||baseStudent.getStudyCondition().equals("")) {
+			baseStudent.setStudyCondition(Constant.DEFAULT_STUDY_CONDITION);
+		}
+		List<BaseStudent> baseStudents=baseStudentDao.searchWithoutPage(baseStudent,teacher.getGrade());
+		return baseStudents;
+	}
 
 	@Override
 	public BaseStudent getAllInfo(Long studentId) {

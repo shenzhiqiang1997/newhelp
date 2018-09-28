@@ -4,6 +4,7 @@ package com.uestc.newhelp.controller.frontend;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,7 @@ import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.BaseStudentsWithPage;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.dto.StudentIdsParam;
+import com.uestc.newhelp.dto.TeacherIdParam;
 import com.uestc.newhelp.dto.UpdateBaseStudentParam;
 import com.uestc.newhelp.entity.BaseStudent;
 import com.uestc.newhelp.entity.ExposeSetting;
@@ -239,6 +241,53 @@ public class BaseStudentController {
 			ExposeSetting exposeSetting=mapper.readValue(settings, ExposeSetting.class);
 			
 			byte[] body=baseStudentService.exportBaseStudentsToExcelFile(studentIdsParam.getStudentIds(),studentIdsParam.getTeacherId(),exposeSetting);
+			
+			HttpHeaders headers=new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			headers.setContentDispositionFormData("attachment", FileName.BASE_STUDENT_LIST+"-"+sdf.format(new Date())+".xlsx");
+			ResponseEntity<byte[]> responseEntity=new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+			return responseEntity;
+		} catch (NotChoseExportObjectException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(Message.EXPORT_FAILURE,HttpStatus.BAD_REQUEST);
+		} catch (NoSettingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		} catch (NoAuthorityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+	
+	@Log("前台搜索并导出学生基本信息excel文件")
+	@PostMapping("/export/search/baseStudent")
+	@ResponseBody
+	public ResponseEntity<?> exportSearchedBaseStudents(@RequestParam("json")String json,@RequestParam("keywords") String keywords,@RequestParam("settings")String settings,@RequestParam("token")String token){
+		try {
+			ObjectMapper mapper=new ObjectMapper();
+			//从绑定参数中得到教师id
+			TeacherIdParam teacherIdParam=mapper.readValue(json,TeacherIdParam.class);
+			//从绑定参数中得到导出设置
+			ExposeSetting exposeSetting=mapper.readValue(settings, ExposeSetting.class);
+			//从绑定参数中得到搜索条件
+			BaseStudent baseStudent = mapper.readValue(keywords, BaseStudent.class);
+			//搜索出满足条件的学生
+			List<BaseStudent> baseStudents = baseStudentService.searchWithOutPage(baseStudent, teacherIdParam.getTeacherId());
+			
+			//将搜索出的学生id提取成一个列表
+			List<Long> studentIds = new ArrayList<>(baseStudents.size());
+			for (BaseStudent b : baseStudents) {
+				studentIds.add(b.getStudentId());
+			}
+			
+			byte[] body=baseStudentService.exportBaseStudentsToExcelFile(studentIds,teacherIdParam.getTeacherId(),exposeSetting);
 			
 			HttpHeaders headers=new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);

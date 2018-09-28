@@ -126,7 +126,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 		}
 		
 		//检查是否有基本学生信息导出权限
-		if(url.equals(RequestURL.BASE_STUDENT_EXPORT_URL)&&method.equals(Constant.GET)) {
+		if(url.equals(RequestURL.BASE_STUDENT_EXPORT_URL)&&method.equals(Constant.GET)||url.equals(RequestURL.BASE_STUDENT_SEARCH_EXPORT_URL)&&method.equals(Constant.POST)) {
 			if(authorization.getBaseStudentExport()!=1) {
 				response.setStatus(401);
 				return false;

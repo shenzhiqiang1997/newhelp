@@ -24,6 +24,8 @@ public interface BaseStudentDao {
 	//根据搜索条件搜索学生基本信息列表
 	public List<BaseStudent> search(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade,
 			@Param("page")Page page,@Param("classSort")Integer classSort);
+	//根据搜索条件搜索学生基本信息列表
+	public List<BaseStudent> searchWithoutPage(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade);
 	//根据搜索条件统计学生条数
 	public int searchRecordNum(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade);
 	//查询指定姓名的学生学号

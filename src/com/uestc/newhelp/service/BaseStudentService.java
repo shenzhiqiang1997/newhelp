@@ -44,5 +44,6 @@ public interface BaseStudentService {
 	public void importBaseStudentsFromExcelFile(MultipartFile multipartFile,Teacher teacher,ExposeSetting exposeSetting)throws FileTypeNotMatchException, IOException,IllegalStateException,NoAuthorityException, StudentIdFormatException, FormatException, NoDataToImportException ;
 	//导出基本学生列表到Excel文件中
 	public byte[] exportBaseStudentsToExcelFile(List<Long> studentIds,String teacherId,ExposeSetting exposeSetting) throws NotChoseExportObjectException,IOException, NoSettingException, NoAuthorityException;
+	List<BaseStudent> searchWithOutPage(BaseStudent baseStudent, String teacherId);
 
 }
