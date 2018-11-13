@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.uestc.newhelp.dto.BaseStudentCount;
 import com.uestc.newhelp.dto.BaseStudentsWithPage;
+import com.uestc.newhelp.dto.DropParam;
 import com.uestc.newhelp.entity.BaseStudent;
 import com.uestc.newhelp.entity.ExposeSetting;
 import com.uestc.newhelp.entity.Teacher;
@@ -18,6 +20,7 @@ import com.uestc.newhelp.exception.NoAuthorityException;
 import com.uestc.newhelp.exception.NoDataToImportException;
 import com.uestc.newhelp.exception.NoSettingException;
 import com.uestc.newhelp.exception.NoSuchStudentException;
+import com.uestc.newhelp.exception.NoSuchUserException;
 import com.uestc.newhelp.exception.NotChoseExportObjectException;
 import com.uestc.newhelp.exception.PasswordNotMatchException;
 import com.uestc.newhelp.exception.StudentIdFormatException;
@@ -45,5 +48,12 @@ public interface BaseStudentService {
 	//导出基本学生列表到Excel文件中
 	public byte[] exportBaseStudentsToExcelFile(List<Long> studentIds,String teacherId,ExposeSetting exposeSetting) throws NotChoseExportObjectException,IOException, NoSettingException, NoAuthorityException;
 	List<BaseStudent> searchWithOutPage(BaseStudent baseStudent, String teacherId);
+	//指定学生退学
+	public void studentDrop(DropParam dropParam) throws NoSuchUserException, PasswordNotMatchException;
+	//统计学生人数
+	public BaseStudentCount count(BaseStudent baseStudent, HttpServletRequest httpRequest);
+	//上传图片
+	public void uploadPhotos(MultipartFile[] photos,String teacherId, String password, HttpServletRequest httpRequest) throws IOException, FormatException, NoSuchUserException, PasswordNotMatchException;
+	
 
 }

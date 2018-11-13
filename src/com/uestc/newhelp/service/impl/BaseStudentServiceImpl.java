@@ -6,16 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +27,9 @@ import com.uestc.newhelp.constant.Regex;
 import com.uestc.newhelp.dao.ArchiveStudentDao;
 import com.uestc.newhelp.dao.BaseStudentDao;
 import com.uestc.newhelp.dao.TeacherDao;
+import com.uestc.newhelp.dto.BaseStudentCount;
 import com.uestc.newhelp.dto.BaseStudentsWithPage;
+import com.uestc.newhelp.dto.DropParam;
 import com.uestc.newhelp.dto.Page;
 import com.uestc.newhelp.entity.BaseStudent;
 import com.uestc.newhelp.entity.ExposeSetting;
@@ -36,6 +41,7 @@ import com.uestc.newhelp.exception.NoAuthorityException;
 import com.uestc.newhelp.exception.NoDataToImportException;
 import com.uestc.newhelp.exception.NoSettingException;
 import com.uestc.newhelp.exception.NoSuchStudentException;
+import com.uestc.newhelp.exception.NoSuchUserException;
 import com.uestc.newhelp.exception.NotChoseExportObjectException;
 import com.uestc.newhelp.exception.PasswordNotMatchException;
 import com.uestc.newhelp.exception.StudentIdFormatException;
@@ -720,6 +726,81 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 		//调用工具类,获取文件数组
 		byte[] body=POIUtil.getExcelBytes(row, Path.TEMPLATE_BASE_PATH+FileName.BASE_STUDENT_EXCEL_TEMPLATE_NAME);
 		return body;
+	}
+
+	@Override
+	public void studentDrop(DropParam dropParam) throws NoSuchUserException, PasswordNotMatchException {
+		Teacher teacher = teacherDao.getPassword(dropParam.getTeacher().getTeacherId());
+		if (teacher==null) {
+			throw new NoSuchUserException("当前教师不存在");
+		}
+		if(!StringUtils.equals(teacher.getPassword(), dropParam.getTeacher().getPassword())) {
+			throw new PasswordNotMatchException("密码不正确");
+		}
+		
+		BaseStudent baseStudent = new BaseStudent();
+		baseStudent.setStudentId(dropParam.getStudentId());
+		baseStudent.setStudyCondition("退学");
+		baseStudentDao.update(baseStudent);
+		
+	}
+
+	@Override
+	public BaseStudentCount count(BaseStudent baseStudent,HttpServletRequest httpRequest) {
+		String teacherId = (String) httpRequest.getAttribute("teacherId");
+		Teacher teacher = teacherDao.getInfo(teacherId);
+		
+		Integer currentStuNum = baseStudentDao.count(baseStudent, teacher.getGrade());
+		baseStudent.setStudyCondition("休学");
+		Integer suspendedStuNum = baseStudentDao.count(baseStudent, teacher.getGrade());
+		baseStudent.setStudyCondition("退学");
+		Integer dropoutStuNum = baseStudentDao.count(baseStudent, teacher.getGrade());
+		
+		BaseStudentCount baseStudentCount = new BaseStudentCount();
+		baseStudentCount.setCurrentStuNum(currentStuNum-suspendedStuNum-dropoutStuNum);
+		baseStudentCount.setSuspendedStuNum(suspendedStuNum);
+		baseStudentCount.setDropoutStuNum(dropoutStuNum);
+		
+		return baseStudentCount;
+	}
+
+	@Override
+	public void uploadPhotos(MultipartFile[] photos,String teacherId, String password, HttpServletRequest httpRequest) throws IOException, FormatException, NoSuchUserException, PasswordNotMatchException {
+		Teacher teacher = teacherDao.getPassword(teacherId);
+		if (teacher==null) {
+			throw new NoSuchUserException("当前教师不存在");
+		}
+		if(!StringUtils.equals(teacher.getPassword(), password)) {
+			throw new PasswordNotMatchException("密码不正确");
+		}
+		
+		for(MultipartFile photo:photos) {
+			//将上传的图片保存到项目指定目录中
+			ServletContext servletContext=httpRequest.getServletContext();
+			String photoName = photo.getOriginalFilename();
+			String filePath=MultipartFileUtil.storeMultipartFile(photo, servletContext.getRealPath(Path.STUDENT_PHOTO_PATH_UNDER_ARCHIVE), photoName.toLowerCase());
+			//将保存的图片URL存入数据库
+			//将存储路径转化为外部可以访问的URL
+			int index=filePath.indexOf(servletContext.getContextPath().substring(1));
+			filePath=filePath.substring(index);
+			filePath=filePath.replaceAll("\\\\", "/");
+			filePath=Path.HOST_PATH+"/"+filePath;
+			
+			String studentIdString = photoName.substring(0, photoName.indexOf("."));
+			Long studentId = null;
+			try {
+				studentId = Long.parseLong(studentIdString);
+			} catch (Exception e) {
+				throw new FormatException("请以学号命名图片");
+			}
+			
+			//将该URL存放到数据库中
+			BaseStudent baseStudent = new BaseStudent();
+			baseStudent.setStudentId(studentId);
+			baseStudent.setPhotoUrl(filePath);
+			baseStudentDao.update(baseStudent);
+		}
+		
 	}
 
 

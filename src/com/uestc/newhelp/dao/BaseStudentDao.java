@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.uestc.newhelp.dto.BaseStudentCount;
 import com.uestc.newhelp.dto.Page;
 import com.uestc.newhelp.entity.BaseStudent;
 import com.uestc.newhelp.entity.ExposeSetting;
@@ -36,4 +37,6 @@ public interface BaseStudentDao {
 	public void update(@Param("baseStudent")BaseStudent baseStudent);
 	//根据学号批量查询学生基本信息
 	public List<BaseStudent> listByIds(@Param("studentIds")List<Long> studentIds,@Param("exposeSetting") ExposeSetting exposeSetting,@Param("grade")Short grade);
+	//统计人数
+	public Integer count(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade);
 }

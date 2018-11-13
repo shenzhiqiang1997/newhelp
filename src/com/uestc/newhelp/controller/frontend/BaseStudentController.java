@@ -28,7 +28,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uestc.newhelp.annotation.Log;
 import com.uestc.newhelp.constant.Message;
+import com.uestc.newhelp.dto.BaseStudentCount;
 import com.uestc.newhelp.dto.BaseStudentsWithPage;
+import com.uestc.newhelp.dto.DropParam;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.dto.StudentIdsParam;
 import com.uestc.newhelp.dto.TeacherIdParam;
@@ -42,6 +44,7 @@ import com.uestc.newhelp.exception.FormatException;
 import com.uestc.newhelp.exception.NoAuthorityException;
 import com.uestc.newhelp.exception.NoSettingException;
 import com.uestc.newhelp.exception.NoSuchStudentException;
+import com.uestc.newhelp.exception.NoSuchUserException;
 import com.uestc.newhelp.exception.NotChoseExportObjectException;
 import com.uestc.newhelp.exception.PasswordNotMatchException;
 import com.uestc.newhelp.exception.StudentIdFormatException;
@@ -49,6 +52,7 @@ import com.uestc.newhelp.path.FileName;
 import com.uestc.newhelp.path.Path;
 import com.uestc.newhelp.service.BaseStudentService;
 import com.uestc.newhelp.util.FileUtil;
+
 
 @RestController
 @RequestMapping("/api")
@@ -179,6 +183,62 @@ public class BaseStudentController {
 			return new Result<>(false,Message.UPDATE_FAILURE);
 		}
 		
+	}
+	
+	@Log("前台退学学生")
+	@ResponseBody
+	@PostMapping("/baseStudent/dropout")
+	public Result<BaseStudent> studentDrop(@RequestBody DropParam dropParam){
+		try {
+			baseStudentService.studentDrop(dropParam);
+			return new Result<>(true,"退学成功");
+		} catch (NoSuchUserException e) {
+			e.printStackTrace();
+			return new Result<>(false,e.getMessage());
+		} catch (PasswordNotMatchException e) {
+			e.printStackTrace();
+			return new Result<>(false,e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result<>(false,"退学失败");
+		}
+	}
+	
+	@Log("前台统计人数")
+	@PostMapping("/baseStudent/count")
+	public Result<BaseStudentCount> count(@RequestBody BaseStudent baseStudent,HttpServletRequest httpRequest){
+		try {
+			BaseStudentCount baseStudentCount=baseStudentService.count(baseStudent,httpRequest);
+			return new Result<BaseStudentCount>(true, baseStudentCount);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return new Result<>(false,"统计失败");
+		}
+	}
+	
+	@Log("前台批量上传")
+	@PostMapping("/baseStudent/photos")
+	public Result<BaseStudentCount> uploadPhotos(@RequestParam("photos")MultipartFile[] photos,@RequestParam("teacherId")String teacherId,
+			@RequestParam("password")String password,HttpServletRequest httpRequest){
+		try {
+			baseStudentService.uploadPhotos(photos,teacherId,password,httpRequest);
+			return new Result<>(true, "上传成功");
+		} catch (FormatException e) {
+			e.printStackTrace();
+			return new Result<>(false,e.getMessage());
+		} catch (NoSuchUserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new Result<>(false,e.getMessage());
+		} catch (PasswordNotMatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new Result<>(false,e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result<>(false,"上传失败");
+		}
 	}
 	
 	/*@Log("前台下载学生基本信息模板excel文件")*/
