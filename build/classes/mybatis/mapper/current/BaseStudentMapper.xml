@@ -1052,4 +1052,19 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="searchByIdName" resultType="com.uestc.newhelp.entity.BaseStudent">
+		SELECT student_id,name,grade,student_class,sex,duty,dormitory,contact_way,id_card_number,qq_number,email,birthday,height,major,study_condition,political_status,ethnic_group,birth_origin,college_entrance_exam_score,college_entrance_exam_english_score,entrance_exam_english_score,hometown_railway_station,province,city,family_address,family_tel_number,postcode,specialty,duty_in_high_school,award_in_high_school,is_had_technology_competition_award,father_name,father_work_unit,father_Work_unit_address,father_duty,father_postcode,father_tel_number,mother_name,mother_work_unit,mother_work_unit_address,mother_duty,mother_postcode,mother_tel_number
+		FROM base_student_
+		<where>
+			<if test="studentId!=null and studentId!=''">
+				AND CAST(student_id AS CHAR) LIKE CONCAT(#{studentId},'%')
+			</if>
+			<if test="name!=null and name!=''">
+				AND name LIKE CONCAT(#{name},'%')
+			</if>
+		</where>
+		ORDER BY student_id
+		LIMIT 10
+	</select>
 </mapper>

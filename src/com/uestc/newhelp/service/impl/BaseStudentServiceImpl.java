@@ -30,6 +30,7 @@ import com.uestc.newhelp.dao.TeacherDao;
 import com.uestc.newhelp.dto.BaseStudentCount;
 import com.uestc.newhelp.dto.BaseStudentsWithPage;
 import com.uestc.newhelp.dto.DropParam;
+import com.uestc.newhelp.dto.IdNameParam;
 import com.uestc.newhelp.dto.Page;
 import com.uestc.newhelp.entity.BaseStudent;
 import com.uestc.newhelp.entity.ExposeSetting;
@@ -801,6 +802,12 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 			baseStudentDao.update(baseStudent);
 		}
 		
+	}
+
+	@Override
+	public List<BaseStudent> searchByIdAndName(IdNameParam idNameParam) {
+		List<BaseStudent> baseStudents = baseStudentDao.searchByIdName(idNameParam.getStudentId(), idNameParam.getName());
+		return baseStudents;
 	}
 
 

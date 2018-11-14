@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.uestc.newhelp.dto.BaseStudentCount;
 import com.uestc.newhelp.dto.BaseStudentsWithPage;
 import com.uestc.newhelp.dto.DropParam;
+import com.uestc.newhelp.dto.IdNameParam;
 import com.uestc.newhelp.entity.BaseStudent;
 import com.uestc.newhelp.entity.ExposeSetting;
 import com.uestc.newhelp.entity.Teacher;
@@ -54,6 +55,8 @@ public interface BaseStudentService {
 	public BaseStudentCount count(BaseStudent baseStudent, HttpServletRequest httpRequest);
 	//上传图片
 	public void uploadPhotos(MultipartFile[] photos,String teacherId, String password, HttpServletRequest httpRequest) throws IOException, FormatException, NoSuchUserException, PasswordNotMatchException;
+	//按id和名称模糊从查询
+	public List<BaseStudent> searchByIdAndName(IdNameParam idNameParam);
 	
 
 }

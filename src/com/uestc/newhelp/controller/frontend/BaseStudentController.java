@@ -31,6 +31,7 @@ import com.uestc.newhelp.constant.Message;
 import com.uestc.newhelp.dto.BaseStudentCount;
 import com.uestc.newhelp.dto.BaseStudentsWithPage;
 import com.uestc.newhelp.dto.DropParam;
+import com.uestc.newhelp.dto.IdNameParam;
 import com.uestc.newhelp.dto.Result;
 import com.uestc.newhelp.dto.StudentIdsParam;
 import com.uestc.newhelp.dto.TeacherIdParam;
@@ -161,6 +162,20 @@ public class BaseStudentController {
 			return new Result<>(false, Message.GET_FAILURE);
 		}
 	}
+	
+	@Log("前台按照id、姓名模糊搜索学生列表")
+	@PostMapping("/baseStudents/byIdName")
+	@ResponseBody
+	public Result<List<BaseStudent>> searchByIdAndName(@RequestBody IdNameParam idNameParam){
+		try {
+			List<BaseStudent> baseStudents = baseStudentService.searchByIdAndName(idNameParam);
+			return new Result<>(true, baseStudents);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result<>(false,Message.GET_FAILURE);
+		}
+	}
+	
 	
 	@Log("前台上传学生照片")
 	@PostMapping(value="/baseStudent")

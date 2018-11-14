@@ -39,4 +39,6 @@ public interface BaseStudentDao {
 	public List<BaseStudent> listByIds(@Param("studentIds")List<Long> studentIds,@Param("exposeSetting") ExposeSetting exposeSetting,@Param("grade")Short grade);
 	//统计人数
 	public Integer count(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade);
+	//按id 姓名查找模糊
+	public List<BaseStudent> searchByIdName(@Param("studentId")Long studentId,@Param("name")String name);
 }
