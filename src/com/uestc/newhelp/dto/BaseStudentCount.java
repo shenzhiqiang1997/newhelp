@@ -4,6 +4,22 @@ public class BaseStudentCount {
 	private Integer currentStuNum;
 	private Integer suspendedStuNum;
 	private Integer dropoutStuNum;
+	private Integer male;
+	private Integer female;
+	
+	
+	public Integer getMale() {
+		return male;
+	}
+	public Integer getFemale() {
+		return female;
+	}
+	public void setMale(Integer male) {
+		this.male = male;
+	}
+	public void setFemale(Integer female) {
+		this.female = female;
+	}
 	public Integer getCurrentStuNum() {
 		return currentStuNum;
 	}

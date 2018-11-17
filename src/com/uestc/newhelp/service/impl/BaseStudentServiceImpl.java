@@ -775,10 +775,18 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 		baseStudent.setStudyCondition("ÍËÑ§");
 		Integer dropoutStuNum = baseStudentDao.count(baseStudent, teacher.getGrade());
 		
+		baseStudent.setStudyCondition(null);
+		baseStudent.setSex("ÄÐ");
+		Integer male = baseStudentDao.count(baseStudent, teacher.getGrade());
+		baseStudent.setSex("Å®");
+		Integer female = baseStudentDao.count(baseStudent, teacher.getGrade());
+		
 		BaseStudentCount baseStudentCount = new BaseStudentCount();
 		baseStudentCount.setCurrentStuNum(currentStuNum-suspendedStuNum-dropoutStuNum);
 		baseStudentCount.setSuspendedStuNum(suspendedStuNum);
 		baseStudentCount.setDropoutStuNum(dropoutStuNum);
+		baseStudentCount.setMale(male);
+		baseStudentCount.setFemale(female);
 		
 		return baseStudentCount;
 	}
