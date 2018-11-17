@@ -80,13 +80,31 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 		if(teacher==null) {
 			return null;
 		}
-		//如果没有指定学生的学业状态 则默认只查询在读的学生
-		if(baseStudent.getStudyCondition()==null||baseStudent.getStudyCondition().equals("")) {
-			baseStudent.setStudyCondition(Constant.DEFAULT_STUDY_CONDITION);
-		}
-		Integer recordNum=baseStudentDao.searchRecordNum(baseStudent,teacher.getGrade());
+		
+		Integer recordNum=baseStudentDao.searchRecordNumByCondition(baseStudent,teacher.getGrade(),"在读","休学");
 		Page page=new Page(currentPage, pageSize, recordNum);
-		List<BaseStudent> baseStudents=baseStudentDao.search(baseStudent,teacher.getGrade(),page,classSort);
+		List<BaseStudent> baseStudents=baseStudentDao.searchByCondition(baseStudent,teacher.getGrade(),page,classSort,"在读","休学");
+		BaseStudentsWithPage baseStudentsWithPage=new BaseStudentsWithPage(baseStudents, page);
+		return baseStudentsWithPage;
+	}
+	
+	@Override
+	public BaseStudentsWithPage searchHistory(BaseStudent baseStudent,String teacherId,Integer pageSize,Integer currentPage,Integer classSort) {
+		//搜索基本学生列表
+		
+		if(classSort!=1&&classSort!=0) {
+			classSort=0;
+		}
+		//获取对应老师年级权限
+		Teacher teacher=teacherDao.getInfo(teacherId);
+		//如果教师不存在 则直接返回空
+		if(teacher==null) {
+			return null;
+		}
+		
+		Integer recordNum=baseStudentDao.searchRecordNumByCondition(baseStudent,teacher.getGrade(),"退学","毕业");
+		Page page=new Page(currentPage, pageSize, recordNum);
+		List<BaseStudent> baseStudents=baseStudentDao.searchByCondition(baseStudent,teacher.getGrade(),page,classSort,"退学","毕业");
 		BaseStudentsWithPage baseStudentsWithPage=new BaseStudentsWithPage(baseStudents, page);
 		return baseStudentsWithPage;
 	}

@@ -92,6 +92,24 @@ public class BaseStudentController {
 		}
 	}
 	
+	@Log("前台搜索历史学生列表")
+	@PostMapping("/baseStudents/history/{teacherId}/{pageSize}/{currentPage}/{classSort}")
+	@ResponseBody
+	public Result<BaseStudentsWithPage> searchHistory(
+			@PathVariable("teacherId")String teacherId,
+			@PathVariable("pageSize") Integer pageSize,
+			@PathVariable("currentPage") Integer currentPage,
+			@PathVariable("classSort") Integer classSort,
+			@RequestBody BaseStudent baseStudent){
+		try {
+			BaseStudentsWithPage baseStudentsWithPage=baseStudentService.searchHistory(baseStudent,teacherId,pageSize,currentPage,classSort);
+			return new Result<BaseStudentsWithPage>(true, baseStudentsWithPage);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result<>(false, Message.SEARCH_FAILURE);
+		}
+	}
+	
 	@Log("前台查看学生全部基本信息")
 	@GetMapping("/baseStudent/all/{studentId}")
 	@ResponseBody

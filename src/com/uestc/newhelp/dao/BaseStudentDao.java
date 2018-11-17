@@ -41,4 +41,11 @@ public interface BaseStudentDao {
 	public Integer count(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade);
 	//按id 姓名查找模糊
 	public List<BaseStudent> searchByIdName(@Param("studentId")Long studentId,@Param("name")String name);
+	//根据搜索条件统计学生条数
+	public int searchRecordNumByCondition(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade,
+			@Param("studyCondition1")String studyCondition1,@Param("studyCondition2")String studyCondition2);
+	//根据搜索条件搜索学生基本信息列表
+	public List<BaseStudent> searchByCondition(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade,
+				@Param("page")Page page,@Param("classSort")Integer classSort,
+				@Param("studyCondition1")String studyCondition1,@Param("studyCondition2")String studyCondition2);
 }

@@ -57,6 +57,8 @@ public interface BaseStudentService {
 	public void uploadPhotos(MultipartFile[] photos,String teacherId, String password, HttpServletRequest httpRequest) throws IOException, FormatException, NoSuchUserException, PasswordNotMatchException;
 	//按id和名称模糊从查询
 	public List<BaseStudent> searchByIdAndName(IdNameParam idNameParam);
+	BaseStudentsWithPage searchHistory(BaseStudent baseStudent, String teacherId, Integer pageSize, Integer currentPage,
+			Integer classSort);
 	
 
 }
