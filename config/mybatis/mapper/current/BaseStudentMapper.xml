@@ -321,7 +321,7 @@
 			<if test="baseStudent.motherTelNumber!=null and baseStudent.motherTelNumber!=''">
 				AND mother_tel_number LIKE CONCAT('%',#{baseStudent.motherTelNumber},'%')
 			</if>
-			AND study_condition LIKE CONCAT('%',#{studyCondition1},'%') OR study_condition LIKE CONCAT('%',#{studyCondition2},'%')
+			AND (study_condition LIKE CONCAT('%',#{studyCondition1},'%') OR study_condition LIKE CONCAT('%',#{studyCondition2},'%'))
 		</where>
 		<choose>
 			<when test="classSort==1">
@@ -749,7 +749,7 @@
 			<if test="baseStudent.motherTelNumber!=null and baseStudent.motherTelNumber!=''">
 				AND mother_tel_number LIKE CONCAT('%',#{baseStudent.motherTelNumber},'%')
 			</if>
-			AND study_condition LIKE CONCAT('%',#{studyCondition1},'%') OR study_condition LIKE CONCAT('%',#{studyCondition2},'%')
+			AND (study_condition LIKE CONCAT('%',#{studyCondition1},'%') OR study_condition LIKE CONCAT('%',#{studyCondition2},'%'))
 		</where>
 	</select>
 	
