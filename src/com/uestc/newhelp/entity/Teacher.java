@@ -2,20 +2,20 @@ package com.uestc.newhelp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//½ÌÊ¦¶ÔÓ¦ÊµÌåÀà
+//æ•™å¸ˆå¯¹åº”å®ä½“ç±»
 public class Teacher {
-	//½ÌÊ¦ÓÃ»§Ãû
+	//æ•™å¸ˆç”¨æˆ·å
 	private String teacherId;
-	//½ÌÊ¦ÃÜÂë
+	//æ•™å¸ˆå¯†ç 
 	private String password;
-	//½ÌÊ¦ĞÕÃû
+	//æ•™å¸ˆå§“å
 	private String name;
-	//½ÌÊ¦Ö°Îñ
+	//æ•™å¸ˆèŒåŠ¡
 	private String duty;
-	//½ÌÊ¦Äê¼¶
+	//æ•™å¸ˆå¹´çº§
 	@JsonIgnore
 	private Short grade;
-	//½ÌÊ¦ÁîÅÆ
+	//æ•™å¸ˆä»¤ç‰Œ
 	private String token;
 	
 	public Teacher() {

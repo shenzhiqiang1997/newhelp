@@ -3,6 +3,6 @@ package com.uestc.newhelp.service;
 import com.uestc.newhelp.entity.Authorization;
 
 public interface AuthorizationService {
-	//²éÑ¯Ö¸¶¨½ÌÊ¦µÄÈ¨ÏŞ
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„æƒé™
 	public Authorization get(String teacherId);
 }

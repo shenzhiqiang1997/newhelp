@@ -2,10 +2,10 @@ package com.uestc.newhelp.service;
 
 import com.uestc.newhelp.entity.ExposeSetting;
 
-//Óë½ÌÊ¦ÉèÖÃÑ§Éú±©Â¶ÌõÄ¿ÓĞ¹ØµÄÒµÎñÂß¼­
+//ä¸æ•™å¸ˆè®¾ç½®å­¦ç”Ÿæš´éœ²æ¡ç›®æœ‰å…³çš„ä¸šåŠ¡é€»è¾‘
 public interface ExposeSettingService {
-	//¸üĞÂÖ¸¶¨½ÌÊ¦µÄ¹ØÓÚÑ§Éú±©Â¶ÌõÄ¿ÉèÖÃ
+	//æ›´æ–°æŒ‡å®šæ•™å¸ˆçš„å…³äºå­¦ç”Ÿæš´éœ²æ¡ç›®è®¾ç½®
 	public void update(ExposeSetting exposeSetting);
-	//²éÑ¯Ö¸¶¨½ÌÊ¦¹ØÓÚÑ§Éú±©Â¶ÌõÄ¿ÉèÖÃ
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆå…³äºå­¦ç”Ÿæš´éœ²æ¡ç›®è®¾ç½®
 	public ExposeSetting get(String teacherId);
 }

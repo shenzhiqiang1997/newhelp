@@ -8,14 +8,14 @@ import com.uestc.newhelp.entity.HistoryArchive;
 import com.uestc.newhelp.entity.Teacher;
 
 public interface HistoryArchiveDao {
-	//Ôö¼ÓÀúÊ·µµ°¸Ñ§ÉúĞÅÏ¢
+	//å¢åŠ å†å²æ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public void add(@Param("historyArchive")HistoryArchive historyArchive);
-	//²éÑ¯Ö¸¶¨ÀúÊ·µµ°¸idµÄµµ°¸Ñ§ÉúĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šå†å²æ¡£æ¡ˆidçš„æ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public HistoryArchive get(Long historyArchiveId);
-	//²éÑ¯Ö¸¶¨½ÌÊ¦ÓÃ»§ÃûµÄµµ°¸Ñ§ÉúĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆç”¨æˆ·åçš„æ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public List<HistoryArchive> list(@Param("teacher")Teacher teacher);
-	//ËÑË÷Ö¸¶¨½ÌÊ¦µÄÖ¸¶¨Ìõ¼şµÄµµ°¸Ñ§ÉúĞÅÏ¢
+	//æœç´¢æŒ‡å®šæ•™å¸ˆçš„æŒ‡å®šæ¡ä»¶çš„æ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public List<HistoryArchive> search(@Param("teacher")Teacher teacher,@Param("historyArchive")HistoryArchive historyArchive);
-	//ÅúÁ¿É¾³ıÖ¸¶¨ÀúÊ·µµ°¸idµÄÀúÊ·µµ°¸
+	//æ‰¹é‡åˆ é™¤æŒ‡å®šå†å²æ¡£æ¡ˆidçš„å†å²æ¡£æ¡ˆ
 	public void deleteBatch(@Param("historyArchiveIds")List<Long> historyArchiveIds);
 }

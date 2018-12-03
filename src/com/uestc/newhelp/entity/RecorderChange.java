@@ -7,19 +7,19 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-//¼ÇÂ¼ÈË±ä¸ü¼ÇÂ¼¶ÔÓ¦µÄÊµÌåÀà
+//è®°å½•äººå˜æ›´è®°å½•å¯¹åº”çš„å®ä½“ç±»
 public class RecorderChange {
-	//±ä¸ü¼ÇÂ¼id
+	//å˜æ›´è®°å½•id
 	private Long recorderChangeId;
-	//ÊôÓÚµÄµµ°¸Ñ§ÉúÑ§ºÅ
+	//å±äºçš„æ¡£æ¡ˆå­¦ç”Ÿå­¦å·
 	private Long studentId;
-	//±ä¸üÊ±¼ä
+	//å˜æ›´æ—¶é—´
 	@DateTimeFormat(iso=ISO.DATE)
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date changeTime;
-	//ÏÖ¼ÇÂ¼ÈË
+	//ç°è®°å½•äºº
 	private String recorderNow;
-	//±ä¸üÔ­Òò
+	//å˜æ›´åŸå› 
 	private String changeReason;
 	
 	public RecorderChange() {}

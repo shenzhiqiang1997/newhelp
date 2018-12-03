@@ -1,11 +1,11 @@
 package com.uestc.newhelp.entity;
-//关注类型对应的实体类
+//鍏虫敞绫诲瀷瀵瑰簲鐨勫疄浣撶被
 public class AttentionType {
-	//关注类型id
+	//鍏虫敞绫诲瀷id
 	private Long attentionTypeId;
-	//关注类型名称
+	//鍏虫敞绫诲瀷鍚嶇О
 	private String attentionTypeName;
-	//该种关注类型提醒记录间隔
+	//璇ョ鍏虫敞绫诲瀷鎻愰啋璁板綍闂撮殧
 	private Byte remindRecordInterval;
 	public Long getAttentionTypeId() {
 		return attentionTypeId;

@@ -13,7 +13,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	@Override
 	public Authorization get(String teacherId) {
 		Authorization authorization=authorizationDao.get(teacherId);
-		//Èç¹ûÕËºÅÈ¨ÏŞ²»´æÔÚ ÔòÊÚÓèÄ¬ÈÏÈ¨ÏŞ
+		//å¦‚æœè´¦å·æƒé™ä¸å­˜åœ¨ åˆ™æˆäºˆé»˜è®¤æƒé™
 		if (authorization==null) {
 			authorizationDao.add(teacherId);
 			authorization=authorizationDao.get(teacherId);

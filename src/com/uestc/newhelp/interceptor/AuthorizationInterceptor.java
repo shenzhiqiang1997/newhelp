@@ -36,16 +36,16 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
-		//·ÅĞĞÔ¤ÇëÇó
+		//æ”¾è¡Œé¢„è¯·æ±‚
 		if("OPTIONS".equals(request.getMethod())) return true;
-		//»ñÈ¡µ½token
+		//è·å–åˆ°token
 		String token=request.getHeader("Authorization");
-		//Èç¹û»ñÈ¡²»µ½token,À¹½ØÇëÇó
+		//å¦‚æœè·å–ä¸åˆ°token,æ‹¦æˆªè¯·æ±‚
 		if(token==null) {
 			token=request.getParameter("token");
 		}
 		if(token==null) {
-			//»ù±¾Ñ§ÉúĞÅÏ¢µ¼ÈëÄ£°åÏÂÔØÖ±½Ó½øĞĞ·ÅĞĞ
+			//åŸºæœ¬å­¦ç”Ÿä¿¡æ¯å¯¼å…¥æ¨¡æ¿ä¸‹è½½ç›´æ¥è¿›è¡Œæ”¾è¡Œ
 			if(request.getRequestURI().startsWith(RequestURL.BASE_STUDENT_IMPORT_TEMPLATE_URL)
 					&&Constant.GET.equals(request.getMethod())) {
 				return true;
@@ -54,11 +54,11 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 				return false;
 			}
 		}
-		//½âÃÜ
+		//è§£å¯†
 		Claims claims=TokenUtil.parseToken(token);
-		//»ñÈ¡Ç©·¢Ê±¼ä
+		//è·å–ç­¾å‘æ—¶é—´
 		Date issuedDate=claims.getIssuedAt();
-		//Èç¹ûÎŞÇ©·¢Ê±¼ä,À¹½ØÇëÇó
+		//å¦‚æœæ— ç­¾å‘æ—¶é—´,æ‹¦æˆªè¯·æ±‚
 		if(issuedDate==null) {
 			response.setStatus(401);
 			return false;
@@ -66,32 +66,32 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 		long issuedTime=issuedDate.getTime();
 		long nowTime=new Date().getTime();
 		long dur=nowTime-issuedTime;
-		//Èç¹ûÇ©·¢³¬Ê±,À¹½ØÇëÇó
+		//å¦‚æœç­¾å‘è¶…æ—¶,æ‹¦æˆªè¯·æ±‚
 		if(dur>=1000*1800) {
 			response.setStatus(401);
 			return false;
 		}
 		String teacherId=claims.getSubject();
-		//Èç¹ûÎŞÇ©·¢¶ÔÏó,À¹½ØÇëÇó
+		//å¦‚æœæ— ç­¾å‘å¯¹è±¡,æ‹¦æˆªè¯·æ±‚
 		if(teacherId==null) {
 			response.setStatus(401);
 			return false;
 		}
 		String storeToken=tokenDao.get(teacherId);
-		//Èç¹ûÃ»»ñÈ¡µ½Ö¸¶¨token,À¹½ØÇëÇó
+		//å¦‚æœæ²¡è·å–åˆ°æŒ‡å®štoken,æ‹¦æˆªè¯·æ±‚
 		if(storeToken==null) {
 			response.setStatus(401);
 			return false;
 		}
-		//Èç¹ûtokenÓë·¢·ÅµÄtoken²»Æ¥Åä,À¹½ØÇëÇó
+		//å¦‚æœtokenä¸å‘æ”¾çš„tokenä¸åŒ¹é…,æ‹¦æˆªè¯·æ±‚
 		if(!storeToken.equals(token)) {
 			response.setStatus(401);
 			return false;
 		}
 		
-		//¿ªÊ¼ÓÃ»§ÑéÖ¤È¨ÏŞ
+		//å¼€å§‹ç”¨æˆ·éªŒè¯æƒé™
 		Authorization authorization=authorizationDao.get(teacherId);
-		//Èç¹ûÕËºÅ´æÔÚ Êı¾İ¿âÖĞÃ»ÓĞÈ¨ÏŞ ÔòÊÚÓèÄ¬ÈÏÈ¨ÏŞ
+		//å¦‚æœè´¦å·å­˜åœ¨ æ•°æ®åº“ä¸­æ²¡æœ‰æƒé™ åˆ™æˆäºˆé»˜è®¤æƒé™
 		if(authorization==null) {
 			authorizationDao.add(teacherId);
 			authorization=authorizationDao.get(teacherId);
@@ -100,7 +100,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 		String url=request.getRequestURI();
 		String method=request.getMethod();
 		
-		//¼ì²éÊÇ·ñÓĞ»ù±¾Ñ§ÉúĞÅÏ¢²é¿´È¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰åŸºæœ¬å­¦ç”Ÿä¿¡æ¯æŸ¥çœ‹æƒé™
 		if(url.startsWith(RequestURL.BASE_STUDENT_SEE_ONE_URL)&&method.equals(Constant.GET)
 				||(url.startsWith(RequestURL.BASE_STUDENT_SEE_LIST_URL)&&(method.equals(Constant.GET)||method.equals(Constant.POST)))) {
 			if(authorization.getBaseStudentSee()!=1) {
@@ -109,7 +109,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞ»ù±¾Ñ§ÉúĞÅÏ¢ĞŞ¸ÄÈ¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰åŸºæœ¬å­¦ç”Ÿä¿¡æ¯ä¿®æ”¹æƒé™
 		if(url.equals(RequestURL.BASE_STUDENT_EDIT_URL)&&method.equals(Constant.POST)) {
 			if(authorization.getBaseStudentEdit()!=1) {
 				response.setStatus(401);
@@ -117,7 +117,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞ»ù±¾Ñ§ÉúĞÅÏ¢µ¼ÈëÈ¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰åŸºæœ¬å­¦ç”Ÿä¿¡æ¯å¯¼å…¥æƒé™
 		if(url.equals(RequestURL.BASE_STUDENT_IMPORT_URL)&&method.equals(Constant.POST)) {
 			if(authorization.getBaseStudentImport()!=1) {
 				response.setStatus(401);
@@ -125,7 +125,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞ»ù±¾Ñ§ÉúĞÅÏ¢µ¼³öÈ¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰åŸºæœ¬å­¦ç”Ÿä¿¡æ¯å¯¼å‡ºæƒé™
 		if(url.equals(RequestURL.BASE_STUDENT_EXPORT_URL)&&method.equals(Constant.GET)||url.equals(RequestURL.BASE_STUDENT_SEARCH_EXPORT_URL)&&method.equals(Constant.POST)) {
 			if(authorization.getBaseStudentExport()!=1) {
 				response.setStatus(401);
@@ -133,7 +133,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éúµµ°¸²é¿´È¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿæ¡£æ¡ˆæŸ¥çœ‹æƒé™
 		if(url.startsWith(RequestURL.ARCHIVE_STUDENT_SEE_ONE_URL)&&method.equals(Constant.GET)
 				||url.startsWith(RequestURL.ARCHIVE_STUDENT_SEE_LIST_URL)&&(method.equals(Constant.GET)||method.equals(Constant.POST))) {
 			if(authorization.getArchiveStudentSee()!=1) {
@@ -143,24 +143,24 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 		}
 		
 		if(url.equals(RequestURL.ARCHIVE_STUDENT_URL)) {
-			//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éúµµ°¸ĞŞ¸ÄÈ¨ÏŞ
+			//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿæ¡£æ¡ˆä¿®æ”¹æƒé™
 			if(method.equals(Constant.PUT)&&authorization.getArchiveStudentEdit()!=1){
 				response.setStatus(401);
 				return false;
 			}			
-			//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éú½¨µµÈ¨ÏŞ
+			//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿå»ºæ¡£æƒé™
 			if(method.equals(Constant.POST)&&authorization.getArchiveStudentBuild()!=1){
 				response.setStatus(401);
 				return false;
 			}			
-			//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éú³ıµµÈ¨ÏŞ
+			//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿé™¤æ¡£æƒé™
 			if(method.equals(Constant.DELETE)&&authorization.getArchiveStudentDestory()!=1){
 				response.setStatus(401);
 				return false;
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éúµµ°¸±ä¸üÈ¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿæ¡£æ¡ˆå˜æ›´æƒé™
 		if(url.startsWith(RequestURL.ARCHIVE_STUDENT_CHANGE_URL)&&method.equals(Constant.POST)) {
 			if(authorization.getArchiveStudentChange()!=1) {
 				response.setStatus(401);
@@ -168,7 +168,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éúµµ°¸µ¼³öÈ¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿæ¡£æ¡ˆå¯¼å‡ºæƒé™
 		if(url.startsWith(RequestURL.ARCHIVE_STUDENT_EXPORT_URL)&&method.equals(Constant.GET)) {
 			if(authorization.getArchiveStudentExport()!=1) {
 				response.setStatus(401);
@@ -176,7 +176,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éú¼ÇÂ¼²é¿´È¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿè®°å½•æŸ¥çœ‹æƒé™
 		if((url.startsWith(RequestURL.ARCHIVE_RECORD_SEE_LIST_URL)||url.startsWith(RequestURL.ARCHIVE_RECORD_SEE_ONE_URL))
 				&&method.equals(Constant.GET)) {
 			if(authorization.getArchiveRecordSee()!=1) {
@@ -186,19 +186,19 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 		}
 		
 		if(url.equals(RequestURL.ARCHIVE_RECORD_URL)) {
-			//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éú¼ÇÂ¼ĞŞ¸ÄÈ¨ÏŞ
+			//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿè®°å½•ä¿®æ”¹æƒé™
 			if(method.equals(Constant.PUT)&&authorization.getArchiveRecordEdit()!=1) {
 				response.setStatus(401);
 				return false;
 			}
-			//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éú¼ÇÂ¼Ìí¼ÓÈ¨ÏŞ
+			//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿè®°å½•æ·»åŠ æƒé™
 			if(method.equals(Constant.POST)&&authorization.getArchiveRecordAdd()!=1) {
 				response.setStatus(401);
 				return false;
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§Éú¼ÇÂ¼É¾³ıÈ¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿè®°å½•åˆ é™¤æƒé™
 		if(url.equals(RequestURL.ARCHIVE_RECORD_DELETE_URL)&&method.equals(Constant.DELETE)) {
 			if(authorization.getArchiveRecordDelete()!=1) {
 				response.setStatus(401);
@@ -206,7 +206,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§ÉúÀúÊ·µµ°¸²é¿´È¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿå†å²æ¡£æ¡ˆæŸ¥çœ‹æƒé™
 		if((url.startsWith(RequestURL.HISTORY_ARCHIVE_SEE_ONE_URL))&&method.equals(Constant.GET)
 				||url.startsWith(RequestURL.HISTORY_ARCHIVE_SEE_LIST_URL)&&(method.equals(Constant.GET)||method.equals(Constant.POST))) {
 			if(authorization.getHistoryArchiveSee()!=1) {
@@ -215,7 +215,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§ÉúÀúÊ·µµ°¸É¾³ıÈ¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿå†å²æ¡£æ¡ˆåˆ é™¤æƒé™
 		if((url.equals((RequestURL.HISTORY_ARCHIVE_DELETE_URL))&&method.equals(Constant.DELETE))) {
 			if(authorization.getHistoryArchiveDelete()!=1) {
 				response.setStatus(401);
@@ -223,7 +223,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//¼ì²éÊÇ·ñÓĞÀ§ÄÑÑ§ÉúÀúÊ·¼ÇÂ¼²é¿´È¨ÏŞ
+		//æ£€æŸ¥æ˜¯å¦æœ‰å›°éš¾å­¦ç”Ÿå†å²è®°å½•æŸ¥çœ‹æƒé™
 		if((url.startsWith(RequestURL.HISTORY_RECORD_SEE_ONE_URL)||url.startsWith(RequestURL.HISTORY_RECORD_SEE_LIST_URL))
 				&&method.equals(Constant.GET)) {
 			if(authorization.getHistoryRecordSee()!=1) {
@@ -232,10 +232,10 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 			}
 		}
 		
-		//½«teacherId·ÅÈërequestÖĞ ÒÔ±ãÔÚ¼ÇÂ¼ÈÕÖ¾Ê±¿ÉÒÔ»ñÈ¡µ½
+		//å°†teacherIdæ”¾å…¥requestä¸­ ä»¥ä¾¿åœ¨è®°å½•æ—¥å¿—æ—¶å¯ä»¥è·å–åˆ°
 		request.setAttribute("teacherId", teacherId);
 		
-		//Í¨¹ıÒÔÉÏ,·ÅĞĞ
+		//é€šè¿‡ä»¥ä¸Š,æ”¾è¡Œ
 		return true;
 	}
 

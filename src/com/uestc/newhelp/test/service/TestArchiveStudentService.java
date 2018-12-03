@@ -53,7 +53,7 @@ public class TestArchiveStudentService {
 		ArchiveStudent archiveStudent=new ArchiveStudent(); 
 		archiveStudent.setStudentId(2016220305014l);
 		archiveStudent.setTeacherId("20162201");
-		archiveStudent.setAttentionType("һ���ע");
+		archiveStudent.setAttentionType("一般关注");
 		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-HH-mm");
 		Date date=dateFormat.parse("2016-12-01");
 		archiveStudent.setLastRecordTime(date);

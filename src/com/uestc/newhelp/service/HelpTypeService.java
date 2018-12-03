@@ -4,12 +4,12 @@ package com.uestc.newhelp.service;
 import java.util.List;
 
 import com.uestc.newhelp.entity.HelpType;
-//与帮扶类型有关的业务逻辑
+//涓庡府鎵剁被鍨嬫湁鍏崇殑涓氬姟閫昏緫
 public interface HelpTypeService {
-	//查询帮扶类型列表
+	//鏌ヨ甯壎绫诲瀷鍒楄〃
 	public List<HelpType> list();
-	//增加帮扶类型
+	//澧炲姞甯壎绫诲瀷
 	public void add(HelpType helpType);
-	//删除帮扶类型
+	//鍒犻櫎甯壎绫诲瀷
 	public void delete(Long helpTypeId);
 }

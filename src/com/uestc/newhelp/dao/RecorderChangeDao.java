@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.RecorderChange;
 
 public interface RecorderChangeDao {
-	//Ôö¼Ó±ä¸ü¼ÇÂ¼
+	//å¢åŠ å˜æ›´è®°å½•
 	public void add(@Param("recorderChange")RecorderChange recorderChange);
-	//É¾³ıÖ¸¶¨Ñ§Éú±ä¸ü¼ÇÂ¼
+	//åˆ é™¤æŒ‡å®šå­¦ç”Ÿå˜æ›´è®°å½•
 	public void delete(Long studentId);
-	//²éÑ¯Ö¸¶¨Ñ§ÉúµÄ±ä¸ü¼ÇÂ¼
+	//æŸ¥è¯¢æŒ‡å®šå­¦ç”Ÿçš„å˜æ›´è®°å½•
 	public List<RecorderChange> list(Long studentId);
 }

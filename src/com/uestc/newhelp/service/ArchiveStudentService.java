@@ -11,19 +11,19 @@ import com.uestc.newhelp.exception.NotChoseExportObjectException;
 import com.uestc.newhelp.exception.NotPointOutStudentIdException;
 
 public interface ArchiveStudentService {
-	//²éÑ¯Ö¸¶¨½ÌÊ¦µÄ°ï·öÑ§ÉúÁĞ±í
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„å¸®æ‰¶å­¦ç”Ÿåˆ—è¡¨
 	public List<ArchiveStudent> list(String teacherId);
-	//ËÑË÷Ö¸¶¨½ÌÊ¦°ï·öÑ§ÉúÁĞ±í
+	//æœç´¢æŒ‡å®šæ•™å¸ˆå¸®æ‰¶å­¦ç”Ÿåˆ—è¡¨
 	public List<ArchiveStudent> search(ArchiveStudent archiveStudent);
-	//Ôö¼Ó°ï·öÑ§Éú
+	//å¢åŠ å¸®æ‰¶å­¦ç”Ÿ
 	public void add(ArchiveStudent archiveStudent)throws NotPointOutStudentIdException,NoSuchStudentException,ArchiveStudentHadExistException;
-	//É¾³ı°ï·öÑ§Éú
+	//åˆ é™¤å¸®æ‰¶å­¦ç”Ÿ
 	public void delete(ArchiveStudent archiveStudent);
-	//¸üĞÂ°ï·öÑ§Éú
+	//æ›´æ–°å¸®æ‰¶å­¦ç”Ÿ
 	public void update(ArchiveStudent archiveStudent);
-	//²éÑ¯°ï·öÑ§ÉúÏêÏ¸ĞÅÏ¢
+	//æŸ¥è¯¢å¸®æ‰¶å­¦ç”Ÿè¯¦ç»†ä¿¡æ¯
 	public ArchiveStudent get(Long studentId);
-	//µ¼³öÖ¸¶¨Ñ§ÉúÕû¸öµµ°¸µ½WordÎÄ¼şÖĞ
+	//å¯¼å‡ºæŒ‡å®šå­¦ç”Ÿæ•´ä¸ªæ¡£æ¡ˆåˆ°Wordæ–‡ä»¶ä¸­
 	public byte[] exportArchiveToWordFile(Long studentId)
 			throws IOException, NotChoseExportObjectException, NoSuchStudentException, Exception;
 }

@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.HelpType;
 
 public interface HelpTypeDao {
-	//Ôö¼Ó°ï·öÀàĞÍ
+	//å¢åŠ å¸®æ‰¶ç±»å‹
 	public void add(@Param("helpType")HelpType helpType);
-	//É¾³ıÖ¸¶¨°ï·öidµÄ°ï·öÀàĞÍ
+	//åˆ é™¤æŒ‡å®šå¸®æ‰¶idçš„å¸®æ‰¶ç±»å‹
 	public void delete(Long helpTypeId);
-	//²éÑ¯ËùÓĞ°ï·öÀàĞÍ
+	//æŸ¥è¯¢æ‰€æœ‰å¸®æ‰¶ç±»å‹
 	public List<HelpType> list();
 }

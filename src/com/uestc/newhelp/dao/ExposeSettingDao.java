@@ -5,11 +5,11 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.ExposeSetting;
 
 public interface ExposeSettingDao {
-	//ĞÂÔöÖ¸¶¨½ÌÊ¦µÄ±©Â¶ÉèÖÃ
+	//æ–°å¢æŒ‡å®šæ•™å¸ˆçš„æš´éœ²è®¾ç½®
 	public void add(@Param("exposeSetting")ExposeSetting exposeSetting);
-	//¸üĞÂÖ¸¶¨½ÌÊ¦µÄ±©Â¶ÉèÖÃ
+	//æ›´æ–°æŒ‡å®šæ•™å¸ˆçš„æš´éœ²è®¾ç½®
 	public void update(@Param("exposeSetting")ExposeSetting exposeSetting);
-	//²éÑ¯Ö¸¶¨½ÌÊ¦µÄ±©Â¶ÉèÖÃ
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„æš´éœ²è®¾ç½®
 	public ExposeSetting get(String teacherId);
 	
 	

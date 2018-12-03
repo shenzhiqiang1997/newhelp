@@ -23,7 +23,7 @@ public class LogController {
 	@Autowired
 	private LogService logService;
 	
-	@com.uestc.newhelp.annotation.Log("后台查看操作日志列表")
+	@com.uestc.newhelp.annotation.Log("鍚庡彴鏌ョ湅鎿嶄綔鏃ュ織鍒楄〃")
 	@RequestMapping(path="/logs/{pageSize}/{pageNum}",method=RequestMethod.GET)
 	public String list(@PathVariable("pageSize")int pageSize,
 			@PathVariable("pageNum")int pageNum,Model model) {
@@ -31,7 +31,7 @@ public class LogController {
 			PageInfo<Log> pageInfo=logService.list(pageNum, pageSize);
 			List<Log> logs=pageInfo.getList();
 			model.addAttribute("logs",logs);
-			//表示当前未在搜索
+			//琛ㄧず褰撳墠鏈湪鎼滅储
 			model.addAttribute("isSearch",false);
 			model.addAttribute("currentPage",pageInfo.getPageNum());
 			model.addAttribute("totalPages",pageInfo.getPages());
@@ -42,16 +42,16 @@ public class LogController {
 		}
 	}
 	
-	@com.uestc.newhelp.annotation.Log("后台搜索操作日志列表")
+	@com.uestc.newhelp.annotation.Log("鍚庡彴鎼滅储鎿嶄綔鏃ュ織鍒楄〃")
 	@RequestMapping(path="/logs",method=RequestMethod.POST)
 	public String search(int pageSize,int pageNum,Log log,Model model) {
 		try {
 			PageInfo<Log> pageInfo=logService.search(log,pageNum, pageSize);
 			List<Log> logs=pageInfo.getList();
 			model.addAttribute("logs",logs);
-			//回显搜索参数
+			//鍥炴樉鎼滅储鍙傛暟
 			model.addAttribute("log",log);
-			//表示当前正在搜索
+			//琛ㄧず褰撳墠姝ｅ湪鎼滅储
 			model.addAttribute("isSearch",true);
 			model.addAttribute("currentPage",pageInfo.getPageNum());
 			model.addAttribute("totalPages",pageInfo.getPages());
@@ -62,7 +62,7 @@ public class LogController {
 		}
 	}
 	
-	@com.uestc.newhelp.annotation.Log("后台删除操作日志")
+	@com.uestc.newhelp.annotation.Log("鍚庡彴鍒犻櫎鎿嶄綔鏃ュ織")
 	@RequestMapping(path="/log/{logId}",method=RequestMethod.DELETE)
 	public String delete(@PathVariable Long logId,Model model) {
 		try {

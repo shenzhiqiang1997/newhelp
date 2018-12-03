@@ -62,64 +62,64 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 	private TeacherDao teacherDao;
 	@Override
 	public List<BaseStudent> list() {
-		//²éÑ¯»ù±¾Ñ§ÉúÁĞ±í
+		//æŸ¥è¯¢åŸºæœ¬å­¦ç”Ÿåˆ—è¡¨
 		List<BaseStudent> baseStudents=baseStudentDao.list();
 		return baseStudents;
 	}
 
 	@Override
 	public BaseStudentsWithPage search(BaseStudent baseStudent,String teacherId,Integer pageSize,Integer currentPage,Integer classSort) {
-		//ËÑË÷»ù±¾Ñ§ÉúÁĞ±í
+		//æœç´¢åŸºæœ¬å­¦ç”Ÿåˆ—è¡¨
 		
 		if(classSort!=1&&classSort!=0) {
 			classSort=0;
 		}
-		//»ñÈ¡¶ÔÓ¦ÀÏÊ¦Äê¼¶È¨ÏŞ
+		//è·å–å¯¹åº”è€å¸ˆå¹´çº§æƒé™
 		Teacher teacher=teacherDao.getInfo(teacherId);
-		//Èç¹û½ÌÊ¦²»´æÔÚ ÔòÖ±½Ó·µ»Ø¿Õ
+		//å¦‚æœæ•™å¸ˆä¸å­˜åœ¨ åˆ™ç›´æ¥è¿”å›ç©º
 		if(teacher==null) {
 			return null;
 		}
 		
-		Integer recordNum=baseStudentDao.searchRecordNumByCondition(baseStudent,teacher.getGrade(),"ÔÚ¶Á","ĞİÑ§");
+		Integer recordNum=baseStudentDao.searchRecordNumByCondition(baseStudent,teacher.getGrade(),"åœ¨è¯»","ä¼‘å­¦");
 		Page page=new Page(currentPage, pageSize, recordNum);
-		List<BaseStudent> baseStudents=baseStudentDao.searchByCondition(baseStudent,teacher.getGrade(),page,classSort,"ÔÚ¶Á","ĞİÑ§");
+		List<BaseStudent> baseStudents=baseStudentDao.searchByCondition(baseStudent,teacher.getGrade(),page,classSort,"åœ¨è¯»","ä¼‘å­¦");
 		BaseStudentsWithPage baseStudentsWithPage=new BaseStudentsWithPage(baseStudents, page);
 		return baseStudentsWithPage;
 	}
 	
 	@Override
 	public BaseStudentsWithPage searchHistory(BaseStudent baseStudent,String teacherId,Integer pageSize,Integer currentPage,Integer classSort) {
-		//ËÑË÷»ù±¾Ñ§ÉúÁĞ±í
+		//æœç´¢åŸºæœ¬å­¦ç”Ÿåˆ—è¡¨
 		
 		if(classSort!=1&&classSort!=0) {
 			classSort=0;
 		}
-		//»ñÈ¡¶ÔÓ¦ÀÏÊ¦Äê¼¶È¨ÏŞ
+		//è·å–å¯¹åº”è€å¸ˆå¹´çº§æƒé™
 		Teacher teacher=teacherDao.getInfo(teacherId);
-		//Èç¹û½ÌÊ¦²»´æÔÚ ÔòÖ±½Ó·µ»Ø¿Õ
+		//å¦‚æœæ•™å¸ˆä¸å­˜åœ¨ åˆ™ç›´æ¥è¿”å›ç©º
 		if(teacher==null) {
 			return null;
 		}
 		
-		Integer recordNum=baseStudentDao.searchRecordNumByCondition(baseStudent,teacher.getGrade(),"ÍËÑ§","±ÏÒµ");
+		Integer recordNum=baseStudentDao.searchRecordNumByCondition(baseStudent,teacher.getGrade(),"é€€å­¦","æ¯•ä¸š");
 		Page page=new Page(currentPage, pageSize, recordNum);
-		List<BaseStudent> baseStudents=baseStudentDao.searchByCondition(baseStudent,teacher.getGrade(),page,classSort,"ÍËÑ§","±ÏÒµ");
+		List<BaseStudent> baseStudents=baseStudentDao.searchByCondition(baseStudent,teacher.getGrade(),page,classSort,"é€€å­¦","æ¯•ä¸š");
 		BaseStudentsWithPage baseStudentsWithPage=new BaseStudentsWithPage(baseStudents, page);
 		return baseStudentsWithPage;
 	}
 	
 	@Override
 	public List<BaseStudent> searchWithOutPage(BaseStudent baseStudent,String teacherId) {
-		//ËÑË÷»ù±¾Ñ§ÉúÁĞ±í
+		//æœç´¢åŸºæœ¬å­¦ç”Ÿåˆ—è¡¨
 		
-		//»ñÈ¡¶ÔÓ¦ÀÏÊ¦Äê¼¶È¨ÏŞ
+		//è·å–å¯¹åº”è€å¸ˆå¹´çº§æƒé™
 		Teacher teacher=teacherDao.getInfo(teacherId);
-		//Èç¹û½ÌÊ¦²»´æÔÚ ÔòÖ±½Ó·µ»Ø¿Õ
+		//å¦‚æœæ•™å¸ˆä¸å­˜åœ¨ åˆ™ç›´æ¥è¿”å›ç©º
 		if(teacher==null) {
 			return null;
 		}
-		//Èç¹ûÃ»ÓĞÖ¸¶¨Ñ§ÉúµÄÑ§Òµ×´Ì¬ ÔòÄ¬ÈÏÖ»²éÑ¯ÔÚ¶ÁµÄÑ§Éú
+		//å¦‚æœæ²¡æœ‰æŒ‡å®šå­¦ç”Ÿçš„å­¦ä¸šçŠ¶æ€ åˆ™é»˜è®¤åªæŸ¥è¯¢åœ¨è¯»çš„å­¦ç”Ÿ
 		if(baseStudent.getStudyCondition()==null||baseStudent.getStudyCondition().equals("")) {
 			baseStudent.setStudyCondition(Constant.DEFAULT_STUDY_CONDITION);
 		}
@@ -147,14 +147,14 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 
 	@Override
 	public BaseStudent getArchiveInfo(Long studentId)throws ArchiveStudentHadExistException{
-		//ÅĞ¶Ï¸ÃÑ§ÉúÊÇ·ñÒÑ¾­½¨µµ
+		//åˆ¤æ–­è¯¥å­¦ç”Ÿæ˜¯å¦å·²ç»å»ºæ¡£
 		String teacherId=archiveStudentDao.check(studentId);
 		if(teacherId==null) {
 			BaseStudent baseStudent=baseStudentDao.getArchiveInfo(studentId);
 			return baseStudent;
 		}else {
 			Teacher teacher=teacherDao.getInfo(teacherId);
-			throw new ArchiveStudentHadExistException("¸ÃÑ§ÉúÒÑ±»"+teacher.getName()+"ÀÏÊ¦°ï·ö");
+			throw new ArchiveStudentHadExistException("è¯¥å­¦ç”Ÿå·²è¢«"+teacher.getName()+"è€å¸ˆå¸®æ‰¶");
 		}
 		
 	}
@@ -163,7 +163,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 	public List<Long> listIdByName(String name) throws NoSuchStudentException {
 		List<Long> studentIds=baseStudentDao.listStudentIdByName(name);
 		if(studentIds==null||studentIds.size()==0) {
-			throw new NoSuchStudentException("µ±Ç°Ñ§ÉúÉĞÎ´ÊÕÂ¼µ½»ù±¾ĞÅÏ¢¿â");
+			throw new NoSuchStudentException("å½“å‰å­¦ç”Ÿå°šæœªæ”¶å½•åˆ°åŸºæœ¬ä¿¡æ¯åº“");
 		}
 		return studentIds;
 	}
@@ -171,99 +171,99 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 
 	@Override
 	public void update(BaseStudent baseStudent, Teacher teacher,MultipartFile multipartFile,HttpServletRequest httpServletRequest)throws IOException,FileTypeNotMatchException,PasswordNotMatchException {
-		//²éÑ¯Ö¸¶¨½ÌÊ¦ÃÜÂë
+		//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆå¯†ç 
 		String password=teacherDao.getPassword(teacher.getTeacherId()).getPassword();
-		//ÑéÖ¤ÃÜÂë
+		//éªŒè¯å¯†ç 
 		if(password.equals(teacher.getPassword())) {
 			if(multipartFile!=null) {
-				//»ñÈ¡Í¼Æ¬¸ñÊ½
+				//è·å–å›¾ç‰‡æ ¼å¼
 				String fileType=MultipartFileUtil.getType(multipartFile);
-				//ÅĞ¶ÏÍ¼Æ¬¸ñÊ½ÊÇ·ñÆ¥Åä
+				//åˆ¤æ–­å›¾ç‰‡æ ¼å¼æ˜¯å¦åŒ¹é…
 				if(".jpg".equals(fileType)){
-						//½«ÉÏ´«µÄÍ¼Æ¬±£´æµ½ÏîÄ¿Ö¸¶¨Ä¿Â¼ÖĞ
+						//å°†ä¸Šä¼ çš„å›¾ç‰‡ä¿å­˜åˆ°é¡¹ç›®æŒ‡å®šç›®å½•ä¸­
 						ServletContext servletContext=httpServletRequest.getServletContext();
 						String filePath=MultipartFileUtil.storeMultipartFile(multipartFile, servletContext.getRealPath(Path.STUDENT_PHOTO_PATH_UNDER_ARCHIVE), String.valueOf(baseStudent.getStudentId())+".jpg");
-						//½«±£´æµÄÍ¼Æ¬URL´æÈëÊı¾İ¿â
-						//½«´æ´¢Â·¾¶×ª»¯ÎªÍâ²¿¿ÉÒÔ·ÃÎÊµÄURL
+						//å°†ä¿å­˜çš„å›¾ç‰‡URLå­˜å…¥æ•°æ®åº“
+						//å°†å­˜å‚¨è·¯å¾„è½¬åŒ–ä¸ºå¤–éƒ¨å¯ä»¥è®¿é—®çš„URL
 						int index=filePath.indexOf(servletContext.getContextPath().substring(1));
 						filePath=filePath.substring(index);
 						filePath=filePath.replaceAll("\\\\", "/");
 						filePath=Path.HOST_PATH+"/"+filePath;
-						//½«¸ÃURL´æ·Åµ½Êı¾İ¿âÖĞ
+						//å°†è¯¥URLå­˜æ”¾åˆ°æ•°æ®åº“ä¸­
 						baseStudent.setPhotoUrl(filePath);
 						baseStudentDao.update(baseStudent);
 				}else {
-					//Èç¹ûÍ¼Æ¬¸ñÊ½²»ÕıÈ·ÔòÅ×³ö¸ñÊ½´íÎóÒì³£
-					throw new FileTypeNotMatchException("Çë±£Ö¤Í¼Æ¬¸ñÊ½Îªjpg");
+					//å¦‚æœå›¾ç‰‡æ ¼å¼ä¸æ­£ç¡®åˆ™æŠ›å‡ºæ ¼å¼é”™è¯¯å¼‚å¸¸
+					throw new FileTypeNotMatchException("è¯·ä¿è¯å›¾ç‰‡æ ¼å¼ä¸ºjpg");
 				}
 			}else {
 				baseStudentDao.update(baseStudent);
 			}
 		}else {
-			//Èç¹ûÑéÖ¤ÃÜÂë´íÎóÔòÅ×³öÃÜÂë´íÎóÒì³£
-			throw new PasswordNotMatchException("ÃÜÂë´íÎó");
+			//å¦‚æœéªŒè¯å¯†ç é”™è¯¯åˆ™æŠ›å‡ºå¯†ç é”™è¯¯å¼‚å¸¸
+			throw new PasswordNotMatchException("å¯†ç é”™è¯¯");
 		}
 	}
 
 	@Override
 	public void importBaseStudentsFromExcelFile(MultipartFile multipartFile,Teacher teacher,ExposeSetting exposeSetting)throws FileTypeNotMatchException, IOException,IllegalStateException,NoAuthorityException, StudentIdFormatException, FormatException, NoDataToImportException {
 		if(teacher==null||teacher.getTeacherId()==null) {
-			throw new NoAuthorityException("ÄãÎŞÈ¨ÏŞµ¼ÈëÊı¾İ,ÇëÁªÏµ¾ßÓĞ¹ÜÀíÔ±È¨ÏŞµÄÓÃ»§µ¼Èë");
+			throw new NoAuthorityException("ä½ æ— æƒé™å¯¼å…¥æ•°æ®,è¯·è”ç³»å…·æœ‰ç®¡ç†å‘˜æƒé™çš„ç”¨æˆ·å¯¼å…¥");
 		}
 		Teacher teacher1=teacherDao.getPassword(teacher.getTeacherId());
 		if(!(teacher1.getPassword().equals(teacher.getPassword()))) {
-			throw new NoAuthorityException("ÑéÖ¤Ê§°Ü ÃÜÂëÓĞÎó ÎŞ·¨µ¼Èë ");
+			throw new NoAuthorityException("éªŒè¯å¤±è´¥ å¯†ç æœ‰è¯¯ æ— æ³•å¯¼å…¥ ");
 		}
 		
-		//»ñÈ¡ÎÄ¼şµÄÀàĞÍ
+		//è·å–æ–‡ä»¶çš„ç±»å‹
 		String fileType=MultipartFileUtil.getType(multipartFile);
-		//Èç¹û²»ÊÇÄ¿±êÎÄ¼şÔòÅ×³öÎÄ¼şÀàĞÍ²»Æ¥ÅäÒì³£
+		//å¦‚æœä¸æ˜¯ç›®æ ‡æ–‡ä»¶åˆ™æŠ›å‡ºæ–‡ä»¶ç±»å‹ä¸åŒ¹é…å¼‚å¸¸
 		if(!".xlsx".equals(fileType)) {
-			throw new FileTypeNotMatchException("Çë±£Ö¤ÉÏ´«µÄÎÄ¼ş¸ñÊ½Îª.xlsx");
+			throw new FileTypeNotMatchException("è¯·ä¿è¯ä¸Šä¼ çš„æ–‡ä»¶æ ¼å¼ä¸º.xlsx");
 		}
 
-		//ÓÃÓÚÊ¢·Å½âÎö³öµÄÑ§Éú¶ÔÏó
+		//ç”¨äºç››æ”¾è§£æå‡ºçš„å­¦ç”Ÿå¯¹è±¡
 		List<BaseStudent> baseStudents=new ArrayList<>();
-		//ÈÕÆÚ¸ñÊ½Æ÷,ÓÃÓÚÈÕÆÚµÄ¸ñÊ½»¯
+		//æ—¥æœŸæ ¼å¼å™¨,ç”¨äºæ—¥æœŸçš„æ ¼å¼åŒ–
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy/MM/dd");
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy/M/dd");
 		SimpleDateFormat sdf3=new SimpleDateFormat("yyyy/M/d");
-		//ÓÃÉÏ´«µÄÎÄ¼şµÃµ½¹¤×÷²¾
+		//ç”¨ä¸Šä¼ çš„æ–‡ä»¶å¾—åˆ°å·¥ä½œç°¿
 		XSSFWorkbook workbook=new XSSFWorkbook(multipartFile.getInputStream());
-		//Ö»»ñÈ¡µÚÒ»¸ösheet
+		//åªè·å–ç¬¬ä¸€ä¸ªsheet
 		Sheet sheet=workbook.getSheetAt(0);
 		int rowIndex=0;
 		int colIndex=0;
-		//±éÀúÃ¿ĞĞ ¸ù¾İµ¼ÈëÉèÖÃÑ¡È¡²¿·ÖĞÅÏ¢
+		//éå†æ¯è¡Œ æ ¹æ®å¯¼å…¥è®¾ç½®é€‰å–éƒ¨åˆ†ä¿¡æ¯
 			for (Row row : sheet) {
 				colIndex=0;
 				rowIndex++;
 				try {
-					//ÂÔ¹ı±íÍ·
+					//ç•¥è¿‡è¡¨å¤´
 					if(row.getRowNum()==0) continue;
-					//Èç¹ûÑ§ºÅÎª¿Õ»ò¸ñÊ½²»¶Ô,ÔòÅ×³öÑ§ºÅ¸ñÊ½»¯Òì³£
+					//å¦‚æœå­¦å·ä¸ºç©ºæˆ–æ ¼å¼ä¸å¯¹,åˆ™æŠ›å‡ºå­¦å·æ ¼å¼åŒ–å¼‚å¸¸
 					Long studentId;
 					try {
 						colIndex++;
 						String studentIdString=POIUtil.getStringCellValue(row, 0);
 						if(!studentIdString.matches(Regex.STUDENT_ID)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÑ§ºÅÎª¿Õ»òÑ§ºÅ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ñ§ºÅÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿå­¦å·ä¸ºç©ºæˆ–å­¦å·æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"å­¦å·åˆ—");
 						}
 						studentId=Long.valueOf(studentIdString);
 						
 					} catch (NumberFormatException e) {
-						throw new StudentIdFormatException("µ¼ÈëµÄÑ§ÉúÑ§ºÅÎª¿Õ»òÑ§ºÅ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ñ§ºÅÁĞ");
+						throw new StudentIdFormatException("å¯¼å…¥çš„å­¦ç”Ÿå­¦å·ä¸ºç©ºæˆ–å­¦å·æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"å­¦å·åˆ—");
 					}finally {
 						workbook.close();
 					}
-					//¶ÔÓÚÆäËûÈç¹û³öÏÖ¸ñÊ½×ª»¯Òì³£ÔòÄ¬ÈÏÎªnull,Èç¹ûÊÇ×Ö·ûÀàĞÍÔòÄ¬ÈÏÎª"ÎŞ"
+					//å¯¹äºå…¶ä»–å¦‚æœå‡ºç°æ ¼å¼è½¬åŒ–å¼‚å¸¸åˆ™é»˜è®¤ä¸ºnull,å¦‚æœæ˜¯å­—ç¬¦ç±»å‹åˆ™é»˜è®¤ä¸º"æ— "
 					String name = null;
 					colIndex++;
 					if(exposeSetting.getExposeName()==(byte)1) {
 						name=POIUtil.getStringCellValue(row, 1);
 						if(!name.matches(Regex.NAME)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúĞÕÃû¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ĞÕÃûÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿå§“åæ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"å§“ååˆ—");
 						}
 					}
 					
@@ -273,7 +273,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 						try {
 							String gradeString=POIUtil.getStringCellValue(row, 2);
 							if(!gradeString.matches(Regex.GRADE)) {
-								throw new FormatException("µ¼ÈëµÄÑ§ÉúÄê¼¶¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Äê¼¶ÁĞ");
+								throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿå¹´çº§æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"å¹´çº§åˆ—");
 							}
 							grade=Short.valueOf(gradeString);
 						} catch (NumberFormatException e) {
@@ -287,7 +287,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 						try {
 							String studentClassString=POIUtil.getStringCellValue(row, 3);
 							if(!studentClassString.matches(Regex.STUDENT_CLASS)) {
-								throw new FormatException("µ¼ÈëµÄÑ§Éú°à¼¶¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"°à¼¶ÁĞ");
+								throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿç­çº§æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"ç­çº§åˆ—");
 							}
 							studentClass=Integer.valueOf(studentClassString);
 						}  catch (NumberFormatException e) {
@@ -300,7 +300,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeSex()==(byte)1) {
 						sex=POIUtil.getStringCellValue(row, 4);
 						if(!sex.matches(Regex.SEX)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúĞÔ±ğ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ĞÔ±ğÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ€§åˆ«æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ€§åˆ«åˆ—");
 						}
 					}
 					String duty = null;
@@ -308,7 +308,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeDuty()==(byte)1) {
 						duty=POIUtil.getStringCellValue(row, 5);
 						if(!duty.matches(Regex.DUTY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÖ°Îñ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ö°ÎñÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”ŸèŒåŠ¡æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"èŒåŠ¡åˆ—");
 						}
 					}
 					
@@ -317,7 +317,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeDormitory()==(byte)1) {
 						dormitory=POIUtil.getStringCellValue(row, 6);
 						if(!dormitory.matches(Regex.DORMITORY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúËŞÉá¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ËŞÉáÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿå®¿èˆæ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"å®¿èˆåˆ—");
 						}
 					}
 					String contactWay = null;
@@ -325,7 +325,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeContactWay()==(byte)1) {
 						contactWay=POIUtil.getStringCellValue(row, 7);
 						if(!contactWay.matches(Regex.CONTACT_WAY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÁªÏµ·½Ê½¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ÁªÏµ·½Ê½ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿè”ç³»æ–¹å¼æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"è”ç³»æ–¹å¼åˆ—");
 						}
 					}
 					String idCardNumber = null;
@@ -333,7 +333,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeIdCardNumber()==(byte)1) {
 						idCardNumber=POIUtil.getStringCellValue(row, 8);
 						if(!idCardNumber.matches(Regex.ID_CARD_NUMBER)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÉí·İÖ¤ºÅ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Éí·İÖ¤ºÅÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿèº«ä»½è¯å·æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"èº«ä»½è¯å·åˆ—");
 						}
 					}
 					
@@ -343,7 +343,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 						try {
 							String qqNumberString=POIUtil.getStringCellValue(row, 9);
 							if(!qqNumberString.matches(Regex.QQ_NUMBER)) {
-								throw new FormatException("µ¼ÈëµÄÑ§ÉúqqºÅ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"qqºÅÁĞ");
+								throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿqqå·æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"qqå·åˆ—");
 							}
 							qqNumber=Long.valueOf(qqNumberString);
 						} catch (NumberFormatException e) {
@@ -356,7 +356,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeEmail()==(byte)1) {
 						email=POIUtil.getStringCellValue(row, 10);
 						if(!email.matches(Regex.EMAIL)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÓÊÏä¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ÓÊÏäÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿé‚®ç®±æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"é‚®ç®±åˆ—");
 						}
 					}
 					
@@ -365,7 +365,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeBirthday()==(byte)1) {
 						String birthdayString=POIUtil.getStringCellValue(row, 11);
 						if(!birthdayString.matches(Regex.BIRTHDAY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÉúÈÕ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ÉúÈÕÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿç”Ÿæ—¥æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"ç”Ÿæ—¥åˆ—");
 						}
 						try {
 							birthday=sdf.parse(birthdayString);
@@ -392,7 +392,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 						try {
 							String heightString=POIUtil.getStringCellValue(row, 12);
 							if(!heightString.matches(Regex.HEIGHT)) {
-								throw new FormatException("µ¼ÈëµÄÑ§ÉúÉí¸ß¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Éí¸ßÁĞ");
+								throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿèº«é«˜æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"èº«é«˜åˆ—");
 							}
 							height=Float.valueOf(heightString);
 						} catch (NumberFormatException e) {
@@ -405,7 +405,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeMajor()==(byte)1) {
 						major=POIUtil.getStringCellValue(row, 13);
 						if(!major.matches(Regex.MAJOR)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú×¨Òµ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"×¨ÒµÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿä¸“ä¸šæ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"ä¸“ä¸šåˆ—");
 						}
 					}
 					
@@ -414,7 +414,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposePoliticalStatus()==(byte)1) {
 						politicalStatus=POIUtil.getStringCellValue(row, 14);
 						if(!politicalStatus.matches(Regex.POLITICAL_STATUS)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÕşÖÎÃæÃ²¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ÕşÖÎÃæÃ²ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ”¿æ²»é¢è²Œæ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ”¿æ²»é¢è²Œåˆ—");
 						}
 					}
 					String ethnicGroup = null;
@@ -422,7 +422,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeEthnicGroup()==(byte)1) {
 						ethnicGroup=POIUtil.getStringCellValue(row, 15);
 						if(!ethnicGroup.matches(Regex.ETHNIC_GROUP)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÃñ×å¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ãñ×åÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ°‘æ—æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ°‘æ—åˆ—");
 						}
 					}
 					String birthOrigin = null;
@@ -430,7 +430,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeBirthOrigin()==(byte)1) {
 						birthOrigin=POIUtil.getStringCellValue(row, 16);
 						if(!birthOrigin.matches(Regex.BIRTH_ORIGIN)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÉúÔ´µØ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ÉúÔ´µØÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿç”Ÿæºåœ°æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"ç”Ÿæºåœ°åˆ—");
 						}
 					}
 					
@@ -439,7 +439,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeCollegeEntranceExamScore()==(byte)1) {
 						collegeEntranceExamScore=POIUtil.getStringCellValue(row, 17);
 						if(!collegeEntranceExamScore.matches(Regex.COLLEGE_ENTRANCE_EXAM_SCORE)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸ß¿¼³É¼¨¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸ß¿¼³É¼¨ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿé«˜è€ƒæˆç»©æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"é«˜è€ƒæˆç»©åˆ—");
 						}
 					}
 					
@@ -448,7 +448,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeCollegeEntranceExamEnglishScore()==(byte)1) {
 						collegeEntranceExamEnglishScore=POIUtil.getStringCellValue(row, 18);
 						if(!collegeEntranceExamEnglishScore.matches(Regex.COLLEGE_ENTRANCE_EXAM_ENGLISH_SCORE)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸ß¿¼Ó¢Óï³É¼¨¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸ß¿¼Ó¢Óï³É¼¨ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿé«˜è€ƒè‹±è¯­æˆç»©æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"é«˜è€ƒè‹±è¯­æˆç»©åˆ—");
 						}
 					}
 					
@@ -458,7 +458,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 						try {
 							String entranceExamEnglishScoreString=POIUtil.getStringCellValue(row, 19);
 							if(!entranceExamEnglishScoreString.matches(Regex.ENTRANCE_EXAM_ENGLISH_SCORE)) {
-								throw new FormatException("µ¼ÈëµÄÑ§ÉúÓ¢ÓïÈëÑ§¿¼ÊÔ³É¼¨¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ó¢ÓïÈëÑ§¿¼ÊÔ³É¼¨ÁĞ");
+								throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿè‹±è¯­å…¥å­¦è€ƒè¯•æˆç»©æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"è‹±è¯­å…¥å­¦è€ƒè¯•æˆç»©åˆ—");
 							}
 							entranceExamEnglishScore=Byte.valueOf(entranceExamEnglishScoreString);
 						} catch (NumberFormatException e) {
@@ -471,7 +471,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeHometownRailwayStation()==(byte)1) {
 						hometownRailwayStation=POIUtil.getStringCellValue(row, 20);
 						if(!hometownRailwayStation.matches(Regex.HOMETOWN_RAILWAY_STATION)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¼ÒÏçËùÔÚ»ğ³µÕ¾¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¼ÒÏçËùÔÚ»ğ³µÕ¾ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿå®¶ä¹¡æ‰€åœ¨ç«è½¦ç«™æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"å®¶ä¹¡æ‰€åœ¨ç«è½¦ç«™åˆ—");
 						}
 					}
 					
@@ -480,7 +480,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeProvince()==(byte)1) {
 						province=POIUtil.getStringCellValue(row, 21);
 						if(!province.matches(Regex.PROVINCE)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÊ¡·İ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ê¡·İÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿçœä»½æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"çœä»½åˆ—");
 						}
 					}
 					
@@ -489,7 +489,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeCity()==(byte)1) {
 						city=POIUtil.getStringCellValue(row, 22);
 						if(!city.matches(Regex.CITY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúËùÔÚ³ÇÊĞ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ËùÔÚ³ÇÊĞÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ‰€åœ¨åŸå¸‚æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ‰€åœ¨åŸå¸‚åˆ—");
 						}
 					}
 					
@@ -498,7 +498,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeFamilyAddress()==(byte)1) {
 						familyAddress=POIUtil.getStringCellValue(row, 23);
 						if(!familyAddress.matches(Regex.FAMILY_ADDRESS)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¼ÒÍ¥ÏêÏ¸µØÖ·¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¼ÒÍ¥ÏêÏ¸µØÖ·ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿå®¶åº­è¯¦ç»†åœ°å€æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"å®¶åº­è¯¦ç»†åœ°å€åˆ—");
 						}
 					}
 					
@@ -507,7 +507,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeFamilyTelNumber()==(byte)1) {
 						familyTelNumber=POIUtil.getStringCellValue(row, 24);
 						if(!familyTelNumber.matches(Regex.FAMILY_TEL_NUMBER)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¼ÒÍ¥µç»°¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¼ÒÍ¥µç»°ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿå®¶åº­ç”µè¯æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"å®¶åº­ç”µè¯åˆ—");
 						}
 					}
 					String postcode = null;
@@ -515,7 +515,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposePostcode()==(byte)1) {
 						postcode=POIUtil.getStringCellValue(row, 25);
 						if(!postcode.matches(Regex.POSTCODE)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÓÊÕş±àÂë¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ÓÊÕş±àÂëÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿé‚®æ”¿ç¼–ç æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"é‚®æ”¿ç¼–ç åˆ—");
 						}
 					}
 					
@@ -524,7 +524,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeSpecialty()==(byte)1) {
 						specialty=POIUtil.getStringCellValue(row, 26);
 						if(!specialty.matches(Regex.SPECIALTY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÌØ³¤¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ÌØ³¤ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿç‰¹é•¿æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"ç‰¹é•¿åˆ—");
 						}
 					}
 					String dutyInHighSchool = null;
@@ -532,7 +532,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeDutyInHighSchool()==(byte)1) {
 						dutyInHighSchool=POIUtil.getStringCellValue(row, 27);
 						if(!dutyInHighSchool.matches(Regex.DUTY_IN_HIGH_SCHOOL)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸ßÖĞÔøÈÎÖ°Îñ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸ßÖĞÔøÈÎÖ°ÎñÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿé«˜ä¸­æ›¾ä»»èŒåŠ¡æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"é«˜ä¸­æ›¾ä»»èŒåŠ¡åˆ—");
 						}
 					}
 					String awardInHighSchool = null;
@@ -540,7 +540,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeAwardInHighSchool()==(byte)1) {
 						awardInHighSchool=POIUtil.getStringCellValue(row, 28);
 						if(!awardInHighSchool.matches(Regex.AWARD_IN_HIGH_SCHOOL)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸ßÖĞÔø»ñ½±Àø¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸ßÖĞÔø»ñ½±ÀøÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿé«˜ä¸­æ›¾è·å¥–åŠ±æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"é«˜ä¸­æ›¾è·å¥–åŠ±åˆ—");
 						}
 					}
 					
@@ -549,7 +549,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeIsHadTechnologyCompetitionAward()==(byte)1) {
 						isHadTechnologyCompetitionAward=POIUtil.getStringCellValue(row, 29);
 						if(!awardInHighSchool.matches(Regex.AWARD_IN_HIGH_SCHOOL)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÊÇ·ñÓĞ¿Æ¼¼¾ºÈüÀà»ñ½±¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"ÊÇ·ñÓĞ¿Æ¼¼¾ºÈüÀà»ñ½±ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ˜¯å¦æœ‰ç§‘æŠ€ç«èµ›ç±»è·å¥–æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ˜¯å¦æœ‰ç§‘æŠ€ç«èµ›ç±»è·å¥–åˆ—");
 						}
 					}
 					
@@ -558,7 +558,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeFatherName()==(byte)1) {
 						fatherName=POIUtil.getStringCellValue(row, 30);
 						if(!fatherName.matches(Regex.NAME)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸¸Ç×ĞÕÃû¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸¸Ç×ĞÕÃûÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿçˆ¶äº²å§“åæ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"çˆ¶äº²å§“ååˆ—");
 						}
 					}
 					String fatherWorkUnit = null;
@@ -566,7 +566,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeFatherWorkUnit()==(byte)1) {
 						fatherWorkUnit=POIUtil.getStringCellValue(row, 31);
 						if(!fatherWorkUnit.matches(Regex.WORK_UNIT)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸¸Ç×¹¤×÷µ¥Î»¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸¸Ç×¹¤×÷µ¥Î»ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿçˆ¶äº²å·¥ä½œå•ä½æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"çˆ¶äº²å·¥ä½œå•ä½åˆ—");
 						}
 					}
 					String fatherWorkUnitAddress = null;
@@ -574,7 +574,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeFatherWorkUnitAddress()==(byte)1) {
 						fatherWorkUnitAddress=POIUtil.getStringCellValue(row, 32);
 						if(!fatherWorkUnitAddress.matches(Regex.WORK_UNIT_DETAIL)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸¸Ç×¹¤×÷µ¥Î»ÏêÏ¸µØÖ·¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸¸Ç×¹¤×÷µ¥Î»ÏêÏ¸µØÖ·ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿçˆ¶äº²å·¥ä½œå•ä½è¯¦ç»†åœ°å€æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"çˆ¶äº²å·¥ä½œå•ä½è¯¦ç»†åœ°å€åˆ—");
 						}
 					}
 					String fatherDuty = null;
@@ -582,7 +582,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeFatherDuty()==(byte)1) {
 						fatherDuty=POIUtil.getStringCellValue(row, 33);
 						if(!fatherDuty.matches(Regex.DUTY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸¸Ç×Ö°Îñ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸¸Ç×Ö°ÎñÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿçˆ¶äº²èŒåŠ¡æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"çˆ¶äº²èŒåŠ¡åˆ—");
 						}
 					}
 					
@@ -591,7 +591,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeFatherPostcode()==(byte)1) {
 						fatherPostcode=POIUtil.getStringCellValue(row, 34);
 						if(!fatherPostcode.matches(Regex.POSTCODE)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸¸Ç×ÓÊ±à¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸¸Ç×ÓÊ±àÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿçˆ¶äº²é‚®ç¼–æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"çˆ¶äº²é‚®ç¼–åˆ—");
 						}
 					}
 					
@@ -600,7 +600,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeFatherTelNumber()==(byte)1) {
 						fatherTelNumber=POIUtil.getStringCellValue(row, 35);
 						if(!fatherTelNumber.matches(Regex.CONTACT_WAY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§Éú¸¸Ç×µç»°¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"¸¸Ç×µç»°ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿçˆ¶äº²ç”µè¯æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"çˆ¶äº²ç”µè¯åˆ—");
 						}
 					}
 					
@@ -609,7 +609,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeMotherName()==(byte)1) {
 						motherName=POIUtil.getStringCellValue(row, 36);
 						if(!motherName.matches(Regex.NAME)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÄ¸Ç×ĞÕÃû¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ä¸Ç×ĞÕÃûÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ¯äº²å§“åæ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ¯äº²å§“ååˆ—");
 						}
 					}
 					
@@ -618,7 +618,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeMotherWorkUnit()==(byte)1) {
 						motherWorkUnit=POIUtil.getStringCellValue(row, 37);
 						if(!motherWorkUnit.matches(Regex.WORK_UNIT)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÄ¸Ç×¹¤×÷µ¥Î»¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ä¸Ç×¹¤×÷µ¥Î»ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ¯äº²å·¥ä½œå•ä½æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ¯äº²å·¥ä½œå•ä½åˆ—");
 						}
 					}
 					
@@ -627,7 +627,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeMotherWorkUnitAddress()==(byte)1) {
 						motherWorkUnitAddress=POIUtil.getStringCellValue(row, 38);
 						if(!motherWorkUnitAddress.matches(Regex.WORK_UNIT_DETAIL)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÄ¸Ç×¹¤×÷µ¥Î»ÏêÏ¸µØÖ·¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ä¸Ç×¹¤×÷µ¥Î»ÏêÏ¸µØÖ·ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ¯äº²å·¥ä½œå•ä½è¯¦ç»†åœ°å€æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ¯äº²å·¥ä½œå•ä½è¯¦ç»†åœ°å€åˆ—");
 						}
 					}
 					
@@ -636,7 +636,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeMotherDuty()==(byte)1) {
 						motherDuty=POIUtil.getStringCellValue(row, 39);
 						if(!motherDuty.matches(Regex.DUTY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÄ¸Ç×Ö°Îñ¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ä¸Ç×Ö°ÎñÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ¯äº²èŒåŠ¡æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ¯äº²èŒåŠ¡åˆ—");
 						}
 					}
 					
@@ -645,7 +645,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeMotherPostcode()==(byte)1) {
 						motherPostcode=POIUtil.getStringCellValue(row, 40);
 						if(!motherPostcode.matches(Regex.POSTCODE)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÄ¸Ç×ÓÊ±à¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ä¸Ç×ÓÊ±àÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ¯äº²é‚®ç¼–æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ¯äº²é‚®ç¼–åˆ—");
 						}
 					}
 					
@@ -654,7 +654,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeMotherTelNumber()==(byte)1) {
 						motherTelNumber=POIUtil.getStringCellValue(row, 41);
 						if(!motherTelNumber.matches(Regex.CONTACT_WAY)) {
-							throw new FormatException("µ¼ÈëµÄÑ§ÉúÄ¸Ç×µç»°¸ñÊ½´íÎó,Çë¼ì²éºóÖØĞÂµ¼Èë,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+"Ä¸Ç×µç»°ÁĞ");
+							throw new FormatException("å¯¼å…¥çš„å­¦ç”Ÿæ¯äº²ç”µè¯æ ¼å¼é”™è¯¯,è¯·æ£€æŸ¥åé‡æ–°å¯¼å…¥,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+"æ¯äº²ç”µè¯åˆ—");
 						}
 					}
 					
@@ -662,15 +662,15 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					
 					baseStudents.add(baseStudent);
 				} catch (IllegalStateException e) {
-					//Èç¹ûÍ¾ÖĞÓöµ½ÁË·ÇÎÄ±¾¸ñÊ½,ÓÉÓÚ×ª»»µÄÎÊÌâ±ØÈ»»áÅ×³öÒì³£,´ËÊ±ÌáĞÑÓÃ»§½«µ¥Ôª¸ñÉèÖÃÎªÎÄ±¾ÀàĞÍ
-					throw new IllegalStateException("ÇëÈ·±£ÔÚÂ¼ÈëĞÅÏ¢Ç°,½«ËùÓĞµ¥Ôª¸ñµÄ¸ñÊ½ÉèÖÃÎªÎÄ±¾ÀàĞÍ,´íÎó·¢ÉúÔÚ"+rowIndex+"ĞĞ,"+colIndex+"ÁĞ");
+					//å¦‚æœé€”ä¸­é‡åˆ°äº†éæ–‡æœ¬æ ¼å¼,ç”±äºè½¬æ¢çš„é—®é¢˜å¿…ç„¶ä¼šæŠ›å‡ºå¼‚å¸¸,æ­¤æ—¶æé†’ç”¨æˆ·å°†å•å…ƒæ ¼è®¾ç½®ä¸ºæ–‡æœ¬ç±»å‹
+					throw new IllegalStateException("è¯·ç¡®ä¿åœ¨å½•å…¥ä¿¡æ¯å‰,å°†æ‰€æœ‰å•å…ƒæ ¼çš„æ ¼å¼è®¾ç½®ä¸ºæ–‡æœ¬ç±»å‹,é”™è¯¯å‘ç”Ÿåœ¨"+rowIndex+"è¡Œ,"+colIndex+"åˆ—");
 				}
 			}
 			workbook.close();
 			if(baseStudents.size()>0) {
 				baseStudentDao.addBatch(baseStudents,exposeSetting);
 			}else {
-				throw new NoDataToImportException("ÇëÈ·±£µ¼ÈëµÄExeclÖĞÓĞÊı¾İ¿ÉÒÔÉÏ´«");
+				throw new NoDataToImportException("è¯·ç¡®ä¿å¯¼å…¥çš„Execlä¸­æœ‰æ•°æ®å¯ä»¥ä¸Šä¼ ");
 			}
 		
 	}
@@ -679,24 +679,24 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 
 	@Override
 	public byte[] exportBaseStudentsToExcelFile(List<Long> studentIds,String teacherId,ExposeSetting exposeSetting) throws NotChoseExportObjectException,IOException, NoSettingException, NoAuthorityException {
-		//Èç¹ûÃ»ÓĞÑ¡Ôñµ¼³ö¶ÔÏóÔòÅ×³öÒì³£
+		//å¦‚æœæ²¡æœ‰é€‰æ‹©å¯¼å‡ºå¯¹è±¡åˆ™æŠ›å‡ºå¼‚å¸¸
 		if(studentIds==null) {
-			throw new NotChoseExportObjectException("ÉĞÎ´Ñ¡ÔñÒªµ¼³öµÄ¶ÔÏó,ÇëÏÈÑ¡ÔñºóÔÙµ¼³ö");
+			throw new NotChoseExportObjectException("å°šæœªé€‰æ‹©è¦å¯¼å‡ºçš„å¯¹è±¡,è¯·å…ˆé€‰æ‹©åå†å¯¼å‡º");
 		}
-		//»ñÈ¡½ÌÊ¦µÄÄê¼¶È¨ÏŞ
+		//è·å–æ•™å¸ˆçš„å¹´çº§æƒé™
 		Teacher teacher=teacherDao.getInfo(teacherId);
 		if(teacher==null) {
-			throw new NoAuthorityException("ÄúµÄÕËºÅ²»´æÔÚ,ÇëÏò¹ÜÀíÔ±»ñÈ¡ÕËºÅ");
+			throw new NoAuthorityException("æ‚¨çš„è´¦å·ä¸å­˜åœ¨,è¯·å‘ç®¡ç†å‘˜è·å–è´¦å·");
 		}
-		//´ÓÊı¾İ¿âÖĞ»ñÈ¡µ½Òªµ¼³öµÄÑ§Éú Èç¹ûstudentIdsµÄ³¤¶ÈÎª0ÄÇÃ´Ä¬ÈÏµ¼³öËùÓĞ¸ÃÄê¼¶Ñ§ÉúµÄÊı¾İ
-		//Í¬Ê±¿¼ÂÇ½ÌÊ¦µÄÈ¨ÏŞ Èç¹ûÄê¼¶È¨ÏŞÊÇ0»òÕß1Ôòµ¼³öËùÓĞ ·ñÔòµ¼³ö¸ÃÄê¼¶Ñ§Éú
-		//¸ù¾İµ¼³öÉèÖÃ²éÑ¯Ñ§ÉúĞÅÏ¢
+		//ä»æ•°æ®åº“ä¸­è·å–åˆ°è¦å¯¼å‡ºçš„å­¦ç”Ÿ å¦‚æœstudentIdsçš„é•¿åº¦ä¸º0é‚£ä¹ˆé»˜è®¤å¯¼å‡ºæ‰€æœ‰è¯¥å¹´çº§å­¦ç”Ÿçš„æ•°æ®
+		//åŒæ—¶è€ƒè™‘æ•™å¸ˆçš„æƒé™ å¦‚æœå¹´çº§æƒé™æ˜¯0æˆ–è€…1åˆ™å¯¼å‡ºæ‰€æœ‰ å¦åˆ™å¯¼å‡ºè¯¥å¹´çº§å­¦ç”Ÿ
+		//æ ¹æ®å¯¼å‡ºè®¾ç½®æŸ¥è¯¢å­¦ç”Ÿä¿¡æ¯
 		List<BaseStudent> baseStudents=baseStudentDao.listByIds(studentIds,exposeSetting,teacher.getGrade());
-		//½«Òªµ¼³öµÄ»ù±¾Ñ§ÉúĞÅÏ¢·ÅÈëMapÖĞ
+		//å°†è¦å¯¼å‡ºçš„åŸºæœ¬å­¦ç”Ÿä¿¡æ¯æ”¾å…¥Mapä¸­
 		Map<Integer, Object[]> row=new HashMap<>();
 		for(int i=0;i<baseStudents.size();i++) {
 			BaseStudent baseStudent=baseStudents.get(i);
-			//½«Ã¿ĞĞÎª¿ÕµÄÊı¾İÖÃÎª¿Õ´®
+			//å°†æ¯è¡Œä¸ºç©ºçš„æ•°æ®ç½®ä¸ºç©ºä¸²
 			Object[] rowValues=new Object[] {
 					baseStudent.getStudentId(),
 					baseStudent.getName()==null?"":baseStudent.getName(),
@@ -742,7 +742,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					baseStudent.getMotherTelNumber()==null?"":baseStudent.getMotherTelNumber()};
 			row.put(i+1, rowValues);
 		}
-		//µ÷ÓÃ¹¤¾ßÀà,»ñÈ¡ÎÄ¼şÊı×é
+		//è°ƒç”¨å·¥å…·ç±»,è·å–æ–‡ä»¶æ•°ç»„
 		byte[] body=POIUtil.getExcelBytes(row, Path.TEMPLATE_BASE_PATH+FileName.BASE_STUDENT_EXCEL_TEMPLATE_NAME);
 		return body;
 	}
@@ -751,15 +751,15 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 	public void studentDrop(DropParam dropParam) throws NoSuchUserException, PasswordNotMatchException {
 		Teacher teacher = teacherDao.getPassword(dropParam.getTeacher().getTeacherId());
 		if (teacher==null) {
-			throw new NoSuchUserException("µ±Ç°½ÌÊ¦²»´æÔÚ");
+			throw new NoSuchUserException("å½“å‰æ•™å¸ˆä¸å­˜åœ¨");
 		}
 		if(!StringUtils.equals(teacher.getPassword(), dropParam.getTeacher().getPassword())) {
-			throw new PasswordNotMatchException("ÃÜÂë²»ÕıÈ·");
+			throw new PasswordNotMatchException("å¯†ç ä¸æ­£ç¡®");
 		}
 		
 		BaseStudent baseStudent = new BaseStudent();
 		baseStudent.setStudentId(dropParam.getStudentId());
-		baseStudent.setStudyCondition("ÍËÑ§");
+		baseStudent.setStudyCondition("é€€å­¦");
 		baseStudentDao.update(baseStudent);
 		
 	}
@@ -770,15 +770,15 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 		Teacher teacher = teacherDao.getInfo(teacherId);
 		
 		Integer currentStuNum = baseStudentDao.count(baseStudent, teacher.getGrade());
-		baseStudent.setStudyCondition("ĞİÑ§");
+		baseStudent.setStudyCondition("ä¼‘å­¦");
 		Integer suspendedStuNum = baseStudentDao.count(baseStudent, teacher.getGrade());
-		baseStudent.setStudyCondition("ÍËÑ§");
+		baseStudent.setStudyCondition("é€€å­¦");
 		Integer dropoutStuNum = baseStudentDao.count(baseStudent, teacher.getGrade());
 		
 		baseStudent.setStudyCondition(null);
-		baseStudent.setSex("ÄĞ");
+		baseStudent.setSex("ç”·");
 		Integer male = baseStudentDao.count(baseStudent, teacher.getGrade());
-		baseStudent.setSex("Å®");
+		baseStudent.setSex("å¥³");
 		Integer female = baseStudentDao.count(baseStudent, teacher.getGrade());
 		
 		BaseStudentCount baseStudentCount = new BaseStudentCount();
@@ -795,19 +795,19 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 	public void uploadPhotos(MultipartFile[] photos,String teacherId, String password, HttpServletRequest httpRequest) throws IOException, FormatException, NoSuchUserException, PasswordNotMatchException {
 		Teacher teacher = teacherDao.getPassword(teacherId);
 		if (teacher==null) {
-			throw new NoSuchUserException("µ±Ç°½ÌÊ¦²»´æÔÚ");
+			throw new NoSuchUserException("å½“å‰æ•™å¸ˆä¸å­˜åœ¨");
 		}
 		if(!StringUtils.equals(teacher.getPassword(), password)) {
-			throw new PasswordNotMatchException("ÃÜÂë²»ÕıÈ·");
+			throw new PasswordNotMatchException("å¯†ç ä¸æ­£ç¡®");
 		}
 		
 		for(MultipartFile photo:photos) {
-			//½«ÉÏ´«µÄÍ¼Æ¬±£´æµ½ÏîÄ¿Ö¸¶¨Ä¿Â¼ÖĞ
+			//å°†ä¸Šä¼ çš„å›¾ç‰‡ä¿å­˜åˆ°é¡¹ç›®æŒ‡å®šç›®å½•ä¸­
 			ServletContext servletContext=httpRequest.getServletContext();
 			String photoName = photo.getOriginalFilename();
 			String filePath=MultipartFileUtil.storeMultipartFile(photo, servletContext.getRealPath(Path.STUDENT_PHOTO_PATH_UNDER_ARCHIVE), photoName.toLowerCase());
-			//½«±£´æµÄÍ¼Æ¬URL´æÈëÊı¾İ¿â
-			//½«´æ´¢Â·¾¶×ª»¯ÎªÍâ²¿¿ÉÒÔ·ÃÎÊµÄURL
+			//å°†ä¿å­˜çš„å›¾ç‰‡URLå­˜å…¥æ•°æ®åº“
+			//å°†å­˜å‚¨è·¯å¾„è½¬åŒ–ä¸ºå¤–éƒ¨å¯ä»¥è®¿é—®çš„URL
 			int index=filePath.indexOf(servletContext.getContextPath().substring(1));
 			filePath=filePath.substring(index);
 			filePath=filePath.replaceAll("\\\\", "/");
@@ -818,10 +818,10 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 			try {
 				studentId = Long.parseLong(studentIdString);
 			} catch (Exception e) {
-				throw new FormatException("ÇëÒÔÑ§ºÅÃüÃûÍ¼Æ¬");
+				throw new FormatException("è¯·ä»¥å­¦å·å‘½åå›¾ç‰‡");
 			}
 			
-			//½«¸ÃURL´æ·Åµ½Êı¾İ¿âÖĞ
+			//å°†è¯¥URLå­˜æ”¾åˆ°æ•°æ®åº“ä¸­
 			BaseStudent baseStudent = new BaseStudent();
 			baseStudent.setStudentId(studentId);
 			baseStudent.setPhotoUrl(filePath);

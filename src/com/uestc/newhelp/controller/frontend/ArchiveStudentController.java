@@ -34,7 +34,7 @@ import com.uestc.newhelp.path.FileName;
 import com.uestc.newhelp.service.ArchiveStudentService;
 
 /**
- * ÓëÑ§Éú»ù±¾ĞÅÏ¢ÓĞ¹ØµÄ¿ØÖÆÆ÷
+ * ä¸å­¦ç”ŸåŸºæœ¬ä¿¡æ¯æœ‰å…³çš„æ§åˆ¶å™¨
  *
  */
 @RestController
@@ -44,7 +44,7 @@ public class ArchiveStudentController {
 	@Autowired
 	private ArchiveStudentService archiveStudentService;
 	
-	@Log("Ç°Ì¨²é¿´°ï·öÑ§ÉúÁĞ±í")
+	@Log("å‰å°æŸ¥çœ‹å¸®æ‰¶å­¦ç”Ÿåˆ—è¡¨")
 	@GetMapping("/archiveStudents/{teacherId}")
 	@ResponseBody
 	public Result<List<ArchiveStudent>> list(@PathVariable String teacherId){
@@ -57,7 +57,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨ËÑË÷°ï·öÑ§ÉúÁĞ±í")
+	@Log("å‰å°æœç´¢å¸®æ‰¶å­¦ç”Ÿåˆ—è¡¨")
 	@PostMapping("/archiveStudents")
 	@ResponseBody
 	public Result<List<ArchiveStudent>> search(@RequestBody ArchiveStudent archiveStudent){
@@ -70,7 +70,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨ĞÂÔö°ï·öÑ§Éú¼°°ï·öµµ°¸")
+	@Log("å‰å°æ–°å¢å¸®æ‰¶å­¦ç”ŸåŠå¸®æ‰¶æ¡£æ¡ˆ")
 	@PostMapping("/archiveStudent")
 	@ResponseBody
 	public Result<ArchiveStudent> add(@RequestBody ArchiveStudent archiveStudent){
@@ -92,7 +92,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨É¾³ı°ï·öÑ§Éú¼°°ï·öµµ°¸")
+	@Log("å‰å°åˆ é™¤å¸®æ‰¶å­¦ç”ŸåŠå¸®æ‰¶æ¡£æ¡ˆ")
 	@DeleteMapping("/archiveStudent")
 	@ResponseBody
 	public Result<ArchiveStudent> delete(@RequestBody ArchiveStudent archiveStudent){
@@ -106,7 +106,7 @@ public class ArchiveStudentController {
 		
 	}
 	
-	@Log("Ç°Ì¨¸üĞÂ°ï·öÑ§Éúµµ°¸")
+	@Log("å‰å°æ›´æ–°å¸®æ‰¶å­¦ç”Ÿæ¡£æ¡ˆ")
 	@PutMapping("/archiveStudent")
 	@ResponseBody
 	public Result<ArchiveStudent> update(@RequestBody ArchiveStudent archiveStudent){
@@ -119,7 +119,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨²é¿´°ï·öÑ§Éúµµ°¸")
+	@Log("å‰å°æŸ¥çœ‹å¸®æ‰¶å­¦ç”Ÿæ¡£æ¡ˆ")
 	@GetMapping("/archiveStudent/{studentId}")
 	@ResponseBody
 	public Result<ArchiveStudent> get(@PathVariable Long studentId){
@@ -132,7 +132,7 @@ public class ArchiveStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨µ¼³ö°ï·öÑ§Éúµµ°¸wordÎÄ¼ş")
+	@Log("å‰å°å¯¼å‡ºå¸®æ‰¶å­¦ç”Ÿæ¡£æ¡ˆwordæ–‡ä»¶")
 	@PostMapping("/export/archive/{studentId}")
 	@ResponseBody
 	public ResponseEntity<?> exportArchive(@PathVariable Long studentId/*,@RequestParam("token")String token*/){

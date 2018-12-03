@@ -48,9 +48,9 @@ public class ReocrdServiceImpl implements RecordService {
 
 	@Override
 	public void add(Record record) {
-		//Ìí¼Ó¼ÇÂ¼
+		//æ·»åŠ è®°å½•
 		recordDao.add(record);
-		//¸üĞÂ¼ÇÂ¼ËùÊôµµ°¸µÄ×îºó¼ÇÂ¼Ê±¼ä
+		//æ›´æ–°è®°å½•æ‰€å±æ¡£æ¡ˆçš„æœ€åè®°å½•æ—¶é—´
 		ArchiveStudent archiveStudent=new ArchiveStudent();
 		archiveStudent.setStudentId(record.getStudentId());
 		Date lastRecordTime=recordDao.getLastRecordTime(archiveStudent.getStudentId());
@@ -60,9 +60,9 @@ public class ReocrdServiceImpl implements RecordService {
 
 	@Override
 	public void addBatch(List<Record> records) {
-		//ÅúÁ¿Ôö¼Ó¼ÇÂ¼
+		//æ‰¹é‡å¢åŠ è®°å½•
 		recordDao.addBatch(records);
-		//Èç¹ûÓĞÒªÌí¼ÓµÄ,¸üĞÂ¼ÇÂ¼ËùÊôµµ°¸µÄ×îºó¼ÇÂ¼Ê±¼ä
+		//å¦‚æœæœ‰è¦æ·»åŠ çš„,æ›´æ–°è®°å½•æ‰€å±æ¡£æ¡ˆçš„æœ€åè®°å½•æ—¶é—´
 		if(records.size()>0) {
 			Record record=records.get(0);
 			ArchiveStudent archiveStudent=new ArchiveStudent();
@@ -75,16 +75,16 @@ public class ReocrdServiceImpl implements RecordService {
 	@Override
 	public void deleteBatch(List<Long> recordIds) {
 		Long studentId=null;
-		//Èç¹ûÓĞÒªÉ¾³ıµÄ
+		//å¦‚æœæœ‰è¦åˆ é™¤çš„
 		if(recordIds.size()>0) {
 			Long recordId=recordIds.get(0);
 			Record record=recordDao.get(recordId);
 			studentId=record.getStudentId();
 		}
-		//ÅúÁ¿É¾³ı¼ÇÂ¼
+		//æ‰¹é‡åˆ é™¤è®°å½•
 		recordDao.deleteBatch(recordIds);
 		if(studentId!=null) {
-			//¸üĞÂ¼ÇÂ¼ËùÊôµµ°¸µÄ×îºó¼ÇÂ¼Ê±¼ä
+			//æ›´æ–°è®°å½•æ‰€å±æ¡£æ¡ˆçš„æœ€åè®°å½•æ—¶é—´
 			ArchiveStudent archiveStudent=new ArchiveStudent();
 			archiveStudent.setStudentId(studentId);
 			Date lastRecordTime=recordDao.getLastRecordTime(archiveStudent.getStudentId());
@@ -101,7 +101,7 @@ public class ReocrdServiceImpl implements RecordService {
 	@Override
 	public void update(Record record) {
 		recordDao.update(record);
-		//¸üĞÂ¼ÇÂ¼ËùÊôµµ°¸µÄ×îºó¼ÇÂ¼Ê±¼ä
+		//æ›´æ–°è®°å½•æ‰€å±æ¡£æ¡ˆçš„æœ€åè®°å½•æ—¶é—´
 		
 		record=recordDao.get(record.getRecordId());
 		ArchiveStudent archiveStudent=new ArchiveStudent();
@@ -120,38 +120,38 @@ public class ReocrdServiceImpl implements RecordService {
 	@Override
 	public void importRecordFromExcelFile(Record record, MultipartFile multipartFile) throws FileTypeNotMatchException, IOException,NoDataToImportException,
 	NotPointOutRecordNameException,NotPointOutStudentIdException{
-		//»ñÈ¡ÎÄ¼şµÄÀàĞÍ
+		//è·å–æ–‡ä»¶çš„ç±»å‹
 		String fileType=MultipartFileUtil.getType(multipartFile);
-		//Èç¹û²»ÊÇÄ¿±êÀàĞÍÔòÅ×³öÒì³£
+		//å¦‚æœä¸æ˜¯ç›®æ ‡ç±»å‹åˆ™æŠ›å‡ºå¼‚å¸¸
 		if(!".xlsx".equals(fileType)) {
-			throw new FileTypeNotMatchException("Çë±£Ö¤ÉÏ´«µÄÎÄ¼ş¸ñÊ½Îª.xlsx");
+			throw new FileTypeNotMatchException("è¯·ä¿è¯ä¸Šä¼ çš„æ–‡ä»¶æ ¼å¼ä¸º.xlsx");
 		}
 		
 		List<Record> records=new ArrayList<>();
-		//Ê±¼ä¸ñÊ½Æ÷ ÓÃÀ´¸ñÊ½Ê±¼ä
+		//æ—¶é—´æ ¼å¼å™¨ ç”¨æ¥æ ¼å¼æ—¶é—´
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		//´´½¨¹¤×÷²¾
+		//åˆ›å»ºå·¥ä½œç°¿
 		XSSFWorkbook workbook=new XSSFWorkbook(multipartFile.getInputStream());
-		//Ö»»ñÈ¡µÚÒ»¸ösheet
+		//åªè·å–ç¬¬ä¸€ä¸ªsheet
 		Sheet sheet=workbook.getSheetAt(0);
-		//»ñÈ¡´Ó¿Í»§¶Ë´«À´µÄ¼ÇÂ¼±íÃû
+		//è·å–ä»å®¢æˆ·ç«¯ä¼ æ¥çš„è®°å½•è¡¨å
 		String recordName=record.getRecordName();
-		//»ñÈ¡´Ó¿Í»§¶Ë´«À´µÄÑ§ºÅ
+		//è·å–ä»å®¢æˆ·ç«¯ä¼ æ¥çš„å­¦å·
 		Long studentId=record.getStudentId();
-		//Èç¹ûÃ»ÓĞ»ñÈ¡µ½¼ÇÂ¼±íÃû»òÕßÑ§ºÅÔòÅ×³öÒì³£
+		//å¦‚æœæ²¡æœ‰è·å–åˆ°è®°å½•è¡¨åæˆ–è€…å­¦å·åˆ™æŠ›å‡ºå¼‚å¸¸
 		if(recordName==null) {
 			workbook.close();
-			throw new NotPointOutRecordNameException("ÇëÖ¸Ã÷Òªµ¼ÈëÄÄÖÖÀàĞÍµÄ¼ÇÂ¼");
+			throw new NotPointOutRecordNameException("è¯·æŒ‡æ˜è¦å¯¼å…¥å“ªç§ç±»å‹çš„è®°å½•");
 		}
 		if(studentId==null) {
 			workbook.close();
-			throw new NotPointOutStudentIdException("ÇëÖ¸Ã÷ÎªÄÄ¸öÑ§Éúµ¼Èë¼ÇÂ¼");
+			throw new NotPointOutStudentIdException("è¯·æŒ‡æ˜ä¸ºå“ªä¸ªå­¦ç”Ÿå¯¼å…¥è®°å½•");
 		}
-		//¸ù¾İ±íÃû³ÆÀ´¶Ô²»Í¬µÄ±í½øĞĞÉ¨Ãè,²¢Éú³ÉÏàÓ¦µÄbean,¼ÓÈëµ½¼¯ºÏÖĞ
+		//æ ¹æ®è¡¨åç§°æ¥å¯¹ä¸åŒçš„è¡¨è¿›è¡Œæ‰«æ,å¹¶ç”Ÿæˆç›¸åº”çš„bean,åŠ å…¥åˆ°é›†åˆä¸­
 		try {
-			if(recordName.equals("ÖÜÁªÏµ¼òÒ×¼ÇÂ¼±í")) {
+			if(recordName.equals("å‘¨è”ç³»ç®€æ˜“è®°å½•è¡¨")) {
 				for (Row row : sheet) {
-					//Ìø¹ı±íÍ·
+					//è·³è¿‡è¡¨å¤´
 					if(row.getRowNum()==0) continue;
 					Date recordTime;
 					try {
@@ -166,9 +166,9 @@ public class ReocrdServiceImpl implements RecordService {
 					Record r=new Record(studentId, recordName, recordTime, location, way, content, comment);
 					records.add(r);
 				}
-			}else if(recordName.equals("¼Ò³¤ÁªÏµ¼ÇÂ¼±í")) {
+			}else if(recordName.equals("å®¶é•¿è”ç³»è®°å½•è¡¨")) {
 				for (Row row : sheet) {
-					//Ìø¹ı±íÍ·
+					//è·³è¿‡è¡¨å¤´
 					if(row.getRowNum()==0) continue;
 					Date recordTime;
 					try {
@@ -184,9 +184,9 @@ public class ReocrdServiceImpl implements RecordService {
 					Record r=new Record(studentId, recordName, recordTime, location, witness, recorder, way, content);
 					records.add(r);
 				}	
-			}else if(recordName.equals("ÃæÌ¸¼ÇÂ¼±í")){
+			}else if(recordName.equals("é¢è°ˆè®°å½•è¡¨")){
 				for (Row row : sheet) {
-					//Ìø¹ı±íÍ·
+					//è·³è¿‡è¡¨å¤´
 					if(row.getRowNum()==0) continue;
 					Date recordTime;
 					try {
@@ -202,9 +202,9 @@ public class ReocrdServiceImpl implements RecordService {
 					r.setRecorder(recorder);
 					records.add(r);
 				}
-			}else if(recordName.equals("ÑĞÌÖ¼°×Ü½á¼ÇÂ¼")){
+			}else if(recordName.equals("ç ”è®¨åŠæ€»ç»“è®°å½•")){
 				for (Row row : sheet) {
-					//Ìø¹ı±íÍ·
+					//è·³è¿‡è¡¨å¤´
 					if(row.getRowNum()==0) continue;
 					Date recordTime;
 					try {
@@ -222,17 +222,17 @@ public class ReocrdServiceImpl implements RecordService {
 				}
 			}
 		} catch (IllegalStateException e) {
-			//Èç¹ûÍ¾ÖĞÓöµ½ÁË·ÇÎÄ±¾¸ñÊ½,ÓÉÓÚ×ª»»µÄÎÊÌâ±ØÈ»»áÅ×³öÒì³£,´ËÊ±ÌáĞÑÓÃ»§½«µ¥Ôª¸ñÉèÖÃÎªÎÄ±¾ÀàĞÍ
-			throw new IllegalStateException("ÇëÈ·±£ÔÚÂ¼ÈëĞÅÏ¢Ç°,½«ËùÓĞµ¥Ôª¸ñµÄ¸ñÊ½ÉèÖÃÎªÎÄ±¾ÀàĞÍ");
+			//å¦‚æœé€”ä¸­é‡åˆ°äº†éæ–‡æœ¬æ ¼å¼,ç”±äºè½¬æ¢çš„é—®é¢˜å¿…ç„¶ä¼šæŠ›å‡ºå¼‚å¸¸,æ­¤æ—¶æé†’ç”¨æˆ·å°†å•å…ƒæ ¼è®¾ç½®ä¸ºæ–‡æœ¬ç±»å‹
+			throw new IllegalStateException("è¯·ç¡®ä¿åœ¨å½•å…¥ä¿¡æ¯å‰,å°†æ‰€æœ‰å•å…ƒæ ¼çš„æ ¼å¼è®¾ç½®ä¸ºæ–‡æœ¬ç±»å‹");
 		}finally {
 			workbook.close();
 		}
 		workbook.close();
-		//Èç¹û×îºóÓĞÊı¾İÎŞÌí¼Ó,ÔòÅ×³öÒì³£
+		//å¦‚æœæœ€åæœ‰æ•°æ®æ— æ·»åŠ ,åˆ™æŠ›å‡ºå¼‚å¸¸
 		if(records.size()>0) {
 			recordDao.addBatch(records);
 		}else {
-			throw new NoDataToImportException("ÇëÈ·±£µ¼ÈëµÄExeclÖĞÓĞÊı¾İ¿ÉÒÔÉÏ´«");
+			throw new NoDataToImportException("è¯·ç¡®ä¿å¯¼å…¥çš„Execlä¸­æœ‰æ•°æ®å¯ä»¥ä¸Šä¼ ");
 		}
 		
 	}
@@ -241,7 +241,7 @@ public class ReocrdServiceImpl implements RecordService {
 	public byte[] exportReocrdToExcelFile(String recordName, List<Long> recordIds)
 			throws NotChoseExportObjectException, IOException,RecordTypeNotMatchException {
 		if(recordIds==null||recordIds.size()==0) {
-			throw new NotChoseExportObjectException("ÉĞÎ´Ñ¡ÔñÒªµ¼³öµÄ¶ÔÏó,ÇëÏÈÑ¡ÔñºóÔÙµ¼³ö");
+			throw new NotChoseExportObjectException("å°šæœªé€‰æ‹©è¦å¯¼å‡ºçš„å¯¹è±¡,è¯·å…ˆé€‰æ‹©åå†å¯¼å‡º");
 		}
 		List<Record> records=recordDao.listByIds(recordIds);
 		Map<Integer, Object[]> row=new HashMap<>();
@@ -280,7 +280,7 @@ public class ReocrdServiceImpl implements RecordService {
 			body=POIUtil.getExcelBytes(row, Path.TEMPLATE_BASE_PATH+FileName.DISCUSS_SUMMARY_RECORD_EXCEL_TEMPLATE_NAME);
 		}
 		if(body==null) {
-			throw new RecordTypeNotMatchException("Î´Æ¥Åäµ½Òªµ¼³öµÄ¼ÇÂ¼ÀàĞÍ");
+			throw new RecordTypeNotMatchException("æœªåŒ¹é…åˆ°è¦å¯¼å‡ºçš„è®°å½•ç±»å‹");
 		}
 		return body;
 	}

@@ -20,32 +20,32 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTBody;
 
 
 public class POIUtil {
-	//µ¥Ôª¸ñÈ«²¿ÓÃÎÄ±¾¸ñÊ½´¦Àí
+	//å•å…ƒæ ¼å…¨éƒ¨ç”¨æ–‡æœ¬æ ¼å¼å¤„ç†
 	public static String getStringCellValue(Row row,int index) throws IllegalStateException{
-		//»ñÈ¡µ½Ä³ĞĞÖ¸¶¨Î»ÖÃµÄµ¥Ôª¸ñ
+		//è·å–åˆ°æŸè¡ŒæŒ‡å®šä½ç½®çš„å•å…ƒæ ¼
 		Cell cell=row.getCell(index);
-		//Èç¹û¸Ãµ¥Ôª¸ñÎª¿Õ ÔòÄ¬ÈÏ·µ»ØÎŞ
+		//å¦‚æœè¯¥å•å…ƒæ ¼ä¸ºç©º åˆ™é»˜è®¤è¿”å›æ— 
 		if(cell==null) {
-			return "ÎŞ";
+			return "æ— ";
 		}
-		//½«µ¥Ôª¸ñÉÏµÄÊı¾İÒÔ×Ö·û´®µÄĞÎÊ½¶ÁÈë
+		//å°†å•å…ƒæ ¼ä¸Šçš„æ•°æ®ä»¥å­—ç¬¦ä¸²çš„å½¢å¼è¯»å…¥
 		return row.getCell(index).getStringCellValue().trim();
 	}
 	
-	//mapÀïÃ¿¸ö¼üÖµ¶Ô·ÅµÄÊÇĞĞºÅºÍÒ»ĞĞµÄÊı¾İ,templatePathÊÇĞ´ÈëµÄÄ£°å
+	//mapé‡Œæ¯ä¸ªé”®å€¼å¯¹æ”¾çš„æ˜¯è¡Œå·å’Œä¸€è¡Œçš„æ•°æ®,templatePathæ˜¯å†™å…¥çš„æ¨¡æ¿
 	public static byte[] getExcelBytes(Map<Integer, Object[]> rowMap,String templatePath) throws IOException {
 		File file=new File(templatePath);
-		//»ñÈ¡¹¤×÷²¾
+		//è·å–å·¥ä½œç°¿
 		XSSFWorkbook workbook=new XSSFWorkbook(new FileInputStream(file));
-		//Ö»ÏòµÚÒ»¸ösheetĞ´Èë
+		//åªå‘ç¬¬ä¸€ä¸ªsheetå†™å…¥
 		Sheet sheet=workbook.getSheetAt(0);
-		//ÓÃÓÚ¸ñÊ½»¯ÈÕÆÚ
+		//ç”¨äºæ ¼å¼åŒ–æ—¥æœŸ
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		//ÂÔ¹ı±íÍ·,´ÓµÚ¶şĞĞ¿ªÊ¼
+		//ç•¥è¿‡è¡¨å¤´,ä»ç¬¬äºŒè¡Œå¼€å§‹
 		for (int i = 1; i <=rowMap.size(); i++) {
 			Row row=sheet.createRow(i);
 			Object[] rowValues=rowMap.get(i);
-			//½«¸ÃĞĞÊı¾İĞ´Èë
+			//å°†è¯¥è¡Œæ•°æ®å†™å…¥
 			for (int j = 0; j < rowValues.length; j++) {
 				Cell cell=row.createCell(j);
 				cell.setCellType(CellType.STRING);
@@ -58,29 +58,29 @@ public class POIUtil {
 				
 			}
 		}
-		//»ñµÃ×Ö½ÚÊı×éÊä³öÁ÷,·½±ã»ñµÃ¶ş½øÖÆÎÄ¼şÊı×é
+		//è·å¾—å­—èŠ‚æ•°ç»„è¾“å‡ºæµ,æ–¹ä¾¿è·å¾—äºŒè¿›åˆ¶æ–‡ä»¶æ•°ç»„
 		ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-		//½«excelÎÄ¼şÒÔ¶ş½øÖÆµÄĞÎÊ½Ğ´ÈëÊä³öÁ÷
+		//å°†excelæ–‡ä»¶ä»¥äºŒè¿›åˆ¶çš„å½¢å¼å†™å…¥è¾“å‡ºæµ
 		workbook.write(byteArrayOutputStream);
 		workbook.close();
-		//½«×Ö½ÚÊı×é·µ»Ø
+		//å°†å­—èŠ‚æ•°ç»„è¿”å›
 		return byteArrayOutputStream.toByteArray();
 	}
 	
-	//½«Á½¸ödocxÎÄ¼şºÏ²¢
+	//å°†ä¸¤ä¸ªdocxæ–‡ä»¶åˆå¹¶
 	public static void mergeDocx(XWPFDocument srcDocument,XWPFDocument appendDocument) throws Exception{
-		//»ñÈ¡Ô´ºÍ×·¼ÓdocxµÄCTBody
+		//è·å–æºå’Œè¿½åŠ docxçš„CTBody
 		CTBody srcBody=srcDocument.getDocument().getBody();
 		CTBody appendBody=appendDocument.getDocument().getBody();
-		//»ñÈ¡Á½¸öCTBodyµÄxml×Ö·û´®
+		//è·å–ä¸¤ä¸ªCTBodyçš„xmlå­—ç¬¦ä¸²
 		String srcString=srcBody.xmlText();
 		String appendString=appendBody.xmlText();
-		//»ñÈ¡Ô´xml×Ö·û´®µÄÍ·±êÇ© Ö÷Ìå ºÍÎ²±êÇ©
+		//è·å–æºxmlå­—ç¬¦ä¸²çš„å¤´æ ‡ç­¾ ä¸»ä½“ å’Œå°¾æ ‡ç­¾
 		String prefix=srcString.substring(0,srcString.indexOf(">")+1);
 		String mainPart=srcString.substring(srcString.indexOf(">")+1,srcString.lastIndexOf("<"));
 		String suffix=srcString.substring(srcString.lastIndexOf("<"));
 		String append=appendString.substring(appendString.indexOf(">")+1,appendString.lastIndexOf("<"));
-		//½«Ô´docxÀïµÄxmlÍ·ºÍÖ÷ÌåºóÆ´½Ó×·¼ÓdocxµÄÖ÷ÌåÔÙÆ´½ÓÔ´docxµÄÎ²±êÇ©
+		//å°†æºdocxé‡Œçš„xmlå¤´å’Œä¸»ä½“åæ‹¼æ¥è¿½åŠ docxçš„ä¸»ä½“å†æ‹¼æ¥æºdocxçš„å°¾æ ‡ç­¾
 		CTBody newBody=CTBody.Factory.parse(prefix+mainPart+append+suffix);
 		srcBody.set(newBody);
 	}

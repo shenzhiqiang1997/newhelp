@@ -19,7 +19,7 @@ public class TestHelpTypeDao {
 	@Test
 	public void testAdd() {
 		HelpType helpType=new HelpType();
-		helpType.setHelpTypeName("¾­¼ÃÀ§ÄÑ");
+		helpType.setHelpTypeName("ç»æµå›°éš¾");
 		helpTypeDao.add(helpType);
 	}
 	@Test

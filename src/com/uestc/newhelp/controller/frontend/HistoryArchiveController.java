@@ -37,7 +37,7 @@ public class HistoryArchiveController {
 	@Autowired
 	private HistoryArchiveService historyArchiveService;
 	
-	@Log("前台查看历史帮扶学生列表")
+	@Log("鍓嶅彴鏌ョ湅鍘嗗彶甯壎瀛︾敓鍒楄〃")
 	@GetMapping("/historyArchives/{teacherId}")
 	@ResponseBody
 	public Result<List<HistoryArchive>> list(@PathVariable String teacherId){
@@ -50,7 +50,7 @@ public class HistoryArchiveController {
 		}
 	}
 	
-	@Log("前台搜索历史帮扶学生列表")
+	@Log("鍓嶅彴鎼滅储鍘嗗彶甯壎瀛︾敓鍒楄〃")
 	@PostMapping("/historyArchives")
 	@ResponseBody
 	public Result<List<HistoryArchive>> search(@RequestBody HistoryArchive historyArchive){
@@ -63,7 +63,7 @@ public class HistoryArchiveController {
 		}
 	}
 	
-	@Log("前台查看历史帮扶学生档案")
+	@Log("鍓嶅彴鏌ョ湅鍘嗗彶甯壎瀛︾敓妗ｆ")
 	@GetMapping("/historyArchive/{historyArchiveId}")
 	@ResponseBody
 	public Result<HistoryArchive> get(@PathVariable Long historyArchiveId){
@@ -76,7 +76,7 @@ public class HistoryArchiveController {
 		}
 	}
 	
-	@Log("前台删除历史帮扶学生档案")
+	@Log("鍓嶅彴鍒犻櫎鍘嗗彶甯壎瀛︾敓妗ｆ")
 	@DeleteMapping("/historyArchives")
 	@ResponseBody
 	public Result<HistoryArchive> deleteBatch(@RequestBody HistoryArchiveIdsParam historyArchiveIdsParam){
@@ -89,7 +89,7 @@ public class HistoryArchiveController {
 		}
 	}
 	
-	@Log("前台导出历史帮扶学生档案word文件")
+	@Log("鍓嶅彴瀵煎嚭鍘嗗彶甯壎瀛︾敓妗ｆword鏂囦欢")
 	@PostMapping("/export/historyArchive/{historyArchiveId}")
 	@ResponseBody
 	public ResponseEntity<?> exportArchive(@PathVariable Long historyArchiveId/*,@RequestParam("token")String token*/){

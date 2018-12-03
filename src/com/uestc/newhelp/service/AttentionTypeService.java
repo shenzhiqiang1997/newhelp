@@ -4,14 +4,14 @@ package com.uestc.newhelp.service;
 import java.util.List;
 
 import com.uestc.newhelp.entity.AttentionType;
-//与关注类型有关的业务逻辑
+//涓庡叧娉ㄧ被鍨嬫湁鍏崇殑涓氬姟閫昏緫
 public interface AttentionTypeService {
-	//查询关注类型列表
+	//鏌ヨ鍏虫敞绫诲瀷鍒楄〃
 	public List<AttentionType> list();
-	//增加关注类型
+	//澧炲姞鍏虫敞绫诲瀷
 	public void add(AttentionType attentionType);
-	//删除关注类型
+	//鍒犻櫎鍏虫敞绫诲瀷
 	public void delete(Long attentionTypeId);
-	//更新关注类型
+	//鏇存柊鍏虫敞绫诲瀷
 	public void update(AttentionType attentionType);
 }

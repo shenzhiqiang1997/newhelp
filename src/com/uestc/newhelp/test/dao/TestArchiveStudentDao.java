@@ -26,10 +26,10 @@ public class TestArchiveStudentDao {
 	
 	@Test
 	public void testUpdate() {
-		ArchiveStudent archiveStudent=new ArchiveStudent(2016220305023L, "20162203", "ÄĞ", "ÉêÖ¾Ç¿as", "Èí¼ş¼¼Êõas", (short)2016, 2016220305, "ºº×åÊÇ", "ÎŞ", "239", "ËÄ´¨ÊÇ", "ËÄ´¨×ÊÖĞÊÇ", "18581517585ÊÇ", "68874298ÊÇ", "15058859819ÊÇ", "15058859819ÊÇ", "15058859819", "15058859819", "15058859819", "15058859819", "15058859819", "15058859819", "´÷ÈğæÃÊÇ", new Date(), null, null, null, "´÷ÈğÊÇæÃ", "¸¨µ¼Ô±", "ĞÄÀíÎ¯Ô±ÊÇ", "ÖØµã¹Ø×¢", new Date(), false); 
+		ArchiveStudent archiveStudent=new ArchiveStudent(2016220305023L, "20162203", "ç”·", "ç”³å¿—å¼ºas", "è½¯ä»¶æŠ€æœ¯as", (short)2016, 2016220305, "æ±‰æ—æ˜¯", "æ— ", "239", "å››å·æ˜¯", "å››å·èµ„ä¸­æ˜¯", "18581517585æ˜¯", "68874298æ˜¯", "15058859819æ˜¯", "15058859819æ˜¯", "15058859819", "15058859819", "15058859819", "15058859819", "15058859819", "15058859819", "æˆ´ç‘å©·æ˜¯", new Date(), null, null, null, "æˆ´ç‘æ˜¯å©·", "è¾…å¯¼å‘˜", "å¿ƒç†å§”å‘˜æ˜¯", "é‡ç‚¹å…³æ³¨", new Date(), false); 
 		archiveStudent.setStudentId(2016220305023L);
 		archiveStudent.setTeacherId("20162201");
-		archiveStudent.setBulidingRecorder("´÷ÈğæÃ");
+		archiveStudent.setBulidingRecorder("æˆ´ç‘å©·");
 		archiveStudentDao.update(archiveStudent);
 	}
 	

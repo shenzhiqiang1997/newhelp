@@ -1,8 +1,8 @@
 package com.uestc.newhelp.service;
 
 import com.uestc.newhelp.entity.RecorderChange;
-//¼ÇÂ¼ÈË±ä¸üÓĞ¹ØµÄÒµÎñÂß¼­
+//è®°å½•äººå˜æ›´æœ‰å…³çš„ä¸šåŠ¡é€»è¾‘
 public interface RecorderChangeService {
-	//ĞÂÔö¼ÇÂ¼ÈË±ä¸ü¼ÇÂ¼
+	//æ–°å¢è®°å½•äººå˜æ›´è®°å½•
 	public void add(RecorderChange recorderChange,String newTeacherId);
 }

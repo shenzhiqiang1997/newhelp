@@ -25,7 +25,7 @@ public class TeacherController {
 	@Autowired
 	private TeacherService teacherService;
 
-	@Log("后台查看教师账号列表")
+	@Log("鍚庡彴鏌ョ湅鏁欏笀璐﹀彿鍒楄〃")
 	@RequestMapping(path = "/teachers", method = RequestMethod.GET)
 	public String list(Model model) {
 		try {
@@ -39,7 +39,7 @@ public class TeacherController {
 
 	}
 	
-	@Log("后台删除教师账号")
+	@Log("鍚庡彴鍒犻櫎鏁欏笀璐﹀彿")
 	@RequestMapping(path = "/teacher/{teacherId}", method = RequestMethod.POST)
 	public String delete(@PathVariable String teacherId, Model model) {
 		try {
@@ -54,7 +54,7 @@ public class TeacherController {
 		}
 	}
 	
-	@Log("后台新增教师账号")
+	@Log("鍚庡彴鏂板鏁欏笀璐﹀彿")
 	@RequestMapping(path = "/teacher", method = RequestMethod.POST)
 	public String add(Teacher teacher, Model model) {
 		try {
@@ -66,7 +66,7 @@ public class TeacherController {
 		}
 	}
 	
-	@Log("后台更新教师账号")
+	@Log("鍚庡彴鏇存柊鏁欏笀璐﹀彿")
 	@RequestMapping(path = "/teacher", method = RequestMethod.PUT)
 	public String update(Teacher teacher, Model model) {
 		try {

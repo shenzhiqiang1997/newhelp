@@ -30,13 +30,13 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Log("µÇÂ¼Ç°Ì¨")
+	@Log("ç™»å½•å‰å°")
 	@PostMapping("/login")
 	@ResponseBody
 	public Result<Teacher> login(@RequestBody Teacher teacher,HttpServletRequest request) {
 		try {
 			Teacher t=userService.login(teacher);
-			//½«teacherId·Åµ½requestÖĞ ±ãÓÚ¼ÇÂ¼ÈÕÖ¾
+			//å°†teacherIdæ”¾åˆ°requestä¸­ ä¾¿äºè®°å½•æ—¥å¿—
 			request.setAttribute("teacherId", teacher.getTeacherId());
 			return new Result<>(true, t, Message.LOGIN_SUCCESS);
 		} catch (NoSuchUserException e) {
@@ -48,18 +48,18 @@ public class UserController {
 		}
 	}
 	
-	@Log("µÇ³öÇ°Ì¨")
+	@Log("ç™»å‡ºå‰å°")
 	@DeleteMapping("/logout/{teacherId}")
 	public Result<?> logout(@PathVariable String teacherId){
 		try {
 			userService.logout(teacherId);
-			return new Result<>(true,"ÍË³ö³É¹¦");
+			return new Result<>(true,"é€€å‡ºæˆåŠŸ");
 		} catch (Exception e) {
-			return new Result<>(false, "ÍË³öÊ§°Ü");
+			return new Result<>(false, "é€€å‡ºå¤±è´¥");
 		}
 	}
 	
-	@Log("Ç°Ì¨ĞŞ¸ÄÃÜÂë")
+	@Log("å‰å°ä¿®æ”¹å¯†ç ")
 	@PutMapping("/teacher")
 	public Result<?> updatePassword(@RequestBody TeacherUpdatePasswordParam teacherUpdatePasswordParam){
 		try {
@@ -77,7 +77,7 @@ public class UserController {
 		}
 	}
 	
-	@Log("Ç°Ì¨²é¿´½ÌÊ¦ÁĞ±í")
+	@Log("å‰å°æŸ¥çœ‹æ•™å¸ˆåˆ—è¡¨")
 	@GetMapping("/teachers/{teacherId}")
 	@ResponseBody
 	public Result<List<Teacher>> list(@PathVariable String teacherId){

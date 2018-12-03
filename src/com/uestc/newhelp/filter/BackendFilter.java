@@ -20,26 +20,26 @@ public class BackendFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain)
 			throws IOException, ServletException {
-		//½«requestºÍresponse×ª»¯ÎªHttpRequestºÍHttpResponse
+		//å°†requestå’Œresponseè½¬åŒ–ä¸ºHttpRequestå’ŒHttpResponse
 		HttpServletRequest httpServletRequest=(HttpServletRequest)req;
 		HttpServletResponse httpServletResponse=(HttpServletResponse)resp;
-		//Èç¹ûÊÇÇëÇóµÇÂ¼Ôò·ÅĞĞ
+		//å¦‚æœæ˜¯è¯·æ±‚ç™»å½•åˆ™æ”¾è¡Œ
 		if(loginRequestMapping.equals(httpServletRequest.getRequestURI())) {
 			filterChain.doFilter(req, resp);
 			return;
 		}
-		//´ÓrequestÖĞ»ñÈ¡session
+		//ä»requestä¸­è·å–session
 		HttpSession session=httpServletRequest.getSession();
-		//´ÓsessionÖĞ»ñÈ¡µ½´æ·ÅµÄÓÃ»§ĞÅÏ¢
+		//ä»sessionä¸­è·å–åˆ°å­˜æ”¾çš„ç”¨æˆ·ä¿¡æ¯
 		Teacher teacher=(Teacher) session.getAttribute("user");
 		Boolean backendHandleAuthorization=(Boolean) session.getAttribute("backendHandleAuthorization");
-		//ÅĞ¶ÏÊÇ·ñÓĞÈ¨ÏŞ
+		//åˆ¤æ–­æ˜¯å¦æœ‰æƒé™
 		if(teacher!=null&&backendHandleAuthorization!=null&&backendHandleAuthorization) {
-			//Èç¹ûÓĞÈ¨ÏŞÔò·ÅĞĞ
+			//å¦‚æœæœ‰æƒé™åˆ™æ”¾è¡Œ
 			filterChain.doFilter(req, resp);
 			return;
 		}else {
-			//·ñÔòÍË»Øµ½µÇÂ¼½çÃæ
+			//å¦åˆ™é€€å›åˆ°ç™»å½•ç•Œé¢
 			httpServletResponse.sendRedirect(loginUrl);
 			return;
 		}

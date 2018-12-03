@@ -61,7 +61,7 @@ public class BaseStudentController {
 	@Autowired
 	private BaseStudentService baseStudentService;
 	
-	@Log("Ç°Ì¨²é¿´Ñ§ÉúÁĞ±í")
+	@Log("å‰å°æŸ¥çœ‹å­¦ç”Ÿåˆ—è¡¨")
 	@GetMapping("/baseStudents")
 	@ResponseBody
 	public Result<List<BaseStudent>> list(){
@@ -74,7 +74,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨ËÑË÷Ñ§ÉúÁĞ±í")
+	@Log("å‰å°æœç´¢å­¦ç”Ÿåˆ—è¡¨")
 	@PostMapping("/baseStudents/{teacherId}/{pageSize}/{currentPage}/{classSort}")
 	@ResponseBody
 	public Result<BaseStudentsWithPage> search(
@@ -92,7 +92,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨ËÑË÷ÀúÊ·Ñ§ÉúÁĞ±í")
+	@Log("å‰å°æœç´¢å†å²å­¦ç”Ÿåˆ—è¡¨")
 	@PostMapping("/baseStudents/history/{teacherId}/{pageSize}/{currentPage}/{classSort}")
 	@ResponseBody
 	public Result<BaseStudentsWithPage> searchHistory(
@@ -110,7 +110,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨²é¿´Ñ§ÉúÈ«²¿»ù±¾ĞÅÏ¢")
+	@Log("å‰å°æŸ¥çœ‹å­¦ç”Ÿå…¨éƒ¨åŸºæœ¬ä¿¡æ¯")
 	@GetMapping("/baseStudent/all/{studentId}")
 	@ResponseBody
 	public Result<BaseStudent> getAllInfo(@PathVariable Long studentId){
@@ -123,7 +123,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨²é¿´Ñ§Éú¸öÈË»ù±¾ĞÅÏ¢")
+	@Log("å‰å°æŸ¥çœ‹å­¦ç”Ÿä¸ªäººåŸºæœ¬ä¿¡æ¯")
 	@GetMapping("/baseStudent/personal/{studentId}")
 	@ResponseBody
 	public Result<BaseStudent> getPersonalInfo(@PathVariable Long studentId){
@@ -136,7 +136,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨²é¿´Ñ§Éú¼ÒÍ¥»ù±¾ĞÅÏ¢")
+	@Log("å‰å°æŸ¥çœ‹å­¦ç”Ÿå®¶åº­åŸºæœ¬ä¿¡æ¯")
 	@GetMapping("/baseStudent/family/{studentId}")
 	@ResponseBody
 	public Result<BaseStudent> getFamilyInfo(@PathVariable Long studentId){
@@ -149,7 +149,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨²é¿´Ñ§ÉúÇé¿ö»ù±¾ĞÅÏ¢")
+	@Log("å‰å°æŸ¥çœ‹å­¦ç”Ÿæƒ…å†µåŸºæœ¬ä¿¡æ¯")
 	@GetMapping("/baseStudent/archive/{studentId}")
 	@ResponseBody
 	public Result<BaseStudent> getArchiveInfo(@PathVariable Long studentId){
@@ -165,7 +165,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨²é¿´Ö¸¶¨ĞÕÃûµÄÑ§ÉúÑ§ºÅÁĞ±í")
+	@Log("å‰å°æŸ¥çœ‹æŒ‡å®šå§“åçš„å­¦ç”Ÿå­¦å·åˆ—è¡¨")
 	@GetMapping("/baseStudent/studentIds/{name}")
 	@ResponseBody
 	public Result<List<Long>> listIdByName(@PathVariable String name){
@@ -181,7 +181,7 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨°´ÕÕid¡¢ĞÕÃûÄ£ºıËÑË÷Ñ§ÉúÁĞ±í")
+	@Log("å‰å°æŒ‰ç…§idã€å§“åæ¨¡ç³Šæœç´¢å­¦ç”Ÿåˆ—è¡¨")
 	@PostMapping("/baseStudents/byIdName")
 	@ResponseBody
 	public Result<List<BaseStudent>> searchByIdAndName(@RequestBody IdNameParam idNameParam){
@@ -195,7 +195,7 @@ public class BaseStudentController {
 	}
 	
 	
-	@Log("Ç°Ì¨ÉÏ´«Ñ§ÉúÕÕÆ¬")
+	@Log("å‰å°ä¸Šä¼ å­¦ç”Ÿç…§ç‰‡")
 	@PostMapping(value="/baseStudent")
 	@ResponseBody
 	public Result<BaseStudent> update(String json,
@@ -218,13 +218,13 @@ public class BaseStudentController {
 		
 	}
 	
-	@Log("Ç°Ì¨ÍËÑ§Ñ§Éú")
+	@Log("å‰å°é€€å­¦å­¦ç”Ÿ")
 	@ResponseBody
 	@PostMapping("/baseStudent/dropout")
 	public Result<BaseStudent> studentDrop(@RequestBody DropParam dropParam){
 		try {
 			baseStudentService.studentDrop(dropParam);
-			return new Result<>(true,"ÍËÑ§³É¹¦");
+			return new Result<>(true,"é€€å­¦æˆåŠŸ");
 		} catch (NoSuchUserException e) {
 			e.printStackTrace();
 			return new Result<>(false,e.getMessage());
@@ -233,11 +233,11 @@ public class BaseStudentController {
 			return new Result<>(false,e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Result<>(false,"ÍËÑ§Ê§°Ü");
+			return new Result<>(false,"é€€å­¦å¤±è´¥");
 		}
 	}
 	
-	@Log("Ç°Ì¨Í³¼ÆÈËÊı")
+	@Log("å‰å°ç»Ÿè®¡äººæ•°")
 	@PostMapping("/baseStudent/count")
 	public Result<BaseStudentCount> count(@RequestBody BaseStudent baseStudent,HttpServletRequest httpRequest){
 		try {
@@ -246,17 +246,17 @@ public class BaseStudentController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new Result<>(false,"Í³¼ÆÊ§°Ü");
+			return new Result<>(false,"ç»Ÿè®¡å¤±è´¥");
 		}
 	}
 	
-	@Log("Ç°Ì¨ÅúÁ¿ÉÏ´«")
+	@Log("å‰å°æ‰¹é‡ä¸Šä¼ ")
 	@PostMapping("/baseStudent/photos")
 	public Result<BaseStudentCount> uploadPhotos(@RequestParam("photos")MultipartFile[] photos,@RequestParam("teacherId")String teacherId,
 			@RequestParam("password")String password,HttpServletRequest httpRequest){
 		try {
 			baseStudentService.uploadPhotos(photos,teacherId,password,httpRequest);
-			return new Result<>(true, "ÉÏ´«³É¹¦");
+			return new Result<>(true, "ä¸Šä¼ æˆåŠŸ");
 		} catch (FormatException e) {
 			e.printStackTrace();
 			return new Result<>(false,e.getMessage());
@@ -270,11 +270,11 @@ public class BaseStudentController {
 			return new Result<>(false,e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Result<>(false,"ÉÏ´«Ê§°Ü");
+			return new Result<>(false,"ä¸Šä¼ å¤±è´¥");
 		}
 	}
 	
-	/*@Log("Ç°Ì¨ÏÂÔØÑ§Éú»ù±¾ĞÅÏ¢Ä£°åexcelÎÄ¼ş")*/
+	/*@Log("å‰å°ä¸‹è½½å­¦ç”ŸåŸºæœ¬ä¿¡æ¯æ¨¡æ¿excelæ–‡ä»¶")*/
 	@GetMapping("/download/baseStudentTemplate")
 	@ResponseBody
 	public ResponseEntity<?> downloadTemplate(){
@@ -292,13 +292,13 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨µ¼ÈëÑ§Éú»ù±¾ĞÅÏ¢excelÎÄ¼ş")
+	@Log("å‰å°å¯¼å…¥å­¦ç”ŸåŸºæœ¬ä¿¡æ¯excelæ–‡ä»¶")
 	@PostMapping("/import/baseStudent")
 	@ResponseBody
 	public Result<BaseStudent> importBaseStudents(Teacher teacher,String settings,@RequestParam("file")MultipartFile multipartFile){
 		try {
 			ObjectMapper mapper=new ObjectMapper();
-			//´Ó°ó¶¨²ÎÊıÖĞµÃµ½µ¼ÈëÉèÖÃ
+			//ä»ç»‘å®šå‚æ•°ä¸­å¾—åˆ°å¯¼å…¥è®¾ç½®
 			ExposeSetting exposeSetting=mapper.readValue(settings, ExposeSetting.class);
 			baseStudentService.importBaseStudentsFromExcelFile(multipartFile,teacher,exposeSetting);
 			return new Result<BaseStudent>(true, Message.IMPORT_SUCCESS);
@@ -322,15 +322,15 @@ public class BaseStudentController {
 		}
 	}
 	
-	@Log("Ç°Ì¨µ¼³öÑ§Éú»ù±¾ĞÅÏ¢excelÎÄ¼ş")
+	@Log("å‰å°å¯¼å‡ºå­¦ç”ŸåŸºæœ¬ä¿¡æ¯excelæ–‡ä»¶")
 	@PostMapping("/export/baseStudent")
 	@ResponseBody
 	public ResponseEntity<?> exportBaseStudents(@RequestParam("json")String json,@RequestParam("settings")String settings,@RequestParam("token")String token){
 		try {
 			ObjectMapper mapper=new ObjectMapper();
-			//´Ó°ó¶¨²ÎÊıÖĞµÃµ½µ¼³öµÄÑ§ÉúidºÍ½ÌÊ¦id
+			//ä»ç»‘å®šå‚æ•°ä¸­å¾—åˆ°å¯¼å‡ºçš„å­¦ç”Ÿidå’Œæ•™å¸ˆid
 			StudentIdsParam studentIdsParam=mapper.readValue(json,StudentIdsParam.class);
-			//´Ó°ó¶¨²ÎÊıÖĞµÃµ½µ¼³öÉèÖÃ
+			//ä»ç»‘å®šå‚æ•°ä¸­å¾—åˆ°å¯¼å‡ºè®¾ç½®
 			ExposeSetting exposeSetting=mapper.readValue(settings, ExposeSetting.class);
 			
 			byte[] body=baseStudentService.exportBaseStudentsToExcelFile(studentIdsParam.getStudentIds(),studentIdsParam.getTeacherId(),exposeSetting);
@@ -359,22 +359,22 @@ public class BaseStudentController {
 		
 	}
 	
-	@Log("Ç°Ì¨ËÑË÷²¢µ¼³öÑ§Éú»ù±¾ĞÅÏ¢excelÎÄ¼ş")
+	@Log("å‰å°æœç´¢å¹¶å¯¼å‡ºå­¦ç”ŸåŸºæœ¬ä¿¡æ¯excelæ–‡ä»¶")
 	@PostMapping("/export/search/baseStudent")
 	@ResponseBody
 	public ResponseEntity<?> exportSearchedBaseStudents(@RequestParam("json")String json,@RequestParam("keywords") String keywords,@RequestParam("settings")String settings,@RequestParam("token")String token){
 		try {
 			ObjectMapper mapper=new ObjectMapper();
-			//´Ó°ó¶¨²ÎÊıÖĞµÃµ½½ÌÊ¦id
+			//ä»ç»‘å®šå‚æ•°ä¸­å¾—åˆ°æ•™å¸ˆid
 			TeacherIdParam teacherIdParam=mapper.readValue(json,TeacherIdParam.class);
-			//´Ó°ó¶¨²ÎÊıÖĞµÃµ½µ¼³öÉèÖÃ
+			//ä»ç»‘å®šå‚æ•°ä¸­å¾—åˆ°å¯¼å‡ºè®¾ç½®
 			ExposeSetting exposeSetting=mapper.readValue(settings, ExposeSetting.class);
-			//´Ó°ó¶¨²ÎÊıÖĞµÃµ½ËÑË÷Ìõ¼ş
+			//ä»ç»‘å®šå‚æ•°ä¸­å¾—åˆ°æœç´¢æ¡ä»¶
 			BaseStudent baseStudent = mapper.readValue(keywords, BaseStudent.class);
-			//ËÑË÷³öÂú×ãÌõ¼şµÄÑ§Éú
+			//æœç´¢å‡ºæ»¡è¶³æ¡ä»¶çš„å­¦ç”Ÿ
 			List<BaseStudent> baseStudents = baseStudentService.searchWithOutPage(baseStudent, teacherIdParam.getTeacherId());
 			
-			//½«ËÑË÷³öµÄÑ§ÉúidÌáÈ¡³ÉÒ»¸öÁĞ±í
+			//å°†æœç´¢å‡ºçš„å­¦ç”Ÿidæå–æˆä¸€ä¸ªåˆ—è¡¨
 			List<Long> studentIds = new ArrayList<>(baseStudents.size());
 			for (BaseStudent b : baseStudents) {
 				studentIds.add(b.getStudentId());

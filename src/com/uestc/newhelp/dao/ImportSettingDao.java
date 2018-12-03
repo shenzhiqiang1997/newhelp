@@ -5,10 +5,10 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.ImportSetting;
 
 public interface ImportSettingDao {
-	//ĞÂÔöÖ¸¶¨½ÌÊ¦µÄµ¼ÈëÉèÖÃ
+	//æ–°å¢æŒ‡å®šæ•™å¸ˆçš„å¯¼å…¥è®¾ç½®
 	public void add(@Param("importSetting")ImportSetting importSetting);
-	//¸üĞÂÖ¸¶¨½ÌÊ¦µÄµ¼ÈëÉèÖÃ
+	//æ›´æ–°æŒ‡å®šæ•™å¸ˆçš„å¯¼å…¥è®¾ç½®
 	public void update(@Param("importSetting")ImportSetting importSetting);
-	//²éÑ¯Ö¸¶¨½ÌÊ¦µÄµ¼ÈëÉèÖÃ
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„å¯¼å…¥è®¾ç½®
 	public ImportSetting get(String teacherId);
 }

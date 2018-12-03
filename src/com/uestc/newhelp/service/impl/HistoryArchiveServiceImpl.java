@@ -55,7 +55,7 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	
 	@Override
 	public List<HistoryArchive> list(String teacherId) {
-		//»ñÈ¡ÀÏÊ¦ĞÅÏ¢
+		//è·å–è€å¸ˆä¿¡æ¯
 		Teacher teacher=teacherDao.getInfo(teacherId);
 		teacher.setTeacherId(teacherId);
 		List<HistoryArchive> historyArchives=historyArchiveDao.list(teacher);
@@ -72,7 +72,7 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 
 	@Override
 	public List<HistoryArchive> search(HistoryArchive historyArchive) {
-		//»ñÈ¡ÀÏÊ¦ĞÅÏ¢
+		//è·å–è€å¸ˆä¿¡æ¯
 		Teacher teacher=teacherDao.getInfo(historyArchive.getTeacherId());
 		teacher.setTeacherId(historyArchive.getTeacherId());
 		List<HistoryArchive> historyArchives=historyArchiveDao.search(teacher,historyArchive);
@@ -93,72 +93,72 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	@Override
 	public byte[] exportHistoryArchiveToWordFile(Long historyArchiveId) throws IOException,NotChoseExportObjectException,NoSuchStudentException,Exception {
 		if(historyArchiveId==null) {
-			throw new NotChoseExportObjectException("ÉĞÎ´Ñ¡ÔñÒªµ¼³öµÄ¶ÔÏó,ÇëÏÈÑ¡ÔñºóÔÙµ¼³ö");
+			throw new NotChoseExportObjectException("å°šæœªé€‰æ‹©è¦å¯¼å‡ºçš„å¯¹è±¡,è¯·å…ˆé€‰æ‹©åå†å¯¼å‡º");
 		}
 		
 		HistoryArchive historyArchive=historyArchiveDao.get(historyArchiveId);
 		
 		if(historyArchive==null) {
-			throw new NoSuchStudentException("Òªµ¼³öµÄÀúÊ·µµ°¸²»´æÔÚ£¡");
+			throw new NoSuchStudentException("è¦å¯¼å‡ºçš„å†å²æ¡£æ¡ˆä¸å­˜åœ¨ï¼");
 		}
 		
 		List<HistoryRecorderChange> historyRecorderChanges=historyRecorderChangeDao.list(historyArchiveId); 
 		historyArchive.setHistoryRecorderChanges(historyRecorderChanges);
 		
-		//²éÑ¯ÀúÊ·ÖÜÁªÏµ¼òÒ×¼ÇÂ¼±í
+		//æŸ¥è¯¢å†å²å‘¨è”ç³»ç®€æ˜“è®°å½•è¡¨
 		HistoryRecord historyRecord=new HistoryRecord(historyArchiveId, RecordType.WEEKLY_SIMPLE_RECORD.value);
 		List<HistoryRecord> historyWeeklyReocrds=historyRecordDao.listOnType(historyRecord);
-		//²éÑ¯ÀúÊ·¼Ò³¤ÁªÏµ¼ÇÂ¼±í
+		//æŸ¥è¯¢å†å²å®¶é•¿è”ç³»è®°å½•è¡¨
 		historyRecord.setRecordName(RecordType.FAMILY_RECORD.value);
 		List<HistoryRecord> historyFamilyRecords=historyRecordDao.listOnType(historyRecord);
-		//²éÑ¯ÀúÊ·ÃæÌ¸¼ÇÂ¼±í
+		//æŸ¥è¯¢å†å²é¢è°ˆè®°å½•è¡¨
 		historyRecord.setRecordName(RecordType.FAMILY_RECORD.value);
 		List<HistoryRecord> historyFaceRecords=historyRecordDao.listOnType(historyRecord);
-		//²éÑ¯ÀúÊ·ÑĞÌÖ¼°×Ü½á¼ÇÂ¼
+		//æŸ¥è¯¢å†å²ç ”è®¨åŠæ€»ç»“è®°å½•
 		historyRecord.setRecordName(RecordType.DISCUSS_SUMMARY_RECORD.value);
 		List<HistoryRecord> historyDiscussRecords=historyRecordDao.listOnType(historyRecord);
 		
-		//ÓÉÀúÊ·µµ°¸¹¹½¨Ñ§Éúµµ°¸
+		//ç”±å†å²æ¡£æ¡ˆæ„å»ºå­¦ç”Ÿæ¡£æ¡ˆ
 		ArchiveStudent archiveStudent=new ArchiveStudent(historyArchive);
 		
-		//ÓÉÀúÊ·ÖÜÁªÏµ¼òÒ×¼ÇÂ¼±í¹¹½¨ÖÜÁªÏµ¼òÒ×¼ÇÂ¼±í
+		//ç”±å†å²å‘¨è”ç³»ç®€æ˜“è®°å½•è¡¨æ„å»ºå‘¨è”ç³»ç®€æ˜“è®°å½•è¡¨
 		List<Record> weeklyReocrds=new ArrayList<>();
 		for(HistoryRecord h:historyWeeklyReocrds) {
 			weeklyReocrds.add(new Record(h));
 		}
-		//ÓÉÀúÊ·¼Ò³¤ÁªÏµ¼ÇÂ¼±í¹¹½¨¼Ò³¤ÁªÏµ¼ÇÂ¼±í
+		//ç”±å†å²å®¶é•¿è”ç³»è®°å½•è¡¨æ„å»ºå®¶é•¿è”ç³»è®°å½•è¡¨
 		List<Record> familyRecords=new ArrayList<>();
 		for(HistoryRecord h:historyFamilyRecords) {
 			familyRecords.add(new Record(h));
 		}
-		//ÓÉÀúÊ·ÃæÌ¸¼ÇÂ¼±í¹¹½¨ÃæÌ¸¼ÇÂ¼±í
+		//ç”±å†å²é¢è°ˆè®°å½•è¡¨æ„å»ºé¢è°ˆè®°å½•è¡¨
 		List<Record> faceRecords=new ArrayList<>();
 		for(HistoryRecord h:historyFaceRecords) {
 			faceRecords.add(new Record(h));
 		}
-		//ÓÉÀúÊ·ÑĞÌÖ¼°×Ü½á¼ÇÂ¼¹¹½¨ÑĞÌÖ¼°×Ü½á¼ÇÂ¼
+		//ç”±å†å²ç ”è®¨åŠæ€»ç»“è®°å½•æ„å»ºç ”è®¨åŠæ€»ç»“è®°å½•
 		List<Record> discussRecords=new ArrayList<>();
 		for(HistoryRecord h:historyDiscussRecords) {
 			discussRecords.add(new Record(h));
 		}
 		
-		//Ìî³ä·âÃædocx
+		//å¡«å……å°é¢docx
 		XWPFDocument originDocument=getArchiveCoverDocument(archiveStudent);
-		//Ìî³äÑ§Éú»ù±¾ĞÅÏ¢docx
+		//å¡«å……å­¦ç”ŸåŸºæœ¬ä¿¡æ¯docx
 		XWPFDocument baseStudentInfoDocument=getBaseStudentInfoDocument(archiveStudent);
-		//Ìî³ä½¨µµĞÅÏ¢docx
+		//å¡«å……å»ºæ¡£ä¿¡æ¯docx
 		XWPFDocument bulidingArchiveDocument=getBulidingArchiveDocument(archiveStudent);
 		
-		//Æ´½Ó·âÃæºÍÑ§Éú»ù±¾ĞÅÏ¢
+		//æ‹¼æ¥å°é¢å’Œå­¦ç”ŸåŸºæœ¬ä¿¡æ¯
 		POIUtil.mergeDocx(originDocument, baseStudentInfoDocument);
-		//¼ÌĞøÆ´½Ó½¨µµĞÅÏ¢
+		//ç»§ç»­æ‹¼æ¥å»ºæ¡£ä¿¡æ¯
 		POIUtil.mergeDocx(originDocument, bulidingArchiveDocument);
 		
-		//Èç¹ûÓĞÖÜ¼òÒ×ÁªÏµ¼òÒ×¼ÇÂ¼
+		//å¦‚æœæœ‰å‘¨ç®€æ˜“è”ç³»ç®€æ˜“è®°å½•
 		if(weeklyReocrds.size()!=0) {
-			//¼ÆËãÖÜ¼òÒ×ÁªÏµ¼òÒ×¼ÇÂ¼Ò³Êı
+			//è®¡ç®—å‘¨ç®€æ˜“è”ç³»ç®€æ˜“è®°å½•é¡µæ•°
 			int weeklyRecordNum=weeklyReocrds.size()%7==0?weeklyReocrds.size()/7:weeklyReocrds.size()/7+1;
-			//¸ù¾İÒ³ÊıÈ¡Ã¿ÖÜÁªÏµ¼ÇÂ¼
+			//æ ¹æ®é¡µæ•°å–æ¯å‘¨è”ç³»è®°å½•
 			for (int i = 0; i < weeklyRecordNum; i++) {
 				List<Record> weeklyRecords;
 				if((i+1)*Constant.WEEKLY_RECORD_PAGE_SIZE<=weeklyReocrds.size()) {
@@ -166,34 +166,34 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 				}else {
 					weeklyRecords=weeklyReocrds.subList(i*Constant.WEEKLY_RECORD_PAGE_SIZE, weeklyReocrds.size());
 				}
-				//¸ù¾İÃ¿Ò³µÄÖÜ¼òÒ×¼ÇÂ¼Ìî³äÖÜ¼òÒ×¼ÇÂ¼docx
+				//æ ¹æ®æ¯é¡µçš„å‘¨ç®€æ˜“è®°å½•å¡«å……å‘¨ç®€æ˜“è®°å½•docx
 				XWPFDocument weeklyRecordDocument =getWeeklyRecordDocument(weeklyRecords);
-				//½«Ìî³äºÃµÄdocxÌî³äµ½¸ùdocxÉÏ
+				//å°†å¡«å……å¥½çš„docxå¡«å……åˆ°æ ¹docxä¸Š
 				POIUtil.mergeDocx(originDocument, weeklyRecordDocument);
 			}
 		}
 		
-		//±éÀú¼ÒÍ¥ÁªÏµ¼ÇÂ¼
+		//éå†å®¶åº­è”ç³»è®°å½•
 		for (Record familyRecord : familyRecords) {
-			//½«ÆäÌî³äµ½ÏàÓ¦docxÖĞ
+			//å°†å…¶å¡«å……åˆ°ç›¸åº”docxä¸­
 			XWPFDocument familyRecordDocument=getFamilyRecordDocument(familyRecord);
-			//½«Ìî³äºÃµÄdocxÌî³äµ½¸ùdocxÉÏ
+			//å°†å¡«å……å¥½çš„docxå¡«å……åˆ°æ ¹docxä¸Š
 			POIUtil.mergeDocx(originDocument, familyRecordDocument);
 		}
 		
-		//±éÀúÃæÌ¸¼ÇÂ¼
+		//éå†é¢è°ˆè®°å½•
 		for (Record faceRecord : faceRecords) {
-			//½«ÆäÌî³äµ½ÏàÓ¦docxÖĞ
+			//å°†å…¶å¡«å……åˆ°ç›¸åº”docxä¸­
 			XWPFDocument faceRecordDocument=getFaceRecordDocument(faceRecord);
-			//½«Ìî³äºÃµÄdocxÌî³äµ½¸ùdocxÉÏ
+			//å°†å¡«å……å¥½çš„docxå¡«å……åˆ°æ ¹docxä¸Š
 			POIUtil.mergeDocx(originDocument, faceRecordDocument);
 		}
 		
-		//±éÀúÑĞÌÖ¼ÇÂ¼
+		//éå†ç ”è®¨è®°å½•
 		for (Record discussRecord : discussRecords) {
-			//½«ÆäÌî³äµ½ÏàÓ¦docxÖĞ
+			//å°†å…¶å¡«å……åˆ°ç›¸åº”docxä¸­
 			XWPFDocument discussRecordDocument=getDiscussRecordDocument(discussRecord);
-			//½«Ìî³äºÃµÄdocxÌî³äµ½¸ùdocxÉÏ
+			//å°†å¡«å……å¥½çš„docxå¡«å……åˆ°æ ¹docxä¸Š
 			POIUtil.mergeDocx(originDocument, discussRecordDocument);
 		}
 		
@@ -206,22 +206,22 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	}
 	
 	private XWPFDocument getArchiveCoverDocument(ArchiveStudent archiveStudent) throws Exception{
-		//´Ó´ÅÅÌ¶ÁÈ¡Ä£°åÎÄ¼ş
+		//ä»ç£ç›˜è¯»å–æ¨¡æ¿æ–‡ä»¶
 		FileInputStream inputStream=new FileInputStream(Path.TEMPLATE_BASE_PATH+FileName.ARCHIVE_COVER_TEMPLATE_NAME);
 		
-		//´ò¿ªÑ§Éú°ï·ö¼ÇÂ¼±¡·âÃædocx »ñÈ¡¶ÁĞ´È¨ÏŞ
+		//æ‰“å¼€å­¦ç”Ÿå¸®æ‰¶è®°å½•è–„å°é¢docx è·å–è¯»å†™æƒé™
 		OPCPackage opcPackage = OPCPackage.open(inputStream);
 		
-		//Í¨¹ıopcPackageÀ´´´½¨XWPFDocument¹¤×÷ÎÄµµ
+		//é€šè¿‡opcPackageæ¥åˆ›å»ºXWPFDocumentå·¥ä½œæ–‡æ¡£
 		XWPFDocument document=new XWPFDocument(opcPackage);
-		//»ñÈ¡ËùÓĞ¶ÎÂä
+		//è·å–æ‰€æœ‰æ®µè½
 		List<XWPFParagraph> paragraphs=document.getParagraphs();
 		
-		//±éÀúËùÓĞ¶ÎÂä
+		//éå†æ‰€æœ‰æ®µè½
 		for (XWPFParagraph paragraph : paragraphs) {
 			List<XWPFRun> runs=paragraph.getRuns();
 			
-			//±éÀúËùÓĞ×Ó¾ä
+			//éå†æ‰€æœ‰å­å¥
 			for (int i = 0; i < runs.size(); i++) {
 				XWPFRun run=runs.get(i);
 				if(ReplaceMark.GRADE.equals(run.text())) {
@@ -266,28 +266,28 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	}
 	
 	private XWPFDocument getBaseStudentInfoDocument(ArchiveStudent archiveStudent) throws Exception{
-		//´Ó´ÅÅÌ¶ÁÈ¡Ä£°åÎÄ¼ş
+		//ä»ç£ç›˜è¯»å–æ¨¡æ¿æ–‡ä»¶
 		FileInputStream inputStream=new FileInputStream(Path.TEMPLATE_BASE_PATH+FileName.BASE_STUDENT_DOCX_TEMPLATE_NAME);
 		
-		//´ò¿ªÑ§Éú°ï·ö¼ÇÂ¼±¡·âÃædocx »ñÈ¡¶ÁĞ´È¨ÏŞ
+		//æ‰“å¼€å­¦ç”Ÿå¸®æ‰¶è®°å½•è–„å°é¢docx è·å–è¯»å†™æƒé™
 		OPCPackage opcPackage = OPCPackage.open(inputStream);
 		
-		//Í¨¹ıopcPackageÀ´´´½¨XWPFDocument¹¤×÷ÎÄµµ
+		//é€šè¿‡opcPackageæ¥åˆ›å»ºXWPFDocumentå·¥ä½œæ–‡æ¡£
 		XWPFDocument document=new XWPFDocument(opcPackage);
 		
-		//»ñÈ¡ËùÓĞ±í¸ñ
+		//è·å–æ‰€æœ‰è¡¨æ ¼
 		List<XWPFTable> tables=document.getTables();
 		
-		//±éÀúËùÓĞ±í¸ñ
+		//éå†æ‰€æœ‰è¡¨æ ¼
 		for (XWPFTable table : tables) {
-			//»ñÈ¡±í¸ñµÄÃ¿Ò»ĞĞ
+			//è·å–è¡¨æ ¼çš„æ¯ä¸€è¡Œ
 			List<XWPFTableRow> rows=table.getRows();
 			
-			//±éÀúËùÓĞĞĞ
+			//éå†æ‰€æœ‰è¡Œ
 			for (XWPFTableRow row : rows) {
-				//»ñÈ¡Ã¿ĞĞµÄÃ¿¸ö¸ñ×Ó
+				//è·å–æ¯è¡Œçš„æ¯ä¸ªæ ¼å­
 				List<XWPFTableCell> cells=row.getTableCells();
-				//±éÀúÃ¿¸ö¸ñ×Ó
+				//éå†æ¯ä¸ªæ ¼å­
 				for (int i = 0; i < cells.size(); i++) {
 					XWPFTableCell cell=cells.get(i);
 					replaceCellString(cell, ReplaceMark.STUDENT_NAME, archiveStudent.getName()==null?"":archiveStudent.getName());
@@ -315,28 +315,28 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	}
 	
 	private XWPFDocument getBulidingArchiveDocument(ArchiveStudent archiveStudent) throws Exception{
-		//´Ó´ÅÅÌ¶ÁÈ¡Ä£°åÎÄ¼ş
+		//ä»ç£ç›˜è¯»å–æ¨¡æ¿æ–‡ä»¶
 		FileInputStream inputStream=new FileInputStream(Path.TEMPLATE_BASE_PATH+FileName.ARCHIVE_INFO_TEMPLATE_NAME);
 		
-		//´ò¿ªÑ§Éú°ï·ö¼ÇÂ¼±¡·âÃædocx »ñÈ¡¶ÁĞ´È¨ÏŞ
+		//æ‰“å¼€å­¦ç”Ÿå¸®æ‰¶è®°å½•è–„å°é¢docx è·å–è¯»å†™æƒé™
 		OPCPackage opcPackage = OPCPackage.open(inputStream);
 		
-		//Í¨¹ıopcPackageÀ´´´½¨XWPFDocument¹¤×÷ÎÄµµ
+		//é€šè¿‡opcPackageæ¥åˆ›å»ºXWPFDocumentå·¥ä½œæ–‡æ¡£
 		XWPFDocument document=new XWPFDocument(opcPackage);
 		
-		//»ñÈ¡ËùÓĞ±í¸ñ
+		//è·å–æ‰€æœ‰è¡¨æ ¼
 		List<XWPFTable> tables=document.getTables();
 		
-		//±éÀúËùÓĞ±í¸ñ
+		//éå†æ‰€æœ‰è¡¨æ ¼
 		for (XWPFTable table : tables) {
-			//»ñÈ¡±í¸ñµÄÃ¿Ò»ĞĞ
+			//è·å–è¡¨æ ¼çš„æ¯ä¸€è¡Œ
 			List<XWPFTableRow> rows=table.getRows();
 			
-			//±éÀúËùÓĞĞĞ
+			//éå†æ‰€æœ‰è¡Œ
 			for (XWPFTableRow row : rows) {
-				//»ñÈ¡Ã¿ĞĞµÄÃ¿¸ö¸ñ×Ó
+				//è·å–æ¯è¡Œçš„æ¯ä¸ªæ ¼å­
 				List<XWPFTableCell> cells=row.getTableCells();
-				//±éÀúÃ¿¸ö¸ñ×Ó ²¢¸ù¾İÆ¥Åä´®À´Ìæ»»Ä£°å ÖØĞÂÌî³äÏàÆ¥ÅäµÄ¸ñ×Ó
+				//éå†æ¯ä¸ªæ ¼å­ å¹¶æ ¹æ®åŒ¹é…ä¸²æ¥æ›¿æ¢æ¨¡æ¿ é‡æ–°å¡«å……ç›¸åŒ¹é…çš„æ ¼å­
 				for (int i = 0; i < cells.size(); i++) {
 					XWPFTableCell cell=cells.get(i);
 					replaceCellString(cell, ReplaceMark.BULIDING_BASIS, archiveStudent.getBulidingBasis()==null?"":archiveStudent.getBulidingBasis());
@@ -365,7 +365,7 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 					replaceCellString(cell, ReplaceMark.BULIDING_PERSON_DUTY, archiveStudent.getBulidingPersonDuty()==null?"":archiveStudent.getBulidingPersonDuty());
 					replaceCellString(cell, ReplaceMark.HELP_TYPE, archiveStudent.getHelpType()==null?"":archiveStudent.getHelpType());
 					
-					//Èç¹û±ä¸ü¼ÇÂ¼ÊıÁ¿´óÓÚµÈÓÚÒ» ÔòÌæ»»µÚÒ»ĞĞ±ä¸ü¼ÇÂ¼
+					//å¦‚æœå˜æ›´è®°å½•æ•°é‡å¤§äºç­‰äºä¸€ åˆ™æ›¿æ¢ç¬¬ä¸€è¡Œå˜æ›´è®°å½•
 					if(archiveStudent.getRecorderChanges().size()>=1) {
 						RecorderChange recorderChange=archiveStudent.getRecorderChanges().get(0);
 						String changeTime;
@@ -378,7 +378,7 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 						replaceCellString(cell, ReplaceMark.RECORDER_NOW_ZERO, recorderChange.getRecorderNow()==null?"":recorderChange.getRecorderNow());
 						replaceCellString(cell, ReplaceMark.CHANGE_REASON_ZERO, recorderChange.getChangeReason()==null?"":recorderChange.getChangeReason());
 						
-						//Èç¹û±ä¸ü¼ÇÂ¼ÊıÁ¿´óÓÚµÈÓÚ¶ş ½øÒ»²½Ìæ»»µÚ¶şĞĞ±ä¸ü¼ÇÂ¼
+						//å¦‚æœå˜æ›´è®°å½•æ•°é‡å¤§äºç­‰äºäºŒ è¿›ä¸€æ­¥æ›¿æ¢ç¬¬äºŒè¡Œå˜æ›´è®°å½•
 						if(archiveStudent.getRecorderChanges().size()>=2) {
 							RecorderChange recorderChange1=archiveStudent.getRecorderChanges().get(1);
 							String changeTime1;
@@ -390,7 +390,7 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 							replaceCellString(cell, ReplaceMark.CHANGE_TIME_ONE, changeTime1);
 							replaceCellString(cell, ReplaceMark.RECORDER_NOW_ONE, recorderChange1.getRecorderNow()==null?"":recorderChange1.getRecorderNow());
 							replaceCellString(cell, ReplaceMark.CHANGE_REASON_ONE, recorderChange1.getChangeReason()==null?"":recorderChange1.getChangeReason());
-							//Èç¹û±ä¸ü¼ÇÂ¼ÊıÁ¿´óÓÚµÈÓÚ3 ½øÒ»²½Ìæ»»µÚ3ĞĞ±ä¸ü¼ÇÂ¼
+							//å¦‚æœå˜æ›´è®°å½•æ•°é‡å¤§äºç­‰äº3 è¿›ä¸€æ­¥æ›¿æ¢ç¬¬3è¡Œå˜æ›´è®°å½•
 							if(archiveStudent.getRecorderChanges().size()>=3) {
 								RecorderChange recorderChange2=archiveStudent.getRecorderChanges().get(2);
 								String changeTime2;
@@ -403,13 +403,13 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 								replaceCellString(cell, ReplaceMark.RECORDER_NOW_TWO, recorderChange2.getRecorderNow()==null?"":recorderChange2.getRecorderNow());
 								replaceCellString(cell, ReplaceMark.CHANGE_REASON_TWO, recorderChange2.getChangeReason()==null?"":recorderChange2.getChangeReason());
 							}else {
-								//Èç¹û±ä¸ü¼ÇÂ¼ÊıÁ¿Ğ¡ÓÚ3 Ôò°ÑÊ£ÓàµÄ²¿·ÖÌæ»»³É¿Õ°×
+								//å¦‚æœå˜æ›´è®°å½•æ•°é‡å°äº3 åˆ™æŠŠå‰©ä½™çš„éƒ¨åˆ†æ›¿æ¢æˆç©ºç™½
 								replaceCellString(cell, ReplaceMark.CHANGE_TIME_TWO, "");
 								replaceCellString(cell, ReplaceMark.RECORDER_NOW_TWO, "");
 								replaceCellString(cell, ReplaceMark.CHANGE_REASON_TWO, "");
 							}
 						}else {
-							//Èç¹û±ä¸ü¼ÇÂ¼ÊıÁ¿Ğ¡ÓÚ2 Ôò°ÑÊ£ÓàµÄ²¿·ÖÌæ»»³É¿Õ°×
+							//å¦‚æœå˜æ›´è®°å½•æ•°é‡å°äº2 åˆ™æŠŠå‰©ä½™çš„éƒ¨åˆ†æ›¿æ¢æˆç©ºç™½
 							replaceCellString(cell, ReplaceMark.CHANGE_TIME_ONE, "");
 							replaceCellString(cell, ReplaceMark.RECORDER_NOW_ONE, "");
 							replaceCellString(cell, ReplaceMark.CHANGE_REASON_ONE, "");
@@ -420,7 +420,7 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 						}
 							
 					}else {
-						//Èç¹û±ä¸ü¼ÇÂ¼ÊıÁ¿Ğ¡ÓÚ1 Ôò°ÑËùÓĞµÄ²¿·ÖÌæ»»³É¿Õ°×
+						//å¦‚æœå˜æ›´è®°å½•æ•°é‡å°äº1 åˆ™æŠŠæ‰€æœ‰çš„éƒ¨åˆ†æ›¿æ¢æˆç©ºç™½
 						replaceCellString(cell, ReplaceMark.CHANGE_TIME_ZERO, "");
 						replaceCellString(cell, ReplaceMark.RECORDER_NOW_ZERO, "");
 						replaceCellString(cell, ReplaceMark.CHANGE_REASON_ZERO, "");
@@ -440,28 +440,28 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	}
 	
 	private XWPFDocument getWeeklyRecordDocument(List<Record> records) throws Exception{
-		//´Ó´ÅÅÌ¶ÁÈ¡Ä£°åÎÄ¼ş
+		//ä»ç£ç›˜è¯»å–æ¨¡æ¿æ–‡ä»¶
 		FileInputStream inputStream=new FileInputStream(Path.TEMPLATE_BASE_PATH+FileName.WEEKLY_SIMPLE_RECORD_DOCX_TEMPLATE_NAME);
 		
-		//´ò¿ªÑ§Éú°ï·ö¼ÇÂ¼±¡·âÃædocx »ñÈ¡¶ÁĞ´È¨ÏŞ
+		//æ‰“å¼€å­¦ç”Ÿå¸®æ‰¶è®°å½•è–„å°é¢docx è·å–è¯»å†™æƒé™
 		OPCPackage opcPackage = OPCPackage.open(inputStream);
 		
-		//Í¨¹ıopcPackageÀ´´´½¨XWPFDocument¹¤×÷ÎÄµµ
+		//é€šè¿‡opcPackageæ¥åˆ›å»ºXWPFDocumentå·¥ä½œæ–‡æ¡£
 		XWPFDocument document=new XWPFDocument(opcPackage);
 		
-		//»ñÈ¡ËùÓĞ±í¸ñ
+		//è·å–æ‰€æœ‰è¡¨æ ¼
 		List<XWPFTable> tables=document.getTables();
 		
-		//±éÀúËùÓĞ±í¸ñ
+		//éå†æ‰€æœ‰è¡¨æ ¼
 		for (XWPFTable table : tables) {
-			//»ñÈ¡±í¸ñµÄÃ¿Ò»ĞĞ
+			//è·å–è¡¨æ ¼çš„æ¯ä¸€è¡Œ
 			List<XWPFTableRow> rows=table.getRows();
 			
-			//±éÀúËùÓĞĞĞ
+			//éå†æ‰€æœ‰è¡Œ
 			for (XWPFTableRow row : rows) {
-				//»ñÈ¡Ã¿ĞĞµÄÃ¿¸ö¸ñ×Ó
+				//è·å–æ¯è¡Œçš„æ¯ä¸ªæ ¼å­
 				List<XWPFTableCell> cells=row.getTableCells();
-				//±éÀúÃ¿¸ö¸ñ×Ó ²¢¸ù¾İÆ¥Åä´®À´Ìæ»»Ä£°å ÖØĞÂÌî³äÏàÆ¥ÅäµÄ¸ñ×Ó
+				//éå†æ¯ä¸ªæ ¼å­ å¹¶æ ¹æ®åŒ¹é…ä¸²æ¥æ›¿æ¢æ¨¡æ¿ é‡æ–°å¡«å……ç›¸åŒ¹é…çš„æ ¼å­
 				for (int i = 0; i < cells.size(); i++) {
 					XWPFTableCell cell=cells.get(i);
 					int j;
@@ -480,7 +480,7 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 						replaceCellString(cell, ReplaceMark.WEEKLY_REOCRD_CONTENT+j, record.getContent()==null?"":record.getContent());
 						replaceCellString(cell, ReplaceMark.WEEKLY_RECORD_COMMENT+j, record.getComment()==null?"":record.getComment());
 					}
-					//½«Ê£ÏÂµÄÄ£°å¼ÇºÅÖÃ»»Îª¿Õ´®
+					//å°†å‰©ä¸‹çš„æ¨¡æ¿è®°å·ç½®æ¢ä¸ºç©ºä¸²
 					for (int k = j; k <=Constant.WEEKLY_RECORD_PAGE_SIZE; k++) {
 						replaceCellString(cell, ReplaceMark.WEEKLY_RECORD_TIME+k, "");
 						replaceCellString(cell, ReplaceMark.WEEKLY_RECORD_LOCATION+k, "");
@@ -495,28 +495,28 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	}
 	
 	private XWPFDocument getFamilyRecordDocument(Record r) throws Exception{
-		//´Ó´ÅÅÌ¶ÁÈ¡Ä£°åÎÄ¼ş
+		//ä»ç£ç›˜è¯»å–æ¨¡æ¿æ–‡ä»¶
 		FileInputStream inputStream=new FileInputStream(Path.TEMPLATE_BASE_PATH+FileName.FAMILY_RECORD_DOCX_TEMPLATE_NAME);
 		
-		//´ò¿ªÑ§Éú°ï·ö¼ÇÂ¼±¡·âÃædocx »ñÈ¡¶ÁĞ´È¨ÏŞ
+		//æ‰“å¼€å­¦ç”Ÿå¸®æ‰¶è®°å½•è–„å°é¢docx è·å–è¯»å†™æƒé™
 		OPCPackage opcPackage = OPCPackage.open(inputStream);
 		
-		//Í¨¹ıopcPackageÀ´´´½¨XWPFDocument¹¤×÷ÎÄµµ
+		//é€šè¿‡opcPackageæ¥åˆ›å»ºXWPFDocumentå·¥ä½œæ–‡æ¡£
 		XWPFDocument document=new XWPFDocument(opcPackage);
 		
-		//»ñÈ¡ËùÓĞ±í¸ñ
+		//è·å–æ‰€æœ‰è¡¨æ ¼
 		List<XWPFTable> tables=document.getTables();
 		
-		//±éÀúËùÓĞ±í¸ñ
+		//éå†æ‰€æœ‰è¡¨æ ¼
 		for (XWPFTable table : tables) {
-			//»ñÈ¡±í¸ñµÄÃ¿Ò»ĞĞ
+			//è·å–è¡¨æ ¼çš„æ¯ä¸€è¡Œ
 			List<XWPFTableRow> rows=table.getRows();
 			
-			//±éÀúËùÓĞĞĞ
+			//éå†æ‰€æœ‰è¡Œ
 			for (XWPFTableRow row : rows) {
-				//»ñÈ¡Ã¿ĞĞµÄÃ¿¸ö¸ñ×Ó
+				//è·å–æ¯è¡Œçš„æ¯ä¸ªæ ¼å­
 				List<XWPFTableCell> cells=row.getTableCells();
-				//±éÀúÃ¿¸ö¸ñ×Ó ²¢¸ù¾İÆ¥Åä´®À´Ìæ»»Ä£°å ÖØĞÂÌî³äÏàÆ¥ÅäµÄ¸ñ×Ó
+				//éå†æ¯ä¸ªæ ¼å­ å¹¶æ ¹æ®åŒ¹é…ä¸²æ¥æ›¿æ¢æ¨¡æ¿ é‡æ–°å¡«å……ç›¸åŒ¹é…çš„æ ¼å­
 				for (int i = 0; i < cells.size(); i++) {
 					XWPFTableCell cell=cells.get(i);
 					String familyRecordTime;
@@ -539,28 +539,28 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	}
 	
 	private XWPFDocument getFaceRecordDocument(Record r) throws Exception{
-		//´Ó´ÅÅÌ¶ÁÈ¡Ä£°åÎÄ¼ş
+		//ä»ç£ç›˜è¯»å–æ¨¡æ¿æ–‡ä»¶
 		FileInputStream inputStream=new FileInputStream(Path.TEMPLATE_BASE_PATH+FileName.FACE_TALK_RECORD_DOCX_TEMPLATE_NAME);
 		
-		//´ò¿ªÑ§Éú°ï·ö¼ÇÂ¼±¡·âÃædocx »ñÈ¡¶ÁĞ´È¨ÏŞ
+		//æ‰“å¼€å­¦ç”Ÿå¸®æ‰¶è®°å½•è–„å°é¢docx è·å–è¯»å†™æƒé™
 		OPCPackage opcPackage = OPCPackage.open(inputStream);
 		
-		//Í¨¹ıopcPackageÀ´´´½¨XWPFDocument¹¤×÷ÎÄµµ
+		//é€šè¿‡opcPackageæ¥åˆ›å»ºXWPFDocumentå·¥ä½œæ–‡æ¡£
 		XWPFDocument document=new XWPFDocument(opcPackage);
 		
-		//»ñÈ¡ËùÓĞ±í¸ñ
+		//è·å–æ‰€æœ‰è¡¨æ ¼
 		List<XWPFTable> tables=document.getTables();
 		
-		//±éÀúËùÓĞ±í¸ñ
+		//éå†æ‰€æœ‰è¡¨æ ¼
 		for (XWPFTable table : tables) {
-			//»ñÈ¡±í¸ñµÄÃ¿Ò»ĞĞ
+			//è·å–è¡¨æ ¼çš„æ¯ä¸€è¡Œ
 			List<XWPFTableRow> rows=table.getRows();
 			
-			//±éÀúËùÓĞĞĞ
+			//éå†æ‰€æœ‰è¡Œ
 			for (XWPFTableRow row : rows) {
-				//»ñÈ¡Ã¿ĞĞµÄÃ¿¸ö¸ñ×Ó
+				//è·å–æ¯è¡Œçš„æ¯ä¸ªæ ¼å­
 				List<XWPFTableCell> cells=row.getTableCells();
-				//±éÀúÃ¿¸ö¸ñ×Ó
+				//éå†æ¯ä¸ªæ ¼å­
 				for (int i = 0; i < cells.size(); i++) {
 					XWPFTableCell cell=cells.get(i);
 					String faceRecordTime;
@@ -582,28 +582,28 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	}
 	
 	private XWPFDocument getDiscussRecordDocument(Record r) throws Exception{
-		//´Ó´ÅÅÌ¶ÁÈ¡Ä£°åÎÄ¼ş
+		//ä»ç£ç›˜è¯»å–æ¨¡æ¿æ–‡ä»¶
 		FileInputStream inputStream=new FileInputStream(Path.TEMPLATE_BASE_PATH+FileName.DISCUSS_SUMMARY_RECORD_DOCX_TEMPLATE_NAME);
 		
-		//´ò¿ªÑ§Éú°ï·ö¼ÇÂ¼±¡·âÃædocx »ñÈ¡¶ÁĞ´È¨ÏŞ
+		//æ‰“å¼€å­¦ç”Ÿå¸®æ‰¶è®°å½•è–„å°é¢docx è·å–è¯»å†™æƒé™
 		OPCPackage opcPackage = OPCPackage.open(inputStream);
 		
-		//Í¨¹ıopcPackageÀ´´´½¨XWPFDocument¹¤×÷ÎÄµµ
+		//é€šè¿‡opcPackageæ¥åˆ›å»ºXWPFDocumentå·¥ä½œæ–‡æ¡£
 		XWPFDocument document=new XWPFDocument(opcPackage);
 		
-		//»ñÈ¡ËùÓĞ±í¸ñ
+		//è·å–æ‰€æœ‰è¡¨æ ¼
 		List<XWPFTable> tables=document.getTables();
 		
-		//±éÀúËùÓĞ±í¸ñ
+		//éå†æ‰€æœ‰è¡¨æ ¼
 		for (XWPFTable table : tables) {
-			//»ñÈ¡±í¸ñµÄÃ¿Ò»ĞĞ
+			//è·å–è¡¨æ ¼çš„æ¯ä¸€è¡Œ
 			List<XWPFTableRow> rows=table.getRows();
 			
-			//±éÀúËùÓĞĞĞ
+			//éå†æ‰€æœ‰è¡Œ
 			for (XWPFTableRow row : rows) {
-				//»ñÈ¡Ã¿ĞĞµÄÃ¿¸ö¸ñ×Ó
+				//è·å–æ¯è¡Œçš„æ¯ä¸ªæ ¼å­
 				List<XWPFTableCell> cells=row.getTableCells();
-				//±éÀúÃ¿¸ö¸ñ×Ó
+				//éå†æ¯ä¸ªæ ¼å­
 				for (int i = 0; i < cells.size(); i++) {
 					XWPFTableCell cell=cells.get(i);
 					String discussRecordTime;
@@ -624,38 +624,38 @@ public class HistoryArchiveServiceImpl implements HistoryArchiveService {
 	}
 	
 	private void replaceCellString(XWPFTableCell cell,String replaceMark,String newCellString) {
-		//»ñÈ¡±í¸ñµ¥ÔªÀïµÄ×Ö·û´®
+		//è·å–è¡¨æ ¼å•å…ƒé‡Œçš„å­—ç¬¦ä¸²
 		String cellString=cell.getText();
 		if(replaceMark.equals(cellString)) {
-			//É¾³ı¸ñ×ÓÀïµÄ¶ÎÂäÉ¾³ı
+			//åˆ é™¤æ ¼å­é‡Œçš„æ®µè½åˆ é™¤
 			cell.removeParagraph(0);
-			//´´½¨ĞÂµÄ¶ÎÂä
+			//åˆ›å»ºæ–°çš„æ®µè½
 			XWPFParagraph paragraph=new XWPFParagraph(cell.getCTTc().addNewP(), cell);
-			//´´½¨ĞÂµÄ×Ó¾ä
+			//åˆ›å»ºæ–°çš„å­å¥
 			XWPFRun run=paragraph.createRun();
-			//ÔÚĞÂ×Ó¾äÀï·ÅÌæ»»µÄÄÚÈİ
+			//åœ¨æ–°å­å¥é‡Œæ”¾æ›¿æ¢çš„å†…å®¹
 			run.setText(newCellString);
-			//ÉèÖÃ×ÖÌå
+			//è®¾ç½®å­—ä½“
 			run.setFontFamily(Constant.FONT_FAMILY);
-			//½«ĞÂµÄ¶ÎÂä·Åµ½¸ñ×ÓÀï
+			//å°†æ–°çš„æ®µè½æ”¾åˆ°æ ¼å­é‡Œ
 			cell.addParagraph(paragraph);
 		}
 	}
 	private void replaceCellStringForCondition(XWPFTableCell cell,String replaceMark,String newCellString) {
-		//»ñÈ¡±í¸ñµ¥ÔªÀïµÄ×Ö·û´®
+		//è·å–è¡¨æ ¼å•å…ƒé‡Œçš„å­—ç¬¦ä¸²
 		String cellString=cell.getText();
 		if(cellString!=null&&cellString.contains(replaceMark)) {
-			//É¾³ı¸ñ×ÓÀïµÄ¶ÎÂäÉ¾³ı
+			//åˆ é™¤æ ¼å­é‡Œçš„æ®µè½åˆ é™¤
 			cell.removeParagraph(0);
-			//´´½¨ĞÂµÄ¶ÎÂä
+			//åˆ›å»ºæ–°çš„æ®µè½
 			XWPFParagraph paragraph=new XWPFParagraph(cell.getCTTc().addNewP(), cell);
-			//´´½¨ĞÂµÄ×Ó¾ä
+			//åˆ›å»ºæ–°çš„å­å¥
 			XWPFRun run=paragraph.createRun();
-			//ÔÚĞÂ×Ó¾äÀï·ÅÌæ»»µÄÄÚÈİ
+			//åœ¨æ–°å­å¥é‡Œæ”¾æ›¿æ¢çš„å†…å®¹
 			run.setText(cellString.replaceFirst(replaceMark, newCellString));
-			//ÉèÖÃ×ÖÌå
+			//è®¾ç½®å­—ä½“
 			run.setFontFamily(Constant.FONT_FAMILY);
-			//½«ĞÂµÄ¶ÎÂä·Åµ½¸ñ×ÓÀï
+			//å°†æ–°çš„æ®µè½æ”¾åˆ°æ ¼å­é‡Œ
 			cell.addParagraph(paragraph);
 		}
 	}

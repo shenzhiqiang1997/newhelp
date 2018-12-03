@@ -2,9 +2,9 @@ package com.uestc.newhelp.constant;
 
 public interface Constant {
 	int WEEKLY_RECORD_PAGE_SIZE=7;
-	String FONT_FAMILY="ËÎÌå";
-	String COVER_FONT_FAMILY="Î¢ÈíÑÅºÚ";
-	String DEFAULT_STUDY_CONDITION="ÔÚ¶Á";
+	String FONT_FAMILY="å®‹ä½“";
+	String COVER_FONT_FAMILY="å¾®è½¯é›…é»‘";
+	String DEFAULT_STUDY_CONDITION="åœ¨è¯»";
 	Short ADMIN_GRADE=1;
 	
 	String GET="GET";

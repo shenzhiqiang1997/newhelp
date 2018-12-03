@@ -28,71 +28,71 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public Teacher backendLogin(Teacher teacher)throws NoSuchUserException,PasswordErrorException, NoAuthorityException {
-		//Èç¹ûÓÃ»§ÃûÎª¿ÕÔòÅ×³öÒì³£
+		//å¦‚æœç”¨æˆ·åä¸ºç©ºåˆ™æŠ›å‡ºå¼‚å¸¸
 		if(teacher.getTeacherId()==null||teacher.getTeacherId().equals("")) {
-			throw new NoSuchUserException("¸ÃÓÃ»§Ãû²»´æÔÚ");
+			throw new NoSuchUserException("è¯¥ç”¨æˆ·åä¸å­˜åœ¨");
 		}
-		//»ñÈ¡µÇÂ¼½ÌÊ¦µÄÃÜÂë
+		//è·å–ç™»å½•æ•™å¸ˆçš„å¯†ç 
 		Teacher teacherToLogin=teacherDao.getPassword(teacher.getTeacherId());
-		//Èç¹û¸Ã½ÌÊ¦²»´æÔÚ ÔòÅ×³öÒì³£
+		//å¦‚æœè¯¥æ•™å¸ˆä¸å­˜åœ¨ åˆ™æŠ›å‡ºå¼‚å¸¸
 		if(teacherToLogin==null) {
-			throw new NoSuchUserException("¸ÃÓÃ»§Ãû²»´æÔÚ");
+			throw new NoSuchUserException("è¯¥ç”¨æˆ·åä¸å­˜åœ¨");
 		}
-		//»ñÈ¡Ö¸¶¨½ÌÊ¦µÄÃÜÂë
+		//è·å–æŒ‡å®šæ•™å¸ˆçš„å¯†ç 
 		String password=teacherToLogin.getPassword();
-		//Èç¹û»ñÈ¡µ½Ö¸¶¨½ÌÊ¦µÄÃÜÂëÔò¼ÌĞøÑéÖ¤,·ñÔòÅ×³öÓÃ»§²»´æÔÚÒì³£
+		//å¦‚æœè·å–åˆ°æŒ‡å®šæ•™å¸ˆçš„å¯†ç åˆ™ç»§ç»­éªŒè¯,å¦åˆ™æŠ›å‡ºç”¨æˆ·ä¸å­˜åœ¨å¼‚å¸¸
 		if(password!=null) {
-			//ÑéÖ¤ÃÜÂë,Èç¹û³É¹¦·µ»Ø½ÌÊ¦ĞÅÏ¢,·ñÔòÅ×³öÃÜÂë´íÎóÒì³£
+			//éªŒè¯å¯†ç ,å¦‚æœæˆåŠŸè¿”å›æ•™å¸ˆä¿¡æ¯,å¦åˆ™æŠ›å‡ºå¯†ç é”™è¯¯å¼‚å¸¸
 			if(password.equals(teacher.getPassword())) {
 				Teacher t=teacherDao.getInfo(teacher.getTeacherId());
-				//»ñÈ¡½ÌÊ¦È¨ÏŞ
+				//è·å–æ•™å¸ˆæƒé™
 				Authorization authorization=authorizationDao.get(teacher.getTeacherId());
-				//Èç¹ûÕËºÅ´æÔÚ Êı¾İ¿âÖĞÃ»ÓĞÈ¨ÏŞ ÔòÊÚÓèÄ¬ÈÏÈ¨ÏŞ
+				//å¦‚æœè´¦å·å­˜åœ¨ æ•°æ®åº“ä¸­æ²¡æœ‰æƒé™ åˆ™æˆäºˆé»˜è®¤æƒé™
 				if(authorization==null) {
 					authorizationDao.add(teacher.getTeacherId());
 					authorization=authorizationDao.get(teacher.getTeacherId());
 				}
-				//¼ì²éÊÇ·ñÓĞºóÌ¨È¨ÏŞ
+				//æ£€æŸ¥æ˜¯å¦æœ‰åå°æƒé™
 				if(authorization.getBackEndHandle()!=1) {
-					throw new NoAuthorityException("ÄúÉĞÎŞ¹ÜÀíÔ±È¨ÏŞ,ÎŞ·¨µÇÂ¼ºóÌ¨,»òÁªÏµÎ¬»¤ÈËÔ±¸øÓè¹ÜÀíÔ±È¨ÏŞ");
+					throw new NoAuthorityException("æ‚¨å°šæ— ç®¡ç†å‘˜æƒé™,æ— æ³•ç™»å½•åå°,æˆ–è”ç³»ç»´æŠ¤äººå‘˜ç»™äºˆç®¡ç†å‘˜æƒé™");
 				}
 				
-				//ÉèÖÃteacherId ±ãÓÚÔÚsessionÖĞ»ñÈ¡µ½ÓÃÀ´¼ÇÂ¼ÈÕÖ¾
+				//è®¾ç½®teacherId ä¾¿äºåœ¨sessionä¸­è·å–åˆ°ç”¨æ¥è®°å½•æ—¥å¿—
 				t.setTeacherId(teacher.getTeacherId());
 				return t;
 			}else {
-				throw new PasswordErrorException("ÃÜÂë´íÎó");
+				throw new PasswordErrorException("å¯†ç é”™è¯¯");
 			}
 		}else {
-			throw new NoSuchUserException("¸ÃÓÃ»§Ãû²»´æÔÚ");
+			throw new NoSuchUserException("è¯¥ç”¨æˆ·åä¸å­˜åœ¨");
 		}
 		
 	}
 	
 	public Teacher login(Teacher teacher)throws NoSuchUserException,PasswordErrorException {
-		//Èç¹ûÓÃ»§ÃûÎª¿ÕÔòÅ×³öÒì³£
+		//å¦‚æœç”¨æˆ·åä¸ºç©ºåˆ™æŠ›å‡ºå¼‚å¸¸
 		if(teacher.getTeacherId()==null||teacher.getTeacherId().equals("")) {
-			throw new NoSuchUserException("¸ÃÓÃ»§Ãû²»´æÔÚ");
+			throw new NoSuchUserException("è¯¥ç”¨æˆ·åä¸å­˜åœ¨");
 		}
-		//»ñÈ¡Ö¸¶¨½ÌÊ¦µÄÃÜÂë
+		//è·å–æŒ‡å®šæ•™å¸ˆçš„å¯†ç 
 		String password=teacherDao.getPassword(teacher.getTeacherId()).getPassword();
-		//Èç¹û»ñÈ¡µ½Ö¸¶¨½ÌÊ¦µÄÃÜÂëÔò¼ÌĞøÑéÖ¤,·ñÔòÅ×³öÓÃ»§²»´æÔÚÒì³£
+		//å¦‚æœè·å–åˆ°æŒ‡å®šæ•™å¸ˆçš„å¯†ç åˆ™ç»§ç»­éªŒè¯,å¦åˆ™æŠ›å‡ºç”¨æˆ·ä¸å­˜åœ¨å¼‚å¸¸
 		if(password!=null) {
-			//ÑéÖ¤ÃÜÂë,Èç¹û³É¹¦·µ»Ø½ÌÊ¦ĞÅÏ¢,·ñÔòÅ×³öÃÜÂë´íÎóÒì³£
+			//éªŒè¯å¯†ç ,å¦‚æœæˆåŠŸè¿”å›æ•™å¸ˆä¿¡æ¯,å¦åˆ™æŠ›å‡ºå¯†ç é”™è¯¯å¼‚å¸¸
 			if(password.equals(teacher.getPassword())) {
 				Teacher t=teacherDao.getInfo(teacher.getTeacherId());
-				//Èç¹ûÑéÖ¤³É¹¦ÎªÓÃ»§Ç©·¢ÁîÅÆ
+				//å¦‚æœéªŒè¯æˆåŠŸä¸ºç”¨æˆ·ç­¾å‘ä»¤ç‰Œ
 				String token=TokenUtil.getToken(teacher.getTeacherId());
-				//½«¶ÔÓ¦½ÌÊ¦token´æ·Åµ½Êı¾İ¿âÖĞ
+				//å°†å¯¹åº”æ•™å¸ˆtokenå­˜æ”¾åˆ°æ•°æ®åº“ä¸­
 				tokenDao.add(new Token(teacher.getTeacherId(), token));
-				//·µ»ØĞÅÏ¢¼ÓÈëtoken
+				//è¿”å›ä¿¡æ¯åŠ å…¥token
 				t.setToken(token);
 				return t;
 			}else {
-				throw new PasswordErrorException("ÃÜÂë´íÎó");
+				throw new PasswordErrorException("å¯†ç é”™è¯¯");
 			}
 		}else {
-			throw new NoSuchUserException("¸ÃÓÃ»§Ãû²»´æÔÚ");
+			throw new NoSuchUserException("è¯¥ç”¨æˆ·åä¸å­˜åœ¨");
 		}
 		
 	}
@@ -110,10 +110,10 @@ public class UserServiceImpl implements UserService {
 	public void updatePassword(TeacherUpdatePasswordParam teacherUpdatePasswordParam) throws NoSuchUserException,PasswordErrorException {
 		Teacher oldTeacher=teacherDao.getPassword(teacherUpdatePasswordParam.getTeacherId());
 		if(oldTeacher==null) {
-			throw new NoSuchUserException("¸ÃÓÃ»§Ãû²»´æÔÚ");
+			throw new NoSuchUserException("è¯¥ç”¨æˆ·åä¸å­˜åœ¨");
 		}
 		if(oldTeacher.getPassword()==null||!oldTeacher.getPassword().equals(teacherUpdatePasswordParam.getOldPassword())) {
-			throw new PasswordErrorException("¾ÉÃÜÂëÊäÈë´íÎó");
+			throw new PasswordErrorException("æ—§å¯†ç è¾“å…¥é”™è¯¯");
 		}
 		teacherDao.updatePassword(new Teacher(teacherUpdatePasswordParam.getTeacherId(),teacherUpdatePasswordParam.getNewPassword()));
 	} 

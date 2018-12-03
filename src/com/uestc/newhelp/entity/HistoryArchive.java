@@ -4,80 +4,80 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-//ÀúÊ·µµ°¸¶ÔÓ¦µÄÊµÌåÀà
+//å†å²æ¡£æ¡ˆå¯¹åº”çš„å®ä½“ç±»
 public class HistoryArchive {
-		//ÀúÊ·µµ°¸id
+		//å†å²æ¡£æ¡ˆid
 		private Long historyArchiveId;
-		//µµ°¸Ñ§ÉúÑ§ºÅ
+		//æ¡£æ¡ˆå­¦ç”Ÿå­¦å·
 		private Long studentId;
-		//µµ°¸½ÌÊ¦ÓÃ»§Ãû
+		//æ¡£æ¡ˆæ•™å¸ˆç”¨æˆ·å
 		private String teacherId;
-		//µµ°¸Ñ§ÉúĞÔ±ğ
+		//æ¡£æ¡ˆå­¦ç”Ÿæ€§åˆ«
 		private String sex;
-		//µµ°¸Ñ§ÉúĞÕÃû
+		//æ¡£æ¡ˆå­¦ç”Ÿå§“å
 		private String name;
-		//½¨µµÑ§Éú×¨Òµ
+		//å»ºæ¡£å­¦ç”Ÿä¸“ä¸š
 		private String major;
-		//µµ°¸Ñ§ÉúÄê¼¶
+		//æ¡£æ¡ˆå­¦ç”Ÿå¹´çº§
 		private Short grade;
-		//µµ°¸Ñ§Éú°à¼¶
+		//æ¡£æ¡ˆå­¦ç”Ÿç­çº§
 		private Integer studentClass;
-		//µµ°¸Ñ§ÉúÕşÖÎÃæÃ²
+		//æ¡£æ¡ˆå­¦ç”Ÿæ”¿æ²»é¢è²Œ
 		private String politicalStatus;
-		//µµ°¸Ñ§ÉúÃñ×å
+		//æ¡£æ¡ˆå­¦ç”Ÿæ°‘æ—
 		private String ethnicGroup;
-		//µµ°¸Ñ§ÉúÖ°Îñ
+		//æ¡£æ¡ˆå­¦ç”ŸèŒåŠ¡
 		private String duty;
-		//µµ°¸Ñ§ÉúËŞÉá
+		//æ¡£æ¡ˆå­¦ç”Ÿå®¿èˆ
 		private String dormitory;
-		//µµ°¸Ñ§ÉúÉúÔ´µØ
+		//æ¡£æ¡ˆå­¦ç”Ÿç”Ÿæºåœ°
 		private String birthOrigin;
-		//µµ°¸Ñ§Éú¼ÒÍ¥×¡Ö·
+		//æ¡£æ¡ˆå­¦ç”Ÿå®¶åº­ä½å€
 		private String familyAddress;
-		//µµ°¸Ñ§ÉúÁªÏµ·½Ê½
+		//æ¡£æ¡ˆå­¦ç”Ÿè”ç³»æ–¹å¼
 		private String contactWay;
-		//µµ°¸Ñ§Éú¼ÒÍ¥µç»°
+		//æ¡£æ¡ˆå­¦ç”Ÿå®¶åº­ç”µè¯
 		private String familyTelNumber;
-		//µµ°¸Ñ§Éú¸¸Ç×µç»°
+		//æ¡£æ¡ˆå­¦ç”Ÿçˆ¶äº²ç”µè¯
 		private String fatherTelNumber;
-		//µµ°¸Ñ§ÉúÄ¸Ç×µç»°
+		//æ¡£æ¡ˆå­¦ç”Ÿæ¯äº²ç”µè¯
 		private String motherTelNumber;
-		//µµ°¸Ñ§Éú¼ÒÍ¥Çé¿ö
+		//æ¡£æ¡ˆå­¦ç”Ÿå®¶åº­æƒ…å†µ
 		private String familyCondition;
-		//µµ°¸Ñ§ÉúÑ§Ï°Çé¿ö
+		//æ¡£æ¡ˆå­¦ç”Ÿå­¦ä¹ æƒ…å†µ
 		private String studyCondition;
-		//µµ°¸Ñ§ÉúÉíĞÄÇé¿ö
+		//æ¡£æ¡ˆå­¦ç”Ÿèº«å¿ƒæƒ…å†µ
 		private String healthCondition;
-		//µµ°¸Ñ§ÉúÉú»îÇé¿ö
+		//æ¡£æ¡ˆå­¦ç”Ÿç”Ÿæ´»æƒ…å†µ
 		private String lifeCondition;
-		//µµ°¸ÆäËûÇé¿ö
+		//æ¡£æ¡ˆå…¶ä»–æƒ…å†µ
 		private String otherCondition;
-		//½¨µµÒÀ¾İ
+		//å»ºæ¡£ä¾æ®
 		private String bulidingBasis;
-		//½¨µµ¼ÇÂ¼ÈË
+		//å»ºæ¡£è®°å½•äºº
 		private String bulidingRecorder;
-		//½¨µµÊ±¼ä
+		//å»ºæ¡£æ—¶é—´
 		@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 		private Date bulidingTime;
-		//³ıµµÒÀ¾İ
+		//é™¤æ¡£ä¾æ®
 		private String destoryingBasis;
-		//³ıµµ¼ÇÂ¼ÈË
+		//é™¤æ¡£è®°å½•äºº
 		private String destoryingRecorder;
-		//³ıµµÊ±¼ä
+		//é™¤æ¡£æ—¶é—´
 		@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 		private Date destoryingTime;
-		//½¨µµÈË
+		//å»ºæ¡£äºº
 		private String bulidingPerson;
-		//½¨µµÈËÖ°Îñ
+		//å»ºæ¡£äººèŒåŠ¡
 		private String bulidingPersonDuty;
-		//°ï·öÀàĞÍ
+		//å¸®æ‰¶ç±»å‹
 		private String helpType;
-		//¹Ø×¢×´Ì¬
+		//å…³æ³¨çŠ¶æ€
 		private String attentionType;
-		//¸ÃÑ§ÉúÄ©´Î¼ÇÂ¼Ê±¼ä
+		//è¯¥å­¦ç”Ÿæœ«æ¬¡è®°å½•æ—¶é—´
 		@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 		private Date lastRecordTime;
-		//¸Ãµµ°¸µÄ±ä¸ü¼ÇÂ¼
+		//è¯¥æ¡£æ¡ˆçš„å˜æ›´è®°å½•
 		private List<HistoryRecorderChange> historyRecorderChanges;
 		
 		public HistoryArchive() {

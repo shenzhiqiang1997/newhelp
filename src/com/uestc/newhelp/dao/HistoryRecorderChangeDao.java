@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.HistoryRecorderChange;
 
 public interface HistoryRecorderChangeDao {
-	//ÅúÁ¿Ôö¼ÓÀúÊ·¼ÇÂ¼±ä¸ü¼ÇÂ¼
+	//æ‰¹é‡å¢åŠ å†å²è®°å½•å˜æ›´è®°å½•
 	public void addBatch(@Param("historyRecorderChanges")List<HistoryRecorderChange> historyRecorderChanges);
-	//²éÑ¯Ö¸¶¨ÀúÊ·µµ°¸µÄ¼ÇÂ¼±ä¸ü¼ÇÂ¼
+	//æŸ¥è¯¢æŒ‡å®šå†å²æ¡£æ¡ˆçš„è®°å½•å˜æ›´è®°å½•
 	public List<HistoryRecorderChange> list(Long historyArchiveId);
-	//ÅúÁ¿É¾³ıÖ¸¶¨ÀúÊ·µµ°¸idµÄ¼ÇÂ¼ÈË±ä»¯¼ÇÂ¼
+	//æ‰¹é‡åˆ é™¤æŒ‡å®šå†å²æ¡£æ¡ˆidçš„è®°å½•äººå˜åŒ–è®°å½•
 	public void deleteBatch(@Param("historyArchiveIds")List<Long> historyArchiveIds);
 }

@@ -3,19 +3,19 @@ package com.uestc.newhelp.entity;
 import java.util.Date;
 
 public class Log {
-	//ÈÕÖ¾id
+	//æ—¥å¿—id
 	private Long logId;
-	//²Ù×÷ÈË
+	//æ“ä½œäºº
 	private String teacherId;
-	//²Ù×÷IP
+	//æ“ä½œIP
 	private String ip;
-	//²Ù×÷Ê±¼ä
+	//æ“ä½œæ—¶é—´
 	private Date operateTime;
-	//²Ù×÷ÄÚÈİ
+	//æ“ä½œå†…å®¹
 	private String content;
-	//²Ù×÷½á¹û
+	//æ“ä½œç»“æœ
 	private Byte result;
-	//ÏûÏ¢
+	//æ¶ˆæ¯
 	private String message;
 	public Long getLogId() {
 		return logId;

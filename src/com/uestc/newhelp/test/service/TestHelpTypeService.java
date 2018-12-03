@@ -20,7 +20,7 @@ public class TestHelpTypeService {
 	public void testAdd() {
 		HelpType helpType=new HelpType();
 		
-		helpType.setHelpTypeName("¼ÒÍ¥À§ÄÑ");
+		helpType.setHelpTypeName("å®¶åº­å›°éš¾");
 		helpTypeService.add(helpType);
 		
 	}

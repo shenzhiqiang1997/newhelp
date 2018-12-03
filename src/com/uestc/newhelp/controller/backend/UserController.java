@@ -18,7 +18,7 @@ import com.uestc.newhelp.service.UserService;
 
 /**
  * @author ZhiqiangShen
- * ÓëµÇÂ¼ÓĞ¹ØµÄºó¶Ë¿ØÖÆÆ÷
+ * ä¸ç™»å½•æœ‰å…³çš„åç«¯æ§åˆ¶å™¨
  */
 @Controller(value="BackendUserController")
 @RequestMapping("/backend")
@@ -26,7 +26,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Log("µÇÂ¼ºóÌ¨")
+	@Log("ç™»å½•åå°")
 	@RequestMapping(path="/login",method=RequestMethod.POST)
 	public String login(Teacher teacher,Model model,HttpSession session) {
 		try {
@@ -40,10 +40,10 @@ public class UserController {
 		}
 	}
 	
-	@Log("ÍË³öºóÌ¨")
+	@Log("é€€å‡ºåå°")
 	@RequestMapping(path="/logout",method=RequestMethod.DELETE)
 	public String logout(HttpSession session,HttpServletRequest request) {
-		//±ãÓÚÔÚ¼ÇÂ¼ÈÕÖ¾Ê±»ñÈ¡µ½²Ù×÷ÈË
+		//ä¾¿äºåœ¨è®°å½•æ—¥å¿—æ—¶è·å–åˆ°æ“ä½œäºº
 		request.setAttribute("teacherId", ((Teacher)session.getAttribute("user")).getTeacherId());
 				
 		session.removeAttribute("user");

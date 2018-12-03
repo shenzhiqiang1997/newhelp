@@ -32,7 +32,7 @@ public class LogAspect {
 	
 	@AfterReturning(value="logPointcut()",returning="result")
 	public void after(JoinPoint joinPoint,Object result) throws Exception {
-		//»ñÈ¡request
+		//è·å–request
 		RequestAttributes ra=RequestContextHolder.getRequestAttributes();
 		ServletRequestAttributes sra=(ServletRequestAttributes)ra;
 		HttpServletRequest request=sra.getRequest();
@@ -45,25 +45,25 @@ public class LogAspect {
 		log.setMessage(getMessage(joinPoint, result));
 		log.setOperateTime(new Date());
 		
-		//½«ÈÕÖ¾Ğ´ÈëÊı¾İ¿â
+		//å°†æ—¥å¿—å†™å…¥æ•°æ®åº“
 		logDao.add(log);
 	}
 	
-	//»ñÈ¡À¹½Ø·½·¨ÉÏµÄÈÕÖ¾ÄÚÈİ
+	//è·å–æ‹¦æˆªæ–¹æ³•ä¸Šçš„æ—¥å¿—å†…å®¹
 	private String getLog(JoinPoint joinPoint) throws Exception {
-		//´ÓÇĞÈëµÄ×¢½â»ñÈ¡·½·¨Ç©Ãû¶ÔÏó
+		//ä»åˆ‡å…¥çš„æ³¨è§£è·å–æ–¹æ³•ç­¾åå¯¹è±¡
 		MethodSignature methodSignature=(MethodSignature) joinPoint.getSignature();
-		//´Ó·½·¨Ç©Ãû¶ÔÏó»ñÈ¡µ½·½·¨
+		//ä»æ–¹æ³•ç­¾åå¯¹è±¡è·å–åˆ°æ–¹æ³•
 		Method method=methodSignature.getMethod();
-		//´Ó·½·¨ÉÏ»ñÈ¡²Ù×÷ÈÕÖ¾×¢½â
+		//ä»æ–¹æ³•ä¸Šè·å–æ“ä½œæ—¥å¿—æ³¨è§£
 		Log log=method.getDeclaredAnnotation(Log.class);
-		//·µ»Ø×¢½âÄÚÈİ¼´²Ù×÷ÄÚÈİ
+		//è¿”å›æ³¨è§£å†…å®¹å³æ“ä½œå†…å®¹
 		return log.value();
 	}
 	
-	//»ñÈ¡²Ù×÷µÄÕËºÅid
+	//è·å–æ“ä½œçš„è´¦å·id
 	private String getTeacherId(HttpServletRequest request) {
-		//´Órequest»òÕßsessionÖĞ»ñÈ¡teacherId
+		//ä»requestæˆ–è€…sessionä¸­è·å–teacherId
 		String teacherId=(String)request.getAttribute("teacherId");
 		if(teacherId==null)
 			teacherId=((Teacher)(request.getSession().getAttribute("user"))).getTeacherId();
@@ -71,55 +71,55 @@ public class LogAspect {
 		return teacherId;
 	}
 	
-	//²é¿´²Ù×÷ÊÇ·ñ³É¹¦
+	//æŸ¥çœ‹æ“ä½œæ˜¯å¦æˆåŠŸ
 	private Byte operateSuccess(Object resultObject) {
 		Class<?> resultClass=resultObject.getClass();
 		if (resultClass==String.class) {
-			//ºóÌ¨·µ»ØµÄÊÇ×Ö·û´®
+			//åå°è¿”å›çš„æ˜¯å­—ç¬¦ä¸²
 			String result=(String) resultObject;
-			//Èç¹û·µ»Ø´íÎóÒ³ÃæÔò²Ù×÷Ê§°Ü
+			//å¦‚æœè¿”å›é”™è¯¯é¡µé¢åˆ™æ“ä½œå¤±è´¥
 			if (result.equals("error")) {
 				return 0;
 			}
-		//Ç°Ì¨·µ»ØResult »òÕßResponseEntity
+		//å‰å°è¿”å›Result æˆ–è€…ResponseEntity
 		}else if(resultClass==Result.class){
 			Result<?> result=(Result<?>) resultObject;
-			//Èç¹û·µ»Ø½á¹ûÖĞsuccessÎªfalse ÔòÊ§°Ü
+			//å¦‚æœè¿”å›ç»“æœä¸­successä¸ºfalse åˆ™å¤±è´¥
 			if (result.isSuccess()==false) {
 				return 0;
 			}
 		}else if(resultClass==ResponseEntity.class) {
-			//¶ÔÓÚÎÄ¼şÏìÓ¦½á¹ûÀ´Ëµ Èç¹ûÎÄ¼şÏìÓ¦½á¹û·ºĞÍÎªString ÔòÊ§°Ü
+			//å¯¹äºæ–‡ä»¶å“åº”ç»“æœæ¥è¯´ å¦‚æœæ–‡ä»¶å“åº”ç»“æœæ³›å‹ä¸ºString åˆ™å¤±è´¥
 			ResponseEntity<?> result=(ResponseEntity<?>)resultObject;
 			if (result.getBody()!=null&&result.getBody().getClass()==String.class) {
 				return 0;
 			}
 		}
-		//ÆäËûÇé¿öÎª³É¹¦
+		//å…¶ä»–æƒ…å†µä¸ºæˆåŠŸ
 		return 1;
 	}
 	
 	private String getMessage(JoinPoint joinPoint,Object resultObject) {
-		//Èç¹ûÊÇ·µ»ØÇ°Ì¨½á¹ûÇÒÊÇDTO½á¹û
+		//å¦‚æœæ˜¯è¿”å›å‰å°ç»“æœä¸”æ˜¯DTOç»“æœ
 		if (resultObject.getClass()==Result.class) {
 			Result<?> result=(Result<?>) resultObject;
-			//Èç¹ûÏûÏ¢²»Îª¿ÕÔò·µ»ØÏûÏ¢
+			//å¦‚æœæ¶ˆæ¯ä¸ä¸ºç©ºåˆ™è¿”å›æ¶ˆæ¯
 			if (result.getMessage()!=null) {
 				return result.getMessage();
 			}
 		}else if(resultObject.getClass()==ResponseEntity.class) {
-			//Èç¹û·µ»ØÇ°Ì¨½á¹ûÎªÏìÓ¦ÎÄ¼ş½á¹û
+			//å¦‚æœè¿”å›å‰å°ç»“æœä¸ºå“åº”æ–‡ä»¶ç»“æœ
 			ResponseEntity<?> result=(ResponseEntity<?>)resultObject;
-			//ÇÒÊÇÒòÎªÏìÓ¦Ê§°Üµ¼ÖÂÏìÓ¦ÄÚÈİÎªÎÄ×Ö ÔòÎÄ×Ö¾ÍÊÇÊ§°ÜÏûÏ¢
+			//ä¸”æ˜¯å› ä¸ºå“åº”å¤±è´¥å¯¼è‡´å“åº”å†…å®¹ä¸ºæ–‡å­— åˆ™æ–‡å­—å°±æ˜¯å¤±è´¥æ¶ˆæ¯
 			if (result.getBody()!=null&&result.getBody().getClass()==String.class) {
 				return String.valueOf(result.getBody());
 			}
 		}else {
-			//·ñÔò¾ÍÊÇºóÌ¨½á¹û ÒªÑ°ÕÒBindingAwareModelMapÀà²ÎÊı¶ÔÏó
+			//å¦åˆ™å°±æ˜¯åå°ç»“æœ è¦å¯»æ‰¾BindingAwareModelMapç±»å‚æ•°å¯¹è±¡
 			Object[] args=joinPoint.getArgs();
 			
 			for (Object object : args) {
-				//Èç¹û´ÓºóÌ¨·µ»Ø°ó¶¨½á¹ûÖĞÕÒµ½ÁËÏûÏ¢Ôò·µ»ØÏûÏ¢
+				//å¦‚æœä»åå°è¿”å›ç»‘å®šç»“æœä¸­æ‰¾åˆ°äº†æ¶ˆæ¯åˆ™è¿”å›æ¶ˆæ¯
 				if (object.getClass()==BindingAwareModelMap.class) {
 					BindingAwareModelMap map=(BindingAwareModelMap) object;
 					String message=(String) map.get("message");
@@ -130,13 +130,13 @@ public class LogAspect {
 			}
 		}
 		
-		//Èç¹û×îÖÕÏûÏ¢Ã»ÕÒµ½·µ»Ønull
+		//å¦‚æœæœ€ç»ˆæ¶ˆæ¯æ²¡æ‰¾åˆ°è¿”å›null
 		return null;
 		
 	}
 	
 	private String getRequestIp(HttpServletRequest request) {
-		//·ÀÖ¹´úÀí  Í¨¹ı¶àÖØÑ°ÕÒÀ´ÕÒµ½ÕæÕıµÄIP
+		//é˜²æ­¢ä»£ç†  é€šè¿‡å¤šé‡å¯»æ‰¾æ¥æ‰¾åˆ°çœŸæ­£çš„IP
 		String ip=request.getHeader("x-forwarded-for");
 		if (ip==null||ip.length()==0||"unknown".equalsIgnoreCase(ip)) {
 			ip=request.getHeader("Proxy-Client-IP");

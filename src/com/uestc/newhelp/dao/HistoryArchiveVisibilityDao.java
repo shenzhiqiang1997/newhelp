@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.HistoryArchiveVisibility;
 
 public interface HistoryArchiveVisibilityDao {
-	// Ôö¼Ó½ÌÊ¦µÄ¿É¼ûÀúÊ·°ï·öÎÄµµ
+	// å¢åŠ æ•™å¸ˆçš„å¯è§å†å²å¸®æ‰¶æ–‡æ¡£
 	public void add(@Param("historyArchiveVisibility")HistoryArchiveVisibility historyArchiveVisibility);
-	// ÅúÁ¿É¾³ıÖ¸¶¨ÀúÊ·°ï·öµµ°¸idµÄ¿É¼ûĞÔ
+	// æ‰¹é‡åˆ é™¤æŒ‡å®šå†å²å¸®æ‰¶æ¡£æ¡ˆidçš„å¯è§æ€§
 	public void deleteBatch(@Param("historyArchiveIds")List<Long> historyArchiveIds);
-	// ²éÑ¯Ö¸¶¨½ÌÊ¦µÄ¿É¼û°ï·öÎÄµµ
+	// æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„å¯è§å¸®æ‰¶æ–‡æ¡£
 	public List<Long> list(@Param("teacherId")String teacherId);
 }

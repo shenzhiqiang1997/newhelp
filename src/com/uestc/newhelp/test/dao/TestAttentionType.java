@@ -19,7 +19,7 @@ public class TestAttentionType {
 	@Test
 	public void testAdd() {
 		AttentionType attentionType=new AttentionType();
-		attentionType.setAttentionTypeName("�ص��ע");
+		attentionType.setAttentionTypeName("重点关注");
 		attentionType.setRemindRecordInterval((byte)2);
 		attentionTypeDao.add(attentionType);
 	}

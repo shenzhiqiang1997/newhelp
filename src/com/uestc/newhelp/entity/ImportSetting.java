@@ -1,95 +1,95 @@
 package com.uestc.newhelp.entity;
-//½ÌÊ¦µ¼ÈëÉèÖÃ¶ÔÓ¦µÄÊµÌåÀà
+//æ•™å¸ˆå¯¼å…¥è®¾ç½®å¯¹åº”çš„å®ä½“ç±»
 public class ImportSetting {
-	//µ¼ÈëÉèÖÃid
+	//å¯¼å…¥è®¾ç½®id
 	private Long importSettingId;
-	//µ¼ÈëÉèÖÃËùÊôµÄ½ÌÊ¦ÓÃ»§Ãû
+	//å¯¼å…¥è®¾ç½®æ‰€å±çš„æ•™å¸ˆç”¨æˆ·å
 	private String teacherId;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÑ§ºÅ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿå­¦å·
 	private Byte importStudentId;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúĞÕÃû
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿå§“å
 	private Byte importName;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÄê¼¶
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿå¹´çº§
 	private Byte importGrade;
-	//ÊÇ·ñµ¼ÈëÑ§Éú°à¼¶
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿç­çº§
 	private Byte importStudentClass;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúĞÔ±ğ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ€§åˆ«
 	private Byte importSex;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÖ°Îñ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”ŸèŒåŠ¡
 	private Byte importDuty;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúËŞÉá
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿå®¿èˆ
 	private Byte importDormitory;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÁªÏµ·½Ê½
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿè”ç³»æ–¹å¼
 	private Byte importContactWay;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÉí·İÖ¤ºÅÂë
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿèº«ä»½è¯å·ç 
 	private Byte importIdCardNumber;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúQQºÅÂë
+	//æ˜¯å¦å¯¼å…¥å­¦ç”ŸQQå·ç 
 	private Byte importQqNumber;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÓÊÏäµØÖ·
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿé‚®ç®±åœ°å€
 	private Byte importEmail;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÉúÈÕ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿç”Ÿæ—¥
 	private Byte importBirthday;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÉí¸ß
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿèº«é«˜
 	private Byte importHeight;
-	//ÊÇ·ñµ¼ÈëÑ§Éú×¨Òµ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿä¸“ä¸š
 	private Byte importMajor;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÑ§Òµ×´¿ö
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿå­¦ä¸šçŠ¶å†µ
 	private Byte importStudyCondition;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÕşÖÎÃæÃ²
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ”¿æ²»é¢è²Œ
 	private Byte importPoliticalStatus;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÃñ×å
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ°‘æ—
 	private Byte importEthnicGroup;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¼®¹á
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿç±è´¯
 	private Byte importBirthOrigin;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸ß¿¼³É¼¨/Âú·Ö
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿé«˜è€ƒæˆç»©/æ»¡åˆ†
 	private Byte importCollegeEntranceExamScore;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸ß¿¼Ó¢Óï³É¼¨/Âú·Ö
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿé«˜è€ƒè‹±è¯­æˆç»©/æ»¡åˆ†
 	private Byte importCollegeEntranceExamEnglishScore;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÓ¢ÓïÈëĞ£¿¼ÊÔ³É¼¨
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿè‹±è¯­å…¥æ ¡è€ƒè¯•æˆç»©
 	private Byte importEntranceExamEnglishScore;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¼ÒÏçËùÔÚ»ğ³µÕ¾
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿå®¶ä¹¡æ‰€åœ¨ç«è½¦ç«™
 	private Byte importHometownRailwayStation;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÊ¡·İ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿçœä»½
 	private Byte importProvince;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúËùÔÚ³ÇÊĞ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ‰€åœ¨åŸå¸‚
 	private Byte importCity;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¼ÒÍ¥ÏêÏ¸µØÖ·
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿå®¶åº­è¯¦ç»†åœ°å€
 	private Byte importFamilyAddress;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¼ÒÍ¥µç»°
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿå®¶åº­ç”µè¯
 	private Byte importFamilyTelNumber;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÓÊÕş±àÂë
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿé‚®æ”¿ç¼–ç 
 	private Byte importPostcode;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÌØ³¤
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿç‰¹é•¿
 	private Byte importSpecialty;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸ßÖĞÔøÈÎÖ°Îñ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿé«˜ä¸­æ›¾ä»»èŒåŠ¡
 	private Byte importDutyInHighSchool;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸ßÖĞÔø»ñ½±Àø
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿé«˜ä¸­æ›¾è·å¥–åŠ±
 	private Byte importAwardInHighSchool;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÊÇ·ñÓĞ¿Æ¼¼¾ºÈüÀà»ñ½±
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ˜¯å¦æœ‰ç§‘æŠ€ç«èµ›ç±»è·å¥–
 	private Byte importIsHadTechnologyCompetitionAward;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸¸Ç×ĞÕÃû
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿçˆ¶äº²å§“å
 	private Byte importFatherName;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸¸Ç×¹¤×÷µ¥Î»
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿçˆ¶äº²å·¥ä½œå•ä½
 	private Byte importFatherWorkUnit;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸¸Ç×¹¤×÷µ¥Î»ÏêÏ¸µØÖ·
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿçˆ¶äº²å·¥ä½œå•ä½è¯¦ç»†åœ°å€
 	private Byte importFatherWorkUnitAddress;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸¸Ç×Ö°Îñ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿçˆ¶äº²èŒåŠ¡
 	private Byte importFatherDuty;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸¸Ç×ÓÊ±à
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿçˆ¶äº²é‚®ç¼–
 	private Byte importFatherPostcode;
-	//ÊÇ·ñµ¼ÈëÑ§Éú¸¸Ç×µç»°
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿçˆ¶äº²ç”µè¯
 	private Byte importFatherTelNumber;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÄ¸Ç×ĞÕÃû
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ¯äº²å§“å
 	private Byte importMotherName;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÄ¸Ç×¹¤×÷µ¥Î»
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ¯äº²å·¥ä½œå•ä½
 	private Byte importMotherWorkUnit;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÄ¸Ç×¹¤×÷µ¥Î»ÏêÏ¸µØÖ·
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ¯äº²å·¥ä½œå•ä½è¯¦ç»†åœ°å€
 	private Byte importMotherWorkUnitAddress;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÄ¸Ç×Ö°Îñ
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ¯äº²èŒåŠ¡
 	private Byte importMotherDuty;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÄ¸Ç×ÓÊ±à
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ¯äº²é‚®ç¼–
 	private Byte importMotherPostcode;
-	//ÊÇ·ñµ¼ÈëÑ§ÉúÄ¸Ç×µç»°
+	//æ˜¯å¦å¯¼å…¥å­¦ç”Ÿæ¯äº²ç”µè¯
 	private Byte importMotherTelNumber;
 	
 	

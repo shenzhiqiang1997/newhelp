@@ -20,7 +20,7 @@ public class ReocrderChangeController {
 	@Autowired
 	private RecorderChangeService recorderChangeService;
 	
-	@Log("Ç°Ì¨±ä¸ü°ï·öÑ§ÉúÖÁÆäËû°ï·ö½ÌÊ¦")
+	@Log("å‰å°å˜æ›´å¸®æ‰¶å­¦ç”Ÿè‡³å…¶ä»–å¸®æ‰¶æ•™å¸ˆ")
 	@PostMapping("/change/{newTeacherId}")
 	@ResponseBody
 	public Result<RecorderChange> add(@PathVariable("newTeacherId") String newTeacherId,

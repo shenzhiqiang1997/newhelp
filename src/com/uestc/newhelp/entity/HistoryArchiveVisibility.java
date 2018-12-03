@@ -1,11 +1,11 @@
 package com.uestc.newhelp.entity;
 
 public class HistoryArchiveVisibility {
-	// 历史帮扶文档可见id
+	// 鍘嗗彶甯壎鏂囨。鍙id
 	private Long historyArchiveVisibilityId;
-	// 教师id
+	// 鏁欏笀id
 	private String teacherId;
-	// 历史帮扶文档id
+	// 鍘嗗彶甯壎鏂囨。id
 	private Long historyArchiveId;
 	
 	public HistoryArchiveVisibility(String teacherId, Long historyArchiveId) {

@@ -26,7 +26,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Override
 	public void delete(String teacherId) throws StillHasArchiveStudentException{
-		//²é¿´¸Ã½ÌÊ¦ÊÇ·ñ»¹ÓĞ°ï·öµÄÑ§Éú Èç¹û»¹ÓĞÔòÅ×³öÒì³£²¢ÌáĞÑ¹ÜÀíÕß
+		//æŸ¥çœ‹è¯¥æ•™å¸ˆæ˜¯å¦è¿˜æœ‰å¸®æ‰¶çš„å­¦ç”Ÿ å¦‚æœè¿˜æœ‰åˆ™æŠ›å‡ºå¼‚å¸¸å¹¶æé†’ç®¡ç†è€…
 		int count=archiveStudentDao.count(teacherId);
 		System.out.println(count);
 		if(count!=0)

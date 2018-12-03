@@ -7,23 +7,23 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.Teacher;
 
 public interface TeacherDao {
-	//²éÑ¯Ö¸¶¨½ÌÊ¦ÓÃ»§ÃÜÂë
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆç”¨æˆ·å¯†ç 
 	public Teacher getPassword(String teacherId);
-	//²éÑ¯Ö¸¶¨½ÌÊ¦ĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆä¿¡æ¯
 	public Teacher getInfo(String teacherId);
-	//²éÑ¯Ö¸¶¨½ÌÊ¦È¨ÏŞ
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆæƒé™
 	public Byte  getAuthority(String teacherId);
-	//²éÑ¯³ıµ±Ç°½ÌÊ¦ÍâËùÓĞ½ÌÊ¦µÄÓÃ»§ÃûºÍÃû×Ö
+	//æŸ¥è¯¢é™¤å½“å‰æ•™å¸ˆå¤–æ‰€æœ‰æ•™å¸ˆçš„ç”¨æˆ·åå’Œåå­—
 	public List<Teacher> listTeacherIdAndName(String teacherId);
-	//¸üĞÂÖ¸¶¨½ÌÊ¦µÄÃÜÂë
+	//æ›´æ–°æŒ‡å®šæ•™å¸ˆçš„å¯†ç 
 	public void updatePassword(@Param("teacher")Teacher teacher);
 	
-	//²éÑ¯½ÌÊ¦ÁĞ±í
+	//æŸ¥è¯¢æ•™å¸ˆåˆ—è¡¨
 	public List<Teacher> list();
-	//É¾³ıÖ¸¶¨½ÌÊ¦
+	//åˆ é™¤æŒ‡å®šæ•™å¸ˆ
 	public void delete(String teacherId);
-	//¸üĞÂÖ¸¶¨½ÌÊ¦
+	//æ›´æ–°æŒ‡å®šæ•™å¸ˆ
 	public void update(@Param("teacher")Teacher teacher);
-	//Ôö¼Ó½ÌÊ¦
+	//å¢åŠ æ•™å¸ˆ
 	public void add(@Param("teacher")Teacher teacher);
 }

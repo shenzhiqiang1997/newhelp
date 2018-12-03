@@ -1,20 +1,20 @@
 package com.uestc.newhelp.path;
 
 public interface FileName {
-	public static final String BASE_STUDENT_EXCEL_TEMPLATE_NAME="Ñ§Éú»ù±¾ĞÅÏ¢.xlsx";
-	public static final String WEEKLY_SIMPLE_RECORD_EXCEL_TEMPLATE_NAME="ÖÜÁªÏµ¼òÒ×¼ÇÂ¼±í.xlsx";
-	public static final String FAMILY_RECORD_EXCEL_TEMPLATE_NAME="¼Ò³¤ÁªÏµ¼ÇÂ¼±í.xlsx";
-	public static final String FACE_TALK_RECORD_EXCEL_TEMPLATE_NAME="ÃæÌ¸¼ÇÂ¼±í.xlsx";
-	public static final String DISCUSS_SUMMARY_RECORD_EXCEL_TEMPLATE_NAME="ÑĞÌÖ¼°×Ü½á¼ÇÂ¼.xlsx";
-	public static final String RECORD_NAME="¼ÇÂ¼ÁĞ±í.xlsx";
-	public static final String ARCHIVE_BOOK="Ñ§Éú°ï·ö¼ÇÂ¼²¾";
-	public static final String ARCHIVE_NAME="Ñ§Éú°ï·ö¼ÇÂ¼²¾.doc";
-	public static final String BASE_STUDENT_LIST="Ñ§Éú»ù±¾ĞÅÏ¢";
-	public static final String ARCHIVE_COVER_TEMPLATE_NAME="Ñ§Éú°ï·ö¼ÇÂ¼²¾.docx";
-	public static final String BASE_STUDENT_DOCX_TEMPLATE_NAME="Ñ§Éú»ù±¾ĞÅÏ¢.docx";
-	public static final String ARCHIVE_INFO_TEMPLATE_NAME="½¨µµĞÅÏ¢.docx";
-	public static final String WEEKLY_SIMPLE_RECORD_DOCX_TEMPLATE_NAME="ÖÜÁªÏµ¼òÒ×¼ÇÂ¼±í.docx";
-	public static final String FAMILY_RECORD_DOCX_TEMPLATE_NAME="¼Ò³¤ÁªÏµ¼ÇÂ¼±í.docx";
-	public static final String FACE_TALK_RECORD_DOCX_TEMPLATE_NAME="ÃæÌ¸¼ÇÂ¼±í.docx";
-	public static final String DISCUSS_SUMMARY_RECORD_DOCX_TEMPLATE_NAME="ÑĞÌÖ¼°×Ü½á¼ÇÂ¼.docx";
+	public static final String BASE_STUDENT_EXCEL_TEMPLATE_NAME="å­¦ç”ŸåŸºæœ¬ä¿¡æ¯.xlsx";
+	public static final String WEEKLY_SIMPLE_RECORD_EXCEL_TEMPLATE_NAME="å‘¨è”ç³»ç®€æ˜“è®°å½•è¡¨.xlsx";
+	public static final String FAMILY_RECORD_EXCEL_TEMPLATE_NAME="å®¶é•¿è”ç³»è®°å½•è¡¨.xlsx";
+	public static final String FACE_TALK_RECORD_EXCEL_TEMPLATE_NAME="é¢è°ˆè®°å½•è¡¨.xlsx";
+	public static final String DISCUSS_SUMMARY_RECORD_EXCEL_TEMPLATE_NAME="ç ”è®¨åŠæ€»ç»“è®°å½•.xlsx";
+	public static final String RECORD_NAME="è®°å½•åˆ—è¡¨.xlsx";
+	public static final String ARCHIVE_BOOK="å­¦ç”Ÿå¸®æ‰¶è®°å½•ç°¿";
+	public static final String ARCHIVE_NAME="å­¦ç”Ÿå¸®æ‰¶è®°å½•ç°¿.doc";
+	public static final String BASE_STUDENT_LIST="å­¦ç”ŸåŸºæœ¬ä¿¡æ¯";
+	public static final String ARCHIVE_COVER_TEMPLATE_NAME="å­¦ç”Ÿå¸®æ‰¶è®°å½•ç°¿.docx";
+	public static final String BASE_STUDENT_DOCX_TEMPLATE_NAME="å­¦ç”ŸåŸºæœ¬ä¿¡æ¯.docx";
+	public static final String ARCHIVE_INFO_TEMPLATE_NAME="å»ºæ¡£ä¿¡æ¯.docx";
+	public static final String WEEKLY_SIMPLE_RECORD_DOCX_TEMPLATE_NAME="å‘¨è”ç³»ç®€æ˜“è®°å½•è¡¨.docx";
+	public static final String FAMILY_RECORD_DOCX_TEMPLATE_NAME="å®¶é•¿è”ç³»è®°å½•è¡¨.docx";
+	public static final String FACE_TALK_RECORD_DOCX_TEMPLATE_NAME="é¢è°ˆè®°å½•è¡¨.docx";
+	public static final String DISCUSS_SUMMARY_RECORD_DOCX_TEMPLATE_NAME="ç ”è®¨åŠæ€»ç»“è®°å½•.docx";
 }

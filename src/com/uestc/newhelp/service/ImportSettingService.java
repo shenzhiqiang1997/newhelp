@@ -3,10 +3,10 @@ package com.uestc.newhelp.service;
 import com.uestc.newhelp.entity.ImportSetting;
 import com.uestc.newhelp.exception.NoAuthorityException;
 
-//Óë½ÌÊ¦ÉèÖÃÑ§Éúµ¼ÈëÌõÄ¿ÓĞ¹ØµÄÒµÎñÂß¼­
+//ä¸æ•™å¸ˆè®¾ç½®å­¦ç”Ÿå¯¼å…¥æ¡ç›®æœ‰å…³çš„ä¸šåŠ¡é€»è¾‘
 public interface ImportSettingService {
-	//¸üĞÂÖ¸¶¨½ÌÊ¦µÄ¹ØÓÚÑ§Éúµ¼ÈëÌõÄ¿ÉèÖÃ
+	//æ›´æ–°æŒ‡å®šæ•™å¸ˆçš„å…³äºå­¦ç”Ÿå¯¼å…¥æ¡ç›®è®¾ç½®
 	public void update(ImportSetting importSetting) throws NoAuthorityException;
-	//²éÑ¯Ö¸¶¨½ÌÊ¦¹ØÓÚÑ§Éúµ¼ÈëÌõÄ¿ÉèÖÃ
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆå…³äºå­¦ç”Ÿå¯¼å…¥æ¡ç›®è®¾ç½®
 	public ImportSetting get(String teacherId) throws NoAuthorityException;
 }

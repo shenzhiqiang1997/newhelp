@@ -1,95 +1,95 @@
 package com.uestc.newhelp.entity;
-//��ʦ��¶���ö�Ӧ��ʵ����
+//教师暴露设置对应的实体类
 public class ExposeSetting {
-	//��¶����id
+	//暴露设置id
 	private Long exposeSettingId;
-	//��¶���������Ľ�ʦ�û���
+	//暴露设置所属的教师用户名
 	private String teacherId;
-	//�Ƿ�¶ѧ��ѧ��
+	//是否暴露学生学号
 	private Byte exposeStudentId;
-	//�Ƿ�¶ѧ������
+	//是否暴露学生姓名
 	private Byte exposeName;
-	//�Ƿ�¶ѧ���꼶
+	//是否暴露学生年级
 	private Byte exposeGrade;
-	//�Ƿ�¶ѧ���༶
+	//是否暴露学生班级
 	private Byte exposeStudentClass;
-	//�Ƿ�¶ѧ���Ա�
+	//是否暴露学生性别
 	private Byte exposeSex;
-	//�Ƿ�¶ѧ��ְ��
+	//是否暴露学生职务
 	private Byte exposeDuty;
-	//�Ƿ�¶ѧ������
+	//是否暴露学生宿舍
 	private Byte exposeDormitory;
-	//�Ƿ�¶ѧ����ϵ��ʽ
+	//是否暴露学生联系方式
 	private Byte exposeContactWay;
-	//�Ƿ�¶ѧ������֤����
+	//是否暴露学生身份证号码
 	private Byte exposeIdCardNumber;
-	//�Ƿ�¶ѧ��QQ����
+	//是否暴露学生QQ号码
 	private Byte exposeQqNumber;
-	//�Ƿ�¶ѧ�������ַ
+	//是否暴露学生邮箱地址
 	private Byte exposeEmail;
-	//�Ƿ�¶ѧ������
+	//是否暴露学生生日
 	private Byte exposeBirthday;
-	//�Ƿ�¶ѧ������
+	//是否暴露学生身高
 	private Byte exposeHeight;
-	//�Ƿ�¶ѧ��רҵ
+	//是否暴露学生专业
 	private Byte exposeMajor;
-	//�Ƿ�¶ѧ��ѧҵ״��
+	//是否暴露学生学业状况
 	private Byte exposeStudyCondition;
-	//�Ƿ�¶ѧ��������ò
+	//是否暴露学生政治面貌
 	private Byte exposePoliticalStatus;
-	//�Ƿ�¶ѧ������
+	//是否暴露学生民族
 	private Byte exposeEthnicGroup;
-	//�Ƿ�¶ѧ������
+	//是否暴露学生籍贯
 	private Byte exposeBirthOrigin;
-	//�Ƿ�¶ѧ���߿��ɼ�/����
+	//是否暴露学生高考成绩/满分
 	private Byte exposeCollegeEntranceExamScore;
-	//�Ƿ�¶ѧ���߿�Ӣ��ɼ�/����
+	//是否暴露学生高考英语成绩/满分
 	private Byte exposeCollegeEntranceExamEnglishScore;
-	//�Ƿ�¶ѧ��Ӣ����У���Գɼ�
+	//是否暴露学生英语入校考试成绩
 	private Byte exposeEntranceExamEnglishScore;
-	//�Ƿ�¶ѧ���������ڻ�վ
+	//是否暴露学生家乡所在火车站
 	private Byte exposeHometownRailwayStation;
-	//�Ƿ�¶ѧ��ʡ��
+	//是否暴露学生省份
 	private Byte exposeProvince;
-	//�Ƿ�¶ѧ�����ڳ���
+	//是否暴露学生所在城市
 	private Byte exposeCity;
-	//�Ƿ�¶ѧ����ͥ��ϸ��ַ
+	//是否暴露学生家庭详细地址
 	private Byte exposeFamilyAddress;
-	//�Ƿ�¶ѧ����ͥ�绰
+	//是否暴露学生家庭电话
 	private Byte exposeFamilyTelNumber;
-	//�Ƿ�¶ѧ����������
+	//是否暴露学生邮政编码
 	private Byte exposePostcode;
-	//�Ƿ�¶ѧ���س�
+	//是否暴露学生特长
 	private Byte exposeSpecialty;
-	//�Ƿ�¶ѧ����������ְ��
+	//是否暴露学生高中曾任职务
 	private Byte exposeDutyInHighSchool;
-	//�Ƿ�¶ѧ������������
+	//是否暴露学生高中曾获奖励
 	private Byte exposeAwardInHighSchool;
-	//�Ƿ�¶ѧ���Ƿ��пƼ��������
+	//是否暴露学生是否有科技竞赛类获奖
 	private Byte exposeIsHadTechnologyCompetitionAward;
-	//�Ƿ�¶ѧ����������
+	//是否暴露学生父亲姓名
 	private Byte exposeFatherName;
-	//�Ƿ�¶ѧ�����׹�����λ
+	//是否暴露学生父亲工作单位
 	private Byte exposeFatherWorkUnit;
-	//�Ƿ�¶ѧ�����׹�����λ��ϸ��ַ
+	//是否暴露学生父亲工作单位详细地址
 	private Byte exposeFatherWorkUnitAddress;
-	//�Ƿ�¶ѧ������ְ��
+	//是否暴露学生父亲职务
 	private Byte exposeFatherDuty;
-	//�Ƿ�¶ѧ�������ʱ�
+	//是否暴露学生父亲邮编
 	private Byte exposeFatherPostcode;
-	//�Ƿ�¶ѧ�����׵绰
+	//是否暴露学生父亲电话
 	private Byte exposeFatherTelNumber;
-	//�Ƿ�¶ѧ��ĸ������
+	//是否暴露学生母亲姓名
 	private Byte exposeMotherName;
-	//�Ƿ�¶ѧ��ĸ�׹�����λ
+	//是否暴露学生母亲工作单位
 	private Byte exposeMotherWorkUnit;
-	//�Ƿ�¶ѧ��ĸ�׹�����λ��ϸ��ַ
+	//是否暴露学生母亲工作单位详细地址
 	private Byte exposeMotherWorkUnitAddress;
-	//�Ƿ�¶ѧ��ĸ��ְ��
+	//是否暴露学生母亲职务
 	private Byte exposeMotherDuty;
-	//�Ƿ�¶ѧ��ĸ���ʱ�
+	//是否暴露学生母亲邮编
 	private Byte exposeMotherPostcode;
-	//�Ƿ�¶ѧ��ĸ�׵绰
+	//是否暴露学生母亲电话
 	private Byte exposeMotherTelNumber;
 	
 	

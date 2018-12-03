@@ -3,30 +3,30 @@ package com.uestc.newhelp.entity;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-//ÀúÊ·¼ÇÂ¼¶ÔÓ¦µÄÊµÌåÀà
+//å†å²è®°å½•å¯¹åº”çš„å®ä½“ç±»
 public class HistoryRecord {
-		//ÀúÊ·ÁªÏµ¼ÇÂ¼±íid
+		//å†å²è”ç³»è®°å½•è¡¨id
 		private Long historyRecordId;
-		//¼ÇÂ¼ËùÊôÀúÊ·µµ°¸id
+		//è®°å½•æ‰€å±å†å²æ¡£æ¡ˆid
 		private Long historyArchiveId;
-		//¼ÇÂ¼±íÃû³Æ
+		//è®°å½•è¡¨åç§°
 		private String recordName;
-		//¼ÇÂ¼Ê±¼ä
+		//è®°å½•æ—¶é—´
 		@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 		private Date recordTime;
-		//µØµã
+		//åœ°ç‚¹
 		private String location;
-		//¼ûÖ¤ÈË
+		//è§è¯äºº
 		private String witness;
-		//¼ÇÂ¼ÈË
+		//è®°å½•äºº
 		private String recorder;
-		//²ÎÓëÈË
+		//å‚ä¸äºº
 		private String participant;
-		//·½Ê½
+		//æ–¹å¼
 		private String way;
-		//Ö÷ÒªÄÚÈİ
+		//ä¸»è¦å†…å®¹
 		private String content;
-		//±¸×¢
+		//å¤‡æ³¨
 		private String comment;
 		
 		

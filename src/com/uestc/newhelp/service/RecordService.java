@@ -12,23 +12,23 @@ import com.uestc.newhelp.exception.NotChoseExportObjectException;
 import com.uestc.newhelp.exception.NotPointOutRecordNameException;
 import com.uestc.newhelp.exception.NotPointOutStudentIdException;
 import com.uestc.newhelp.exception.RecordTypeNotMatchException;
-//Óë¼ÇÂ¼ÓĞ¹ØµÄÒµÎñÂß¼­
+//ä¸è®°å½•æœ‰å…³çš„ä¸šåŠ¡é€»è¾‘
 public interface RecordService {
-	//²éÑ¯¼ÇÂ¼ÁĞ±í
+	//æŸ¥è¯¢è®°å½•åˆ—è¡¨
 	public List<Record> list(Record record);
-	//Ôö¼Ó¼ÇÂ¼
+	//å¢åŠ è®°å½•
 	public void add(Record record);
-	//ÅúÁ¿Ôö¼Ó¼ÇÂ¼
+	//æ‰¹é‡å¢åŠ è®°å½•
 	public void addBatch(List<Record> records);
-	//ÅúÁ¿É¾³ı¼ÇÂ¼
+	//æ‰¹é‡åˆ é™¤è®°å½•
 	public void deleteBatch(List<Long> recordIds);
-	//¸üĞÂ¼ÇÂ¼
+	//æ›´æ–°è®°å½•
 	public void update(Record record);
-	//²éÑ¯Ö¸¶¨¼ÇÂ¼ÏêÏ¸ĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šè®°å½•è¯¦ç»†ä¿¡æ¯
 	public Record get(Long recordId);
-	//´ÓExcelÎÄ¼şÖĞµ¼Èë¼ÇÂ¼
+	//ä»Excelæ–‡ä»¶ä¸­å¯¼å…¥è®°å½•
 	public void importRecordFromExcelFile(Record record,MultipartFile multipartFile) throws FileTypeNotMatchException, IOException,
 	NoDataToImportException,NotPointOutRecordNameException,NotPointOutStudentIdException;
-	//½«Ö¸¶¨µÄ¼ÇÂ¼ÁĞ±íµ¼³öµ½ExcelÎÄ¼şÖĞ
+	//å°†æŒ‡å®šçš„è®°å½•åˆ—è¡¨å¯¼å‡ºåˆ°Excelæ–‡ä»¶ä¸­
 	public byte[] exportReocrdToExcelFile(String recordName,List<Long> recordIds) throws NotChoseExportObjectException,IOException,RecordTypeNotMatchException;
 }

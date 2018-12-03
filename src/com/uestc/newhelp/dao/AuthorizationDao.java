@@ -5,12 +5,12 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.Authorization;
 
 public interface AuthorizationDao {
-	//¸øÖ¸¶¨½ÌÊ¦½¨Á¢È¨ÏŞ
+	//ç»™æŒ‡å®šæ•™å¸ˆå»ºç«‹æƒé™
 	public void add(@Param("teacherId")String teacherId);
-	//²éÑ¯Ö¸¶¨½ÌÊ¦µÄÈ¨ÏŞ
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„æƒé™
 	public Authorization get(@Param("teacherId")String teacherId);
-	//¸üĞÂÖ¸¶¨½ÌÊ¦µÄÈ¨ÏŞ
+	//æ›´æ–°æŒ‡å®šæ•™å¸ˆçš„æƒé™
 	public void update(@Param("authorization")Authorization authorization);
-	//É¾³ıÖ¸¶¨½ÌÊ¦µÄÈ¨ÏŞ
+	//åˆ é™¤æŒ‡å®šæ•™å¸ˆçš„æƒé™
 	public void delete(@Param("teacherId")String teacherId);
 }

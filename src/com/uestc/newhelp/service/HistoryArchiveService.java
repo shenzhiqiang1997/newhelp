@@ -6,17 +6,17 @@ import java.util.List;
 import com.uestc.newhelp.entity.HistoryArchive;
 import com.uestc.newhelp.exception.NoSuchStudentException;
 import com.uestc.newhelp.exception.NotChoseExportObjectException;
-//ÓëÀúÊ·°ï·öÑ§ÉúÓĞ¹ØµÄÒµÎñÂß¼­
+//ä¸å†å²å¸®æ‰¶å­¦ç”Ÿæœ‰å…³çš„ä¸šåŠ¡é€»è¾‘
 public interface HistoryArchiveService {
-	//²éÑ¯ÀúÊ·°ï·öÑ§ÉúÁĞ±í
+	//æŸ¥è¯¢å†å²å¸®æ‰¶å­¦ç”Ÿåˆ—è¡¨
 	public List<HistoryArchive> list(String teacherId);
-	//ËÑË÷ÀúÊ·°ï·öÑ§ÉúÁĞ±í
+	//æœç´¢å†å²å¸®æ‰¶å­¦ç”Ÿåˆ—è¡¨
 	public List<HistoryArchive> search(HistoryArchive historyArchive);
-	//²éÑ¯Ö¸¶¨ÀúÊ·°ï·öÑ§ÉúÏêÏ¸ĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šå†å²å¸®æ‰¶å­¦ç”Ÿè¯¦ç»†ä¿¡æ¯
 	public HistoryArchive get(Long historyArchiveId);
-	//ÅúÁ¿É¾³ıÀúÊ·µµ°¸
+	//æ‰¹é‡åˆ é™¤å†å²æ¡£æ¡ˆ
 	public void deleteBatch(List<Long> historyArchiveIds);
-	//µ¼³öÖ¸¶¨ÀúÊ·µµ°¸µ½wordÎÄ¼şÖĞ
+	//å¯¼å‡ºæŒ‡å®šå†å²æ¡£æ¡ˆåˆ°wordæ–‡ä»¶ä¸­
 	public byte[] exportHistoryArchiveToWordFile(Long historyArchiveId)
 			throws IOException, NotChoseExportObjectException, NoSuchStudentException, Exception;
 	

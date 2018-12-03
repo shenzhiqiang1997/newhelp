@@ -21,7 +21,7 @@ public class TestRecorderChange {
 	public void testAdd() {
 		RecorderChange recorderChange=new RecorderChange();
 		recorderChange.setStudentId(2016220305023L);
-		recorderChange.setRecorderNow("´÷ÈðæÃ");
+		recorderChange.setRecorderNow("æˆ´ç‘žå©·");
 		recorderChange.setChangeReason("asdas");
 		recorderChange.setChangeTime(new Date());
 		recorderChangeDao.add(recorderChange);

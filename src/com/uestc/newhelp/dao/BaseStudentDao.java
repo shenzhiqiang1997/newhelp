@@ -10,41 +10,41 @@ import com.uestc.newhelp.entity.BaseStudent;
 import com.uestc.newhelp.entity.ExposeSetting;
 
 public interface BaseStudentDao {
-	//²éÑ¯Ö¸¶¨Ñ§Éú»ù±¾ËùÓĞĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šå­¦ç”ŸåŸºæœ¬æ‰€æœ‰ä¿¡æ¯
 	public BaseStudent getAll(Long studentId);
-	//²éÑ¯Ö¸¶¨Ñ§Éú»ù±¾¸öÈËĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šå­¦ç”ŸåŸºæœ¬ä¸ªäººä¿¡æ¯
 	public BaseStudent getPersonalInfo(Long studentId);
-	//²éÑ¯Ö¸¶¨Ñ§Éú»ù±¾¼ÒÍ¥ĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šå­¦ç”ŸåŸºæœ¬å®¶åº­ä¿¡æ¯
 	public BaseStudent getFamilyInfo(Long studentId);
 	//
 	public short getGrade(Long studentId);
-	//²éÑ¯Ö¸¶¨Ñ§ÉúÓÃÓÚ½¨µµµÄĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šå­¦ç”Ÿç”¨äºå»ºæ¡£çš„ä¿¡æ¯
 	public BaseStudent getArchiveInfo(Long studentId);
-	//¸ù¾İ°ï·öÀÏÊ¦µÄ±©Â¶ÉèÖÃÀ´²éÑ¯Ñ§Éú»ù±¾ĞÅÏ¢ÁĞ±í
+	//æ ¹æ®å¸®æ‰¶è€å¸ˆçš„æš´éœ²è®¾ç½®æ¥æŸ¥è¯¢å­¦ç”ŸåŸºæœ¬ä¿¡æ¯åˆ—è¡¨
 	public List<BaseStudent> list();
-	//¸ù¾İËÑË÷Ìõ¼şËÑË÷Ñ§Éú»ù±¾ĞÅÏ¢ÁĞ±í
+	//æ ¹æ®æœç´¢æ¡ä»¶æœç´¢å­¦ç”ŸåŸºæœ¬ä¿¡æ¯åˆ—è¡¨
 	public List<BaseStudent> search(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade,
 			@Param("page")Page page,@Param("classSort")Integer classSort);
-	//¸ù¾İËÑË÷Ìõ¼şËÑË÷Ñ§Éú»ù±¾ĞÅÏ¢ÁĞ±í
+	//æ ¹æ®æœç´¢æ¡ä»¶æœç´¢å­¦ç”ŸåŸºæœ¬ä¿¡æ¯åˆ—è¡¨
 	public List<BaseStudent> searchWithoutPage(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade);
-	//¸ù¾İËÑË÷Ìõ¼şÍ³¼ÆÑ§ÉúÌõÊı
+	//æ ¹æ®æœç´¢æ¡ä»¶ç»Ÿè®¡å­¦ç”Ÿæ¡æ•°
 	public int searchRecordNum(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade);
-	//²éÑ¯Ö¸¶¨ĞÕÃûµÄÑ§ÉúÑ§ºÅ
+	//æŸ¥è¯¢æŒ‡å®šå§“åçš„å­¦ç”Ÿå­¦å·
 	public List<Long> listStudentIdByName(String name);
-	//ÅúÁ¿Ôö¼ÓÑ§Éú»ù±¾ĞÅÏ¢
+	//æ‰¹é‡å¢åŠ å­¦ç”ŸåŸºæœ¬ä¿¡æ¯
 	public void addBatch(@Param("baseStudents")List<BaseStudent> baseStudents,@Param("exposeSetting")ExposeSetting exposeSetting);
-	//¸üĞÂÖ¸¶¨Ñ§ÉúµÄ»ù±¾ĞÅÏ¢
+	//æ›´æ–°æŒ‡å®šå­¦ç”Ÿçš„åŸºæœ¬ä¿¡æ¯
 	public void update(@Param("baseStudent")BaseStudent baseStudent);
-	//¸ù¾İÑ§ºÅÅúÁ¿²éÑ¯Ñ§Éú»ù±¾ĞÅÏ¢
+	//æ ¹æ®å­¦å·æ‰¹é‡æŸ¥è¯¢å­¦ç”ŸåŸºæœ¬ä¿¡æ¯
 	public List<BaseStudent> listByIds(@Param("studentIds")List<Long> studentIds,@Param("exposeSetting") ExposeSetting exposeSetting,@Param("grade")Short grade);
-	//Í³¼ÆÈËÊı
+	//ç»Ÿè®¡äººæ•°
 	public Integer count(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade);
-	//°´id ĞÕÃû²éÕÒÄ£ºı
+	//æŒ‰id å§“åæŸ¥æ‰¾æ¨¡ç³Š
 	public List<BaseStudent> searchByIdName(@Param("studentId")Long studentId,@Param("name")String name);
-	//¸ù¾İËÑË÷Ìõ¼şÍ³¼ÆÑ§ÉúÌõÊı
+	//æ ¹æ®æœç´¢æ¡ä»¶ç»Ÿè®¡å­¦ç”Ÿæ¡æ•°
 	public int searchRecordNumByCondition(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade,
 			@Param("studyCondition1")String studyCondition1,@Param("studyCondition2")String studyCondition2);
-	//¸ù¾İËÑË÷Ìõ¼şËÑË÷Ñ§Éú»ù±¾ĞÅÏ¢ÁĞ±í
+	//æ ¹æ®æœç´¢æ¡ä»¶æœç´¢å­¦ç”ŸåŸºæœ¬ä¿¡æ¯åˆ—è¡¨
 	public List<BaseStudent> searchByCondition(@Param("baseStudent")BaseStudent baseStudent,@Param("teacherGrade")Short teacherGrade,
 				@Param("page")Page page,@Param("classSort")Integer classSort,
 				@Param("studyCondition1")String studyCondition1,@Param("studyCondition2")String studyCondition2);

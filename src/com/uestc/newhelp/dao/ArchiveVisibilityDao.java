@@ -7,14 +7,14 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.ArchiveVisibility;
 
 public interface ArchiveVisibilityDao {
-	// Ôö¼Ó½ÌÊ¦µÄ¿É¼û°ï·öÎÄµµ
+	// å¢åŠ æ•™å¸ˆçš„å¯è§å¸®æ‰¶æ–‡æ¡£
 	public void add(@Param("archiveVisibility")ArchiveVisibility archiveVisibility);
-	// É¾³ı½ÌÊ¦¶ÔÖ¸¶¨°ï·öµµ°¸µÄ¿É¼ûĞÔ
+	// åˆ é™¤æ•™å¸ˆå¯¹æŒ‡å®šå¸®æ‰¶æ¡£æ¡ˆçš„å¯è§æ€§
 	public void delete(@Param("archiveVisibility")ArchiveVisibility archiveVisibility);
-	// É¾³ıÖ¸¶¨°ï·öµµ°¸idµÄ¿É¼ûĞÔ
+	// åˆ é™¤æŒ‡å®šå¸®æ‰¶æ¡£æ¡ˆidçš„å¯è§æ€§
 	public void deleteByArchiveId(@Param("archiveId")Long archiveId);
-	// ²éÑ¯Ö¸¶¨½ÌÊ¦µÄ¿É¼û°ï·öÎÄµµ
+	// æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„å¯è§å¸®æ‰¶æ–‡æ¡£
 	public List<Long> list(@Param("teacherId")String teacherId);
-	// ²éÑ¯Ö¸¶¨°ï·öµµ°¸µÄ¿É¼û½ÌÊ¦idÁĞ±í
+	// æŸ¥è¯¢æŒ‡å®šå¸®æ‰¶æ¡£æ¡ˆçš„å¯è§æ•™å¸ˆidåˆ—è¡¨
 	public List<String> listTeacherIds(@Param("archiveId")Long archiveId);
 }

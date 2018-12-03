@@ -21,9 +21,9 @@ public class TestHistoryRecordDao {
 	@Test
 	public void testAddBaatch() {
 		List<HistoryRecord> historyRecords=new ArrayList<>(2);
-		HistoryRecord historyRecord=new HistoryRecord(null, 1L, "¼ÒÍ¥ÁªÏµ±í", new Date(), "°ì¹«ÊÒ", "ÎŞ", "´÷ÈğæÃ", "´÷ÈğæÃ", "ÃæÁÄ", "dasdqweqtrete1111", "asdoiquweyg");
+		HistoryRecord historyRecord=new HistoryRecord(null, 1L, "å®¶åº­è”ç³»è¡¨", new Date(), "åŠå…¬å®¤", "æ— ", "æˆ´ç‘å©·", "æˆ´ç‘å©·", "é¢èŠ", "dasdqweqtrete1111", "asdoiquweyg");
 		historyRecords.add(historyRecord);
-		historyRecord=new HistoryRecord(null, 1L, "ÑĞÌÖ¼ÇÂ¼±í", new Date(), "°ì¹«ÊÒ", "ÎŞ", "´÷ÈğæÃ", "´÷ÈğæÃ", "ÃæÁÄ", "dasdqweqtrete1111", "asdoiquweyg");
+		historyRecord=new HistoryRecord(null, 1L, "ç ”è®¨è®°å½•è¡¨", new Date(), "åŠå…¬å®¤", "æ— ", "æˆ´ç‘å©·", "æˆ´ç‘å©·", "é¢èŠ", "dasdqweqtrete1111", "asdoiquweyg");
 		historyRecords.add(historyRecord);
 		historyRecordDao.addBatch(historyRecords);
 	}

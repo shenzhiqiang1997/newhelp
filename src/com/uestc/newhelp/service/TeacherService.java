@@ -3,10 +3,10 @@ package com.uestc.newhelp.service;
 import com.uestc.newhelp.entity.Teacher;
 import com.uestc.newhelp.exception.StillHasArchiveStudentException;
 
-//与教师账户有关的业务逻辑
+//涓庢暀甯堣处鎴锋湁鍏崇殑涓氬姟閫昏緫
 public interface TeacherService {
-	//添加教师账号
+	//娣诲姞鏁欏笀璐﹀彿
 	public void add(Teacher teacher);
-	//删除教师账号
+	//鍒犻櫎鏁欏笀璐﹀彿
 	public void delete(String teacherId) throws StillHasArchiveStudentException;
 }

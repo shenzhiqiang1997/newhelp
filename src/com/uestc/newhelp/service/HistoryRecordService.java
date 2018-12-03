@@ -3,11 +3,11 @@ package com.uestc.newhelp.service;
 import java.util.List;
 
 import com.uestc.newhelp.entity.HistoryRecord;
-//与历史档案有关的业务逻辑
+//涓庡巻鍙叉。妗堟湁鍏崇殑涓氬姟閫昏緫
 public interface HistoryRecordService {
-	//查询指定学生历史记录列表
+	//鏌ヨ鎸囧畾瀛︾敓鍘嗗彶璁板綍鍒楄〃
 	public List<HistoryRecord> list(HistoryRecord historyRecord);
-	//查询指定历史记录详细
+	//鏌ヨ鎸囧畾鍘嗗彶璁板綍璇︾粏
 	public HistoryRecord get(Long historyRecordId);
 	
 }

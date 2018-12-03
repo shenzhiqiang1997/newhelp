@@ -20,7 +20,7 @@ public class AuthorizationController {
 	private AuthorizationDao authorizationDao;
 	@Autowired
 	private AuthorizationService authorizationService;
-	@Log("后台查看账号权限")
+	@Log("鍚庡彴鏌ョ湅璐﹀彿鏉冮檺")
 	@RequestMapping(value="/{teacherId}",method=RequestMethod.GET)
 	public String get(@PathVariable("teacherId")String teacherId,Model model) {
 		try {
@@ -33,7 +33,7 @@ public class AuthorizationController {
 		}
 	}
 	
-	@Log("后台更新账号权限")
+	@Log("鍚庡彴鏇存柊璐﹀彿鏉冮檺")
 	@RequestMapping(method=RequestMethod.PUT)
 	public String update(Authorization authorization,Model model) {
 		try {

@@ -24,7 +24,7 @@ public class HelpTypeController {
 	@Autowired
 	private HelpTypeService helpTypeService;
 	
-	@Log("前台查看帮扶类型列表")
+	@Log("鍓嶅彴鏌ョ湅甯壎绫诲瀷鍒楄〃")
 	@GetMapping("/helpTypes")
 	@ResponseBody
 	public Result<List<HelpType>> list(){
@@ -37,7 +37,7 @@ public class HelpTypeController {
 		}
 	}
 	
-	@Log("新增帮扶类型")
+	@Log("鏂板甯壎绫诲瀷")
 	@PostMapping("/helpType")
 	@ResponseBody
 	public Result<HelpType> add(@RequestBody HelpType helpType){
@@ -50,7 +50,7 @@ public class HelpTypeController {
 		}
 	}
 	
-	@Log("删除帮扶类型")
+	@Log("鍒犻櫎甯壎绫诲瀷")
 	@DeleteMapping("/helpType/{helpTypeId}")
 	@ResponseBody
 	public Result<HelpType> delete(@PathVariable Long helpTypeId){

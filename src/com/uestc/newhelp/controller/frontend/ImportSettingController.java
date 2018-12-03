@@ -21,7 +21,7 @@ public class ImportSettingController {
 	@Autowired
 	private ImportSettingService importSettingService;
 	
-	@Log("前台查看导入设置")
+	@Log("鍓嶅彴鏌ョ湅瀵煎叆璁剧疆")
 	@GetMapping("/importSetting/{teacherId}")
 	@ResponseBody
 	public Result<ImportSetting> get(@PathVariable String teacherId) {
@@ -34,7 +34,7 @@ public class ImportSettingController {
 		}
 	}
 	
-	@Log("前台更新导入设置")
+	@Log("鍓嶅彴鏇存柊瀵煎叆璁剧疆")
 	@PutMapping("/importSetting")
 	@ResponseBody
 	public Result<ImportSetting> update(@RequestBody ImportSetting importSetting){

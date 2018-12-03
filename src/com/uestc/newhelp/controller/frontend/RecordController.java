@@ -45,7 +45,7 @@ public class RecordController {
 	@Autowired
 	private RecordService recordService;
 	
-	@Log("前台查看帮扶记录列表")
+	@Log("鍓嶅彴鏌ョ湅甯壎璁板綍鍒楄〃")
 	@GetMapping("/records/{recordName}/{studentId}")
 	@ResponseBody
 	public Result<List<Record>> list(@PathVariable("recordName")String recordName,
@@ -60,7 +60,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("前台新增帮扶记录")
+	@Log("鍓嶅彴鏂板甯壎璁板綍")
 	@PostMapping("/record")
 	@ResponseBody
 	public Result<Record> add(@RequestBody Record record){
@@ -73,7 +73,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("前台删除帮扶记录")
+	@Log("鍓嶅彴鍒犻櫎甯壎璁板綍")
 	@DeleteMapping("/records")
 	@ResponseBody
 	public Result<Record> deleteBatch(@RequestBody RecordIdsParam recordIdsParam){
@@ -86,7 +86,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("前台更新帮扶记录")
+	@Log("鍓嶅彴鏇存柊甯壎璁板綍")
 	@PutMapping("/record")
 	@ResponseBody
 	public Result<Record> update(@RequestBody Record record){
@@ -99,7 +99,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("前台查看帮扶记录")
+	@Log("鍓嶅彴鏌ョ湅甯壎璁板綍")
 	@GetMapping("/record/{recordId}")
 	@ResponseBody
 	public Result<Record> get(@PathVariable Long recordId){
@@ -112,7 +112,7 @@ public class RecordController {
 		}
 	}
 	
-	/*@Log("下载帮扶记录模板excel文件")
+	/*@Log("涓嬭浇甯壎璁板綍妯℃澘excel鏂囦欢")
 	@GetMapping("/download/recordTemplate/{recordName}")
 	@ResponseBody
 	public ResponseEntity<?> downloadTemplate(@PathVariable String recordName){
@@ -130,7 +130,7 @@ public class RecordController {
 		}
 	}
 	
-	@Log("导入帮扶记录excel文件")
+	@Log("瀵煎叆甯壎璁板綍excel鏂囦欢")
 	@PostMapping("/import/record")
 	@ResponseBody
 	public Result<Record> importRecord(Record record,
@@ -159,8 +159,8 @@ public class RecordController {
 		} 
 	}*/
 	
-	//导出帮扶记录文件
-	@Log("前台导出帮扶记录excel文件")
+	//瀵煎嚭甯壎璁板綍鏂囦欢
+	@Log("鍓嶅彴瀵煎嚭甯壎璁板綍excel鏂囦欢")
 	@PostMapping("/export/record/{recordName}")
 	@ResponseBody
 	public ResponseEntity<?> exportRecord(@PathVariable String recordName,String json,String token){

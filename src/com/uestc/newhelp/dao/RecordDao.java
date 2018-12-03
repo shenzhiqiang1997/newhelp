@@ -8,22 +8,22 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.Record;
 
 public interface RecordDao {
-	//Ôö¼Ó¼ÇÂ¼
+	//å¢åŠ è®°å½•
 	public void add(@Param("record")Record record);
-	//ÅúÁ¿Ôö¼Ó¼ÇÂ¼
+	//æ‰¹é‡å¢åŠ è®°å½•
 	public void addBatch(@Param("records")List<Record> records);
-	//É¾³ıÖ¸¶¨½¨µµÑ§ÉúµÄ¼ÇÂ¼
+	//åˆ é™¤æŒ‡å®šå»ºæ¡£å­¦ç”Ÿçš„è®°å½•
 	public void deleteByStudentId(Long studentId);
-	//ÅúÁ¿É¾³ıÖ¸¶¨½¨µµÑ§ÉúµÄ¼ÇÂ¼
+	//æ‰¹é‡åˆ é™¤æŒ‡å®šå»ºæ¡£å­¦ç”Ÿçš„è®°å½•
 	public void deleteBatch(@Param("recordIds")List<Long> recordIds);
-	//¸üĞÂÖ¸¶¨½¨µµÑ§ÉúµÄ¼ÇÂ¼
+	//æ›´æ–°æŒ‡å®šå»ºæ¡£å­¦ç”Ÿçš„è®°å½•
 	public void update(@Param("record")Record record);
-	//²éÑ¯Ö¸¶¨¼ÇÂ¼
+	//æŸ¥è¯¢æŒ‡å®šè®°å½•
 	public Record get(Long recordId);
-	//²éÑ¯Ö¸¶¨½¨µµÑ§ÉúµÄÖ¸¶¨ÀàĞÍ¼ÇÂ¼
+	//æŸ¥è¯¢æŒ‡å®šå»ºæ¡£å­¦ç”Ÿçš„æŒ‡å®šç±»å‹è®°å½•
 	public List<Record> listOnType(@Param("record")Record record);
-	//²éÑ¯Ö¸¶¨½¨µµÑ§ÉúµÄ×îºóÒ»´Î¼ÇÂ¼Ê±¼ä
+	//æŸ¥è¯¢æŒ‡å®šå»ºæ¡£å­¦ç”Ÿçš„æœ€åä¸€æ¬¡è®°å½•æ—¶é—´
 	public Date getLastRecordTime(Long studentId);
-	//²éÑ¯Ö¸¶¨idµÄ¼ÇÂ¼
+	//æŸ¥è¯¢æŒ‡å®šidçš„è®°å½•
 	public List<Record> listByIds(@Param("recordIds")List<Long> recordIds);
 }

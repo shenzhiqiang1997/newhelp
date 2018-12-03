@@ -3,12 +3,12 @@ package com.uestc.newhelp.dao;
 import org.apache.ibatis.annotations.Param;
 
 import com.uestc.newhelp.entity.Token;
-//ÓĞtokenÓĞ¹ØµÄÊı¾İ²Ù×÷
+//æœ‰tokenæœ‰å…³çš„æ•°æ®æ“ä½œ
 public interface TokenDao {
-	//²éÑ¯Ö¸¶¨½ÌÊ¦µÄtoken
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„token
 	public String get(String teacherId);
-	//Ìí¼Ótoken
+	//æ·»åŠ token
 	public void add(@Param("token")Token token);
-	//É¾³ıÖ¸¶¨½ÌÊ¦µÄtoken
+	//åˆ é™¤æŒ‡å®šæ•™å¸ˆçš„token
 	public void delete(String teacherId);
 }

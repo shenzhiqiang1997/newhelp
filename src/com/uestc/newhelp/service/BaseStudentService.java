@@ -25,37 +25,37 @@ import com.uestc.newhelp.exception.NoSuchUserException;
 import com.uestc.newhelp.exception.NotChoseExportObjectException;
 import com.uestc.newhelp.exception.PasswordNotMatchException;
 import com.uestc.newhelp.exception.StudentIdFormatException;
-//Óë»ù±¾Ñ§ÉúĞÅÏ¢ÓĞ¹ØµÄÒµÎñÂß¼­
+//ä¸åŸºæœ¬å­¦ç”Ÿä¿¡æ¯æœ‰å…³çš„ä¸šåŠ¡é€»è¾‘
 public interface BaseStudentService {
-	//²éÑ¯»ù±¾Ñ§ÉúÁĞ±í
+	//æŸ¥è¯¢åŸºæœ¬å­¦ç”Ÿåˆ—è¡¨
 	public List<BaseStudent> list();
-	//ËÑË÷»ù±¾Ñ§ÉúÁĞ±í
+	//æœç´¢åŸºæœ¬å­¦ç”Ÿåˆ—è¡¨
 	public BaseStudentsWithPage search(BaseStudent baseStudent,String teacherId,Integer pageSize,Integer currentPage,Integer classSort);
-	//²éÑ¯»ù±¾Ñ§ÉúËùÓĞĞÅÏ¢
+	//æŸ¥è¯¢åŸºæœ¬å­¦ç”Ÿæ‰€æœ‰ä¿¡æ¯
 	public BaseStudent getAllInfo(Long studentId);
-	//²éÑ¯»ù±¾Ñ§Éú¸öÈËĞÅÏ¢
+	//æŸ¥è¯¢åŸºæœ¬å­¦ç”Ÿä¸ªäººä¿¡æ¯
 	public BaseStudent getPersonalInfo(Long studentId);
-	//²éÑ¯»ù±¾Ñ§Éú¼ÒÍ¥ĞÅÏ¢
+	//æŸ¥è¯¢åŸºæœ¬å­¦ç”Ÿå®¶åº­ä¿¡æ¯
 	public BaseStudent getFamilyInfo(Long studentId);
-	//²éÑ¯µµ°¸Ñ§Éú¼ÒÍ¥ĞÅÏ¢
+	//æŸ¥è¯¢æ¡£æ¡ˆå­¦ç”Ÿå®¶åº­ä¿¡æ¯
 	public BaseStudent getArchiveInfo(Long studentId)throws ArchiveStudentHadExistException;
-	//¸ù¾İĞÕÃû²éÕÒÏàÓ¦Ñ§ºÅ
+	//æ ¹æ®å§“åæŸ¥æ‰¾ç›¸åº”å­¦å·
 	public List<Long> listIdByName(String name) throws NoSuchStudentException;
-	//¸üĞÂÑ§Éú»ù±¾ĞÅÏ¢,ĞèÒªÊÚÈ¨Íê³É
+	//æ›´æ–°å­¦ç”ŸåŸºæœ¬ä¿¡æ¯,éœ€è¦æˆæƒå®Œæˆ
 	public void update(BaseStudent baseStudent,Teacher teacher,MultipartFile multipartFile,HttpServletRequest httpServletRequest) throws IOException,
 	FileTypeNotMatchException,PasswordNotMatchException;
-	//´ÓExcelÎÄ¼şÖĞµ¼Èë»ù±¾Ñ§ÉúĞÅÏ¢
+	//ä»Excelæ–‡ä»¶ä¸­å¯¼å…¥åŸºæœ¬å­¦ç”Ÿä¿¡æ¯
 	public void importBaseStudentsFromExcelFile(MultipartFile multipartFile,Teacher teacher,ExposeSetting exposeSetting)throws FileTypeNotMatchException, IOException,IllegalStateException,NoAuthorityException, StudentIdFormatException, FormatException, NoDataToImportException ;
-	//µ¼³ö»ù±¾Ñ§ÉúÁĞ±íµ½ExcelÎÄ¼şÖĞ
+	//å¯¼å‡ºåŸºæœ¬å­¦ç”Ÿåˆ—è¡¨åˆ°Excelæ–‡ä»¶ä¸­
 	public byte[] exportBaseStudentsToExcelFile(List<Long> studentIds,String teacherId,ExposeSetting exposeSetting) throws NotChoseExportObjectException,IOException, NoSettingException, NoAuthorityException;
 	List<BaseStudent> searchWithOutPage(BaseStudent baseStudent, String teacherId);
-	//Ö¸¶¨Ñ§ÉúÍËÑ§
+	//æŒ‡å®šå­¦ç”Ÿé€€å­¦
 	public void studentDrop(DropParam dropParam) throws NoSuchUserException, PasswordNotMatchException;
-	//Í³¼ÆÑ§ÉúÈËÊı
+	//ç»Ÿè®¡å­¦ç”Ÿäººæ•°
 	public BaseStudentCount count(BaseStudent baseStudent, HttpServletRequest httpRequest);
-	//ÉÏ´«Í¼Æ¬
+	//ä¸Šä¼ å›¾ç‰‡
 	public void uploadPhotos(MultipartFile[] photos,String teacherId, String password, HttpServletRequest httpRequest) throws IOException, FormatException, NoSuchUserException, PasswordNotMatchException;
-	//°´idºÍÃû³ÆÄ£ºı´Ó²éÑ¯
+	//æŒ‰idå’Œåç§°æ¨¡ç³Šä»æŸ¥è¯¢
 	public List<BaseStudent> searchByIdAndName(IdNameParam idNameParam);
 	BaseStudentsWithPage searchHistory(BaseStudent baseStudent, String teacherId, Integer pageSize, Integer currentPage,
 			Integer classSort);

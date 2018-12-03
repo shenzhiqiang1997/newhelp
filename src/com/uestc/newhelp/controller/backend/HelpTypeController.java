@@ -17,7 +17,7 @@ import com.uestc.newhelp.service.HelpTypeService;
 
 /**
  * @author ZhiqiangShen
- * Óë°ï·öÀàĞÍÓĞ¹ØµÄºó¶Ë¿ØÖÆÆ÷
+ * ä¸å¸®æ‰¶ç±»å‹æœ‰å…³çš„åç«¯æ§åˆ¶å™¨
  */
 @Controller("BackendHelpTypeController")
 @RequestMapping("/backend")
@@ -25,7 +25,7 @@ public class HelpTypeController {
 	@Autowired
 	private HelpTypeService helpTypeService;
 	
-	@Log("ºóÌ¨²é¿´°ï·öÀàĞÍÁĞ±í")
+	@Log("åå°æŸ¥çœ‹å¸®æ‰¶ç±»å‹åˆ—è¡¨")
 	@RequestMapping(path="/helpTypes",method=RequestMethod.GET)
 	public String list(Model model) {
 		try {
@@ -38,7 +38,7 @@ public class HelpTypeController {
 		}
 	}
 	
-	@Log("ºóÌ¨É¾³ı°ï·öÀàĞÍ")
+	@Log("åå°åˆ é™¤å¸®æ‰¶ç±»å‹")
 	@RequestMapping(path="/helpType/{helpTypeId}",method=RequestMethod.DELETE)
 	public String delete(@PathVariable Long helpTypeId,Model model) {
 		try {
@@ -51,7 +51,7 @@ public class HelpTypeController {
 		
 	}
 	
-	@Log("ºóÌ¨ĞÂÔö°ï·öÀàĞÍ")
+	@Log("åå°æ–°å¢å¸®æ‰¶ç±»å‹")
 	@RequestMapping(path="/helpType",method=RequestMethod.POST)
 	public String add(HelpType helpType,Model model) {
 		try {

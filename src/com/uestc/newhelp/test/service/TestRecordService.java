@@ -20,15 +20,15 @@ public class TestRecordService {
 	private RecordService recordService;
 	@Test
 	public void testAdd() {
-		Record record=new Record(null, 2016220305014L, "¼Ò³¤ÁªÏµ±í", new Date(), "°ì¹«ÊÒ", null, "ÀîÖÜ", null, "ÃæÌ¸", "´óÉñ°®µÏÉú", "adsasd");
+		Record record=new Record(null, 2016220305014L, "å®¶é•¿è”ç³»è¡¨", new Date(), "åŠå…¬å®¤", null, "æå‘¨", null, "é¢è°ˆ", "å¤§ç¥çˆ±è¿ªç”Ÿ", "adsasd");
 		recordService.add(record);
 	}
 	@Test
 	public void testAddBatch() {
 		List<Record> records=new ArrayList<>(2);
-		Record record=new Record(null, 2016220305014L, "ÃæÌ¸ÁªÏµ±í", new Date(), "°ìetr¹«ÊÒ", null, "ÀîÖÜ", null, "te", "´óÉñerterµÏÉú", "asdwerer");
+		Record record=new Record(null, 2016220305014L, "é¢è°ˆè”ç³»è¡¨", new Date(), "åŠetrå…¬å®¤", null, "æå‘¨", null, "te", "å¤§ç¥erterè¿ªç”Ÿ", "asdwerer");
 		records.add(record);
-		record.setRecordName("ÑĞÌÖ¼ÇÂ¼±í");
+		record.setRecordName("ç ”è®¨è®°å½•è¡¨");
 		records.add(record);
 		recordService.addBatch(records);
 	}
@@ -51,7 +51,7 @@ public class TestRecordService {
 		Record record=new Record();
 		record.setStudentId(2016220305014L);
 		record.setRecordId(3L);
-		record.setRecordName("µç»°ÁªÏµ±í");
+		record.setRecordName("ç”µè¯è”ç³»è¡¨");
 		recordService.update(record);
 	}
 	@Test

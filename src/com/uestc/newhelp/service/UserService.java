@@ -7,16 +7,16 @@ import com.uestc.newhelp.entity.Teacher;
 import com.uestc.newhelp.exception.NoAuthorityException;
 import com.uestc.newhelp.exception.NoSuchUserException;
 import com.uestc.newhelp.exception.PasswordErrorException;
-//与用户有关的业务逻辑
+//涓庣敤鎴锋湁鍏崇殑涓氬姟閫昏緫
 public interface UserService {
-	//登录验证
+	//鐧诲綍楠岃瘉
 	public Teacher login (Teacher teacher)throws NoSuchUserException,PasswordErrorException;
-	//登出
+	//鐧诲嚭
 	public void logout(String teacherId);
-	//更改教师密码
+	//鏇存敼鏁欏笀瀵嗙爜
 	public void updatePassword(TeacherUpdatePasswordParam teacherUpdatePasswordParam) throws NoSuchUserException,PasswordErrorException;
-	//获得除当前用户外所有用户的姓名和用户名
+	//鑾峰緱闄ゅ綋鍓嶇敤鎴峰鎵�鏈夌敤鎴风殑濮撳悕鍜岀敤鎴峰悕
 	public List<Teacher> list(String teacherId);
-	//后台登录验证
+	//鍚庡彴鐧诲綍楠岃瘉
 	public Teacher backendLogin(Teacher teacher) throws NoSuchUserException, PasswordErrorException, NoAuthorityException;
 }

@@ -25,7 +25,7 @@ public class AttentionTypeController {
 	@Autowired
 	private AttentionTypeService attentionTypeService;
 	
-	@Log("前台查看关注类型列表")
+	@Log("鍓嶅彴鏌ョ湅鍏虫敞绫诲瀷鍒楄〃")
 	@GetMapping("/attentionTypes")
 	@ResponseBody
 	public Result<List<AttentionType>> list(){
@@ -38,7 +38,7 @@ public class AttentionTypeController {
 		}
 	}
 	
-	@Log("新增关注类型")
+	@Log("鏂板鍏虫敞绫诲瀷")
 	@PostMapping("/attentionType")
 	@ResponseBody
 	public Result<AttentionType> add(@RequestBody AttentionType attentionType){
@@ -51,7 +51,7 @@ public class AttentionTypeController {
 		}
 	}
 	
-	@Log("删除关注类型")
+	@Log("鍒犻櫎鍏虫敞绫诲瀷")
 	@DeleteMapping("/attentionType/{attentionTypeId}")
 	@ResponseBody
 	public Result<AttentionType> delete(@PathVariable Long attentionTypeId){
@@ -64,7 +64,7 @@ public class AttentionTypeController {
 		}
 	}
 	
-	@Log("更新关注类型")
+	@Log("鏇存柊鍏虫敞绫诲瀷")
 	@PutMapping("/attentionType")
 	@ResponseBody
 	public Result<AttentionType> update(@RequestBody AttentionType attentionType){

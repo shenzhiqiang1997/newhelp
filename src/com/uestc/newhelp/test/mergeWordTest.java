@@ -27,8 +27,8 @@ public class mergeWordTest {
 
 		OutputStream dest = new FileOutputStream("d:\\dest.docx");
 		try {
-		in1 = new FileInputStream("Ñ§Éú»ù±¾ĞÅÏ¢.docx");
-		in2 = new FileInputStream("ÖÜÁªÏµ¼òÒ×¼ÇÂ¼±í.docx");
+		in1 = new FileInputStream("å­¦ç”ŸåŸºæœ¬ä¿¡æ¯.docx");
+		in2 = new FileInputStream("å‘¨è”ç³»ç®€æ˜“è®°å½•è¡¨.docx");
 		src1Package = OPCPackage.open(in1);
 		src2Package = OPCPackage.open(in2);
 		} catch (Exception e) {
@@ -64,31 +64,31 @@ public class mergeWordTest {
 		ArchiveStudent archiveStudent=new ArchiveStudent();
 		archiveStudent.setArchiveId(1l);
 		archiveStudent.setStudentId(1l);
-				//´Ó´ÅÅÌ¶ÁÈ¡Ä£°åÎÄ¼ş
-				FileInputStream inputStream=new FileInputStream("Ñ§Éú»ù±¾ĞÅÏ¢.docx");
+				//ä»ç£ç›˜è¯»å–æ¨¡æ¿æ–‡ä»¶
+				FileInputStream inputStream=new FileInputStream("å­¦ç”ŸåŸºæœ¬ä¿¡æ¯.docx");
 				
-				//´ò¿ªÑ§Éú°ï·ö¼ÇÂ¼±¡·âÃædocx »ñÈ¡¶ÁĞ´È¨ÏŞ
+				//æ‰“å¼€å­¦ç”Ÿå¸®æ‰¶è®°å½•è–„å°é¢docx è·å–è¯»å†™æƒé™
 				OPCPackage opcPackage = OPCPackage.open(inputStream);
 				
-				//Í¨¹ıopcPackageÀ´´´½¨XWPFDocument¹¤×÷ÎÄµµ
+				//é€šè¿‡opcPackageæ¥åˆ›å»ºXWPFDocumentå·¥ä½œæ–‡æ¡£
 				XWPFDocument document=new XWPFDocument(opcPackage);
 				
-				//»ñÈ¡ËùÓĞ±í¸ñ
+				//è·å–æ‰€æœ‰è¡¨æ ¼
 				List<XWPFTable> tables=document.getTables();
 				
-				//±éÀúËùÓĞ±í¸ñ
+				//éå†æ‰€æœ‰è¡¨æ ¼
 				for (XWPFTable table : tables) {
-					//»ñÈ¡±í¸ñµÄÃ¿Ò»ĞĞ
+					//è·å–è¡¨æ ¼çš„æ¯ä¸€è¡Œ
 					List<XWPFTableRow> rows=table.getRows();
 					
-					//±éÀúËùÓĞĞĞ
+					//éå†æ‰€æœ‰è¡Œ
 					for (XWPFTableRow row : rows) {
-						//»ñÈ¡Ã¿ĞĞµÄÃ¿¸ö¸ñ×Ó
+						//è·å–æ¯è¡Œçš„æ¯ä¸ªæ ¼å­
 						List<XWPFTableCell> cells=row.getTableCells();
-						//±éÀúÃ¿¸ö¸ñ×Ó
+						//éå†æ¯ä¸ªæ ¼å­
 						for (int i = 0; i < cells.size(); i++) {
 							XWPFTableCell cell=cells.get(i);
-							//»ñÈ¡¸Ã¸ñ×ÓµÄ×Ö·û´®
+							//è·å–è¯¥æ ¼å­çš„å­—ç¬¦ä¸²
 							String cellString=cell.getText();
 							System.out.println(cellString);
 							

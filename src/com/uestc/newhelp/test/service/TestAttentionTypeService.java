@@ -19,10 +19,10 @@ public class TestAttentionTypeService {
 	@Test
 	public void testAdd() {
 		AttentionType attentionType=new AttentionType();
-		attentionType.setAttentionTypeName("һ���ע");
+		attentionType.setAttentionTypeName("一般关注");
 		attentionType.setRemindRecordInterval((byte)1);
 		attentionTypeService.add(attentionType);
-		attentionType.setAttentionTypeName("�ر��ע");
+		attentionType.setAttentionTypeName("特别关注");
 		attentionType.setRemindRecordInterval((byte)2);
 		attentionTypeService.add(attentionType);
 	}

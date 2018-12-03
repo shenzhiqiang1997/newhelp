@@ -7,12 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import com.uestc.newhelp.entity.AttentionType;
 
 public interface AttentionTypeDao {
-	//Ôö¼Ó¹Ø×¢ÀàĞÍ
+	//å¢åŠ å…³æ³¨ç±»å‹
 	public void add(@Param("attentionType")AttentionType attentionType);
-	//É¾³ıÖ¸¶¨¹Ø×¢ÀàĞÍidµÄ¹Ø×¢ÀàĞÍ
+	//åˆ é™¤æŒ‡å®šå…³æ³¨ç±»å‹idçš„å…³æ³¨ç±»å‹
 	public void delete(Long attentionTypeId);
-	//¸üĞÂÖ¸¶¨¹Ø×¢ÀàĞÍidµÄ¹Ø×¢¼ä¸ô
+	//æ›´æ–°æŒ‡å®šå…³æ³¨ç±»å‹idçš„å…³æ³¨é—´éš”
 	public void update(@Param("attentionType")AttentionType attentionType);
-	//²éÑ¯ËùÓĞ¹Ø×¢ÀàĞÍ
+	//æŸ¥è¯¢æ‰€æœ‰å…³æ³¨ç±»å‹
 	public List<AttentionType> list();
 }

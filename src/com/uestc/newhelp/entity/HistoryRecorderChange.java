@@ -3,18 +3,18 @@ package com.uestc.newhelp.entity;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-//ÀúÊ·¼ÇÂ¼ÈË±ä¸ü¼ÇÂ¼¶ÔÓ¦µÄÊµÌåÀà
+//å†å²è®°å½•äººå˜æ›´è®°å½•å¯¹åº”çš„å®ä½“ç±»
 public class HistoryRecorderChange {
-	//ÀúÊ·¼ÇÂ¼ÈË±ä¸ü¼ÇÂ¼id
+	//å†å²è®°å½•äººå˜æ›´è®°å½•id
 	private Long historyRecorderChangeId;
-	//ÊôÓÚµÄÀúÊ·µµ°¸µÄid
+	//å±äºçš„å†å²æ¡£æ¡ˆçš„id
 	private Long historyArchiveId;
-	//±ä¸üÊ±¼ä
+	//å˜æ›´æ—¶é—´
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date changeTime;
-	//ÏÖ¼ÇÂ¼ÈË
+	//ç°è®°å½•äºº
 	private String recorderNow;
-	//±ä¸üÔ­Òò
+	//å˜æ›´åŸå› 
 	private String changeReason;
 	
 	public HistoryRecorderChange() {

@@ -8,22 +8,22 @@ import com.uestc.newhelp.entity.ArchiveStudent;
 import com.uestc.newhelp.entity.Teacher;
 
 public interface ArchiveStudentDao {
-	//Ôö¼Óµµ°¸Ñ§ÉúĞÅÏ¢
+	//å¢åŠ æ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public void add(@Param("archiveStudent")ArchiveStudent archiveStudent);
-	//É¾³ıÖ¸¶¨µµ°¸Ñ§ÉúĞÅÏ¢
+	//åˆ é™¤æŒ‡å®šæ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public void delete(Long studentId);
-	//¸üĞÂÖ¸¶¨µµ°¸Ñ§ÉúĞÅÏ¢
+	//æ›´æ–°æŒ‡å®šæ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public void update(@Param("archiveStudent")ArchiveStudent archiveStudent);
-	//¸üĞÂÖ¸¶¨µµ°¸Ñ§Éú×îºó¼ÇÂ¼Ê±¼äÎªnull
+	//æ›´æ–°æŒ‡å®šæ¡£æ¡ˆå­¦ç”Ÿæœ€åè®°å½•æ—¶é—´ä¸ºnull
 	public void updateLastRecordTimeToNull(@Param("archiveStudent")ArchiveStudent archiveStudent);
-	//²éÑ¯Ö¸¶¨µµ°¸Ñ§ÉúĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šæ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public ArchiveStudent get(Long studentId);
-	//²éÑ¯Ö¸¶¨½ÌÊ¦µÄµµ°¸Ñ§ÉúĞÅÏ¢
+	//æŸ¥è¯¢æŒ‡å®šæ•™å¸ˆçš„æ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public List<ArchiveStudent> list(@Param("teacher")Teacher teacher);
-	//ËÑË÷Ö¸¶¨½ÌÊ¦µÄµµ°¸Ñ§ÉúĞÅÏ¢
+	//æœç´¢æŒ‡å®šæ•™å¸ˆçš„æ¡£æ¡ˆå­¦ç”Ÿä¿¡æ¯
 	public List<ArchiveStudent> search(@Param("teacher")Teacher teacher,@Param("archiveStudent")ArchiveStudent archiveStudent);
-	//²é¿´¸ÃÑ§ÉúÊÇ·ñÒÑ¾­±»½¨µµ
+	//æŸ¥çœ‹è¯¥å­¦ç”Ÿæ˜¯å¦å·²ç»è¢«å»ºæ¡£
 	public String check(Long studentId);
-	//²é¿´Ö¸¶¨½ÌÊ¦ÊÇ·ñÓĞ°ï·öµÄÑ§Éú
+	//æŸ¥çœ‹æŒ‡å®šæ•™å¸ˆæ˜¯å¦æœ‰å¸®æ‰¶çš„å­¦ç”Ÿ
 	public Integer count(@Param("teacherId")String teacherId);
 }

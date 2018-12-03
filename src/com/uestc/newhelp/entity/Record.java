@@ -7,31 +7,31 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-//¼ÇÂ¼¶ÔÓ¦µÄÊµÌåÀà
+//è®°å½•å¯¹åº”çš„å®ä½“ç±»
 public class Record{
-	//¼ÇÂ¼±íid
+	//è®°å½•è¡¨id
 	private Long recordId;
-	//¼ÇÂ¼ËùÊôµµ°¸Ñ§ÉúÑ§ºÅ
+	//è®°å½•æ‰€å±æ¡£æ¡ˆå­¦ç”Ÿå­¦å·
 	private Long studentId;
-	//¼ÇÂ¼±íÃû³Æ
+	//è®°å½•è¡¨åç§°
 	private String recordName;
-	//¼ÇÂ¼Ê±¼ä
+	//è®°å½•æ—¶é—´
 	@DateTimeFormat(iso=ISO.DATE)
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date recordTime;
-	//µØµã
+	//åœ°ç‚¹
 	private String location;
-	//¼ûÖ¤ÈË
+	//è§è¯äºº
 	private String witness;
-	//¼ÇÂ¼ÈË
+	//è®°å½•äºº
 	private String recorder;
-	//²ÎÓëÈË
+	//å‚ä¸äºº
 	private String participant;
-	//·½Ê½
+	//æ–¹å¼
 	private String way;
-	//Ö÷ÒªÄÚÈİ
+	//ä¸»è¦å†…å®¹
 	private String content;
-	//±¸×¢
+	//å¤‡æ³¨
 	private String comment;
 	
 	

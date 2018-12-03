@@ -3,9 +3,9 @@ package com.uestc.newhelp.util;
 import java.util.Date;
 
 public class DateUtil {
-	//Ò»ÌìµÄÊ±¼ä(ºÁÃë)
+	//ä¸€å¤©çš„æ—¶é—´(æ¯«ç§’)
 	private static long oneDayTime=1000*3600*24;
-	//µÃµ½Ä¿±êÈÕÆÚÓëµ±ÌìµÄÊ±¼ä²î(ºÁÃë)
+	//å¾—åˆ°ç›®æ ‡æ—¥æœŸä¸Žå½“å¤©çš„æ—¶é—´å·®(æ¯«ç§’)
 	public static long getIntervalBetweenToday(Date date) {
 		Date today=new Date();
 		long todayTime=today.getTime();
@@ -14,7 +14,7 @@ public class DateUtil {
 		long interval=todayTime-dateTime;
 		return interval;
 	}
-	//²é¿´Ê±¼ä²îÊÇ·ñ´óÓÚÄ¿±êÖÜÊ±¼ä²î(ºÁÃë)
+	//æŸ¥çœ‹æ—¶é—´å·®æ˜¯å¦å¤§äºŽç›®æ ‡å‘¨æ—¶é—´å·®(æ¯«ç§’)
 	public static boolean remindInterval(long interval,byte weekCount) {
 		if(interval>weekCount*oneDayTime*7) {
 			return true;

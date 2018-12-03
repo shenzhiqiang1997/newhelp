@@ -46,60 +46,60 @@ public class RecordChangeServiceImpl implements RecorderChangeService {
 	
 	@Override
 	public void add(RecorderChange recorderChange,String newTeacherId) {
-		//»ñÈ¡µ½±ä¸üÄ¿±ê½ÌÊ¦µÄĞÅÏ¢
+		//è·å–åˆ°å˜æ›´ç›®æ ‡æ•™å¸ˆçš„ä¿¡æ¯
 		Teacher newTeacher=teacherDao.getInfo(newTeacherId);
-		//ÉèÖÃ±ä¸üÊ±¼ä,Ä¬ÈÏÎªµ±Ç°Ê±¼ä
+		//è®¾ç½®å˜æ›´æ—¶é—´,é»˜è®¤ä¸ºå½“å‰æ—¶é—´
 		recorderChange.setChangeTime(new Date());
-		//ÉèÖÃÏÖ¼ÇÂ¼ÈËÎª±ä¸üÄ¿±ê½ÌÊ¦
+		//è®¾ç½®ç°è®°å½•äººä¸ºå˜æ›´ç›®æ ‡æ•™å¸ˆ
 		recorderChange.setRecorderNow(newTeacher.getName());
-		//½«±ä¸ü¼ÇÂ¼¼ÓÈëµ½Êı¾İ¿âÖĞ
+		//å°†å˜æ›´è®°å½•åŠ å…¥åˆ°æ•°æ®åº“ä¸­
 		recorderChangeDao.add(recorderChange);
 		
-		//»ñµÃµµ°¸ËùÊôÑ§ÉúÑ§ºÅ
+		//è·å¾—æ¡£æ¡ˆæ‰€å±å­¦ç”Ÿå­¦å·
 		Long studentId=recorderChange.getStudentId();
-		//¸ù¾İÑ§ºÅ»ñÈ¡µ½Æäµµ°¸
+		//æ ¹æ®å­¦å·è·å–åˆ°å…¶æ¡£æ¡ˆ
 		ArchiveStudent archiveStudent=archiveStudentDao.get(studentId);
-		//Ê¹µÃ¸Ã±ä¸üµÄµµ°¸¶Ô±ä¸üÇ°µÄ½ÌÊ¦¿É¼û
+		//ä½¿å¾—è¯¥å˜æ›´çš„æ¡£æ¡ˆå¯¹å˜æ›´å‰çš„æ•™å¸ˆå¯è§
 		ArchiveVisibility archiveVisibility = 
 				new ArchiveVisibility(archiveStudent.getTeacherId(), archiveStudent.getArchiveId());
 		archiveVisibilityDao.add(archiveVisibility);
 		
-		/*//²éÑ¯¸Ãµµ°¸µÄ¼ÇÂ¼ÈË±ä¸ü¼ÇÂ¼
+		/*//æŸ¥è¯¢è¯¥æ¡£æ¡ˆçš„è®°å½•äººå˜æ›´è®°å½•
 		List<RecorderChange> recorderChanges=recorderChangeDao.list(studentId);
 		Record record=new Record();
 		record.setStudentId(studentId);
-		//²éÑ¯¸Ãµµ°¸µÄ¼ÇÂ¼
+		//æŸ¥è¯¢è¯¥æ¡£æ¡ˆçš„è®°å½•
 		List<Record> records=recordDao.listOnType(record);
 				
-		//´´½¨ÀúÊ·µµ°¸,²¢°ÑÏÈÇ°Òª±ä¸üµÄµµ°¸ĞÅÏ¢¿½±´µ½ÆäÖĞ
+		//åˆ›å»ºå†å²æ¡£æ¡ˆ,å¹¶æŠŠå…ˆå‰è¦å˜æ›´çš„æ¡£æ¡ˆä¿¡æ¯æ‹·è´åˆ°å…¶ä¸­
 		HistoryArchive historyArchive=new HistoryArchive(archiveStudent);
 		historyArchiveDao.add(historyArchive);
 		
-		//´´½¨¸ÃÀúÊ·µµ°¸µÄ¼ÇÂ¼ÈË±ä¸ü¼ÇÂ¼
+		//åˆ›å»ºè¯¥å†å²æ¡£æ¡ˆçš„è®°å½•äººå˜æ›´è®°å½•
 		List<HistoryRecorderChange> historyRecorderChanges=new ArrayList<>();
-		//´´½¨¸ÃÀúÊ·µµ°¸µÄÀúÊ·¼ÇÂ¼
+		//åˆ›å»ºè¯¥å†å²æ¡£æ¡ˆçš„å†å²è®°å½•
 		List<HistoryRecord> historyRecords=new ArrayList<>();
 				
 		if(recorderChanges!=null&&recorderChanges.size()>0) {
-			//½«ÏÈÇ°Òª±ä¸üµÄµµ°¸µÄ¼ÇÂ¼ÈË±ä¸ü¼ÇÂ¼¿½±´µ½ÀúÊ·±ä¸ü¼ÇÂ¼ÖĞ
+			//å°†å…ˆå‰è¦å˜æ›´çš„æ¡£æ¡ˆçš„è®°å½•äººå˜æ›´è®°å½•æ‹·è´åˆ°å†å²å˜æ›´è®°å½•ä¸­
 			for (RecorderChange r : recorderChanges) {
 				HistoryRecorderChange historyRecorderChange=new HistoryRecorderChange(historyArchive.getHistoryArchiveId(), r);
 				historyRecorderChanges.add(historyRecorderChange);
-				//°ÑÀúÊ·µµ°¸Ïà¹ØĞÅÏ¢´æ·Åµ½Êı¾İ¿âÖĞ
+				//æŠŠå†å²æ¡£æ¡ˆç›¸å…³ä¿¡æ¯å­˜æ”¾åˆ°æ•°æ®åº“ä¸­
 				historyRecorderChangeDao.addBatch(historyRecorderChanges);
 			}
 		}
 		if(records!=null&&records.size()>0) {
-			//½«ÏÈÇ°Òª±ä¸üµÄµµ°¸µÄ¼ÇÂ¼¿½±´µ½ÀúÊ·¼ÇÂ¼ÖĞ
+			//å°†å…ˆå‰è¦å˜æ›´çš„æ¡£æ¡ˆçš„è®°å½•æ‹·è´åˆ°å†å²è®°å½•ä¸­
 			for (Record r : records) {
 				HistoryRecord historyRecord=new HistoryRecord(historyArchive.getHistoryArchiveId(), r);
 				historyRecords.add(historyRecord);
 			}
-			//°ÑÀúÊ·µµ°¸Ïà¹ØĞÅÏ¢´æ·Åµ½Êı¾İ¿âÖĞ
+			//æŠŠå†å²æ¡£æ¡ˆç›¸å…³ä¿¡æ¯å­˜æ”¾åˆ°æ•°æ®åº“ä¸­
 			historyRecordDao.addBatch(historyRecords);
 		}*/
 		
-		//°Ñµ±Ç°µµ°¸µÄ°ï·öÀÏÊ¦¸Ä³ÉĞÂµÄÀÏÊ¦
+		//æŠŠå½“å‰æ¡£æ¡ˆçš„å¸®æ‰¶è€å¸ˆæ”¹æˆæ–°çš„è€å¸ˆ
 		archiveStudent.setTeacherId(newTeacherId);
 		archiveStudentDao.update(archiveStudent);
 	}

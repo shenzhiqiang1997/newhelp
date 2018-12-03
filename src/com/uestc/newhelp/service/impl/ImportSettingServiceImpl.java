@@ -22,7 +22,7 @@ public class ImportSettingServiceImpl implements ImportSettingService {
 	public void update(ImportSetting importSetting) throws NoAuthorityException {
 		Teacher teacher=teacherDao.getInfo(importSetting.getTeacherId());
 		if(teacher==null||teacher.getGrade()!=(short)1) {
-			throw new NoAuthorityException("ÄãÎŞÈ¨ÏŞ¸üĞÂµ¼ÈëÉèÖÃ,ÇëÁªÏµ¾ßÓĞ¹ÜÀíÔ±È¨ÏŞµÄÓÃ»§µ¼Èë");
+			throw new NoAuthorityException("ä½ æ— æƒé™æ›´æ–°å¯¼å…¥è®¾ç½®,è¯·è”ç³»å…·æœ‰ç®¡ç†å‘˜æƒé™çš„ç”¨æˆ·å¯¼å…¥");
 		}
 		importSettingDao.update(importSetting);
 	}
@@ -31,7 +31,7 @@ public class ImportSettingServiceImpl implements ImportSettingService {
 	public ImportSetting get(String teacherId) throws NoAuthorityException {
 		Teacher teacher=teacherDao.getInfo(teacherId);
 		if(teacher==null||teacher.getGrade()!=(short)1) {
-			throw new NoAuthorityException("ÄãÎŞÈ¨ÏŞÉèÖÃµ¼ÈëÉèÖÃ,ÇëÁªÏµ¾ßÓĞ¹ÜÀíÔ±È¨ÏŞµÄÓÃ»§µ¼Èë");
+			throw new NoAuthorityException("ä½ æ— æƒé™è®¾ç½®å¯¼å…¥è®¾ç½®,è¯·è”ç³»å…·æœ‰ç®¡ç†å‘˜æƒé™çš„ç”¨æˆ·å¯¼å…¥");
 		}
 		ImportSetting importSetting=importSettingDao.get(teacherId);
 		if(importSetting==null) {

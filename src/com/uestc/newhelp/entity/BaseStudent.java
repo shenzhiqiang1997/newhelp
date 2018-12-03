@@ -7,97 +7,97 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-//»ù´¡Ñ§Éú¶ÔÓ¦µÄÊµÌåÀà
+//åŸºç¡€å­¦ç”Ÿå¯¹åº”çš„å®ä½“ç±»
 public class BaseStudent {
-	//Ñ§ÉúÑ§ºÅ
+	//å­¦ç”Ÿå­¦å·
 	private Long  studentId;
-	//Ñ§ÉúĞÕÃû
+	//å­¦ç”Ÿå§“å
 	private String name;
-	//Ñ§ÉúÄê¼¶
+	//å­¦ç”Ÿå¹´çº§
 	private Short grade;
-	//Ñ§Éú°à¼¶
+	//å­¦ç”Ÿç­çº§
 	private Integer studentClass;
-	//Ñ§ÉúĞÔ±ğ
+	//å­¦ç”Ÿæ€§åˆ«
 	private String sex;
-	//Ñ§ÉúÕÕÆ¬
+	//å­¦ç”Ÿç…§ç‰‡
 	private String photoUrl;
-	//Ñ§ÉúÖ°Îñ
+	//å­¦ç”ŸèŒåŠ¡
 	private String duty;
-	//Ñ§ÉúËŞÉá
+	//å­¦ç”Ÿå®¿èˆ
 	private String dormitory;
-	//Ñ§ÉúÁªÏµ·½Ê½
+	//å­¦ç”Ÿè”ç³»æ–¹å¼
 	private String contactWay;
-	//Ñ§ÉúÉí·İÖ¤ºÅÂë
+	//å­¦ç”Ÿèº«ä»½è¯å·ç 
 	private String idCardNumber;
-	//Ñ§ÉúQQºÅÂë
+	//å­¦ç”ŸQQå·ç 
 	private Long qqNumber;
-	//Ñ§ÉúÓÊÏäµØÖ·
+	//å­¦ç”Ÿé‚®ç®±åœ°å€
 	private String email;
-	//Ñ§ÉúÉúÈÕ
+	//å­¦ç”Ÿç”Ÿæ—¥
 	@DateTimeFormat(iso=ISO.DATE)
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date birthday;
-	//Ñ§ÉúÉí¸ß
+	//å­¦ç”Ÿèº«é«˜
 	private Float height;
-	//Ñ§Éú×¨Òµ
+	//å­¦ç”Ÿä¸“ä¸š
 	private String major;
-	//Ñ§ÉúÑ§ÒµÇé¿ö
+	//å­¦ç”Ÿå­¦ä¸šæƒ…å†µ
 	private String studyCondition;
-	//Ñ§ÉúÕşÖÎÃæÃ²
+	//å­¦ç”Ÿæ”¿æ²»é¢è²Œ
 	private String politicalStatus;
-	//Ñ§ÉúÃñ×å
+	//å­¦ç”Ÿæ°‘æ—
 	private String ethnicGroup;
-	//Ñ§Éú¼®¹á
+	//å­¦ç”Ÿç±è´¯
 	private String birthOrigin;
-	//Ñ§Éú¸ß¿¼³É¼¨/Âú·Ö
+	//å­¦ç”Ÿé«˜è€ƒæˆç»©/æ»¡åˆ†
 	private String collegeEntranceExamScore;
-	//Ñ§Éú¸ß¿¼Ó¢Óï³É¼¨/Âú·Ö
+	//å­¦ç”Ÿé«˜è€ƒè‹±è¯­æˆç»©/æ»¡åˆ†
 	private String collegeEntranceExamEnglishScore;
-	//Ñ§ÉúÓ¢ÓïÈëĞ£¿¼ÊÔ³É¼¨
+	//å­¦ç”Ÿè‹±è¯­å…¥æ ¡è€ƒè¯•æˆç»©
 	private Byte entranceExamEnglishScore;
-	//Ñ§Éú¼ÒÏçËùÔÚ»ğ³µÕ¾
+	//å­¦ç”Ÿå®¶ä¹¡æ‰€åœ¨ç«è½¦ç«™
 	private String hometownRailwayStation;
-	//Ñ§ÉúÊ¡·İ
+	//å­¦ç”Ÿçœä»½
 	private String province;
-	//Ñ§ÉúËùÔÚ³ÇÊĞ
+	//å­¦ç”Ÿæ‰€åœ¨åŸå¸‚
 	private String city;
-	//Ñ§Éú¼ÒÍ¥ÏêÏ¸µØÖ·
+	//å­¦ç”Ÿå®¶åº­è¯¦ç»†åœ°å€
 	private String familyAddress;
-	//Ñ§Éú¼ÒÍ¥µç»°
+	//å­¦ç”Ÿå®¶åº­ç”µè¯
 	private String familyTelNumber;
-	//Ñ§ÉúÓÊÕş±àÂë
+	//å­¦ç”Ÿé‚®æ”¿ç¼–ç 
 	private String postcode;
-	//Ñ§ÉúÌØ³¤
+	//å­¦ç”Ÿç‰¹é•¿
 	private String specialty;
-	//Ñ§Éú¸ßÖĞÔøÈÎÖ°Îñ
+	//å­¦ç”Ÿé«˜ä¸­æ›¾ä»»èŒåŠ¡
 	private String dutyInHighSchool;
-	//Ñ§Éú¸ßÖĞÔø»ñ½±Àø
+	//å­¦ç”Ÿé«˜ä¸­æ›¾è·å¥–åŠ±
 	private String awardInHighSchool;
-	//Ñ§ÉúÊÇ·ñÓĞ¿Æ¼¼¾ºÈüÀà»ñ½±
+	//å­¦ç”Ÿæ˜¯å¦æœ‰ç§‘æŠ€ç«èµ›ç±»è·å¥–
 	private String isHadTechnologyCompetitionAward;
-	//Ñ§Éú¸¸Ç×ĞÕÃû
+	//å­¦ç”Ÿçˆ¶äº²å§“å
 	private String fatherName;
-	//Ñ§Éú¸¸Ç×¹¤×÷µ¥Î»
+	//å­¦ç”Ÿçˆ¶äº²å·¥ä½œå•ä½
 	private String fatherWorkUnit;
-	//Ñ§Éú¸¸Ç×¹¤×÷µ¥Î»ÏêÏ¸µØÖ·
+	//å­¦ç”Ÿçˆ¶äº²å·¥ä½œå•ä½è¯¦ç»†åœ°å€
 	private String fatherWorkUnitAddress;
-	//Ñ§Éú¸¸Ç×Ö°Îñ
+	//å­¦ç”Ÿçˆ¶äº²èŒåŠ¡
 	private String fatherDuty;
-	//Ñ§Éú¸¸Ç×ÓÊ±à
+	//å­¦ç”Ÿçˆ¶äº²é‚®ç¼–
 	private String fatherPostcode;
-	//Ñ§Éú¸¸Ç×µç»°
+	//å­¦ç”Ÿçˆ¶äº²ç”µè¯
 	private String fatherTelNumber;
-	//Ñ§ÉúÄ¸Ç×ĞÕÃû
+	//å­¦ç”Ÿæ¯äº²å§“å
 	private String motherName;
-	//Ñ§ÉúÄ¸Ç×¹¤×÷µ¥Î»
+	//å­¦ç”Ÿæ¯äº²å·¥ä½œå•ä½
 	private String motherWorkUnit;
-	//Ñ§ÉúÄ¸Ç×¹¤×÷µ¥Î»ÏêÏ¸µØÖ·
+	//å­¦ç”Ÿæ¯äº²å·¥ä½œå•ä½è¯¦ç»†åœ°å€
 	private String motherWorkUnitAddress;
-	//Ñ§ÉúÄ¸Ç×Ö°Îñ
+	//å­¦ç”Ÿæ¯äº²èŒåŠ¡
 	private String motherDuty;
-	//Ñ§ÉúÄ¸Ç×ÓÊ±à
+	//å­¦ç”Ÿæ¯äº²é‚®ç¼–
 	private String motherPostcode;
-	//Ñ§ÉúÄ¸Ç×µç»°
+	//å­¦ç”Ÿæ¯äº²ç”µè¯
 	private String motherTelNumber;
 	
 	public BaseStudent() {

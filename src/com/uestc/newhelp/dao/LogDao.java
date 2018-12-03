@@ -8,12 +8,12 @@ import com.uestc.newhelp.entity.Log;
 
 
 public interface LogDao {
-	//»ñÈ¡ÈÕÖ¾
+	//è·å–æ—¥å¿—
 	public List<Log> list(@Param("pageNum")int pageNum,@Param("pageSize")int pageSize);
-	//ËÑË÷ÈÕÖ¾ ÓÃ·ÖÒ³²å¼şÍê³É
+	//æœç´¢æ—¥å¿— ç”¨åˆ†é¡µæ’ä»¶å®Œæˆ
 	public List<Log> search(@Param("log")Log log,@Param("pageNum")int pageNum,@Param("pageSize")int pageSize);
-	//É¾³ıÈÕÖ¾
+	//åˆ é™¤æ—¥å¿—
 	public void delete(Long logId);
-	//Ìí¼ÓÈÕÖ¾
+	//æ·»åŠ æ—¥å¿—
 	public void add(@Param("log")Log log);
 }

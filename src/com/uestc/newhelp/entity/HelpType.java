@@ -1,9 +1,9 @@
 package com.uestc.newhelp.entity;
-//帮扶类型对应的实体类
+//甯壎绫诲瀷瀵瑰簲鐨勫疄浣撶被
 public class HelpType {
-	//帮扶类型id
+	//甯壎绫诲瀷id
 	private Long helpTypeId;
-	//帮扶类型名称
+	//甯壎绫诲瀷鍚嶇О
 	private String helpTypeName;
 	
 	public HelpType() {

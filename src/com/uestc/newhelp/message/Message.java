@@ -1,19 +1,19 @@
 package com.uestc.newhelp.message;
-//ÓÃÓÚ´æ·Å·µ»ØµÄÏûÏ¢³£Á¿
+//ç”¨äºå­˜æ”¾è¿”å›çš„æ¶ˆæ¯å¸¸é‡
 public interface Message {
-	public static final String LOGIN_SUCCESS="µÇÂ¼³É¹¦";
-	public static final String ADD_SUCCESS="Ìí¼Ó³É¹¦";
-	public static final String ADD_FAILURE="Ìí¼ÓÊ§°Ü";
-	public static final String DELETE_SUCCESS="É¾³ı³É¹¦";
-	public static final String DELETE_FAILURE="É¾³ıÊ§°Ü";
-	public static final String UPDATE_SUCCESS="¸üĞÂ³É¹¦";
-	public static final String UPDATE_FAILURE="¸üĞÂÊ§°Ü";
-	public static final String GET_FAILURE="»ñÈ¡Ê§°Ü";
-	public static final String SEARCH_FAILURE="²éÑ¯Ê§°Ü";
-	public static final String CHANGE_SUCCESS="±ä¸ü³É¹¦";
-	public static final String CHANGE_FAILURE="±ä¸üÊ§°Ü";
-	public static final String IMPORT_SUCCESS="µ¼Èë³É¹¦";
-	public static final String IMPORT_FAILURE="µ¼ÈëÊ§°Ü";
-	public static final String EXPORT_FAILURE="µ¼³öÊ§°Ü";
-	public static final String DOWNLOAD_FAILURE="ÏÂÔØÊ§°Ü";
+	public static final String LOGIN_SUCCESS="ç™»å½•æˆåŠŸ";
+	public static final String ADD_SUCCESS="æ·»åŠ æˆåŠŸ";
+	public static final String ADD_FAILURE="æ·»åŠ å¤±è´¥";
+	public static final String DELETE_SUCCESS="åˆ é™¤æˆåŠŸ";
+	public static final String DELETE_FAILURE="åˆ é™¤å¤±è´¥";
+	public static final String UPDATE_SUCCESS="æ›´æ–°æˆåŠŸ";
+	public static final String UPDATE_FAILURE="æ›´æ–°å¤±è´¥";
+	public static final String GET_FAILURE="è·å–å¤±è´¥";
+	public static final String SEARCH_FAILURE="æŸ¥è¯¢å¤±è´¥";
+	public static final String CHANGE_SUCCESS="å˜æ›´æˆåŠŸ";
+	public static final String CHANGE_FAILURE="å˜æ›´å¤±è´¥";
+	public static final String IMPORT_SUCCESS="å¯¼å…¥æˆåŠŸ";
+	public static final String IMPORT_FAILURE="å¯¼å…¥å¤±è´¥";
+	public static final String EXPORT_FAILURE="å¯¼å‡ºå¤±è´¥";
+	public static final String DOWNLOAD_FAILURE="ä¸‹è½½å¤±è´¥";
 }

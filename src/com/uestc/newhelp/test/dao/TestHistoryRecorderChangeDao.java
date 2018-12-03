@@ -21,9 +21,9 @@ public class TestHistoryRecorderChangeDao {
 	@Test
 	public void testAddBatch() {
 		List<HistoryRecorderChange> historyRecorderChanges=new ArrayList<>(2);
-		HistoryRecorderChange historyRecorderChange=new HistoryRecorderChange(null, 1L, new Date(), "Õı√Õ", "whatever");
+		HistoryRecorderChange historyRecorderChange=new HistoryRecorderChange(null, 1L, new Date(), "ÁéãÁåõ", "whatever");
 		historyRecorderChanges.add(historyRecorderChange);
-		historyRecorderChange=new HistoryRecorderChange(null, 1L, new Date(), "¿Ó÷‹", "whatever");
+		historyRecorderChange=new HistoryRecorderChange(null, 1L, new Date(), "ÊùéÂë®", "whatever");
 		historyRecorderChanges.add(historyRecorderChange);
 		historyRecorderChangeDao.addBatch(historyRecorderChanges);
 	}

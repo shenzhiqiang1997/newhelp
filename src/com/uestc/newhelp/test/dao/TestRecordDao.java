@@ -20,15 +20,15 @@ public class TestRecordDao {
 	private RecordDao recordDao;
 	@Test
 	public void testAdd() {
-		Record record=new Record(null, 2016220305023L, "¼Ò³¤ÁªÏµ±í", new Date(), "°ì¹«ÊÒ", null, "´÷ÈğæÃ", null, "ÃæÌ¸", "´óÉñ°®µÏÉú", "adsasd");
+		Record record=new Record(null, 2016220305023L, "å®¶é•¿è”ç³»è¡¨", new Date(), "åŠå…¬å®¤", null, "æˆ´ç‘å©·", null, "é¢è°ˆ", "å¤§ç¥çˆ±è¿ªç”Ÿ", "adsasd");
 		recordDao.add(record);
 	}
 	@Test
 	public void testAddBatch() {
 		List<Record> records=new ArrayList<>();
-		Record record=new Record(null, 2016220305023L, "ÃæÌ¸¼ÇÂ¼±í", new Date(), "°ì¹«ÊÒ", null, "´÷ÈğæÃ", null, "ÃæÌ¸", "´ó´óÉñÉñ°®µÏÉú", "ads°¢ÈøµÂasd");
+		Record record=new Record(null, 2016220305023L, "é¢è°ˆè®°å½•è¡¨", new Date(), "åŠå…¬å®¤", null, "æˆ´ç‘å©·", null, "é¢è°ˆ", "å¤§å¤§ç¥ç¥çˆ±è¿ªç”Ÿ", "adsé˜¿è¨å¾·asd");
 		records.add(record);
-		record=new Record(null, 2016220305023L, "ÑĞÌÖ¼ÇÂ¼±í", new Date(), "°ì¹«ÊÒ", null, "´÷ÈğæÃ", null, "ÃæÌ¸", "´ó´óÉñÉñ°®°¡Èö´óÉùµØµÏÉú", "ads°¢ÈøµÂa°¢ÈøµÂ°¢ÈøµÂsd"); 
+		record=new Record(null, 2016220305023L, "ç ”è®¨è®°å½•è¡¨", new Date(), "åŠå…¬å®¤", null, "æˆ´ç‘å©·", null, "é¢è°ˆ", "å¤§å¤§ç¥ç¥çˆ±å•Šæ’’å¤§å£°åœ°è¿ªç”Ÿ", "adsé˜¿è¨å¾·aé˜¿è¨å¾·é˜¿è¨å¾·sd"); 
 		records.add(record);
 		recordDao.addBatch(records);
 	}
@@ -50,7 +50,7 @@ public class TestRecordDao {
 	public void testUpdate() {
 		Record record=new Record();
 		record.setRecordId(1L);
-		record.setRecordName("¼Ò³¤");
+		record.setRecordName("å®¶é•¿");
 		recordDao.update(record);
 	}
 	@Test

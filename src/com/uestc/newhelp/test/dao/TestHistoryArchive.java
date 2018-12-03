@@ -17,7 +17,7 @@ public class TestHistoryArchive {
 	private HistoryArchiveDao historyArchiveDao;
 	/*@Test
 	public void testAdd() {
-		HistoryArchive historyArchive=new HistoryArchive(null, 2016220305024L, "20162201", "ÄĞ", "ÉêÖ¾Ç¿", "Èí¼ş¼¼Êõ", (short)2016, 2016220305, "ºº×å", "ÎŞ", "239", "ËÄ´¨", "ËÄ´¨", "18581517585", "68874298", "ÎŞ", "15058859819", "asdasqwe", "sdfghfwqe", "sdgdfvbqwe", "qweiqohiufsd", "asdiouiqwe", "qweoiuqwie", "´÷ÈğæÃ", new Date(), "asdasd", "´÷ÈğæÃ", new Date(), "´÷ÈğæÃ", "¸¨µ¼Ô±", "ĞÄÀíÀ§ÄÑ", "Ò»°ã¹Ø×¢", new Date());
+		HistoryArchive historyArchive=new HistoryArchive(null, 2016220305024L, "20162201", "ç”·", "ç”³å¿—å¼º", "è½¯ä»¶æŠ€æœ¯", (short)2016, 2016220305, "æ±‰æ—", "æ— ", "239", "å››å·", "å››å·", "18581517585", "68874298", "æ— ", "15058859819", "asdasqwe", "sdfghfwqe", "sdgdfvbqwe", "qweiqohiufsd", "asdiouiqwe", "qweoiuqwie", "æˆ´ç‘å©·", new Date(), "asdasd", "æˆ´ç‘å©·", new Date(), "æˆ´ç‘å©·", "è¾…å¯¼å‘˜", "å¿ƒç†å›°éš¾", "ä¸€èˆ¬å…³æ³¨", new Date());
 		historyArchiveDao.add(historyArchive);
 	}*/
 	@Test
