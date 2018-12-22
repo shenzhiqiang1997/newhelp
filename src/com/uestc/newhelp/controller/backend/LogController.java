@@ -67,7 +67,7 @@ public class LogController {
 	public String delete(@PathVariable Long logId,Model model) {
 		try {
 			logDao.delete(logId);
-			return "redirect:/backend/logs";
+			return "redirect:/backend/logs/20/1";
 		} catch (Exception e) {
 			model.addAttribute("message",Message.DELETE_FAILURE);
 			return "error";

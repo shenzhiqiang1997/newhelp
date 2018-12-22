@@ -1,5 +1,6 @@
 package com.uestc.newhelp.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -187,8 +188,8 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 						//将存储路径转化为外部可以访问的URL
 						int index=filePath.indexOf(servletContext.getContextPath().substring(1));
 						filePath=filePath.substring(index);
-						filePath=filePath.replaceAll("\\\\", "/");
-						filePath=Path.HOST_PATH+"/"+filePath;
+						filePath=filePath.replaceAll("\\\\", File.separator);
+						filePath=Path.HOST_PATH+File.separator+filePath;
 						//将该URL存放到数据库中
 						baseStudent.setPhotoUrl(filePath);
 						baseStudentDao.update(baseStudent);
@@ -810,8 +811,8 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 			//将存储路径转化为外部可以访问的URL
 			int index=filePath.indexOf(servletContext.getContextPath().substring(1));
 			filePath=filePath.substring(index);
-			filePath=filePath.replaceAll("\\\\", "/");
-			filePath=Path.HOST_PATH+"/"+filePath;
+			filePath=filePath.replaceAll("\\\\", File.separator);
+			filePath=Path.HOST_PATH+File.separator+filePath;
 			
 			String studentIdString = photoName.substring(0, photoName.indexOf("."));
 			Long studentId = null;
