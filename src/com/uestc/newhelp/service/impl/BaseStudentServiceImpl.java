@@ -186,7 +186,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 						String filePath=MultipartFileUtil.storeMultipartFile(multipartFile, servletContext.getRealPath(Path.STUDENT_PHOTO_PATH_UNDER_ARCHIVE), String.valueOf(baseStudent.getStudentId())+".jpg");
 						//将保存的图片URL存入数据库
 						//将存储路径转化为外部可以访问的URL
-						int index=filePath.indexOf(servletContext.getContextPath().substring(1));
+						int index=filePath.indexOf((servletContext.getContextPath()+File.separator).substring(1));
 						filePath=filePath.substring(index);
 						filePath=filePath.replaceAll("\\\\", File.separator);
 						filePath=Path.HOST_PATH+File.separator+filePath;
@@ -809,7 +809,7 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 			String filePath=MultipartFileUtil.storeMultipartFile(photo, servletContext.getRealPath(Path.STUDENT_PHOTO_PATH_UNDER_ARCHIVE), photoName.toLowerCase());
 			//将保存的图片URL存入数据库
 			//将存储路径转化为外部可以访问的URL
-			int index=filePath.indexOf(servletContext.getContextPath().substring(1));
+			int index=filePath.indexOf((servletContext.getContextPath()+File.separator).substring(1));
 			filePath=filePath.substring(index);
 			filePath=filePath.replaceAll("\\\\", File.separator);
 			filePath=Path.HOST_PATH+File.separator+filePath;
