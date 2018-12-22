@@ -8,5 +8,5 @@ public interface Path {
 													+File.separator+"template"+File.separator;
 	/*public static final String TEMPLATE_BASE_PATH="";
 	public static final String HOST_PATH="http://39.108.225.45:8686";*/
-	public static final String HOST_PATH="http://211.83.111.247:8080";
+	public static final String HOST_PATH="http://211.83.111.247:8082";
 }
