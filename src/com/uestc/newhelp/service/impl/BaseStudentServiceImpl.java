@@ -226,10 +226,11 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 		//用于盛放解析出的学生对象
 		List<BaseStudent> baseStudents=new ArrayList<>();
 		//日期格式器,用于日期的格式化
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/d");
 		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy/MM/dd");
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy/M/dd");
 		SimpleDateFormat sdf3=new SimpleDateFormat("yyyy/M/d");
+		SimpleDateFormat sdf4=new SimpleDateFormat("yyyyMMdd");
 		//用上传的文件得到工作簿
 		XSSFWorkbook workbook=new XSSFWorkbook(multipartFile.getInputStream());
 		//只获取第一个sheet
@@ -356,8 +357,15 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					colIndex++;
 					if(exposeSetting.getExposeEmail()==(byte)1) {
 						email=POIUtil.getStringCellValue(row, 10);
-						if(!email.matches(Regex.EMAIL)) {
-							throw new FormatException("导入的学生邮箱格式错误,请检查后重新导入,错误发生在"+rowIndex+"行,"+"邮箱列");
+						if(email!=null)
+							email.trim();
+							email = email.replaceAll("。", ".");
+						if(!(email.matches(Regex.EMAIL1)&&email.matches(Regex.EMAIL2))) {
+							if(email==null||email.isEmpty()) {
+								email = "";
+							}else {
+								throw new FormatException("导入的学生邮箱格式错误,请检查后重新导入,错误发生在"+rowIndex+"行,"+"邮箱列");
+							}
 						}
 					}
 					
@@ -366,8 +374,14 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 					if(exposeSetting.getExposeBirthday()==(byte)1) {
 						String birthdayString=POIUtil.getStringCellValue(row, 11);
 						if(!birthdayString.matches(Regex.BIRTHDAY)) {
-							throw new FormatException("导入的学生生日格式错误,请检查后重新导入,错误发生在"+rowIndex+"行,"+"生日列");
+							if(birthdayString==null||birthdayString.isEmpty()) {
+								birthdayString = "";
+							}else {
+								throw new FormatException("导入的学生生日格式错误,请检查后重新导入,错误发生在"+rowIndex+"行,"+"生日列");
+							}
 						}
+
+						birthdayString = birthdayString.replaceAll("年|月|日|号|\\.", "/");
 						try {
 							birthday=sdf.parse(birthdayString);
 						} catch (ParseException e) {
@@ -380,7 +394,11 @@ public class BaseStudentServiceImpl implements BaseStudentService {
 									try {
 										birthday=sdf3.parse(birthdayString);
 									} catch (ParseException e3) {
-										birthday=null;
+										try {
+											birthday=sdf4.parse(birthdayString);
+										} catch (ParseException e4) {
+											birthday=null;
+										}
 									}
 								}
 							}
